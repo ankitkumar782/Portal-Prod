@@ -1,0 +1,32 @@
+.left{
+    background-color: #445f99;
+   
+}
+ul{
+    padding: 0px;
+    li{
+        list-style-type: none;
+        font-size: 20px;
+        color: white;
+        font-family: serif;
+        font-weight: 500;
+        padding: 20px;
+        cursor: pointer;
+    }
+    li:hover{
+        background-color: #385aa3;
+        
+    }
+}
+.expandable {
+ 
+  
+    // transition: all .5s ease-in-out;
+    // transform-origin: left top;
+    // transform: scaleY(0);
+   }
+   
+   .expandable:target {
+    transform: scaleY(1);
+  }
+  

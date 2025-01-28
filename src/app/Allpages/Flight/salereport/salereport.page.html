@@ -1,0 +1,402 @@
+<ion-app>
+  <ion-content>
+    <ng-container>
+      <ng-container>
+
+        <ion-row class="ion-padding-top s-bar">
+          <ion-col size-sm="12" size-xs="12" size-md="2" size-lg="2" size-xl="2">
+          </ion-col>
+          <ion-col size-sm="12" size-xs="12" size-md="8" size-lg="8" size-xl="8">
+            <ion-row style=" padding-top: 10px;">
+
+              <ion-col size-sm="12" size-xs="12" size-md="4" size-lg="4" size-xl="4">
+                <fieldset>
+                  <legend>
+                    <ion-icon name="calendar-outline"></ion-icon> From
+                  </legend>
+                  <input type="date" [max]="maxDate" [(ngModel)]="from">
+                </fieldset>
+              </ion-col>
+
+              <ion-col size-sm="12" size-xs="12" size-md="4" size-lg="4" size-xl="4">
+                <fieldset>
+                  <legend>
+                    <ion-icon name="calendar-outline"></ion-icon> To
+                  </legend>
+                  <input type="date" [max]="maxDate" [(ngModel)]="to">
+                </fieldset>
+              </ion-col>
+
+              <!-- <ion-col size-sm="12" size-xs="12" size-md="4" size-lg="4" size-xl="4">
+                <fieldset>
+                  <legend>
+                    <ion-icon name='airplane-sharp'></ion-icon> Search by
+                  </legend>
+                  
+                  <ion-icon name="add-circle-outline"></ion-icon>
+                  <ion-button>
+                  </ion-button>
+                  <input type="text" placeholder="Booking Status" >
+                </fieldset>
+              </ion-col> -->
+
+              <ion-col size-sm="12" size-xs="12" size-md="4" size-lg="4" size-xl="4">
+                <button class="submit-btn" type="submit" (click)="apiHit()">
+                  <!-- <span class="material-icons" style="justify-content: center;">search</span> -->
+                  Sale report</button>
+              </ion-col>
+            </ion-row>
+
+            <!-- <br><hr> -->
+            <hr style="width:50%; text-align:left; margin: left 1px;">
+
+
+          </ion-col>
+        </ion-row>
+
+        <ion-row style="padding: 0px;">
+          <ion-col size-xs="12" size-sm="12" size-md="12" size-lg="12" size-xl="12">
+
+            <div *ngIf="spinner">
+              <ion-item>
+                <h4 style="margin: 5rem; left: 40rem; position: absolute; color: seagreen;">LOADING...</h4>
+                <!-- <ion-spinner style="margin: 15rem; left: 40rem; position: absolute; color: seagreen;" name="circular"></ion-spinner> -->
+              </ion-item>
+            </div>
+
+            <ion-badge color="tertiary" class="ionp" style="cursor: pointer;float: right;margin: 5px 20px 0px 0px;"
+              (click)="exportexcel()">
+              <img src="https://img.icons8.com/material-outlined/12/ffffff/download--v1.png" /> Download Excel
+            </ion-badge>
+            <!-- <ion-badge color="danger" class="ionp" style="cursor: pointer;float: right;margin: 5px 20px 0px 0px;"
+              (click)="openPDF()">
+              <img src="https://img.icons8.com/material-outlined/12/ffffff/download--v1.png" /> Download Pdf
+            </ion-badge> -->
+
+            <table id="tab3" class="table">
+              <thead class="thead">
+                <tr>
+                  <th class="padding th">
+                    #
+                  </th>
+                  <th class="padding th">
+                    Booking Id
+                  </th>
+                  <th class="padding th">
+                    Booking Date
+                  </th>
+                  <th class="padding th">
+                    Agent Id
+
+                  </th>
+                  <th class="padding th">
+                    BookingType
+                  </th>
+                  <th class="padding th">
+                    AgentName
+                  </th>
+                  <th class="padding th">
+                    FCode
+                  </th>
+                  <th class="padding th">
+                    AgentEmailId
+
+                  </th>
+
+                  <th class="padding th">
+                    AgentState
+
+                  </th>
+                  <th class="padding th">
+                    AgentCountry
+                  </th>
+                  <th class="padding th">
+                    AmendmentId
+                  </th>
+                  <th class="padding th">
+                    PaymentStatus
+                  </th>
+                  <th class="padding th">
+                    AmendmentType
+                  </th>
+                  <th class="padding th">
+                    Description
+                  </th>
+                  <th class="padding th">
+                    AmendmentDate
+                  </th>
+
+                  <th class="padding th">
+                    ArrivalDate
+                  </th>
+                  <th class="padding th">
+                    ArrivalTime
+                  </th>
+                  <th class="padding th">
+                    DepartureDate
+                  </th>
+
+                  <th class="padding th">
+                    DepartureTime
+                  </th>
+                  <th class="padding th">
+                    Daystotravel
+                  </th>
+                  <th class="padding th">
+                    Status
+                  </th>
+                  <th class="padding th">
+                    FlightNumber
+                  </th>
+
+                  <th class="padding th">
+                    PassengerName
+                  </th>
+                  <th class="padding th">
+                    PaxType
+                  </th>
+                  <th class="padding th">
+                    GdsPnr
+                  </th>
+
+                  <th class="padding th">
+                    Pnr
+                  </th>
+                  <th class="padding th">
+                    TicketNumber
+                  </th>
+                  <th class="padding th">
+                    TotalFare
+                  </th>
+                  <th class="padding th">
+                    BaseFare
+                  </th>
+
+                  <th class="padding th">
+                    Phf
+                  </th>
+                  <th class="padding th">
+                    Ttf
+                  </th>
+                  <th class="padding th">
+                    Asf
+                  </th>
+                  <th class="padding th">
+                    Gst
+                  </th>
+
+                  <th class="padding th">
+                    YQ
+                  </th>
+                  <th class="padding th">
+                    YR
+                  </th>
+
+                  <th class="padding th">
+                    Taxable
+                  </th>
+                  <th class="padding th">
+                    TAF
+                  </th>
+                  <th class="padding th">
+                    OtherTaxes
+                  </th>
+                  <th class="padding th">
+                    Cgst
+                  </th>
+                  <th class="padding th">
+                    Sgst
+                  </th>
+                  <th class="padding th">
+                    Igst
+                  </th>
+                  <th class="padding th">
+                    Ugst
+                  </th>
+
+                  <th class="padding th">
+                    Rcf
+                  </th>
+                  <th class="padding th">
+                    Psf
+                  </th>
+                  <th class="padding th">
+                    Udf
+                  </th>
+                  <th class="padding th">
+                    Jn
+                  </th>
+                  <th class="padding th">
+                    AirlineGst
+                  </th>
+                  <th class="padding th">
+                    Ob
+                  </th>
+                  <th class="padding th">
+                    Oc
+                  </th>
+                  <th class="padding th">
+                    ServiceFeeGST
+                  </th>
+                  <th class="padding th">
+                    GrossFare
+                  </th>
+                  <th class="padding th">
+                    ServiceFee
+                  </th>
+                  <th class="padding th">
+                    GrossDiscount
+                  </th>
+
+                  <th class="padding th">
+                    Tds
+                  </th>
+                  <th class="padding th">
+                    NetDiscount
+                  </th>
+                  <th class="padding th">
+                    NetFare
+                  </th>
+                  <th class="padding th">
+                    BookingClass
+                  </th>
+                  <th class="padding th">
+                    TripType
+                  </th>
+
+                  <th class="padding th">
+                    AirlineCode
+                  </th>
+                  <th class="padding th">
+                    CabinClass
+                  </th>
+                  <th class="padding th">
+                    MealPrice
+                  </th>
+                  <th class="padding th">
+                    SeatPrice
+                  </th>
+
+                  <th class="padding th">
+                    BaggagePrice
+                  </th>
+
+                  <th class="padding th">
+                    Deal Amount
+                  </th>                  
+                  <th class="padding th">
+                    Cabin Amount
+                  </th>                  
+                  <th class="padding th">
+                    Promo Amount
+                  </th>                  
+                  <th class="padding th">
+                    Refundable Amount
+                  </th> 
+
+
+                </tr>
+              </thead>
+
+
+
+
+
+              <!-- <div class="spin" *ngIf="spinner">
+                <ion-item>
+                  <ion-spinner style="margin: 5rem;" name="circular"></ion-spinner>
+                </ion-item>
+              </div> -->
+
+
+
+
+
+              <tbody>
+                <tr *ngFor="let d of resultArr, index as i" class="hvr">
+                  <td class="td">{{i+1}}</td>
+                  <td class="td" style="color: rgb(255, 0, 0); cursor: pointer">
+                    <b>{{d.BookingId}}</b>
+                  </td>
+                  <td class="td">{{d.BookingDate}}</td>
+                  <td class="td">{{d.AgentId}}</td>
+                  <td class="td">{{d.BookingType}}</td>
+                  <td class="td">{{d.AgentName}}</td>
+                  <td class="td">{{d.FCode}}</td>
+                  <td class="td">{{d.AgentEmailId}}</td>
+                  <td class="td">{{d.AgentState}}</td>
+                  <td class="td">{{d.AgentCountry}}</td>
+                  <td class="td">{{d.AmendmentId}}</td>
+                  <td class="td">{{d.PaymentStatus}}</td>
+                  <td class="td">{{d.AmendmentType}}</td>
+                  <td class="td">{{d.Description}}</td>
+                  <td class="td">{{d.AmendmentDate}}</td>
+                  <td class="td">{{d.ArrivalDate}}</td>
+                  <td class="td">{{d.ArrivalTime}}</td>
+                  <td class="td">{{d.DepartureDate}}</td>
+                  <td class="td">{{d.DepartureTime}}</td>
+                  <td class="td"><b>{{d.Daystotravel}}</b></td>
+                  <td class="td"><b>{{d.Status}}</b></td>
+                  <td class="td"><b>{{d.FlightNumber}}</b></td>
+                  <td class="td"><b>{{d.PassengerName}}</b></td>
+                  <td class="td"><b>{{d.PaxType}}</b></td>
+                  <td class="td"><b>{{d.GdsPnr}}</b></td>
+                  <td class="td"><b>{{d.Pnr}}</b></td>
+                  <td class="td"><b>{{d.TicketNumber}}</b></td>
+                  <td class="td"><b>{{d.TotalFare}}</b></td>
+                  <td class="td"><b>{{d.BaseFare}}</b></td>
+                  <td class="td"><b>{{d.Phf}}</b></td>
+                  <td class="td"><b>{{d.Ttf}}</b></td>
+                  <td class="td"><b>{{d.Asf}}</b></td>
+                  <td class="td"><b>{{d.Gst}}</b></td>
+                  <td class="td"><b>{{d.YQ}}</b></td>
+                  <td class="td"><b>{{d.YR}}</b></td>
+                  <td class="td"><b>{{d.Taxable}}</b></td>
+
+                  <td class="td"><b>{{d.TAF}}</b></td>
+                  <td class="td"><b>{{d.OtherTaxes}}</b></td>
+                  <td class="td"><b>{{d.Cgst}}</b></td>
+                  <td class="td"><b>{{d.Sgst}}</b></td>
+                  <td class="td"><b>{{d.Igst}}</b></td>
+                  <td class="td"><b>{{d.Ugst}}</b></td>
+                  <td class="td"><b>{{d.Rcf}}</b></td>
+                  <td class="td"><b>{{d.Psf}}</b></td>
+
+                  <td class="td"><b>{{d.Udf}}</b></td>
+                  <td class="td"><b>{{d.Jn}}</b></td>
+                  <td class="td"><b>{{d.AirlineGst}}</b></td>
+
+                  <td class="td"><b>{{d.Ob}}</b></td>
+                  <td class="td"><b>{{d.Oc}}</b></td>
+                  <td class="td"><b>{{d.ServiceFeeGST}}</b></td>
+                  <td class="td"><b>{{d.GrossFare}}</b></td>
+                  <td class="td"><b>{{d.ServiceFee}}</b></td>
+                  <td class="td"><b>{{d.GrossDiscount}}</b></td>
+                  <td class="td"><b>{{d.Tds}}</b></td>
+                  <td class="td"><b>{{d.NetDiscount}}</b></td>
+                  <td class="td"><b>{{d.NetFare}}</b></td>
+                  <td class="td"><b>{{d.BookingClass}}</b></td>
+                  <td class="td"><b>{{d.TripType}}</b></td>
+                  <td class="td"><b>{{d.AirlineCode}}</b></td>
+                  <td class="td"><b>{{d.CabinClass}}</b></td>
+                  <td class="td"><b>{{d.MealPrice}}</b></td>
+                  <td class="td"><b>{{d.SeatPrice}}</b></td>
+                  <td class="td"><b>{{d.BaggagePrice}}</b></td>
+
+                  <td class="td"><b>{{d.DealAmt}}</b></td>
+                  <td class="td"><b>{{d.CbAmt}}</b></td>
+                  <td class="td"><b>{{d.PromoAmt}}</b></td>
+                  <td class="td"><b>{{d.RefundableAmt}}</b></td>
+
+                </tr>
+              </tbody>
+            </table>
+
+          </ion-col>
+        </ion-row>
+      </ng-container>
+
+    </ng-container>
+
+  </ion-content>
+</ion-app>

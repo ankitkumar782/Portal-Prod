@@ -1,0 +1,237 @@
+[
+    {
+        "id": "1",
+        "active": "true",
+        "title": "Flight",
+        "icon": "Airplane",
+        "showDetails": "false",
+        "subMenu": [
+            {
+                "sid": "1",
+                "active": "true",
+                "title": "Search",
+                "url": "fsearch",
+                "icon": "search",
+                "Eicon": "chevron-forward"
+            },
+            {
+                "sid": "2",
+                "active": "false",
+                "title": "Booking History",
+                "url": "fbookinghistory",
+                "icon": "book",
+                "Eicon": "chevron-forward"
+            },
+            {
+                "sid": "3",
+                "active": "false",
+                "title": "Cancellation History",
+                "url": "fcancellationhistory",
+                "icon": "trash",
+                "Eicon": "chevron-forward"
+            },
+            {
+                "sid": "4",
+                "active": "false",
+                "title": "Cancellation Status",
+                "url": "frefundhistory",
+                "icon": "repeat",
+                "Eicon": "chevron-forward"
+            },
+            {
+                "sid": "5",
+                "active": "false",
+                "title": "Transactions",
+                "url": "ftransactions",
+                "icon": "swap-horizontal",
+                "Eicon": "chevron-forward"
+            },
+            {
+                "sid": "6",
+                "active": "false",
+                "title": "Payment History",
+                "url": "fpaymenthistory",
+                "icon": "cash",
+                "Eicon": "chevron-forward"
+            },
+            {
+                "sid": "7",
+                "active": "false",
+                "title": "Search By",
+                "url": "searchby",
+                "icon": "search",
+                "Eicon": "chevron-forward"
+            },
+            {
+                "sid": "8",
+                "active": "false",
+                "title": "Sale Report",
+                "url": "salereport",
+                "icon": "search",
+                "Eicon": "chevron-forward"
+            },
+            {
+                "sid": "9",
+                "active": "false",
+                "title": "Mannual Action",
+                "url": "mannual-reissue",
+                "icon": "search",
+                "Eicon": "chevron-forward"
+            },
+         
+            {
+                "sid": "10",
+                "active": "false",
+                "title": "Mannual Action Report",
+                "url": "mannual-action-report",
+                "icon": "search",
+                "Eicon": "chevron-forward"
+            }
+
+        ]
+    },
+    {
+        "id": "2",
+        "active": "true",
+        "title": "Train",
+        "icon": "train",
+        "showDetails": "false",
+        "subMenu": [
+            {
+                "sid": "1",
+                "active": "false",
+                "title": "Search",
+                "url": "tsearch",
+                "icon": "search",
+                "Eicon": "chevron-forward"
+            },
+            {
+                "sid": "2",
+                "active": "false",
+                "title": "Booking History",
+                "url": "tbookinghistory",
+                "icon": "book",
+                "Eicon": "chevron-forward"
+            },
+            {
+                "sid": "3",
+                "active": "false",
+                "title": "Cancellation History",
+                "url": "tcancellationhistory",
+                "icon": "trash",
+                "Eicon": "chevron-forward"
+            },
+            {
+                "sid": "4",
+                "active": "false",
+                "title": "Refund History",
+                "url": "trefundhistory",
+                "icon": "repeat",
+                "Eicon": "chevron-forward"
+            },
+            {
+                "sid": "5",
+                "active": "false",
+                "title": "Transactions",
+                "url": "ttransactions",
+                "icon": "swap-horizontal",
+                "Eicon": "chevron-forward"
+            },
+            {
+                "sid": "6",
+                "active": "false",
+                "title": "Payment History",
+                "url": "tpaymenthistory",
+                "icon": "cash",
+                "Eicon": "chevron-forward"
+            }
+        ]
+    },
+    {
+        "id": "3",
+        "active": "true",
+        "title": "Hotel",
+        "icon": "business",   
+        "showDetails": "false",
+        "subMenu": [
+            {
+                "sid": "1",
+                "active": "false",
+                "title": "Search",
+                "url": "hsearch",
+                "icon": "search",
+                "Eicon": "chevron-forward"
+            },
+            {
+                "sid": "2",
+                "active": "false",
+                "title": "Booking History",
+                "url": "hbookinghistory",
+                "icon": "book",
+                "Eicon": "chevron-forward"
+            },
+            {
+                "sid": "3",
+                "active": "false",
+                "title": "Cancellation History",
+                "url": "hcancellationhistory",
+                "icon": "trash",
+                "Eicon": "chevron-forward"
+            },
+            {
+                "sid": "4",
+                "active": "false",
+                "title": "Refund History",
+                "url": "hrefundhistory",
+                "icon": "repeat",
+                "Eicon": "chevron-forward"
+            },
+            {
+                "sid": "5",
+                "active": "false",
+                "title": "Transactions",
+                "url": "htransactions",
+                "icon": "swap-horizontal",
+                "Eicon": "chevron-forward"
+            },
+            {
+                "sid": "6",
+                "active": "false",
+                "title": "Payment History",
+                "url": "hpaymenthistory",
+                "icon": "cash",
+                "Eicon": "chevron-forward"
+            }
+        ]
+    },
+    {
+        "id": "4",
+        "title": "My Account",
+        "url": "myaccount",
+        "icon": "person-circle"
+    },
+    {
+        "id": "5",
+        "title": "Payment Upload",
+        "url": "p_upload",
+        "icon": "cash"
+    },
+    {
+        "id": "6",
+        "title": "Settings",
+        "active": "true",
+        "showDetails": "false",
+        "icon": "settings",
+        "subMenu": [
+            {
+                "sid": "1",
+                "active": "false",
+                "title": "Menu Master",
+                "url": "dashboard",
+                "icon": "build",
+                "Eicon": "chevron-forward"
+               
+            }
+        ]
+    }
+]

@@ -1,0 +1,402 @@
+.showAmount {
+  justify-content: center;
+  display: flex;
+  padding: 25px;
+}
+.cardSize{
+  // height: 500px;
+  // width: 700px;
+  width: 60%;
+  // margin: auto;
+ 
+}
+
+span {
+  // padding: 15px;
+  color: black;
+}
+ion-title{
+  text-align: center;
+  color: orange;
+  padding: 15px;
+}
+.inp{
+  background-color: white;
+  margin: 4px;
+}
+
+// ion-icon{
+//   // font-size: 19px;
+// }
+.table{
+  width: 100%;
+  background-color: white;
+  // padding: 40px;
+  // height: 40px;
+}
+.table th {
+  padding: 8px;
+  font-size: 15px;
+  font-weight: 300;
+  
+}
+.table td {
+  padding: 8px;
+  font-size: 13px;
+  
+}
+ion-icon{
+  margin-top: -1px;
+}
+.thead{
+  // background-color: #45587c;
+  background-color: #F4F6F8;
+  // color: rgb(247, 247, 247);
+  color: #021a46;
+  // font-size: 20px;
+  font-family: "poppins";
+  // text-align: left;
+}
+
+
+.s-bar{
+  padding: 0px 0px 20px 0px;
+  
+}
+
+ion-col{
+    padding-top: 10px;
+}
+.padding-none {
+  padding: 0px;
+}
+.rotate-90 {
+  display: inline-block; 
+  transform: rotate(45deg);
+}
+.rotate-0{
+  display: inline-block; 
+  transform: rotate(-45deg);
+}
+.bg-color{
+  --ion-background-color: rgb(245, 245, 245);
+}
+ion-item{
+  --ion-background-color: #fff;
+}
+input{
+  outline: 0;
+  border: none;
+  width: 100%;
+  padding: 10px;
+  background-color: white;
+  color: black;
+}
+select{
+  outline: 0;
+  border: none;
+  width: 100%;
+  padding: 10px;
+  background-color: white;
+  color: black;
+}
+input:disabled {
+cursor: not-allowed;
+}
+
+ion-icon {
+  color: #e9182d;
+}
+.label{
+  font-size: 20px;
+  font-weight: 500;
+}
+ion-text {
+  color: #e9182d;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+
+.submit-btn {
+  width: 100%;
+  padding:15px 15px;
+  background: #e9182d;
+  color: white;
+  font-size: 17px;
+  font-family: "poppins";
+  border: none;
+  font-weight: 500;
+  opacity: .8;
+  box-shadow: 1px 1px 1px 1px lightgrey;
+  border-radius: 5px;
+  margin: 11px 0px 0px 0px;
+  letter-spacing: 2px;
+}
+.submit-btn:hover{
+  opacity: 1;
+}
+.ionp {
+  width: 100%;
+  padding:15px 15px;
+  // background: #e9182d;
+  background-color: blue($color: #000000);
+  color: black;
+  font-size: 17px;
+  font-family: "poppins";
+  border: none;
+  font-weight: 600;
+  opacity: .8;
+  box-shadow: 1px 1px 1px 1px lightgrey;
+  border-radius: 5px;
+  margin: 11px 0px 0px 0px;
+  letter-spacing: 2px;
+}
+.ionp:hover{
+  opacity: 1;
+}
+
+
+.tp_mgn{
+  padding: 20px 0px 0px 0px;
+}
+
+fieldset {
+
+outline: none;
+border: none;
+border-bottom: 1px solid rgb(21, 21, 21);
+// border-radius: 5px;
+
+ }
+legend{
+  color: #000;
+  font-weight: 300;
+}
+.border{
+  height: 30px;
+  width: 30px;
+  text-align: center;
+  border-radius: 50%;
+  padding: 7px 0px 0px 0px;
+  margin: 18px 0px 0px 40px;
+  cursor: pointer;
+  border: 1px solid #e9182d;
+}
+
+  @media only screen and (max-width: 767px ) {
+    .none{
+      display: none;
+    }
+    .border{
+
+      text-align: center;
+  border-radius: 50%;
+  padding: 5px 0px 0px 0px;
+  margin: 18px 0px 0px 0px;
+  cursor: pointer;
+  border: 1px solid #0d2c4f;
+    }
+    .p-margin{
+      margin: 0px 0px 0px 150px;
+    }
+    .R-label{
+      font-weight: 500;
+      font-size: 16px;
+    }
+    .label{
+      font-size: 17px;
+      font-weight: 500;
+    }
+    input::placeholder{
+      font-size: 14px;
+    }
+    .FTH {
+  
+      font-size: 14px;
+  
+    }
+    .for-app {
+      padding: 60px 10px 80px 10px;
+    }
+  
+  }
+
+@media only screen and (max-width: 425px ) {
+  .R-label{
+    font-weight: 500;
+    font-size: 13px;
+  }
+  .label{
+    font-size: 17px;
+    font-weight: 500;
+  }
+  input::placeholder{
+    font-size: 14px;
+  }
+  .FTH {
+
+    font-size: 16px;
+
+  }
+  .for-app {
+    padding: 60px 10px 80px 10px;
+  }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+body,
+td,
+input,
+textarea,
+select {
+    margin: 0;
+    font-family: Cambria !important;
+    color: #222;
+}
+
+.txt-lt {
+    text-align: left;
+}
+
+.pad-lt-5 {
+    padding-left: 5px !important;
+}
+
+.circle-bullet {
+    width: 10px;
+    height: 10px;
+    background: #adadad;
+    border-radius: 100%;
+    float: left;
+    top: 5px;
+    position: relative;
+}
+
+.ClassStrip {
+    border-top: 1px solid #CCC;
+    border-bottom: 1px solid #CCC;
+}
+
+.imp-note {
+    font-size: 13px;
+    width: 97%;
+    font-style: normal;
+    font-variant: normal;
+    line-height: 20px;
+    margin-bottom: 10px;
+}
+
+.imp-note tr th {
+    padding: 3px 5px;
+    font-size: 15px;
+    background: transparent;
+    color: #555;
+    font-weight: bold;
+}
+
+.imp-note tr td {
+    padding: 2px 5px;
+    color: #444;
+}
+
+.gst-info {
+    font-family: cambria;
+    font-size: 13px;
+    width: 97%;
+    font-style: normal;
+    font-variant: normal;
+    line-height: 20px;
+    margin-bottom: 10px;
+}
+
+.gst-info tr th {
+    padding: 3px 5px;
+    font-size: 15px;
+    background: transparent;
+    color: #555;
+    font-weight: bold;
+}
+
+.gst-info tr td {
+    font-size: 13px;
+}
+
+.ClassTitle td {
+    padding: 3px 5px;
+    font-size: 15px;
+    background: transparent;
+    color: #555;
+    font-weight: bold;
+}
+
+.ClassHead {
+    border-top: 1px solid #fc4d16;
+    border-bottom: 1px solid #fc4d16;
+    background: #b3b3b3;
+    font-size: 13px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.ClassHead td {
+    font-size: 13px;
+    padding: 2px 0;
+    border-right: 1px solid #DDD;
+    color: #fff;
+}
+
+.ClassHead td:last-child {
+    border-right: 0px solid #DDD;
+}
+
+.ClassHeadContent {
+    text-align: center;
+    line-height: 19px;
+}
+
+.ClassHeadContent td {
+    font-size: 13px;
+    padding: 2px 0;
+    border-right: 1px solid #DDD;
+    background: #fafafa;
+    color: #222;
+    border-bottom: 1px dotted #999;
+}
+
+.ClassHeadContent td:last-child {
+    border-right: 0px solid #DDD;
+}
+// .fieldset option{
+//   outline: none;
+// }
+.c-Font{
+  font-family: "poppins";
+}
+.Book-NUM{
+  font-size: 15px;
+  color: #021A46;
+  font-weight: 900;
+  font-family: "poppins";
+}
+.search-BY{
+  color: #534e4e;
+  font-weight: 700;
+  font-family: "poppins";
+
+}

@@ -1,0 +1,194 @@
+ion-content {
+  --background: var(--ion-item-background, var(--ion-background-color, rgba(173, 179, 182, 0.145)));
+}
+
+table {
+  text-align: left;
+  width: 100%;
+
+}
+
+thead {
+  background-color: rgba(124, 124, 124, 0.145);
+  // border-top: 1px solid rgb(255, 255, 255);
+}
+th {
+  color: rgb(0, 0, 0);
+  font-weight: 500;
+  font-size: 14px;
+  padding: 5px 10px;
+}
+tbody {
+  text-align: left;
+  background-color: #ffffff;
+  // border: 1px solid #445f99;
+}
+td {
+  border: 1px solid rgba(112, 112, 112, 0.145);
+  font-size: 12px;
+  padding: 5px 10px;
+  color: black;
+  font-weight: 600;
+
+}
+
+
+
+input[type="checkbox"] {
+  // -webkit-appearance: none;
+  width: 30px;
+  height: 30px;
+  background: white;
+  border-radius: 5px;
+  border: 2px solid #555;
+  margin-top: 5px;
+}
+input[type="checkbox"]:checked {
+  background: #445f99;
+}
+
+
+.left {
+  display: inline-block;
+}
+
+.fltLogo {
+  background-image: url("../../../../assets/flight_icon.png");
+  background-repeat: no-repeat;
+  height: 20px;
+  margin: auto;
+  width: 22px;
+}
+.head-cmn {
+  font-size: 15px;
+  font-weight: 500;
+
+  color: #000;
+}
+.F_NAME {
+  font-size: 17px;
+  font-weight: 600;
+  color: #445f99;
+}
+.F-CODE {
+  font-size: 12px;
+  font-weight: 600;
+  color: rgb(18, 109, 10);
+  margin-bottom: -20px;
+  padding: 0px;
+}
+.D_TIME {
+  font-size: 16px;
+
+}
+
+.DUR {
+  font-size: 17px;
+  font-weight: 600;
+  color: #000;
+}
+.STOP {
+  font-size: 14px;
+  font-weight: 700;
+  font-family: arial;
+  color: rgb(19, 109, 34);
+}
+.BOOKNOW {
+  background-color: #445f99;
+  color: white;
+  font-size: 15px;
+  border-radius: 5px;
+  width: 100%;
+  padding: 12px 0px;
+  font-family: 700px;
+  font-family: arial;
+  opacity: 1;
+}
+
+@media only screen and (max-width: 767px) {
+  .none {
+    display: none;
+  }
+  .border {
+    text-align: center;
+    border-radius: 50%;
+    padding: 5px 0px 0px 0px;
+    margin: 18px 0px 0px 0px;
+    cursor: pointer;
+    border: 1px solid #0d2c4f;
+  }
+  .p-margin {
+    margin: 0px 0px 0px 150px;
+  }
+  .R-label {
+    font-weight: 500;
+    font-size: 16px;
+  }
+  .label {
+    font-size: 17px;
+    font-weight: 500;
+  }
+  input::placeholder {
+    font-size: 14px;
+  }
+  .FTH {
+    font-size: 14px;
+  }
+  .for-app {
+    padding: 60px 10px 80px 10px;
+  }
+}
+
+@media only screen and (max-width: 425px) {
+  .R-label {
+    font-weight: 500;
+    font-size: 13px;
+  }
+  .label {
+    font-size: 17px;
+    font-weight: 500;
+  }
+  input::placeholder {
+    font-size: 14px;
+  }
+  .FTH {
+    font-size: 16px;
+  }
+  .for-app {
+    padding: 60px 10px 80px 10px;
+  }
+}
+
+.fieldset_l {
+  border-left: none;
+}
+
+.fieldset_r {
+  border-right: none;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  position: absolute;
+  background-color: white;
+  min-width: 330px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  padding: 12px 16px;
+  z-index: 99999;
+  height: 500px;
+  overflow-y: auto;
+  top: 80px;
+}
+
+.filt-side-div {
+  padding: 15px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  color: rgb(0, 0, 0);
+  font-family: arial;
+}

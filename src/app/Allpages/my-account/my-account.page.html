@@ -1,0 +1,84 @@
+<ion-content>
+  <ion-grid>
+    <ion-row style="padding-top: 50px;">
+      <ion-col size-sm="12" size-xs="2" size-md="2" size-lg="2" size-xl="2">
+
+      </ion-col>
+      <ion-col size-sm="12" size-xs="12" size-md="8" size-lg="8" size-xl="8">
+        <ion-card>
+          <ion-row>
+            <ion-col size-md="3" size-lg="3" size-xl="3" class="left">
+              <ul>
+                <li (click)="agcy()">Agency</li>
+                <li (click)="pfl()">Profile</li>
+                <li (click)="doc()">Document</li>
+                <li (click)="creds()">Credentials</li>
+                <li (click)="sms()">Sms</li>
+                <li (click)="mrkp()">Markup</li>
+                <li (click)="upld()">Upload</li>
+              </ul>
+            </ion-col>
+            <ion-col size-md="9" size-lg="9" size-xl="9">
+              <!-- Agency -->
+              <ion-row *ngIf="Agency" class="expandable">
+                <ion-col size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12" class="ion-text-center">
+                  <h1>Agency</h1>
+                </ion-col>
+              </ion-row>
+
+
+
+              <!-- Profile -->
+              <ion-row *ngIf="Profile" class="expandable">
+                <ion-col size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12" class="ion-text-center">
+                  <h1>Profile</h1>
+                </ion-col>
+              </ion-row>
+
+
+              <!-- Document -->
+              <ion-row *ngIf="Document" class="expandable">
+                <ion-col size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12" class="ion-text-center">
+                  <h1>Document</h1>
+                </ion-col>
+              </ion-row>
+
+
+              <!-- Credentials -->
+              <ion-row *ngIf="Credentials" class="expandable">
+                <ion-col size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12" class="ion-text-center">
+                  <h1>Credentials</h1>
+                </ion-col>
+              </ion-row>
+
+              <!--Sms  -->
+              <ion-row *ngIf="Sms">
+                <ion-col size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12" class="ion-text-center">
+                  <h1>Sms</h1>
+                </ion-col>
+              </ion-row>
+
+
+              <!-- Markup -->
+              <ion-row *ngIf="Markup">
+                <ion-col size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12" class="ion-text-center">
+                  <h1>Markup</h1>
+                </ion-col>
+              </ion-row>
+
+
+              <!-- Upload -->
+              <ion-row *ngIf="Upload">
+                <ion-col size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12" class="ion-text-center">
+                  <h1>Upload</h1>
+                </ion-col>
+              </ion-row>
+
+
+            </ion-col>
+          </ion-row>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

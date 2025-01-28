@@ -1,0 +1,123 @@
+.example-container {
+  width: 400px;
+  height: 200px;
+  margin: 12px;
+  border: 1px solid #555;
+}
+.mat-radio-button ~ .mat-radio-button {
+  margin-left: 46px;
+  font-family: serif;
+}
+  
+mat-drawer-content {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.my-chkbox {
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  margin: 0;
+  vertical-align: bottom;
+  position: relative;
+  
+}
+.my-rb {
+  width: 25px;
+  height: 25px;
+  padding: 5px;
+  margin: 0;
+  vertical-align: bottom;
+  position: relative;
+  
+}
+ion-card {
+  flex-basis: 100%;
+  mat-drawer-content {
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .my-chkbox {
+    width: 20px;
+    height: 20px;
+    padding: 0;
+    margin: 0;
+    vertical-align: bottom;
+    position: relative;
+    
+  }
+  .my-rb {
+    width: 25px;
+    height: 25px;
+    padding: 5px;
+    margin: 0;
+    vertical-align: bottom;
+    position: relative;
+    
+  }
+  ion-card {
+    flex-basis: 100%;
+    margin-left: 50px;
+ margin-right: 50px;
+}
+ion-content {
+  --overflow: hidden;
+}
+.ib{
+  
+  font-size: 18px;
+  vertical-align: bottom;
+  position: relative;
+  padding: 5px;
+  margin: 0;
+}
+
+.example-radio-group {
+  display: flex;
+  flex-direction: column;
+  margin: 15px 10px;
+}
+
+.example-radio-button {
+  margin: 5px;
+}
+hr {
+  margin-left: 0px;
+ margin-right: 60px;
+}
+ion-button {
+ margin-left: 50px;
+ margin-right: 50px;
+}
+ion-icon{
+  padding: 0px 10px;
+}
+
+
+
+}
+ ion-icon {
+  display: inline-block;
+  font-size: 25px;
+  color: #e3ffb0;
+  vertical-align: middle;
+  }
+ul{
+  padding: 0px;
+  margin: 0px;
+}
+
+  ul li{
+    cursor: pointer;
+    padding: 10px 25px ;
+    font-size: 15px;
+    font-weight: 500;
+    list-style-type: none;
+    border-bottom: 1px solid white;
+
+    
+  }

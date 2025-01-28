@@ -1,0 +1,1220 @@
+<ion-content>
+  <ion-grid>
+    <ion-row style="padding: 20px 0px;">
+
+      <ion-col size-sm="12" size-xs="12" size-md="1" size-lg="1" size-xl="1"></ion-col>
+      <ion-col size-sm="12" size-xs="12" size-md="10" size-lg="10" size-xl="10" style="padding: 0px;">
+        <!-- <ion-row>
+
+          <br /><br />
+          <ul class="list-unstyled multi-steps">
+            <li>Search</li>
+            <li class="is-active">Passenger' Details</li>
+            <li>Make Payment</li>
+            <li>PaymentPreview</li>
+          </ul>
+
+        </ion-row> -->
+        <ion-row>
+
+          <!-- PAX FORM START -->
+          <ion-col size-sm="12" size-xs="12" size-md="10" size-lg="10" size-xl="10">
+            <!-- ITENARARY START -->
+            <ion-card>
+              <ion-row style="padding: 0px 0px; background-color: white;">
+                <ion-col size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12"
+                  style="background-color: #213d77!important;
+                  border: 1px solid rgba(0.125,0.125,0.125,0.125); padding:10px 10px 10px 10px;height: 55px; margin: 0px 0px  20px 0px; color: white;">
+
+                  <!-- <h5 style="font-size: 18px;color: #fff;">    <ion-icon name="airplane" style="font-size: 20px;  transform: rotate(270deg);color: #fff;"></ion-icon>{{slt_flt.Itinerary[0].SrcName|uppercase}} -------   {{slt_flt.Itinerary[0].DesName |uppercase}} </h5> -->
+                  <h5 style="font-size: 18px;">
+                    <ion-icon name="airplane" style="font-size: 20px;  transform: rotate(270deg);color: #213d77;">
+                    </ion-icon>FLIGHT DETAILS
+                    <span class="F_NAME" style=" color: white;float: right;">AVAILABLE SEAT's =
+                      {{slt_flt.Itinerary[0].Seat}}</span><br>
+                  </h5>
+                </ion-col>
+                <ng-container *ngFor="let x of slt_flt.Itinerary">
+                  <ion-col size-sm="12" size-xs="12" size-md="2" size-lg="2" size-xl="2" class="ion-text-start"
+                    style="background-color: white; padding-left: 20px;">
+                    <div [style.background-position]="slt_flt.Itinerary[0].FLogo" class="fltLogo left"></div>
+                    <div class="left" style="font-size: 11px;font-weight: 600;color: red;">{{slt_flt.Alias}}</div><br>
+                    <span class="F_NAME">{{x.FName}}</span><br>
+                    <span class="F-CODE">{{x.FCode}} -
+                      {{x.FNo}}</span><br>
+
+
+                  </ion-col>
+
+                  <ion-col size-sm="4" size-xs="4" size-md="3" size-lg="4" size-xl="4" class="ion-text-start"
+                    style="background-color: white;">
+
+
+                    <span class="D_NAME">{{x.Src}},
+                      {{x.SrcName|uppercase}}</span><br>
+                    <span style="font-size: 14px;font-weight: 500;">{{x.DDate| date:'medium'}}</span>
+                    <br>
+                    <span>{{x.DArpt|uppercase}}<span>
+                        (Terminal : {{x.ATrmnl|uppercase}}) </span></span><br>
+
+                  </ion-col>
+
+                  <ion-col size-sm="4" size-xs="4" size-md="3" size-lg="2" size-xl="2" class="ion-text-center"
+                    style="background-color: white;">
+                    <span class="DUR">{{x.Dur}}</span><br>
+                    <span *ngIf="slt_flt.Stop=='0'" class="STOP">
+                      Non Stop
+                    </span>
+                    <span *ngIf="slt_flt.Stop=='1'" class="STOP">
+                      One Stop
+                    </span>
+                    <span *ngIf="slt_flt.Stop=='2'" class="STOP">
+                      Two Stop
+                    </span>
+                  </ion-col>
+
+                  <ion-col size-sm="4" size-xs="4" size-md="3" size-lg="4" size-xl="4" class="ion-text-end"
+                    style="background-color: white;padding-right: 20px;">
+
+                    <span class="D_NAME">{{x.Des}} , {{x.DesName
+                      |uppercase}}</span><br>
+                    <span style="font-size: 14px;font-weight: 500;">{{x.ADate|
+                      date:'medium'}}</span><br>
+                    <span style="font-size: 14px;">{{x.AArpt|uppercase}}
+                      <span> (Terminal : {{x.DTrmnl|uppercase}})</span></span><br>
+
+                  </ion-col>
+                </ng-container>
+
+
+
+
+              </ion-row>
+            </ion-card>
+            <ion-card *ngIf="slt_flt1">
+              <ion-row style="padding: 0px 0px; background-color: white;">
+                <ion-col size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12"
+                  style="background-color: #213d77!important;border: 1px solid rgba(0.125,0.125,0.125,0.125); padding:10px 10px 10px 10px;height: 55px; margin: 0px 0px  20px 0px; color: white;">
+
+                  <h5 style="font-size: 18px;color: #fff;"> <ion-icon name="airplane"
+                      style="font-size: 20px;  transform: rotate(270deg);color: #fff;"></ion-icon>{{slt_flt.Itinerary[0].SrcName|uppercase}}
+                    ------- {{slt_flt.Itinerary[0].DesName |uppercase}} </h5>
+                  <h5 style="font-size: 18px;">
+                    <ion-icon name="airplane" style="font-size: 20px;  transform: rotate(270deg);color: #213d77;">
+                    </ion-icon>FLIGHT DETAILS
+                    <span class="F_NAME" style=" color: white;float: right;">AVAILABLE SEAT's =
+                      {{slt_flt1.Itinerary[0].Seat}}</span><br>
+                  </h5>
+                </ion-col>
+                <ng-container *ngFor="let x of slt_flt1.Itinerary">
+                  <ion-col size-sm="12" size-xs="12" size-md="2" size-lg="2" size-xl="2" class="ion-text-start"
+                    style="background-color: white; padding-left: 20px;">
+                    <div [style.background-position]="slt_flt.Itinerary[0].FLogo" class="fltLogo left"></div>
+                    <div class="left" style="font-size: 11px;font-weight: 600;color: red;">{{slt_flt1.Alias}}</div><br>
+                    <span class="F_NAME">{{x.FName}}</span><br>
+                    <span class="F-CODE">{{x.FCode}} -
+                      {{x.FNo}}</span><br>
+
+
+                  </ion-col>
+
+                  <ion-col size-sm="4" size-xs="4" size-md="3" size-lg="4" size-xl="4" class="ion-text-start"
+                    style="background-color: white;">
+
+
+                    <span class="D_NAME">{{x.Src}},
+                      {{x.SrcName|uppercase}}</span><br>
+                    <span style="font-size: 14px;font-weight: 500;">{{x.DDate| date:'medium'}}</span>
+                    <br>
+                    <span>{{x.DArpt|uppercase}}<span>
+                        (Terminal : {{x.ATrmnl|uppercase}}) </span></span><br>
+
+                  </ion-col>
+
+                  <ion-col size-sm="4" size-xs="4" size-md="3" size-lg="2" size-xl="2" class="ion-text-center"
+                    style="background-color: white;">
+                    <span class="DUR">{{x.Dur}}</span><br>
+                    <span *ngIf="slt_flt.Stop=='0'" class="STOP">
+                      Non Stop
+                    </span>
+                    <span *ngIf="slt_flt.Stop=='1'" class="STOP">
+                      One Stop
+                    </span>
+                    <span *ngIf="slt_flt.Stop=='2'" class="STOP">
+                      Two Stop
+                    </span>
+                  </ion-col>
+
+                  <ion-col size-sm="4" size-xs="4" size-md="3" size-lg="4" size-xl="4" class="ion-text-end"
+                    style="background-color: white;padding-right: 20px;">
+
+                    <span class="D_NAME">{{x.Des}} , {{x.DesName
+                      |uppercase}}</span><br>
+                    <span style="font-size: 14px;font-weight: 500;">{{x.ADate|
+                      date:'medium'}}</span><br>
+                    <span style="font-size: 14px;">{{x.AArpt|uppercase}}
+                      <span> (Terminal : {{x.DTrmnl|uppercase}})</span></span><br>
+
+                  </ion-col>
+                </ng-container>
+
+
+
+
+              </ion-row>
+            </ion-card>
+
+            <!-- ITENARARY END -->
+
+            <form [formGroup]="pax_all_obj">
+              <ion-row color="primary" justify-content-center>
+
+                <!-- ADULT DIV START-->
+                <ion-col size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12" style="padding: 0px;">
+                  <ion-card>
+                    <ion-row>
+                      <ion-col style="height: 55px;" size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12"
+                        class="form_head">
+                        <h5 style="font-size: 15px;margin-left: 13px;"><b>
+                            <ion-icon name="person"></ion-icon> ADULT
+                          </b></h5>
+                      </ion-col>
+                      <ion-col size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12"
+                        style="background-color: white;border-radius: 0px 0px 10px 10px">
+
+                        <ion-row formArrayName="adt_sub_arr" *ngFor="let item of getControlsadt(); let i = index;">
+                          <ion-col [formGroupName]="i" size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12">
+                            <ion-row>
+                              <ion-col size-sm="12" size-xs="12" size-md="2" size-lg="2" size-xl="2">
+                                <fieldset>
+                                  <legend>
+                                    TITLE
+                                  </legend>
+                                  <select formControlName="title" style=" outline: 0; 
+                                      border: 1px solid lightgray;
+                                      width: 100%;
+                                      padding: 10px;
+                                      background-color: white;
+                                      color: black;">
+                                    <option value="MR">
+                                      MR
+                                    </option>
+
+                                    <option value="MS">
+                                      MS
+                                    </option>
+                                  </select>
+                                </fieldset>
+                              </ion-col>
+
+
+
+                              <ion-col size-sm="12" size-xs="12" size-md="3" size-lg="3" size-xl="3">
+                                <fieldset>
+                                  <legend>
+                                    FIRST NAME
+                                  </legend>
+                                  <input formControlName="fname">
+                                </fieldset>
+
+                              </ion-col>
+
+
+                              <ion-col size-sm="12" size-xs="12" size-md="3" size-lg="3" size-xl="3">
+                                <fieldset>
+                                  <legend>
+                                    LAST NAME
+                                  </legend>
+                                  <input formControlName="lname">
+                                </fieldset>
+                              </ion-col>
+
+
+                              <ion-col size-sm="12" size-xs="12" size-md="2" size-lg="2" size-xl="2">
+                                <fieldset>
+                                  <legend>
+                                    SEX
+                                  </legend>
+                                  <select formControlName="sex" placeholder="select" style=" outline: 0; 
+                                    border: 1px solid lightgray;
+                                    width: 100%;
+                                    padding: 10px;
+                                    background-color: white;
+                                    color: black;">
+                                    <option value="Male">
+                                      Male
+                                    </option>
+                                    <option value="Female">
+                                      Female
+                                    </option>
+                                    <option value="Others">
+                                      Others
+                                    </option>
+                                  </select>
+                                </fieldset>
+
+                              </ion-col>
+                              <ion-col size-sm="12" size-xs="12" size-md="3" size-lg="2" size-xl="2">
+                                <fieldset>
+                                  <legend>
+                                    DOB
+                                  </legend>
+                                  <!-- <input matInput [matDatepicker]="picker" (click)="picker.open()" formControlName="age"
+                                    [max]="minDate" placeholder="YYYY/MM/DD">
+                                  <mat-datepicker #picker></mat-datepicker> -->
+
+                                  <input type="date" formControlName="age" placeholder="YYYY/MM/DD" style="width: 75%;"
+                                    [max]="minDate">
+
+
+                                  <!-- <legend>
+                                    <ion-icon name="calendar-outline"></ion-icon>
+                                  </legend> -->
+                                  <!-- <input type="date" placeholder="YYYY/MM/DD" style="width: 70%;" formControlName="age" [min]="minDate"> -->
+
+                                </fieldset>
+
+                              </ion-col>
+                            </ion-row>
+                          </ion-col>
+                        </ion-row>
+                      </ion-col>
+                    </ion-row>
+                  </ion-card>
+                </ion-col>
+
+                <!-- ADULT DIV END-->
+
+
+
+                <!-- CHILD DIV START-->
+
+                <ion-col size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12" style="padding: 0px;">
+                  <ion-card *ngIf="showchild">
+                    <ion-row>
+                      <ion-col size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12" class="form_head">
+                        <h5 style="font-size: 15px;margin-left: 13px;"><b>
+                            <ion-icon name="person"></ion-icon> CHILD
+                          </b></h5>
+                      </ion-col>
+                      <ion-col size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12"
+                        style="background-color: white;">
+                        <ion-row formArrayName="chd_sub_arr" *ngFor="let item of getControlschd(); let i = index;">
+                          <ion-col [formGroupName]="i" size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12">
+                            <ion-row>
+                              <ion-col size-sm="12" size-xs="12" size-md="2" size-lg="2" size-xl="2">
+                                <fieldset>
+                                  <legend>
+                                    TITLE
+                                  </legend>
+                                  <select formControlName="title" style=" outline: 0; 
+                                    border: 1px solid lightgray;
+                                    width: 100%;
+                                    padding: 10px;
+                                    background-color: white;
+                                    color: black;">
+
+                                    <option value="MR">
+                                      Mr
+                                    </option>
+
+                                    <option value="MS">
+                                      Ms
+                                    </option>
+                                  </select>
+                                </fieldset>
+                              </ion-col>
+                              <ion-col size-sm="12" size-xs="12" size-md="3" size-lg="3" size-xl="3">
+                                <fieldset>
+                                  <legend>
+                                    FIRST NAME
+                                  </legend>
+                                  <input formControlName="fname">
+                                </fieldset>
+                              </ion-col>
+                              <ion-col size-sm="12" size-xs="12" size-md="3" size-lg="3" size-xl="3">
+                                <fieldset>
+                                  <legend>
+                                    LAST NAME
+                                  </legend>
+                                  <input formControlName="lname">
+                                </fieldset>
+                              </ion-col>
+                              <ion-col size-sm="12" size-xs="12" size-md="2" size-lg="2" size-xl="2">
+                                <fieldset>
+                                  <legend>
+                                    SEX
+                                  </legend>
+                                  <select formControlName="sex" style=" outline: 0; 
+            border: 1px solid lightgray;
+            width: 100%;
+            padding: 10px;
+            background-color: white;
+            color: black;">
+                                    <option value="Male">
+                                      Male
+                                    </option>
+                                    <option value="Female">
+                                      Female
+                                    </option>
+                                    <option value="Others">
+                                      Others
+                                    </option>
+                                  </select>
+                                </fieldset>
+                              </ion-col>
+                              <ion-col size-sm="12" size-xs="12" size-md="3" size-lg="2" size-xl="2">
+                                <fieldset>
+                                  <legend>
+                                    DOB
+                                  </legend>
+
+
+                                  <input type="date" formControlName="age" placeholder="YYYY/MM/DD" style="width: 75%;"
+                                    [min]="minDate" [max]="INF_MINDATE">
+
+
+
+                                  <!-- <input matInput [matDatepicker]="picker" (click)="picker.open()" formControlName="age"
+                                    [min]="minDate" [max]="INF_MINDATE" placeholder="YYYY/MM/DD"> -->
+                                  <!-- <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle> -->
+                                  <!-- <mat-datepicker #picker></mat-datepicker> -->
+
+                                </fieldset>
+                              </ion-col>
+                            </ion-row>
+                          </ion-col>
+                        </ion-row>
+                      </ion-col>
+                    </ion-row>
+                  </ion-card>
+                </ion-col>
+
+                <!-- CHILD DIV END-->
+
+
+                <!-- INFANT DIV START-->
+                <ion-col size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12" style="padding: 0px;">
+                  <ion-card *ngIf="showinfant">
+                    <ion-row>
+                      <ion-col size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12" class="form_head">
+                        <h5 style="font-size: 15px;margin-left: 13px;"><b>
+                            <ion-icon name="person"></ion-icon> INFANT
+                          </b></h5>
+                      </ion-col>
+                      <ion-col size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12"
+                        style="background-color: white;">
+
+                        <ion-row formArrayName="inf_sub_arr" *ngFor="let item of getControlsinf(); let i = index;">
+                          <ion-col [formGroupName]="i" size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12">
+                            <ion-row>
+                              <ion-col size-sm="12" size-xs="12" size-md="2" size-lg="2" size-xl="2">
+                                <fieldset>
+                                  <legend>
+                                    TITLE
+                                  </legend>
+                                  <select formControlName="title" style=" outline: 0; 
+                                  border: 1px solid lightgray;
+                                  width: 100%;
+                                  padding: 10px;
+                                  background-color: white;
+                                  color: black;">
+                                    <option value="MR">
+                                      Mr
+                                    </option>
+
+                                    <option value="MS">
+                                      Ms
+                                    </option>
+
+
+                                  </select>
+                                </fieldset>
+
+
+
+                              </ion-col>
+
+
+
+                              <ion-col size-sm="12" size-xs="12" size-md="3" size-lg="3" size-xl="3">
+                                <fieldset>
+                                  <legend>
+                                    FIRST NAME
+                                  </legend>
+                                  <input formControlName="fname">
+                                </fieldset>
+
+                              </ion-col>
+
+
+                              <ion-col size-sm="12" size-xs="12" size-md="3" size-lg="3" size-xl="3">
+                                <fieldset>
+                                  <legend>
+                                    LAST NAME
+                                  </legend>
+                                  <input formControlName="lname">
+                                </fieldset>
+
+                              </ion-col>
+
+
+                              <ion-col size-sm="12" size-xs="12" size-md="2" size-lg="2" size-xl="2">
+                                <fieldset>
+                                  <legend>
+                                    SEX
+                                  </legend>
+                                  <select formControlName="sex" style=" outline: 0; 
+                                  border: 1px solid lightgray;
+                                  width: 100%;
+                                  padding: 10px;
+                                  background-color: white;
+                                  color: black;">
+                                    <option value="Male">
+                                      Male
+                                    </option>
+                                    <option value="Female">
+                                      Female
+                                    </option>
+                                    <option value="Others">
+                                      Others
+                                    </option>
+
+
+                                  </select>
+                                </fieldset>
+
+                              </ion-col>
+
+
+                              <ion-col size-sm="12" size-xs="12" size-md="3" size-lg="2" size-xl="2">
+                                <fieldset>
+                                  <legend>
+                                    DOB
+                                  </legend>
+
+
+                                  <input type="date" formControlName="age" placeholder="YYYY/MM/DD" style="width: 75%;"
+                                    [min]="INF_MINDATE">
+
+
+                                  <!-- <input matInput [matDatepicker]="picker" (click)="picker.open()" formControlName="age"
+                                    [min]="INF_MINDATE" placeholder="YYYY/MM/DD">
+
+                                  <mat-datepicker #picker></mat-datepicker> -->
+
+
+                                </fieldset>
+                              </ion-col>
+                            </ion-row>
+
+                          </ion-col>
+                        </ion-row>
+                      </ion-col>
+                    </ion-row>
+                  </ion-card>
+                </ion-col>
+
+                <!-- INFANT DIV END-->
+
+
+                <ion-col size-md="4" size-lg="4" size-xl="4"></ion-col>
+              </ion-row>
+            </form>
+
+
+            <!-- GST DETAILS START -->
+            <ion-row>
+              <ion-col size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12" style="padding: 0px;">
+                <ion-card>
+                  <ion-row>
+                    <ion-col style="height: 55px;" size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12"
+                      class="form_head">
+                      <h5 style="font-size: 15px;margin-left: 13px;"><b>
+                          <ion-icon name="document"></ion-icon> GST DETAILS (optional*)
+                        </b>
+                        <ion-icon name="add-circle-outline"
+                          style="float: right; font-size: 25px;cursor: pointer;color: red;" *ngIf="!isGST"
+                          (click)="isGST=!isGST"></ion-icon>
+                        <ion-icon name="close-circle-outline"
+                          style="float: right; font-size: 25px;cursor: pointer; color: red;" *ngIf="isGST"
+                          (click)="isGST=!isGST"></ion-icon>
+                      </h5>
+                    </ion-col>
+                    <form [formGroup]="details3" *ngIf="isGST">
+                      <ion-row style="background-color: white;">
+                        <ion-col size-sm="12" size-xs="12" size-md="2" size-lg="2" size-xl="2">
+                          <fieldset>
+                            <legend>
+                              GST TYPE
+                            </legend>
+                            <input formControlName="gsttype">
+                          </fieldset>
+                        </ion-col>
+                        <ion-col size-sm="12" size-xs="12" size-md="2" size-lg="2" size-xl="2">
+                          <fieldset>
+                            <legend>
+                              GST NO
+                            </legend>
+                            <input formControlName="gstno">
+                          </fieldset>
+                        </ion-col>
+                        <ion-col size-sm="12" size-xs="12" size-md="2" size-lg="2" size-xl="2">
+                          <fieldset>
+                            <legend>
+                              COMPANY NAME
+                            </legend>
+                            <input formControlName="companyname">
+                          </fieldset>
+                        </ion-col>
+                        <ion-col size-sm="12" size-xs="12" size-md="2" size-lg="2" size-xl="2">
+                          <fieldset>
+                            <legend>
+                              EMAIL
+                            </legend>
+                            <input formControlName="email">
+                          </fieldset>
+                        </ion-col>
+                        <ion-col size-sm="12" size-xs="12" size-md="2" size-lg="2" size-xl="2">
+                          <fieldset>
+                            <legend>
+                              MOB NO
+                            </legend>
+                            <input formControlName="mobno">
+                          </fieldset>
+                        </ion-col>
+                        <ion-col size-sm="12" size-xs="12" size-md="2" size-lg="2" size-xl="2">
+                          <fieldset>
+                            <legend>
+                              ADDRESS
+                            </legend>
+                            <input formControlName="address">
+                          </fieldset>
+                        </ion-col>
+                        <ion-col size-sm="12" size-xs="12" size-md="2" size-lg="2" size-xl="2">
+                          <fieldset>
+                            <legend>
+                              STATE
+                            </legend>
+                            <input formControlName="state">
+                          </fieldset>
+                        </ion-col>
+                        <ion-col size-sm="12" size-xs="12" size-md="2" size-lg="2" size-xl="2">
+                          <fieldset>
+                            <legend>
+                              PIN
+                            </legend>
+                            <input formControlName="pin">
+                          </fieldset>
+                        </ion-col>
+
+                      </ion-row>
+
+
+
+                    </form>
+                  </ion-row>
+                </ion-card>
+              </ion-col>
+
+
+
+
+
+            </ion-row>
+
+            <ion-row>
+              <ion-col size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12" style="padding: 0px;">
+                <ion-card class="seatselectionCard">
+                  <ion-row>
+                    <ion-col style="height: 55px;" size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12"
+                      class="form_head">
+                      <h5 style="font-size: 15px;margin-left: 13px;"><b>
+                          <ion-icon name="apps"></ion-icon> SEAT SELECTION (optional*)
+                        </b>
+                        <ion-icon name="add-circle-outline"
+                          style="float: right; font-size: 25px;cursor: pointer; color: red;" *ngIf="!isseat"
+                          (click)="axilary()"></ion-icon>
+                        <ion-icon name="close-circle-outline"
+                          style="float: right; font-size: 25px;cursor: pointer; color: red;" *ngIf="isseat"
+                          (click)="axilary()"></ion-icon>
+                      </h5>
+                    </ion-col>
+                    <ion-col size-sm="12" *ngIf="isseat" size-xs="12" size-md="12" size-lg="12" size-xl="12"
+                      style="background-color: white;">
+                      <div class="plane">
+                        <div class="cockpit">
+                          <h1>{{slt_flt.Itinerary[0].FName}}</h1>
+                        </div>
+                        <div class="exit exit--front fuselage">
+
+                        </div>
+
+                        <ol class="cabin fuselage">
+                          <li class="row row--1">
+                            <ol class="seats" *ngFor="let i of rangei">
+                              <li class="seat" *ngFor="let j of rangej">
+                                <button
+                                  [ngStyle]="{'background-color': (Seatsdata1.attr[i][j].selected ?'red' :  null ) }"
+                                  *ngIf="seats[i][j]?.Avlt" id="{{ i }}{{ j }}a" class="seat" (click)="
+                      Seatsdata1.attr[i][j].selected
+                          ? (Seatsdata1.attr[i][j].selected = !Seatsdata1.attr[i][j].selected)
+                          : !Seatsdata1.maxReached
+                          ? (Seatsdata1.attr[i][j].selected = !Seatsdata1.attr[i][j].selected)
+                          : '';
+                        counter(seats[i][j]?.SeatCode)
+                      ">{{seats[i][j]?.SeatCode}} </button>
+                                <span style="color: green;font-size: 10px;" *ngIf="seats[i][j]?.Avlt"> ₹
+                                  {{seats[i][j]?.Price}}</span>
+                              </li>
+
+
+                            </ol>
+                          </li>
+                        </ol>
+
+
+
+
+
+                        <div class="exit exit--back fuselage">
+
+                        </div>
+                      </div>
+                    </ion-col>
+                    <ion-col size-sm="12" *ngIf="isseat" size-xs="12" size-md="12" size-lg="12" size-xl="12"
+                      style="background-color: white;">
+                      <div class="plane" *ngIf="totst>1?true:false">
+                        <div class="cockpit">
+                          <h1>{{slt_flt.Itinerary[0].FName}}</h1>
+                        </div>
+                        <div class="exit exit--front fuselage">
+
+                        </div>
+
+                        <ol class="cabin fuselage">
+                          <li class="row row--1">
+                            <ol class="seats" *ngFor="let i of rangei1">
+                              <li class="seat" *ngFor="let j of rangej1">
+                                <button
+                                  [ngStyle]="{'background-color': (Seatsdata2.attr[i][j].selected ?'red' :  null ) }"
+                                  *ngIf="seats2[i][j]?.Avlt" id="{{ i }}{{ j }}a" class="seat" (click)="
+                    Seatsdata2.attr[i][j].selected
+                        ? (Seatsdata2.attr[i][j].selected = !Seatsdata2.attr[i][j].selected)
+                        : !Seatsdata2.maxReached
+                        ? (Seatsdata2.attr[i][j].selected = !Seatsdata2.attr[i][j].selected)
+                        : '';
+                      counter2(seats2[i][j]?.SeatCode)
+                    ">{{seats2[i][j]?.SeatCode}}</button>
+                              </li>
+
+
+                            </ol>
+                          </li>
+                        </ol>
+
+
+
+
+
+                        <div class="exit exit--back fuselage">
+
+                        </div>
+                      </div>
+                    </ion-col>
+                  </ion-row>
+                </ion-card>
+              </ion-col>
+
+            </ion-row>
+            <!-- SEAT SEALECTION END -->
+
+            <!-- CONTACT DETAILS START -->
+            <form [formGroup]="details4">
+              <ion-row>
+                <ion-col size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12" style="padding: 0px;">
+                  <ion-card>
+                    <ion-row>
+                      <ion-col style="height: 55px;" size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12"
+                        class="form_head">
+                        <h5 style="font-size: 15px;margin-left: 13px;"><b>
+                            <ion-icon name="call"></ion-icon> CONTACT DETAILS
+                          </b></h5>
+                      </ion-col>
+
+
+                      <ion-col size-sm="12" size-xs="12" size-md="6" size-lg="6" size-xl="6"
+                        style="background-color: white;padding: 15px 10px 20px 10px">
+                        <fieldset>
+                          <legend>
+                            MOBILE NO
+                          </legend>
+                          <input formControlName="mobno">
+                        </fieldset>
+                        <div *ngIf="f.mobno?.touched  && f.mobno?.invalid" class="alert">
+                          <div *ngIf="f.mobno.errors['required']">Mobile no. is required</div>
+                          <div *ngIf="f.mobno.errors['minlength']">
+                            Mobile no. must be at least 10 Digit
+                          </div>
+                          <div *ngIf="f.mobno.errors['maxlength']">
+                            Mobile no. must not exceed 10 Digit
+                          </div>
+                        </div>
+                      </ion-col>
+                      <ion-col size-sm="12" size-xs="12" size-md="6" size-lg="6" size-xl="6"
+                        style="background-color: white;padding: 15px 10px 20px 10px">
+                        <fieldset>
+                          <legend>
+                            EMAIL
+                          </legend>
+                          <input formControlName="email">
+                        </fieldset>
+                        <div *ngIf="f.email?.touched && f.email?.invalid" class="alert">
+                          <div *ngIf="f.email.errors['required']">Email is required.</div>
+                          <div *ngIf="f.email.errors['email']">Please, enter valid email address.</div>
+                        </div>
+                      </ion-col>
+                    </ion-row>
+                  </ion-card>
+                </ion-col>
+
+
+              </ion-row>
+            </form>
+
+            <form [formGroup]="details4">
+              <ion-row>
+                <ion-col size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12" style="padding: 0px;">
+                  <ion-card>
+                    <ion-row>
+
+                      <!-- <ion-col style="height: 55px;" size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12"
+                        class="form_head">
+                        <h5 style="font-size: 15px;margin-left: 13px;"><b>
+                            <ion-icon name="apps"></ion-icon> MEALS (optional*)
+                          </b>
+                          <ion-icon name="add-circle-outline"
+                            style="float: right; font-size: 25px;cursor: pointer; color: red;" *ngIf="!isMeal"
+                            (click)="axilary()"></ion-icon>
+                          <ion-icon name="close-circle-outline"
+                            style="float: right; font-size: 25px;cursor: pointer; color: red;" *ngIf="isMeal"
+                            (click)="axilary()"></ion-icon>
+                        </h5>
+                      </ion-col> -->
+
+
+                      <ion-col style="height: 55px;" size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12"
+                        class="form_head">
+                        <h5 style="font-size: 15px;margin-left: 13px;"><b>
+                            <ion-icon name="apps"></ion-icon> MEALS (optional*)
+                            <ion-icon name="add-circle-outline"
+                              style="float: right; font-size: 25px;cursor: pointer; color: red;" *ngIf="!isMeal"
+                              (click)="isMealselect()"></ion-icon>
+                            <ion-icon name="close-circle-outline"
+                              style="float: right; font-size: 25px;cursor: pointer; color: red;" *ngIf="isMeal"
+                              (click)="isMealselect()"></ion-icon>
+                          </b></h5>
+                      </ion-col>
+                      <table *ngIf="isMeal" style="overflow-x: scroll;display: block;">
+                        <thead>
+                          <tr>
+                            <th class="padding">
+                              #
+                            </th>
+
+                            <!-- <th class="padding">
+                              FCode
+                            </th>
+
+                            <th class="padding">
+                              FNo
+                            </th> -->
+
+                            <!-- <th class="padding">
+                              SsrCode
+                            </th> -->
+
+                            <th class="padding">
+                              SsrDesc
+                            </th>
+
+                            <!-- <th class="padding">
+                              Complmnt
+                            </th> -->
+                            <!-- <th class="padding">
+                              Currency
+                            </th> -->
+                            <th class="padding">
+                              Price
+                            </th>
+                            <!-- 
+                            <th class="padding">
+                              Src
+                            </th>
+                            <th class="padding">
+                              Des
+                            </th> -->
+                            <!-- <th class="padding">
+                              SsrFor
+                            </th> -->
+                            <th class="padding">
+                            </th>
+                            <th class="padding">
+                            </th>
+                            <th class="padding">
+                            </th>
+                            <th class="padding">
+                              Action
+                            </th>
+                            <th class="padding">
+                            </th>
+                            <th class="padding">
+                            </th>
+                            <th class="padding">
+                            </th>
+                            <th class="padding">
+                            </th>
+
+                          </tr>
+                        </thead>
+
+                        <tbody>
+                          <tr *ngFor="let d of Meals, index as i" class="hvr">
+
+                            <td>{{i+1}}</td>
+
+                            <!-- <td><span>{{d.FCode}}</span></td>
+                            <td><span>{{d.FNo}}</span></td> -->
+                            <!-- <td><span>{{d.SsrCode}}</span></td> -->
+                            <td><span>{{d.SsrDesc}}</span></td>
+                            <!-- <td><span>{{d.Complmnt}}</span></td> -->
+
+                            <td><span>{{d.Price}}{{d.Currency}}</span></td>
+                            <!-- <td><span>{{d.Src}}</span></td>
+                            <td><span>{{d.Des}}</span></td> -->
+                            <!-- <td><span>{{d.SsrFor}}</span></td> -->
+                            <!-- <td> <button type="button" class="btn btn-info" (click)="mealSelct(i,d)" > SELECT </button> </td> -->
+                            <td> <ion-button (click)="mealSelct(i,d,0)">
+                                Passenger 1
+                              </ion-button> </td>
+                            <td *ngIf="totpass>1? true:false"> <ion-button (click)="mealSelct(i,d,1)">
+                                Passenger 2
+                              </ion-button> </td>
+                            <td *ngIf="totpass>2? true:false"> <ion-button (click)="mealSelct(i,d,2)">
+                                Passenger 3
+                              </ion-button> </td>
+                            <td *ngIf="totpass>3? true:false"> <ion-button (click)="mealSelct(i,d,3)">
+                                Passenger 4
+                              </ion-button> </td>
+                            <td *ngIf="totpass>4? true:false"> <ion-button (click)="mealSelct(i,d,4)">
+                                Passenger 5
+                              </ion-button> </td>
+                            <td *ngIf="totpass>6? true:false"> <ion-button (click)="mealSelct(i,d,5)">
+                                Passenger 6
+                              </ion-button> </td>
+                            <td *ngIf="totpass>7? true:false"> <ion-button (click)="mealSelct(i,d,6)">
+                                Passenger 7
+                              </ion-button> </td>
+                            <td *ngIf="totpass>8? true:false"> <ion-button (click)="mealSelct(i,d,7)">
+                                Passenger 8
+                              </ion-button> </td>
+                            <td *ngIf="totpass>9? true:false"> <ion-button (click)="mealSelct(i,d,8)">
+                                Passenger 9
+                              </ion-button> </td>
+                            <td *ngIf="totpass>10? true:false"> <ion-button (click)="mealSelct(i,d,9)">
+                                Passenger 10
+                              </ion-button> </td>
+                            <!-- <td><span>{{d.OI}}</span></td> -->
+
+                          </tr>
+
+                        </tbody>
+
+                      </table>
+                    </ion-row>
+                  </ion-card>
+                </ion-col>
+
+
+              </ion-row>
+            </form>
+
+            <form [formGroup]="details4">
+              <ion-row>
+                <ion-col size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12" style="padding: 0px;">
+                  <ion-card>
+                    <ion-row>
+
+                      <!-- <ion-col style="height: 55px;" size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12"
+                        class="form_head">
+                        <h5 style="font-size: 15px;margin-left: 13px;"><b>
+                            <ion-icon name="apps"></ion-icon> MEALS (optional*)
+                          </b>
+                          <ion-icon name="add-circle-outline"
+                            style="float: right; font-size: 25px;cursor: pointer; color: red;" *ngIf="!isMeal"
+                            (click)="axilary()"></ion-icon>
+                          <ion-icon name="close-circle-outline"
+                            style="float: right; font-size: 25px;cursor: pointer; color: red;" *ngIf="isMeal"
+                            (click)="axilary()"></ion-icon>
+                        </h5>
+                      </ion-col> -->
+
+
+                      <ion-col style="height: 55px;" size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12"
+                        class="form_head">
+                        <h5 style="font-size: 15px;margin-left: 13px;"><b>
+                            <ion-icon name="apps"></ion-icon> BAGGAGE (optional*)
+                            <ion-icon name="add-circle-outline"
+                              style="float: right; font-size: 25px;cursor: pointer; color: red;"
+                              *ngIf="!isBaggageselect" (click)="isbaggage()"></ion-icon>
+                            <ion-icon name="close-circle-outline"
+                              style="float: right; font-size: 25px;cursor: pointer; color: red;" *ngIf="isBaggageselect"
+                              (click)="isbaggage()"></ion-icon>
+                          </b></h5>
+                      </ion-col>
+                      <table *ngIf="isBaggageselect" style="overflow-x: scroll;display: block;">
+                        <thead>
+                          <tr>
+                            <th class="padding">
+                              #
+                            </th>
+
+                            <!-- <th class="padding">
+                              FCode
+                            </th>
+
+                            <th class="padding">
+                              FNo
+                            </th> -->
+
+                            <!-- <th class="padding">
+                              SsrCode
+                            </th> -->
+
+                            <th class="padding">
+                              SsrDesc
+                            </th>
+
+                            <!-- <th class="padding">
+                              Complmnt
+                            </th> -->
+                            <!-- <th class="padding">
+                              Currency
+                            </th> -->
+                            <th class="padding">
+                              Price
+                            </th>
+                            <!-- 
+                            <th class="padding">
+                              Src
+                            </th>
+                            <th class="padding">
+                              Des
+                            </th> -->
+                            <!-- <th class="padding">
+                              SsrFor
+                            </th> -->
+                            <th class="padding">
+                            </th>
+                            <th class="padding">
+                            </th>
+                            <th class="padding">
+                            </th>
+                            <th class="padding">
+                              Action
+                            </th>
+                            <th class="padding">
+                            </th>
+                            <th class="padding">
+                            </th>
+                            <th class="padding">
+                            </th>
+                            <th class="padding">
+                            </th>
+
+                          </tr>
+                        </thead>
+
+                        <tbody>
+                          <tr *ngFor="let d of Baggage, index as i" class="hvr">
+
+                            <td>{{i+1}}</td>
+
+                            <!-- <td><span>{{d.FCode}}</span></td>
+                            <td><span>{{d.FNo}}</span></td> -->
+                            <!-- <td><span>{{d.SsrCode}}</span></td> -->
+                            <td><span>{{d.SsrDesc}}</span></td>
+                            <!-- <td><span>{{d.Complmnt}}</span></td> -->
+
+                            <td><span>{{d.Price}}{{d.Currency}}</span></td>
+                            <!-- <td><span>{{d.Src}}</span></td>
+                            <td><span>{{d.Des}}</span></td> -->
+                            <!-- <td><span>{{d.SsrFor}}</span></td> -->
+                            <!-- <td> <button type="button" class="btn btn-info" (click)="mealSelct(i,d)" > SELECT </button> </td> -->
+                            <td> <ion-button (click)="baggageSelct(i,d,0)">
+                                Passenger 1
+                              </ion-button> </td>
+                            <td *ngIf="totpass>1? true:false"> <ion-button (click)="baggageSelct(i,d,1)">
+                                Passenger 2
+                              </ion-button> </td>
+                            <td *ngIf="totpass>2? true:false"> <ion-button (click)="baggageSelct(i,d,2)">
+                                Passenger 3
+                              </ion-button> </td>
+                            <td *ngIf="totpass>3? true:false"> <ion-button (click)="baggageSelct(i,d,3)">
+                                Passenger 4
+                              </ion-button> </td>
+                            <td *ngIf="totpass>4? true:false"> <ion-button (click)="baggageSelct(i,d,4)">
+                                Passenger 5
+                              </ion-button> </td>
+                            <td *ngIf="totpass>6? true:false"> <ion-button (click)="baggageSelct(i,d,5)">
+                                Passenger 6
+                              </ion-button> </td>
+                            <td *ngIf="totpass>7? true:false"> <ion-button (click)="baggageSelct(i,d,6)">
+                                Passenger 7
+                              </ion-button> </td>
+                            <td *ngIf="totpass>8? true:false"> <ion-button (click)="baggageSelct(i,d,7)">
+                                Passenger 8
+                              </ion-button> </td>
+                            <td *ngIf="totpass>9? true:false"> <ion-button (click)="baggageSelct(i,d,8)">
+                                Passenger 9
+                              </ion-button> </td>
+                            <td *ngIf="totpass>10? true:false"> <ion-button (click)="baggageSelct(i,d,9)">
+                                Passenger 10
+                              </ion-button> </td>
+                            <!-- <td><span>{{d.OI}}</span></td> -->
+
+                          </tr>
+
+                        </tbody>
+
+                      </table>
+                    </ion-row>
+                  </ion-card>
+                </ion-col>
+
+
+              </ion-row>
+            </form>
+            <!-- CONTACT DETAILS START -->
+
+
+            <ion-col size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12">
+              <!-- <button class="submit-btn" type="submit" *ngIf="btnActive" 
+                [disabled]="!details4.valid">
+                <span class="material-icons">search</span> SAVE
+              </button> -->
+              <!-- <button class="submit-btn" type="submit" *ngIf="btnActive" (click)="onSubmit()">
+                <span class="material-icons">search</span> save
+              </button> -->
+
+              <button class="submit-btn" type="submit" *ngIf="btnActive">
+                <span class="material-icons">search</span> save
+              </button>
+            </ion-col>
+
+
+
+          </ion-col>
+
+
+
+
+
+          <!-- <ion-col size-sm="12" size-xs="12" size-md="1" size-lg="1" size-xl="1" style="max-width: 10%;"></ion-col> -->
+
+
+          <!-- FARE SUMMARY START -->
+          <ion-col size-sm="12" size-xs="12" size-md="2" size-lg="2" size-xl="2" class="side-cont">
+            <ion-card>
+              <ion-row>
+                <ion-col size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12"
+                  style="cursor: pointer;;background: #213d77!important ;padding:10px 10px 10px 10px;height: 55px;">
+                  <h5 style="font-size: 15px;color: #fff;">FARE SUMMARY <span *ngIf="show_fare">
+                      <ion-icon name="add-circle-outline" style="float: right; font-size: 25px;color: #fff;"
+                        *ngIf="!istax" (click)="istax=!istax"></ion-icon>
+                      <ion-icon name="close-circle-outline" style="float: right; font-size: 25px;color: #fff"
+                        *ngIf="istax" (click)="istax=!istax"></ion-icon>
+                    </span></h5>
+
+                </ion-col>
+
+
+                <ion-col size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12" *ngIf="!show_fare"
+                  class="ion-text-centre" style="padding: 0px;">
+                  <mat-spinner class="example-margin"></mat-spinner>
+                </ion-col>
+
+
+                <ion-col size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12"
+                  style="background-color: white;padding: 0px;" *ngIf="show_fare">
+                  <p *ngIf="f_chk_res.Param.Adt >'0'" style="margin:10px 0px">
+                    <span class="faredetails"><b>Adult</b></span>
+                    <span style="float: right;padding-right: 20px;color: black;">{{f_chk_res.Param.Adt}} *
+                      {{slt_flt.Fare.Adt.Total}}</span>
+
+                  </p>
+                  <div *ngIf="istax">
+                    <div *ngIf="f_chk_res.Param.Adt >'0'">
+                      <p><span class="faredetails">Basic</span><span
+                          style="float: right;padding-right: 20px; color: black;">{{slt_flt.Fare.Adt.Basic}}</span></p>
+                      <p><span class="faredetails">Taxes</span><span
+                          style="float: right;padding-right: 20px; color: black;">{{slt_flt.Fare.Adt.Taxes}}</span></p>
+                    </div>
+                  </div>
+                  <div style="border-bottom:1px solid gray;" *ngIf="f_chk_res.Param.Adt>'0'"></div>
+
+                  <p *ngIf="f_chk_res.Param.Chd >'0'" style="margin:10px 0px">
+                    <span class="faredetails"><b>Child</b></span>
+                    <span style="float: right;padding-right: 20px;color: black;">{{f_chk_res.Param.Chd}} *
+                      {{slt_flt.Fare.Chd.Total}}</span>
+                  </p>
+                  <div *ngIf="istax">
+                    <div *ngIf="f_chk_res.Param.Chd >'0'">
+                      <p><span class="faredetails">Basic</span><span
+                          style="float: right;padding-right: 20px; color: black;">{{slt_flt.Fare.Chd.Basic}}</span></p>
+                      <p><span class="faredetails">Taxes</span><span
+                          style="float: right;padding-right: 20px; color: black;">{{slt_flt.Fare.Chd.Taxes}}</span></p>
+                    </div>
+                  </div>
+
+                  <div style="border-bottom:1px solid gray;" *ngIf="f_chk_res.Param.Chd>'0'"></div>
+
+
+                  <p *ngIf="f_chk_res.Param.Inf>'0'" style="margin:10px 0px">
+                    <span class="faredetails"><b>Infant</b></span>
+                    <span style="float: right;padding-right: 20px; color: black;">{{f_chk_res.Param.Inf}} *
+                      {{slt_flt.Fare.Inf.Total}}</span>
+                  </p>
+
+                  <div *ngIf="istax">
+                    <div *ngIf="f_chk_res.Param.Inf>'0'">
+                      <p><span class="faredetails">Basic</span><span
+                          style="float: right;padding-right: 20px; color: black;">{{slt_flt.Fare.Inf.Basic}}</span></p>
+                      <p><span class="faredetails">Taxes</span><span
+                          style="float: right;padding-right: 20px; color: black;">{{slt_flt.Fare.Inf.Taxes}}</span></p>
+                    </div>
+                  </div>
+
+                  <div style="border-bottom:1px solid gray;" *ngIf="f_chk_res.Param.Inf>'0'"></div>
+                  <h6 style="margin:10px 0px">
+                    <span class="faredetails">Total Fare</span>
+                    <span style="float: right; padding-right: 20px;color: black;">Rs. {{slt_flt.Fare.GrandTotal}}</span>
+                  </h6>
+
+                </ion-col>
+              </ion-row>
+            </ion-card>
+
+          </ion-col>
+
+
+        </ion-row>
+
+
+      </ion-col>
+
+    </ion-row>
+
+  </ion-grid>
+
+</ion-content>

@@ -1,0 +1,154 @@
+<ion-row [ngClass]="mdfy_strt ? 'a' : 'b'" style="border-bottom: none; margin-top: 10px;">
+  <ion-col size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12">
+    <ion-row style="padding-right: 15px; margin-top: 10px;">
+      <ion-col class="modify_Main_Div" size-sm="10" size-xs="12" size-md="10" size-lg="10" size-xl="10">
+        <form [formGroup]="flightData">
+          <ul style="display: flex; flex-direction: row; justify-content: center; align-items: center; padding: 0px 10px 0px 10px;">
+            <li>
+              <img alt="logo" width="60px" height="50px"  src="../assets/Untitled-2.png" style=" margin-right: 25px;">
+            </li>
+    
+           
+    
+            <li>
+    
+              <fieldset [disabled]="mdfy_strt">
+                <legend>
+                  <ion-icon style="font-size: 12px; color: black; margin-top: -5px;" name="airplane-outline"></ion-icon>
+                  <span style="font-size: 12px;"> {{fieldsName.from}} </span>
+                </legend>
+                <input formControlName="D_airport" list="D_airport" type="text" [(ngModel)]="depARP"
+                  (click)="call_parent()">
+              </fieldset>
+    
+              <datalist id="D_airport" *ngIf="arp_show">
+                <option *ngFor="let arpt of arp">{{arpt.code}} , {{arpt.city}} , {{arpt.country}}
+                </option>
+              </datalist>
+              <ion-text *ngIf="Error['D_airport'].touched || Error['D_airport'].dirty">
+                <span class="err" *ngIf="Error['D_airport'].errors">{{fieldsName.error_msg}}</span>
+              </ion-text>
+            </li>
+            <li>
+              <fieldset [disabled]="mdfy_strt">
+                <legend>
+                  <ion-icon style="font-size: 12px; color: black;" name="airplane-outline"></ion-icon> <span
+                    style="font-size: 12px;"> {{fieldsName.to}}</span>
+                </legend>
+                <input formControlName="A_airport" list="A_airport" [(ngModel)]="arrARP" (click)="call_parent()">
+              </fieldset>
+              <datalist id="A_airport" *ngIf="arp_show">
+                <option *ngFor="let arpt_new of arp_new">{{arpt_new.code}} , {{arpt_new.city}} ,
+                  {{arpt_new.country}}</option>
+              </datalist>
+              <ion-text *ngIf="Error['A_airport'].touched || Error['A_airport'].dirty">
+                <span class="err" *ngIf="Error['A_airport'].errors">{{fieldsName.error_msg}}</span>
+              </ion-text>
+            </li>
+            <li>
+              <fieldset [disabled]="mdfy_strt">
+                <legend>
+                  <ion-icon name="calendar-outline" style="font-size: 12px; color: black;"></ion-icon> <span
+                    style="font-size: 12px;"> {{fieldsName.dep_date}}</span>
+                </legend>
+                <input type="date" [disabled]="round_trip" formControlName="D_date" [min]="todayt" [max]=" maxDate">
+    
+                <!-- <input style="width: 70%;" matInput [min]="todayt" [matDatepicker]="picker" (click)="picker.open()"
+                    formControlName="D_date" (dateChange)="returnDate($event.target.value)" [max]=" maxDate">
+                  <mat-datepicker #picker></mat-datepicker> -->
+    
+              </fieldset>
+              <ion-text *ngIf="Error['D_date'].touched || Error['D_date'].dirty">
+                <span class="err" *ngIf="Error['D_date'].errors">{{fieldsName.error_msg}}</span>
+              </ion-text>
+            </li>
+            <li>
+              <fieldset [disabled]="mdfy_strt">
+                <legend>
+                  <ion-icon name="calendar-outline" style="font-size: 12px; color: black;"></ion-icon> <span
+                    style="font-size: 12px; margin-left: 3px;">{{fieldsName.ret_date}}</span>
+                </legend>
+    
+                <input type="date" [disabled]="round_trip" style="width: 90%;" formControlName="A_date" [min]="minDate">
+    
+             
+    
+              </fieldset>
+            </li>
+          
+            <li>
+    
+              <fieldset style="position: relative;padding: 4px 9px;">
+                <legend>
+                  <ion-icon name="calendar-outline" style="font-size: 12px; color: black;"></ion-icon> <span
+                    style="font-size: 12px;"> PASSENGERS </span>
+                </legend>
+                <span (click)="paxDivHide()" style="color: black;">
+                  Select 
+                </span>
+    
+                <div *ngIf="pax_div"
+                  style="position: absolute;top: 28px;z-index: 999;width: 250px;height: 250px;background-color: black;  box-shadow: 1px 1px 10px -2px #8f8a8a;border: 1px solid rgb(209, 209, 209);">
+    
+                  <div>
+                    <fieldset style="padding: 7px 0px;width: 80%;margin-left: 20px; margin-top: 10px;"
+                      [disabled]="mdfy_strt">
+                      <legend>
+                        <ion-icon name="calendar-outline"></ion-icon> Adults
+                      </legend>
+                      <select style="width: 100%" formControlName="Adults">
+                        <option *ngFor="let i of adult">
+                          {{i}}
+                        </option>
+                      </select>
+                    </fieldset>
+                  </div>
+                  <div>
+                    <fieldset style="padding: 7px 0px;width: 80%;margin-left: 20px;margin-top: 10px;"
+                      [disabled]="mdfy_strt">
+                      <legend>
+                        <ion-icon name="calendar-outline"></ion-icon> Childs
+                      </legend>
+                      <select style="width: 100%;" formControlName="Childs">
+                        <option *ngFor="let i of childrens">
+                          {{i}}
+                        </option>
+                      </select>
+                    </fieldset>
+                  </div>
+                  <div>
+                    <fieldset style="padding: 7px 0px;width: 80%;margin-left: 20px; margin-top: 10px;"
+                      [disabled]="mdfy_strt">
+                      <legend>
+                        <ion-icon name="calendar-outline"></ion-icon> Infants
+                      </legend>
+                      <select style="width: 100%" formControlName="Infants">
+                        <option *ngFor="let i of infants">
+                          {{i}}
+                        </option>
+                      </select>
+                    </fieldset>
+                  </div>
+    
+                </div>
+    
+    
+    
+              </fieldset>
+            </li>
+            <li class="buttSpan">
+    
+              <button class="submit-btn" *ngIf="mdfy_strt" (click)="mdfy_strt=!mdfy_strt">Modify Search</button>
+              <button class="submit-btn" *ngIf="!mdfy_strt" (click)="checkFlight_one()">Search Flight</button>
+              <!-- <button class="submit-btn">Modify</button> -->
+    
+    
+            </li>
+    
+          </ul>
+        </form>
+      </ion-col>
+    </ion-row>
+  
+  </ion-col>
+</ion-row>

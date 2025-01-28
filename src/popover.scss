@@ -1,0 +1,54 @@
+@media only screen and (max-width: 3100px) {
+    .popover_setting .popover-content {
+        --min-width:10% !important;
+        
+        --ion-text-color: #000;
+  
+        // top: 79px !important;
+        transform-origin: left top !important;
+        z-index: 10 !important;
+        background-color: rgb(255, 255, 255);
+      
+    }
+    .alert-popover_setting .popover-content{
+        --min-width: 30% !important;
+        --ion-text-color: #000;
+        z-index: 10 !important;
+        transform-origin: left top !important;
+        top: 100px !important;
+        background-color: rgb(255, 255, 255);
+    }
+    .modify{
+        --min-width: 50% !important;
+        z-index: 9999999 !important;
+        top: -80px !important;
+        transform-origin: left top !important;
+    }
+}
+
+
+
+@media only screen and (max-width: 768px ) {
+    .popover_setting .popover-content {
+        --max-width: 30% !important;
+       
+        --ion-text-color: #000;
+    
+        transform-origin: left top !important;
+        // top: 57px !important;
+        background-color: rgb(255, 255, 255);
+    }
+}
+
+
+
+@media only screen and (max-width: 425px ) {
+    .popover_setting .popover-content {
+        --max-width: 55% !important;
+       
+        --ion-text-color: #000;
+     
+        transform-origin: left top !important;
+        background-color: rgb(255, 255, 255);
+    }
+}

@@ -1,0 +1,129 @@
+body,
+td,
+input,
+textarea,
+select {
+    margin: 0;
+    font-family: Cambria !important;
+    color: #222;
+}
+
+.spin {
+    display: flex;
+    height: 120px;
+    width: 200%;
+    color: lightseagreen;
+}
+
+.txt-lt {
+    text-align: left;
+}
+
+.pad-lt-5 {
+    padding-left: 5px !important;
+}
+
+.circle-bullet {
+    width: 10px;
+    height: 10px;
+    background: #adadad;
+    border-radius: 100%;
+    float: left;
+    top: 5px;
+    position: relative;
+}
+
+.ClassStrip {
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+
+.imp-note {
+    font-size: 13px;
+    width: 97%;
+    font-style: normal;
+    font-variant: normal;
+    line-height: 20px;
+    margin-bottom: 10px;
+}
+
+.imp-note tr th {
+    padding: 3px 5px;
+    font-size: 15px;
+    background: transparent;
+    color: #555;
+    font-weight: bold;
+}
+
+.imp-note tr td {
+    padding: 2px 5px;
+    color: #444;
+}
+
+.gst-info {
+    font-family: cambria;
+    font-size: 13px;
+    width: 97%;
+    font-style: normal;
+    font-variant: normal;
+    line-height: 20px;
+    margin-bottom: 10px;
+}
+
+.gst-info tr th {
+    padding: 3px 5px;
+    font-size: 15px;
+    background: transparent;
+    color: #555;
+    font-weight: bold;
+}
+
+.gst-info tr td {
+    font-size: 13px;
+}
+
+.ClassTitle td {
+    padding: 3px 5px;
+    font-size: 15px;
+    background: transparent;
+    color: #555;
+    font-weight: bold;
+}
+
+.ClassHead {
+    border-top: 1px solid #fc4d16;
+    border-bottom: 1px solid #fc4d16;
+    background: #b3b3b3;
+    font-size: 13px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.ClassHead td {
+    font-size: 13px;
+    padding: 2px 0;
+    border-right: 1px solid #ddd;
+    color: #fff;
+}
+
+.ClassHead td:last-child {
+    border-right: 0px solid #ddd;
+}
+
+.ClassHeadContent {
+    text-align: center;
+    line-height: 19px;
+}
+
+.ClassHeadContent td {
+    font-size: 13px;
+    padding: 2px 0;
+    border-right: 1px solid #ddd;
+    background: #fafafa;
+    color: #222;
+    border-bottom: 1px dotted #999;
+}
+
+.ClassHeadContent td:last-child {
+    border-right: 0px solid #ddd;
+}

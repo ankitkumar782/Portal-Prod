@@ -1,0 +1,301 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+
+}
+
+ul {
+  margin: 0px;
+  padding: 0px 10px;
+}
+
+ul li {
+  display: inline-block;
+  margin: 0px 6px;
+  padding: 0px;
+}
+
+.a {
+  border-bottom: 1px solid #445f99
+}
+
+.b {
+  margin: 0px;
+}
+
+.b li {
+
+  justify-content: center;
+}
+
+
+ion-row {
+  width: 100%;
+}
+
+@media only screen,
+(max-width:3000px) {
+  mat-select {
+    padding: 10px;
+  }
+
+  ion-col {
+    padding: 0px;
+  }
+
+  .content::before {
+    content: "";
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: -1;
+    display: block;
+    background-image: url("../../../assets/flightimg.jpg");
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    -webkit-filter: blur(5px);
+    -moz-filter: blur(5px);
+    -o-filter: blur(5px);
+    -ms-filter: blur(5px);
+    filter: blur(5px);
+  }
+
+  mat-select {
+    padding: 10px;
+  }
+
+  ion-grid {
+    padding: 0px;
+  }
+
+  .padding-none {
+    padding: 0px;
+  }
+
+  .rotate-90 {
+    display: inline-block;
+    transform: rotate(45deg);
+  }
+
+  .rotate-0 {
+    display: inline-block;
+    transform: rotate(-45deg);
+  }
+
+  .bg-color {
+    --ion-background-color: rgb(245, 245, 245);
+  }
+
+  ion-item {
+    --ion-background-color: #fff;
+  }
+
+  input {
+    outline: none;
+    border: none;
+    width: 100%;
+    padding: 4px 10px;
+    // background-color: white;
+    // color: black;
+  }
+
+  input:disabled {
+    cursor: not-allowed;
+    color: black;
+  }
+
+  option {
+    outline: none;
+  }
+
+  select:disabled {
+    cursor: not-allowed;
+  }
+
+  ion-icon {
+    color: #e9182d;
+  }
+
+  select {
+    // border: none;
+    // padding: 4px 10px;
+    outline: none;
+  }
+
+  .label {
+    font-size: 20px;
+    font-weight: 500;
+  }
+
+  ion-text {
+    color: #445f99;
+    font-weight: 500;
+    cursor: pointer;
+  }
+
+  .R-label {
+    font-weight: 500;
+    font-size: 14px;
+  }
+
+  // .buttSpan{
+  //   padding-bottom: 9px;
+
+  // }
+
+  ion-card {
+    border-radius: 0px;
+  }
+
+  .submit-btn {
+    // border: 1px solid white;
+    width: 100%;
+    // margin-bottom: 25px;
+    padding: 12px;
+    background: #18305E;
+    // background-image: linear-gradient(to right, #d32f2f, #7f0101);
+    color: white;
+    font-size: 14px;
+    font-family: arial;
+    // border: none;
+    font-weight: 500;
+    // opacity: 1;
+    // box-shadow: 1px 1px 1px 1px lightgrey;
+    // margin-bottom: 9px;
+    margin-left: 20px;
+    border-radius: 5px;
+    // margin: 0px 0px 0px 0px;
+    // letter-spacing: 2px;
+  }
+
+  .err {
+    padding: 20px 0px 0px 15px;
+    color: red;
+    font-size: 11px;
+  }
+
+  fieldset {
+
+    border: none;
+    border-left: 1px solid rgb(207, 207, 207);
+    padding: 0px 5px;
+    width: 100%;
+    background-color: transparent;
+  }
+
+  legend {
+    color: rgb(185, 179, 179);
+    font-weight: 400;
+    font-size: 12px;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .none {
+    display: none;
+  }
+
+  .s-bar {
+    padding: 0px 0px 50px 0px;
+  }
+
+  .SB {
+    background-color: #fff;
+    border-top: 2px solid #e9182d;
+    border-left: 1px solid #e9182d;
+    border-right: 1px solid #e9182d;
+    border-bottom: 1px solid #e9182d;
+    // border-top-right-radius: 0px;
+    // border-top-left-radius: 0px;
+    // border-bottom-right-radius: 5px;
+    // border-bottom-left-radius: 5px;
+    z-index: 9999;
+    margin: 0px;
+  }
+
+  .round-l {
+    border-top-left-radius: 0px;
+  }
+
+  .round-r {
+    border-top-right-radius: 0px;
+  }
+
+  .border {
+    text-align: center;
+    border-radius: 50%;
+    padding: 5px 0px 0px 0px;
+    margin: 18px 0px 0px 0px;
+    cursor: pointer;
+    border: 1px solid #0d2c4f;
+  }
+
+  .round-r2 {
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    border: 1px solid #445f99;
+  }
+
+  .p-margin {
+    margin: 0px 0px 0px 150px;
+  }
+
+  .R-label {
+    font-weight: 500;
+    font-size: 16px;
+  }
+
+  .label {
+    font-size: 17px;
+    font-weight: 500;
+  }
+
+  input::placeholder {
+    font-size: 14px;
+    background-color: transparent;
+  }
+
+  .FTH {
+    color: #445f99;
+    background-color: #fff;
+    font-size: 12px;
+    text-align: center;
+    font-family: arial;
+    padding: 0px 0px 0px 0px;
+    cursor: pointer;
+    border-top: 1px solid #445f99;
+    border-left: 1px solid #445f99;
+    border-bottom: 1px solid #445f99;
+  }
+
+  .FTHActive {
+    background-color: #445f99;
+    color: #fff;
+  }
+
+  .for-app {
+    padding: 60px 10px 80px 10px;
+  }
+
+  ion-card {
+    border-radius: 0%;
+  }
+}
+
+// ***************************************************************
+.modify_Main_Div {
+
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
+  display: block;
+  margin: auto;
+  padding: 10px;
+  // display: flex;
+  // justify-content: space-between;
+}
+
+input {
+  background-color: transparent;
+}

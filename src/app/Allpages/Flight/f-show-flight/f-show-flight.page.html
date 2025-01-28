@@ -1,0 +1,2160 @@
+<ion-content>
+
+  <ion-grid>
+    <!-- DEAL START -->
+    <!-- <div class="example5">
+      <h3>Grab the best deals 😂😂😂</h3>
+    </div> -->
+    <!-- DEAL END -->
+
+    <!-- ONE WAY FLIGHT START HERE -->
+    <ion-row *ngIf="this.sr_str.Trip == 'D1'">
+      <!-- SEARCH DETAILS START -->
+      <ion-col size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12" class="srh-stick">
+        <ion-card>
+          <ion-row>
+            <ion-col size-sm="4" size-xs="4" size-md="1" size-lg="1" size-xl="1" class="date_ipt">
+              <span>One Way</span>
+            </ion-col>
+            <ion-col size-sm="3" size-xs="3" size-md="2" size-lg="2" size-xl="2" class="date_ipt">
+              {{this.sr_str.Sector[0].Src}}
+            </ion-col>
+            <ion-col size-sm="2" size-xs="2" size-md="1" size-lg="1" size-xl="1" class="date_ipt">
+              <ion-icon name="arrow-forward"></ion-icon>
+            </ion-col>
+            <ion-col size-sm="3" size-xs="3" size-md="2" size-lg="2" size-xl="2" class="date_ipt">
+              {{this.sr_str.Sector[0].Des}}
+            </ion-col>
+            <ion-col size-sm="6" size-xs="6" size-md="2" size-lg="2" size-xl="2" class="date_ipt">
+              {{this.sr_str.Sector[0].DDate|date:'longDate'}}
+            </ion-col>
+            <ion-col size-sm="6" size-xs="6" size-md="2" size-lg="2" size-xl="2" class="date_ipt">
+              <span *ngIf="this.sr_str.Adt>'0'">{{this.sr_str.Adt}} Adt,</span>
+              <span *ngIf="this.sr_str.Chd>'0'"> {{this.sr_str.Chd}} Chd,</span>
+              <span *ngIf="this.sr_str.Inf>'0'"> {{this.sr_str.Inf}} Inf</span>
+            </ion-col>
+            <ion-col size-sm="12" size-xs="12" size-md="2" size-lg="2" size-xl="2" class="date_ipt">
+              <button class="mdfy-srh" (click)="presentPopover($event)">Modify Search</button>
+            </ion-col>
+          </ion-row>
+        </ion-card>
+      </ion-col>
+      <!-- SEARCH DETAILS END -->
+
+
+      <ion-col size-sm="12" size-xs="12" size-md="1" size-lg="1" size-xl="1"></ion-col>
+
+      <ion-col size-sm="12" size-xs="12" size-md="10" size-lg="10" size-xl="10">
+        <ion-row style="position: sticky; top:0px;z-index: 9999;">
+          <!-- POSTER OR ADD START -->
+          <!-- <ion-col size-sm="6" size-xs="6" size-md="12" size-lg="12" size-xl="12">
+            <ion-card style="height: 150px; border: 1px solid grey; background-color: white;" class="ion-text-center">
+              <img width="100%"
+                src="data:image/jpeg;base64,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"
+                alt="">
+            </ion-card>
+          </ion-col> -->
+          <!-- POSTER OR ADD END -->
+
+
+
+
+          <!-- FILTER DIV START HERE -->
+          <ion-col class="none" size-md="3" size-lg="3" size-xl="3" style="padding: 0px;">
+
+            <ion-card style="padding: 0px;">
+              <ion-row>
+                <ion-col size-md="12" size-lg="12" size-xl="12" class="ion-text-center" style="background-color: #445f99; 
+                  color: white;
+                  font-size: 18px;
+                  font-weight: 600;
+                  font-family: serif;
+                  padding: 35px 0px;
+                  letter-spacing: .1rem;">
+                  <span>Flight Found = {{arr_data.length}}</span>
+                </ion-col>
+
+                <mat-accordion>
+                  <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                        <ion-label class="f-label">
+                          <ion-icon name="cash"></ion-icon> Price :
+                        </ion-label>
+                      </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <ion-item lines="none">
+                      <ion-range (ionChange)="myOnChangeSlider($event)" dualKnobs="false"
+                        min="{{this.f_all_data.MinimumFare}}" max="{{this.f_all_data.MaximumFare}}" pin
+                        step="500" snaps="false" color="primary">
+                        <span slot="start">Rs {{this.f_all_data.MinimumFare}}</span>
+                        <span slot="end">Rs {{this.f_all_data.MaximumFare}}</span>
+                      </ion-range>
+                    </ion-item>
+                  </mat-expansion-panel>
+
+                  <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                        <ion-label class="f-label">
+                          <ion-icon name="pin"></ion-icon> Stops :
+                        </ion-label>
+                      </mat-panel-title>
+
+                    </mat-expansion-panel-header>
+                    <ion-item *ngFor="let entry of STOPS" lines="none">
+                      <ion-label class="f-b-label">{{entry.Name}}</ion-label>
+                      <ion-checkbox slot="end" [(ngModel)]="entry.isChecked" (ionChange)="stop_filter(entry)">
+                      </ion-checkbox>
+                    </ion-item>
+
+                  </mat-expansion-panel>
+
+                  <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                        <ion-label class="f-label">
+                          <ion-icon name="timer"></ion-icon> Departure Time :
+                        </ion-label>
+                      </mat-panel-title>
+
+                    </mat-expansion-panel-header>
+                    <ion-item *ngFor="let entry of DEP_TIME" lines="none">
+                      <ion-label class="f-b-label">{{entry.val1}} - {{entry.val2}}</ion-label>
+                      <ion-checkbox slot="end" [(ngModel)]="entry.isChecked" (ionChange)="dep_time_filter(entry)">
+                      </ion-checkbox>
+                    </ion-item>
+                  </mat-expansion-panel>
+
+                  <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                        <ion-label class="f-label">
+                          <ion-icon name="timer"></ion-icon> Arrival Time :
+                        </ion-label>
+                      </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <ion-item *ngFor="let entry of ARR_TIME" lines="none">
+                      <ion-label class="f-b-label">{{entry.val1}} - {{entry.val2}}</ion-label>
+                      <ion-checkbox slot="end" [(ngModel)]="entry.isChecked" (ionChange)="arr_time_filter(entry)">
+                      </ion-checkbox>
+                    </ion-item>
+                  </mat-expansion-panel>
+
+                  <!-- <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                        <ion-label class="f-label">
+                          <ion-icon name="airplane"></ion-icon> Airlines :
+                        </ion-label>
+                      </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <ion-item *ngFor="let entry of Come_FLIGHTS" lines="none">
+                      <ion-label class="f-b-label">{{entry.val.Itinerary[0].FName}}</ion-label>
+                      <ion-checkbox slot="end" [(ngModel)]="entry.isChecked" (ionChange)="flt_name_filter(entry)">
+                      </ion-checkbox>
+                    </ion-item>
+                  </mat-expansion-panel> -->
+                </mat-accordion>
+
+              </ion-row>
+            </ion-card>
+
+          </ion-col>
+          <!-- FILTER DIV END HERE -->
+
+
+
+          <ion-col size-sm="12" size-xs="12" size-md="9" size-lg="9" size-xl="9">
+
+            <ion-row>
+
+              <ion-col size-sm="1" size-xs="1" size-md="9" size-lg="9" size-xl="9">
+                <!-- PROGRESS BAR START HERE -->
+                <!-- <ion-card>
+                  <ion-row>
+                    <ion-col size-sm="2" size-xs="2" size-md="2" size-lg="2" size-xl="2" class="ion-text-center active">
+                      <h6 style="font-size: 18px; padding-top: 8px;">Select Flight</h6>
+                    </ion-col>
+                    <ion-col size-sm="1" size-xs="1" size-md="1" size-lg="1" size-xl="1" class="ion-text-center active">
+                      <ion-icon name="arrow-forward-outline" style="color: #fdfeff; font-size: 38px;"></ion-icon>
+                    </ion-col>
+                    <ion-col size-sm="2" size-xs="2" size-md="2" size-lg="2" size-xl="2"
+                      class="ion-text-center repeat-slider">
+                      <h6 style="font-size: 18px; padding-top: 8px;">Add Details</h6>
+                    </ion-col>
+                    <ion-col size-sm="1" size-xs="1" size-md="1" size-lg="1" size-xl="1"
+                      class="ion-text-center repeat-slider">
+                      <ion-icon name="arrow-forward-outline" style="color: #ff4700; font-size: 38px;"></ion-icon>
+                    </ion-col>
+                    <ion-col size-sm="2" size-xs="2" size-md="2" size-lg="2" size-xl="2"
+                      class="ion-text-center repeat-slider">
+                      <h6 style="font-size: 18px; padding-top: 8px;">Payment</h6>
+                    </ion-col>
+                    <ion-col size-sm="1" size-xs="1" size-md="1" size-lg="1" size-xl="1"
+                      class="ion-text-center repeat-slider">
+                      <ion-icon name="arrow-forward-outline" style="color: #ff4700; font-size: 38px;"></ion-icon>
+                    </ion-col>
+                    <ion-col size-sm="2" size-xs="2" size-md="2" size-lg="2" size-xl="2"
+                      class="ion-text-center repeat-slider">
+                      <h6 style="font-size: 18px; padding-top: 8px;"> Review</h6>
+                    </ion-col>
+                    <ion-col size-sm="1" size-xs="1" size-md="1" size-lg="1" size-xl="1"
+                      class="ion-text-center repeat-slider">
+                      <ion-icon name="arrow-forward-outline" style="color: #ff4700; font-size: 38px;"></ion-icon>
+                    </ion-col>
+                  </ion-row>
+                </ion-card> -->
+                <!-- PROGRESS BAR END HERE -->
+              </ion-col>
+
+
+
+
+              <ion-col size-sm="10" size-xs="10" size-md="3" size-lg="3" size-xl="3" class="ion-text-center">
+                <ion-card style="padding: 19px;">
+                  <span *ngIf="down1" (click)="sortBalAsc()"
+                    style="font-size: 14px; color: black; font-weight: 500; cursor: pointer;">Price : High To Low
+                    <ion-icon name="caret-down-outline" style="cursor: pointer; color: red;"></ion-icon>
+                  </span>
+
+
+                  <span *ngIf="up1" (click)="sortBalDesc()"
+                    style="font-size: 14px; color: black; font-weight: 500; cursor: pointer;">Price : Low To High
+                    <ion-icon name="caret-down-outline" style="cursor: pointer; color: red;"></ion-icon>
+                  </span>
+
+                </ion-card>
+
+
+
+              </ion-col>
+
+
+
+            </ion-row>
+
+
+        
+
+
+
+            <ion-row>
+              <ion-col size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12">
+                <ion-card *ngFor="let y of arr_data">
+
+                  <ion-row style="padding: 25px 0px;">
+                    <ion-col size-sm="12" size-xs="12" size-md="2" size-lg="2" size-xl="2" class="ion-text-center">
+                      <!-- <div [style.background-position]="y.Itinerary[0].FLogo" class="fltLogo"></div>  -->
+                      <img height="30px"
+                        src="data:image/png;base64,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">
+                      <br> <span class="F_NAME">{{y.Itinerary[0].FName}}</span><br>
+                    </ion-col>
+
+
+                    <ion-col size-sm="4" size-xs="4" size-md="2" size-lg="2" size-xl="2" class="ion-text-center"><span
+                        class="D_TIME">{{y.Itinerary[0].DDate| date:'shortTime'}}</span><br><span
+                        class="D_NAME">{{y.Itinerary[0].Src}}, {{y.Itinerary[0].SrcName |uppercase}}</span>
+
+                    </ion-col>
+
+
+                    <ion-col size-sm="4" size-xs="4" size-md="2" size-lg="2" size-xl="2" class="ion-text-center"><span
+                        class="DUR">{{y.Itinerary[0].Dur
+                        }}</span><br>
+                      <span *ngIf="y.Stop=='0'" class="STOP">
+
+                        <span class="circle"></span>
+                        <div class="SIZE-DIV"></div>
+                        <span class="circle"></span>
+
+                        Non Stop
+                      </span>
+                      <span *ngIf="y.Stop=='1'" class="STOP">
+                        <span class="circle"></span>
+                        <div class="SIZE-DIV1"></div>
+                        <span class="circle"></span>
+                        <div class="SIZE-DIV1"></div>
+                        <span class="circle"></span>
+                        One Stop
+                      </span>
+                      <span *ngIf="y.Stop=='2'" class="STOP">
+                        <span class="circle"></span>
+                        <div class="SIZE-DIV2"></div>
+                        <span class="circle"></span>
+                        <div class="SIZE-DIV2"></div>
+                        <span class="circle"></span>
+                        <div class="SIZE-DIV2"></div>
+                        <span class="circle"></span>
+                        Two Stop
+                      </span>
+
+                    </ion-col>
+
+
+                    <ion-col size-sm="4" size-xs="4" size-md="2" size-lg="2" size-xl="2" class="ion-text-center"><span
+                        class="D_TIME">{{y.Itinerary[0].ADate| date:'shortTime'}}</span><br><span
+                        class="D_NAME">{{y.Itinerary[0].Des}}, {{y.Itinerary[0].DesName |uppercase}}</span></ion-col>
+
+
+
+                    <ion-col size-sm="4" size-xs="4" size-md="2" size-lg="2" size-xl="2" class="ion-text-center"><span
+                        class="AMT">Rs
+                        {{y.Fare.GrandTotal}}</span><br> <span class="DETAILS" (click)="check(y.Id)">View Details
+                      </span>
+                    </ion-col>
+                    <ion-col size-sm="8" size-xs="8" size-md="2" size-lg="2" size-xl="2" class="ion-text-center">
+                      <button class="BOOKNOW" (click)="selectFlight(y)">
+                        Book Now
+                      </button>
+                    </ion-col>
+                  </ion-row>
+                  <mat-tab-group animationDuration="0s" *ngIf="y.Id==a" [hidden]="!stops" [selectedIndex]="0">
+                    <!-- <mat-tab-group animationDuration="0s" *ngIf="y.Id==a"  [selectedIndex]="0"> -->
+                    <mat-tab label="Flight Details">
+
+
+
+                      <ion-row *ngIf="y.Stop=='0'">
+                        <ion-col size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12">
+                          <ion-row style="padding-top: 13px;">
+                            <ion-col size-sm="2" size-xs="2" size-md="2" size-lg="2" size-xl="2"
+                              class="ion-text-center">
+                              <ion-icon size="large" name="airplane" class="rotate-0"></ion-icon>
+                            </ion-col>
+                            <ion-col size-sm="2" size-xs="2" size-md="3" size-lg="3" size-xl="3"
+                              class="ion-text-center">
+                              <span class="DTAA">{{y.Itinerary[0].Src}} To {{y.Itinerary[0].Des}}</span>
+                            </ion-col>
+                            <ion-col size-sm="2" size-xs="2" size-md="3" size-lg="3" size-xl="3"
+                              class="ion-text-center">
+                              <span class="DTAA">{{y.Itinerary[0].DDate | date:'fullDate'}}</span>
+                            </ion-col>
+                            <ion-col size-sm="2" size-xs="2" size-md="2" size-lg="2" size-xl="2"
+                              class="ion-text-center">
+                              <span class="DTAA">Stops = {{y.Stop}}</span>
+                            </ion-col>
+                            <ion-col size-sm="2" size-xs="2" size-md="2" size-lg="2" size-xl="2"
+                              class="ion-text-center">
+                              <span class="DTAA">Seats = {{y.Seat}}</span>
+                            </ion-col>
+                          </ion-row>
+                        </ion-col>
+
+                        <ion-col size-sm="1" size-xs="1" size-md="1" size-lg="1" size-xl="1 " class="ion-text-center">
+                          <!-- <div [style.background-position]="y.Itinerary[0].FLogo" class="fltLogo vfl767"></div> -->
+                          <img height="30px"
+                            src="data:image/png;base64,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">
+                          <br>
+                          <span class="flight-no">{{y.Itinerary[0].FNo}}-{{y.Itinerary[0].FCode}}</span>
+                        </ion-col>
+
+
+                        <ion-col size-sm="4" size-xs="4" size-md="4" size-lg="4" size-xl="4" class="ion-text-end">
+                          <span class="flight-t1">{{y.Itinerary[0].SrcName |uppercase}} </span><br>
+                          <span class="flight-t2">{{y.Itinerary[0].DDate| date:'shortTime'}} </span><br>
+                          <span class="flight-t3">{{y.Itinerary[0].DDate| date:'longDate'}}</span><br>
+                          <span class="flight-t3">{{y.Itinerary[0].DArpt}}</span><br>
+                          <span class="flight-t3">Terminal : {{y.Itinerary[0].DTrmnl}}</span><br>
+
+                        </ion-col>
+
+                        <ion-col size-sm="3" size-xs="3" size-md="3" size-lg="3" size-xl="3" class="ion-text-center">
+                          <br>
+
+                          <span class="STOP">
+                            <span>{{y.Itinerary[0].Dur
+                              }}</span><br>
+                            <span class="circle"></span>
+                            <div class="SIZE-DIV"></div>
+                            <span class="circle"></span><br>
+                            <span class="DUR">Economy</span><br>
+
+                          </span>
+
+
+                        </ion-col>
+                        <ion-col size-sm="4" size-xs="4" size-md="4" size-lg="4" size-xl="4" class="ion-text-start">
+                          <span class="flight-t1">{{y.Itinerary[0].DesName|uppercase}}</span><br>
+                          <span class="flight-t2">{{y.Itinerary[0].ADate| date:'shortTime'}} </span><br>
+                          <span class="flight-t3">{{y.Itinerary[0].ADate|date:'longDate'}}</span><br>
+                          <span class="flight-t3">{{y.Itinerary[0].AArpt}}</span><br>
+                          <span class="flight-t3">Terminal : {{y.Itinerary[0].ATrmnl}}</span><br>
+                        </ion-col>
+
+                      </ion-row>
+
+
+
+                      <ion-row *ngIf="y.Stop=='1'">
+                        <ion-col size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12">
+                          <ion-row style="padding-top: 13px;">
+                            <ion-col size-sm="2" size-xs="2" size-md="2" size-lg="2" size-xl="2"
+                              class="ion-text-center">
+                              <ion-icon size="large" name="airplane" class="rotate-0"></ion-icon>
+                            </ion-col>
+                            <ion-col size-sm="3" size-xs="3" size-md="3" size-lg="3" size-xl="3"
+                              class="ion-text-center">
+                              <span class="DTAA">{{y.Itinerary[0].Src}} To {{y.Itinerary[0].Des}}</span>
+                            </ion-col>
+                            <ion-col size-sm="3" size-xs="3" size-md="3" size-lg="3" size-xl="3"
+                              class="ion-text-center">
+                              <span class="DTAA">{{y.Itinerary[0].DDate | date:'fullDate'}}</span>
+                            </ion-col>
+                            <ion-col size-sm="2" size-xs="2" size-md="2" size-lg="2" size-xl="2"
+                              class="ion-text-center">
+                              <span class="DTAA">Stops = {{y.Stop}}</span>
+                            </ion-col>
+                            <ion-col size-sm="2" size-xs="2" size-md="2" size-lg="2" size-xl="2"
+                              class="ion-text-center">
+                              <span class="DTAA">Seats = {{y.Seat}}</span>
+                            </ion-col>
+                          </ion-row>
+                        </ion-col>
+                        <ion-col size-sm="1" size-xs="1" size-md="1" size-lg="1" size-xl="1 " class="ion-text-center">
+                          <!-- <div [style.background-position]="y.Itinerary[0].FLogo" class="fltLogo vfl767"></div> -->
+                          <img height="30px"
+                            src="data:image/png;base64,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">
+                          <br>
+                          <span class="flight-no">{{y.Itinerary[0].FNo}}-{{y.Itinerary[0].FCode}}</span>
+                        </ion-col>
+                        <ion-col size-sm="4" size-xs="4" size-md="4" size-lg="4" size-xl="4" class="ion-text-end">
+                          <span class="flight-t1">{{y.Itinerary[0].SrcName |uppercase}} </span><br>
+                          <span class="flight-t2">{{y.Itinerary[0].DDate| date:'shortTime'}} </span><br>
+                          <span class="flight-t3">{{y.Itinerary[0].DDate| date:'longDate'}}</span><br>
+                          <span class="flight-t3">{{y.Itinerary[0].DArpt}}</span><br>
+                          <span class="flight-t3">Terminal : {{y.Itinerary[0].DTrmnl}}</span><br>
+
+                        </ion-col>
+
+                        <ion-col size-sm="3" size-xs="3" size-md="3" size-lg="3" size-xl="3" class="ion-text-center">
+                          <br>
+
+                          <span class="STOP">
+                            <span>{{y.Itinerary[0].Dur
+                              }}</span><br>
+                            <span class="circle"></span>
+                            <div class="SIZE-DIV1"></div>
+                            <div class="SIZE-DIV1"></div>
+                            <span class="circle"></span><br>
+                            <span>Economy</span>
+
+                          </span>
+                          <!-- <span *ngIf="y.Stop=='2'" class="STOP">
+                            <span class="circle"></span>
+                            <div class="SIZE-DIV2"></div>
+                            <span class="circle"></span>
+                            <div class="SIZE-DIV2"></div>
+                            <span class="circle"></span>
+                            <div class="SIZE-DIV2"></div>
+                            <span class="circle"></span><br>
+                            Two Stop
+                          </span> -->
+
+                        </ion-col>
+                        <ion-col size-sm="4" size-xs="4" size-md="4" size-lg="4" size-xl="4" class="ion-text-start">
+                          <span class="flight-t1">{{y.Itinerary[0].DesName|uppercase}}</span><br>
+                          <span class="flight-t2">{{y.Itinerary[0].ADate| date:'shortTime'}} </span><br>
+                          <span class="flight-t3">{{y.Itinerary[0].ADate|date:'longDate'}}</span><br>
+                          <span class="flight-t3">{{y.Itinerary[0].AArpt}}</span><br>
+                          <span class="flight-t3">Terminal : {{y.Itinerary[0].ATrmnl}}</span><br>
+                        </ion-col>
+
+
+                        <!--2nd flight  -->
+                        <ion-col size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12"
+                          style="border-top: 1px solid red;">
+                          <ion-row style="padding-top: 13px;">
+                            <ion-col size-sm="2" size-xs="2" size-md="2" size-lg="2" size-xl="2"
+                              class="ion-text-center">
+                              <ion-icon size="large" name="airplane" class="rotate-0"></ion-icon>
+                            </ion-col>
+                            <ion-col size-sm="3" size-xs="3" size-md="3" size-lg="3" size-xl="3"
+                              class="ion-text-center">
+                              <span class="DTAA">{{y.Itinerary[1].Src}} To {{y.Itinerary[1].Des}}</span>
+                            </ion-col>
+                            <ion-col size-sm="3" size-xs="3" size-md="3" size-lg="3" size-xl="3"
+                              class="ion-text-center">
+                              <span class="DTAA">{{y.Itinerary[1].DDate | date:'fullDate'}}</span>
+                            </ion-col>
+                            <ion-col size-sm="2" size-xs="2" size-md="2" size-lg="2" size-xl="2"
+                              class="ion-text-center">
+                              <span class="DTAA">Stops = {{y.Stop}}</span>
+                            </ion-col>
+                            <ion-col size-sm="2" size-xs="2" size-md="2" size-lg="2" size-xl="2"
+                              class="ion-text-center">
+                              <span class="DTAA">Seats = {{y.Seat}}</span>
+                            </ion-col>
+                          </ion-row>
+                        </ion-col>
+                        <ion-col size-sm="1" size-xs="1" size-md="1" size-lg="1" size-xl="1 " class="ion-text-center">
+                          <!-- <div [style.background-position]="y.Itinerary[0].FLogo" class="fltLogo vfl767"></div> -->
+                          <img height="30px"
+                            src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHcAAABPCAMAAADmzqp4AAAAclBMVEX///86Rp04RJw1QpuTl8QvPJo9SJ7y8/nU1uhjbLH5+fwpOJoyP5ro6fMsOpmZnshBTaTBxN5DTqFtdrbZ2+siMpeHjcHGyd90e7e3u9kaLZWssNSwtNWfpM2kqc/i4+9TXapaY6sOJZMAHpFKVad+hb6E5utMAAAFqElEQVRoge2a65KiOhCAQ0IMJCGIEBCUm6vv/4qnw82ArrpTA3N+TNfW7GDFfOlOX9lF6NskuTbJ9+32ubRStj/BTYsi3RxaHT2UR5tj80JStjm144p1ufWpRsg7BQhlJyBFZw4/clTF2arYoBAiSC5CoajQDTpfdIvCoritCgXxLlh7ucZ/WKkJZakiBYqpbNbmohRDsBx3IWL+/oyC5hChpLl6q3MRnz+yJ5+tL/V1dzb6rutUj3JTeKP7nQs4dYzKjRNkfUu5Z3Jjtq2ZGyX6uPW25bZKd/YtLxvaOfBQkLpdAMWSNFthPSHi6XepNzO0q7DevvAldbDX7vgUHON6E2wl9Jnftb0puk1j1UjpW4+p1sdNuLmidivFS3e1qy7bEBRrK8TTNkdBsBZnIV5BLl4EP4KzJsVCu4yKfCVuLZSuk4vSLCrUflFu18wbXggtRRbCIBKFSyOfLhf36Ze+VfhjrCYbtDmJvsTvV32/VMJZ+tUmEsj1m+W/kH8Ge05/ZLrOC/ojk9959cnvLxKuPPn9yq/8yq/8zyQD+bjAJLD4eU/Dsio9Hm/u6dOWR2h9+Xh6dS9aPxtJolhrKo0oTT+rkzvHoR93gyF1SDehMLskRY0gzl2kOH7QGvwbV/XcoxLh9OGtoxKphFCUYMfBkr7v47/CPWsHF4M1WaOMjrpJT1kWlTGlQHb026v7CtelsHM2YKXBHCd3CtxOffFuQvwK1yvoOKzEcAQiZp1A7Qs4yTtLf+l+PTfsHavSgD0s3SjUb7Ff447CwMiYPA4u+Sss76bYOZcn3pMYYF7mMZvLQcyzCz712QwaZFE27MzTU+XaXH5udKEL7M4UCMJrobUuriUbueyP1n/Ak9geO5+MoIF7KLTQxd7t0HnSNBY3u/bhj6mwDB8q1ScFAsNvOXDBcYSZS+F2xft/vKlEF1vTzsxYeuLmmsBdQbbDDhb+MFrzVpjoVFpI4uhgwYV4ws67d948FtgQtaCggGiH9SPXK8x5/CqMdxAaqp+9uIlOKW+5F4VXWiy5LXGkHad8Id2HLfgAxW7kZeVVYUc2fMZtQFvcRT9PYaXuzGd+o/HgD961XnAP2KGlxU3J3hbHfNE1a1M2WnxSaeCaq9JjIYll77YJ2MB6U8VYOOOaKFJnm0uxJYSCfyZgZMtdIpNSPIubSkdOOdUDS5vhGvgY25XnHVc6tkjg3uQ84t2xog1cuCox5VgO8QGn4mKZU+Zcs2xu50KM0p2AIYZBXbseM/Ct7oVqz+VXuPF7xjCniJAHtlez/iFc+BV8yR7+WTAKA9XJlZstFgF+lE6XzgfuYcaNO24mwMNn6WvBhc3xHj0V2IHEUDHV/GQIldRRp9dc4wRyzqUzbj78/UQgUZgrOCnLbTqBk9DqX/UFrzABO3LNZc28ZpIIAtB0Bo/6urL3xRfcwNzvrLTC5zS8c9Ht3gDMBRyku9fH+/XJ2/tF+6XfyB4zcWuTAnePFSwcMw/f4flN1Apj25+fck3+pVZxgrKHD9zidtlINsv3HWfTDfT9bkrnCkNKkN37vlfcQOMuGgYxfqaMT9y5qEvgu3nHXMLXxqg1+UrdPcucvE+Lr7goNOocegIv4aE/u8UN9sa3tPXC3etK2NToGIuoIcUHR/PQZ6KXXOSD42ARl1HuHsxdinrBRfXepCYl06zmnCWVr025LqppL1+ZVv5W5dVNwlI6+P9rbl9/CRVd6ZZD9rK50MkK3E0JXWfZNQnEbuu4aS+xVEqZA06VfQeuA9ydJFaoxpTooY8IJXjgMH/4wwqmCdF3L62IMitw98fA23mnV9G+ZcFEySmdwyylgeu3vn/npq3fjGEZhA1MINBw3N+Xscb37f8DxMKD6CcU0Ev4D50PbGF2UE15R9wbg78LSzwvebmIe9Wx2e8ObZo/n8lgi8QOt/8AuJ1bNPFOf3EAAAAASUVORK5CYII=">
+                          <br>
+                          <span class="flight-no">{{y.Itinerary[1].FNo}}-{{y.Itinerary[1].FCode}}</span>
+                        </ion-col>
+                        <ion-col size-sm="4" size-xs="4" size-md="4" size-lg="4" size-xl="4" class="ion-text-end">
+                          <span class="flight-t1">{{y.Itinerary[1].SrcName |uppercase}} </span><br>
+                          <span class="flight-t2">{{y.Itinerary[1].DDate| date:'shortTime'}} </span><br>
+                          <span class="flight-t3">{{y.Itinerary[1].DDate| date:'longDate'}}</span><br>
+                          <span class="flight-t3">{{y.Itinerary[1].DArpt}}</span><br>
+                          <span class="flight-t3">Terminal : {{y.Itinerary[1].DTrmnl}}</span><br>
+
+                        </ion-col>
+
+                        <ion-col size-sm="3" size-xs="3" size-md="3" size-lg="3" size-xl="3" class="ion-text-center">
+                          <br>
+                          <span class="STOP">
+                            <span>{{y.Itinerary[1].Dur
+                              }}</span><br>
+                            <span class="circle"></span>
+                            <div class="SIZE-DIV1"></div>
+                            <div class="SIZE-DIV1"></div>
+                            <span class="circle"></span><br>
+                            <span>Economy</span>
+
+                          </span>
+
+                        </ion-col>
+                        <ion-col size-sm="4" size-xs="4" size-md="4" size-lg="4" size-xl="4" class="ion-text-start">
+                          <span class="flight-t1">{{y.Itinerary[1].DesName|uppercase}}</span><br>
+                          <span class="flight-t2">{{y.Itinerary[1].ADate| date:'shortTime'}} </span><br>
+                          <span class="flight-t3">{{y.Itinerary[1].ADate|date:'longDate'}}</span><br>
+                          <span class="flight-t3">{{y.Itinerary[1].AArpt}}</span><br>
+                          <span class="flight-t3">Terminal : {{y.Itinerary[1].ATrmnl}}</span><br>
+                        </ion-col>
+
+                      </ion-row>
+
+
+
+
+
+                      <ion-row *ngIf="y.Stop=='2'">
+                        <ion-col size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12">
+                          <ion-row style="padding-top: 13px;">
+                            <ion-col size-sm="2" size-xs="2" size-md="2" size-lg="2" size-xl="2"
+                              class="ion-text-center">
+                              <ion-icon size="large" name="airplane" class="rotate-0"></ion-icon>
+                            </ion-col>
+                            <ion-col size-sm="3" size-xs="3" size-md="3" size-lg="3" size-xl="3"
+                              class="ion-text-center">
+                              <span class="DTAA">{{y.Itinerary[0].Src}} To {{y.Itinerary[0].Des}}</span>
+                            </ion-col>
+                            <ion-col size-sm="3" size-xs="3" size-md="3" size-lg="3" size-xl="3"
+                              class="ion-text-center">
+                              <span class="DTAA">{{y.Itinerary[0].DDate | date:'fullDate'}}</span>
+                            </ion-col>
+                            <ion-col size-sm="2" size-xs="2" size-md="2" size-lg="2" size-xl="2"
+                              class="ion-text-center">
+                              <span class="DTAA">Stops = {{y.Stop}}</span>
+                            </ion-col>
+                            <ion-col size-sm="2" size-xs="2" size-md="2" size-lg="2" size-xl="2"
+                              class="ion-text-center">
+                              <span class="DTAA">Seats = {{y.Seat}}</span>
+                            </ion-col>
+                          </ion-row>
+                        </ion-col>
+                        <ion-col size-sm="1" size-xs="1" size-md="1" size-lg="1" size-xl="1 " class="ion-text-center">
+                          <!-- <div [style.background-position]="y.Itinerary[0].FLogo" class="fltLogo vfl767"></div> -->
+                          <img height="30px"
+                            src="data:image/png;base64,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">
+                          <br>
+                          <span class="flight-no">{{y.Itinerary[0].FNo}}-{{y.Itinerary[0].FCode}}</span>
+                        </ion-col>
+                        <ion-col size-sm="4" size-xs="4" size-md="4" size-lg="4" size-xl="4" class="ion-text-end">
+                          <span class="flight-t1">{{y.Itinerary[0].SrcName |uppercase}} </span><br>
+                          <span class="flight-t2">{{y.Itinerary[0].DDate| date:'shortTime'}} </span><br>
+                          <span class="flight-t3">{{y.Itinerary[0].DDate| date:'longDate'}}</span><br>
+                          <span class="flight-t3">{{y.Itinerary[0].DArpt}}</span><br>
+                          <span class="flight-t3">Terminal : {{y.Itinerary[0].DTrmnl}}</span><br>
+
+                        </ion-col>
+
+                        <ion-col size-sm="3" size-xs="3" size-md="3" size-lg="3" size-xl="3" class="ion-text-center">
+                          <br>
+
+                          <span class="STOP">
+                            <span>{{y.Itinerary[0].Dur
+                              }}</span><br>
+                            <span class="circle"></span>
+                            <div class="SIZE-DIV1"></div>
+                            <div class="SIZE-DIV1"></div>
+                            <span class="circle"></span><br>
+                            <span>Economy</span>
+
+                          </span>
+
+                        </ion-col>
+                        <ion-col size-sm="4" size-xs="4" size-md="4" size-lg="4" size-xl="4" class="ion-text-start">
+                          <span class="flight-t1">{{y.Itinerary[0].DesName|uppercase}}</span><br>
+                          <span class="flight-t2">{{y.Itinerary[0].ADate| date:'shortTime'}} </span><br>
+                          <span class="flight-t3">{{y.Itinerary[0].ADate|date:'longDate'}}</span><br>
+                          <span class="flight-t3">{{y.Itinerary[0].AArpt}}</span><br>
+                          <span class="flight-t3">Terminal : {{y.Itinerary[0].ATrmnl}}</span><br>
+                        </ion-col>
+
+
+                        <!--2nd flight  -->
+                        <ion-col size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12"
+                          style="border-top: 1px solid red;">
+                          <ion-row style="padding-top: 13px;">
+                            <ion-col size-sm="2" size-xs="2" size-md="2" size-lg="2" size-xl="2"
+                              class="ion-text-center">
+                              <ion-icon size="large" name="airplane" class="rotate-0"></ion-icon>
+                            </ion-col>
+                            <ion-col size-sm="3" size-xs="3" size-md="3" size-lg="3" size-xl="3"
+                              class="ion-text-center">
+                              <span class="DTAA">{{y.Itinerary[1].Src}} To {{y.Itinerary[1].Des}}</span>
+                            </ion-col>
+                            <ion-col size-sm="3" size-xs="3" size-md="3" size-lg="3" size-xl="3"
+                              class="ion-text-center">
+                              <span class="DTAA">{{y.Itinerary[1].DDate | date:'fullDate'}}</span>
+                            </ion-col>
+                            <ion-col size-sm="2" size-xs="2" size-md="2" size-lg="2" size-xl="2"
+                              class="ion-text-center">
+                              <span class="DTAA">Stops = {{y.Stop}}</span>
+                            </ion-col>
+                            <ion-col size-sm="2" size-xs="2" size-md="2" size-lg="2" size-xl="2"
+                              class="ion-text-center">
+                              <span class="DTAA">Seats = {{y.Seat}}</span>
+                            </ion-col>
+                          </ion-row>
+                        </ion-col>
+                        <ion-col size-sm="1" size-xs="1" size-md="1" size-lg="1" size-xl="1 " class="ion-text-center">
+                          <!-- <div [style.background-position]="y.Itinerary[0].FLogo" class="fltLogo vfl767"></div> -->
+                          <img height="30px"
+                            src="data:image/png;base64,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">
+                          <br>
+                          <span class="flight-no">{{y.Itinerary[1].FNo}}-{{y.Itinerary[1].FCode}}</span>
+                        </ion-col>
+                        <ion-col size-sm="4" size-xs="4" size-md="4" size-lg="4" size-xl="4" class="ion-text-end">
+                          <span class="flight-t1">{{y.Itinerary[1].SrcName |uppercase}} </span><br>
+                          <span class="flight-t2">{{y.Itinerary[1].DDate| date:'shortTime'}} </span><br>
+                          <span class="flight-t3">{{y.Itinerary[1].DDate| date:'longDate'}}</span><br>
+                          <span class="flight-t3">{{y.Itinerary[1].DArpt}}</span><br>
+                          <span class="flight-t3">Terminal : {{y.Itinerary[1].DTrmnl}}</span><br>
+
+                        </ion-col>
+
+                        <ion-col size-sm="3" size-xs="3" size-md="3" size-lg="3" size-xl="3" class="ion-text-center">
+                          <br>
+                          <span class="STOP">
+                            <span>{{y.Itinerary[1].Dur
+                              }}</span><br>
+                            <span class="circle"></span>
+                            <div class="SIZE-DIV1"></div>
+                            <div class="SIZE-DIV1"></div>
+                            <span class="circle"></span><br>
+                            <span>Economy</span>
+
+                          </span>
+                        </ion-col>
+                        <ion-col size-sm="4" size-xs="4" size-md="4" size-lg="4" size-xl="4" class="ion-text-start">
+                          <span class="flight-t1">{{y.Itinerary[1].DesName|uppercase}}</span><br>
+                          <span class="flight-t2">{{y.Itinerary[1].ADate| date:'shortTime'}} </span><br>
+                          <span class="flight-t3">{{y.Itinerary[1].ADate|date:'longDate'}}</span><br>
+                          <span class="flight-t3">{{y.Itinerary[1].AArpt}}</span><br>
+                          <span class="flight-t3">Terminal : {{y.Itinerary[1].ATrmnl}}</span><br>
+                        </ion-col>
+
+
+
+                        <!-- 3rd FLIGHT -->
+
+
+
+
+                        <ion-col size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12"
+                          style="border-top: 1px solid red;">
+                          <ion-row style="padding-top: 13px;">
+                            <ion-col size-sm="2" size-xs="2" size-md="2" size-lg="2" size-xl="2"
+                              class="ion-text-center">
+                              <ion-icon size="large" name="airplane" class="rotate-0"></ion-icon>
+                            </ion-col>
+                            <ion-col size-sm="3" size-xs="3" size-md="3" size-lg="3" size-xl="3"
+                              class="ion-text-center">
+                              <span class="DTAA">{{y.Itinerary[2].Src}} To {{y.Itinerary[2].Des}}</span>
+                            </ion-col>
+                            <ion-col size-sm="3" size-xs="3" size-md="3" size-lg="3" size-xl="3"
+                              class="ion-text-center">
+                              <span class="DTAA">{{y.Itinerary[2].DDate | date:'fullDate'}}</span>
+                            </ion-col>
+                            <ion-col size-sm="2" size-xs="2" size-md="2" size-lg="2" size-xl="2"
+                              class="ion-text-center">
+                              <span class="DTAA">Stops = {{y.Stop}}</span>
+                            </ion-col>
+                            <ion-col size-sm="2" size-xs="2" size-md="2" size-lg="2" size-xl="2"
+                              class="ion-text-center">
+                              <span class="DTAA">Seats = {{y.Seat}}</span>
+                            </ion-col>
+                          </ion-row>
+                        </ion-col>
+                        <ion-col size-sm="1" size-xs="1" size-md="1" size-lg="1" size-xl="1 " class="ion-text-center">
+                          <!-- <div [style.background-position]="y.Itinerary[0].FLogo" class="fltLogo vfl767"></div> -->
+                          <img height="30px"
+                            src="data:image/png;base64,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">
+                          <br>
+                          <span class="flight-no">{{y.Itinerary[2].FNo}}-{{y.Itinerary[2].FCode}}</span>
+                        </ion-col>
+                        <ion-col size-sm="4" size-xs="4" size-md="4" size-lg="4" size-xl="4" class="ion-text-end">
+                          <span class="flight-t1">{{y.Itinerary[2].SrcName |uppercase}} </span><br>
+                          <span class="flight-t2">{{y.Itinerary[2].DDate| date:'shortTime'}} </span><br>
+                          <span class="flight-t3">{{y.Itinerary[2].DDate| date:'longDate'}}</span><br>
+                          <span class="flight-t3">{{y.Itinerary[2].DArpt}}</span><br>
+                          <span class="flight-t3">Terminal : {{y.Itinerary[2].DTrmnl}}</span><br>
+
+                        </ion-col>
+
+                        <ion-col size-md="3" size-lg="3" size-xl="3" class="ion-text-center"><br>
+                          <span class="STOP">
+                            <span>{{y.Itinerary[2].Dur
+                              }}</span><br>
+                            <span class="circle"></span>
+                            <div class="SIZE-DIV1"></div>
+                            <div class="SIZE-DIV1"></div>
+                            <span class="circle"></span><br>
+                            <span>Economy</span>
+
+                          </span>
+                        </ion-col>
+                        <ion-col size-sm="4" size-xs="4" size-md="4" size-lg="4" size-xl="4" class="ion-text-start">
+                          <span class="flight-t1">{{y.Itinerary[2].DesName|uppercase}}</span><br>
+                          <span class="flight-t2">{{y.Itinerary[2].ADate| date:'shortTime'}} </span><br>
+                          <span class="flight-t3">{{y.Itinerary[2].ADate|date:'longDate'}}</span><br>
+                          <span class="flight-t3">{{y.Itinerary[2].AArpt}}</span><br>
+                          <span class="flight-t3">Terminal : {{y.Itinerary[2].ATrmnl}}</span><br>
+                        </ion-col>
+
+                      </ion-row>
+
+                    </mat-tab>
+
+
+
+
+
+                    <mat-tab label="Baggage Information">
+
+                      <ion-row>
+                        <ion-col size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12">
+                          <ion-row style="padding-top: 13px;">
+                            <ion-col size-sm="2" size-xs="2" size-md="2" size-lg="2" size-xl="2"
+                              class="ion-text-center">
+                              <ion-icon size="large" name="airplane" class="rotate-0"></ion-icon>
+                            </ion-col>
+                            <ion-col size-sm="3" size-xs="3" size-md="3" size-lg="3" size-xl="3"
+                              class="ion-text-center">
+                              <span class="DTAA">{{y.Itinerary[0].Src}} To {{y.Itinerary[0].Des}}</span>
+                            </ion-col>
+                            <ion-col size-sm="3" size-xs="3" size-md="3" size-lg="3" size-xl="3"
+                              class="ion-text-center">
+                              <span class="DTAA">{{y.Itinerary[0].DDate | date:'fullDate'}}</span>
+                            </ion-col>
+                            <ion-col size-sm="2" size-xs="2" size-md="2" size-lg="2" size-xl="2"
+                              class="ion-text-center">
+                              <span class="DTAA">Stops = {{y.Stop}}</span>
+                            </ion-col>
+                            <ion-col size-sm="2" size-xs="2" size-md="2" size-lg="2" size-xl="2"
+                              class="ion-text-center">
+                              <span class="DTAA">Seats = {{y.Seat}}</span>
+                            </ion-col>
+                          </ion-row>
+                        </ion-col>
+                        <ion-col size-sm="1" size-xs="1" size-md="1" size-lg="1" size-xl="1 " class="ion-text-center">
+                          <!-- <div [style.background-position]="y.Itinerary[0].FLogo" class="fltLogo vfl767"></div> -->
+                          <img height="30px"
+                            src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHcAAABPCAMAAADmzqp4AAAAclBMVEX///86Rp04RJw1QpuTl8QvPJo9SJ7y8/nU1uhjbLH5+fwpOJoyP5ro6fMsOpmZnshBTaTBxN5DTqFtdrbZ2+siMpeHjcHGyd90e7e3u9kaLZWssNSwtNWfpM2kqc/i4+9TXapaY6sOJZMAHpFKVad+hb6E5utMAAAFqElEQVRoge2a65KiOhCAQ0IMJCGIEBCUm6vv/4qnw82ArrpTA3N+TNfW7GDFfOlOX9lF6NskuTbJ9+32ubRStj/BTYsi3RxaHT2UR5tj80JStjm144p1ufWpRsg7BQhlJyBFZw4/clTF2arYoBAiSC5CoajQDTpfdIvCoritCgXxLlh7ucZ/WKkJZakiBYqpbNbmohRDsBx3IWL+/oyC5hChpLl6q3MRnz+yJ5+tL/V1dzb6rutUj3JTeKP7nQs4dYzKjRNkfUu5Z3Jjtq2ZGyX6uPW25bZKd/YtLxvaOfBQkLpdAMWSNFthPSHi6XepNzO0q7DevvAldbDX7vgUHON6E2wl9Jnftb0puk1j1UjpW4+p1sdNuLmidivFS3e1qy7bEBRrK8TTNkdBsBZnIV5BLl4EP4KzJsVCu4yKfCVuLZSuk4vSLCrUflFu18wbXggtRRbCIBKFSyOfLhf36Ze+VfhjrCYbtDmJvsTvV32/VMJZ+tUmEsj1m+W/kH8Ge05/ZLrOC/ojk9959cnvLxKuPPn9yq/8yq/8zyQD+bjAJLD4eU/Dsio9Hm/u6dOWR2h9+Xh6dS9aPxtJolhrKo0oTT+rkzvHoR93gyF1SDehMLskRY0gzl2kOH7QGvwbV/XcoxLh9OGtoxKphFCUYMfBkr7v47/CPWsHF4M1WaOMjrpJT1kWlTGlQHb026v7CtelsHM2YKXBHCd3CtxOffFuQvwK1yvoOKzEcAQiZp1A7Qs4yTtLf+l+PTfsHavSgD0s3SjUb7Ff447CwMiYPA4u+Sss76bYOZcn3pMYYF7mMZvLQcyzCz712QwaZFE27MzTU+XaXH5udKEL7M4UCMJrobUuriUbueyP1n/Ak9geO5+MoIF7KLTQxd7t0HnSNBY3u/bhj6mwDB8q1ScFAsNvOXDBcYSZS+F2xft/vKlEF1vTzsxYeuLmmsBdQbbDDhb+MFrzVpjoVFpI4uhgwYV4ws67d948FtgQtaCggGiH9SPXK8x5/CqMdxAaqp+9uIlOKW+5F4VXWiy5LXGkHad8Id2HLfgAxW7kZeVVYUc2fMZtQFvcRT9PYaXuzGd+o/HgD961XnAP2KGlxU3J3hbHfNE1a1M2WnxSaeCaq9JjIYll77YJ2MB6U8VYOOOaKFJnm0uxJYSCfyZgZMtdIpNSPIubSkdOOdUDS5vhGvgY25XnHVc6tkjg3uQ84t2xog1cuCox5VgO8QGn4mKZU+Zcs2xu50KM0p2AIYZBXbseM/Ct7oVqz+VXuPF7xjCniJAHtlez/iFc+BV8yR7+WTAKA9XJlZstFgF+lE6XzgfuYcaNO24mwMNn6WvBhc3xHj0V2IHEUDHV/GQIldRRp9dc4wRyzqUzbj78/UQgUZgrOCnLbTqBk9DqX/UFrzABO3LNZc28ZpIIAtB0Bo/6urL3xRfcwNzvrLTC5zS8c9Ht3gDMBRyku9fH+/XJ2/tF+6XfyB4zcWuTAnePFSwcMw/f4flN1Apj25+fck3+pVZxgrKHD9zidtlINsv3HWfTDfT9bkrnCkNKkN37vlfcQOMuGgYxfqaMT9y5qEvgu3nHXMLXxqg1+UrdPcucvE+Lr7goNOocegIv4aE/u8UN9sa3tPXC3etK2NToGIuoIcUHR/PQZ6KXXOSD42ARl1HuHsxdinrBRfXepCYl06zmnCWVr025LqppL1+ZVv5W5dVNwlI6+P9rbl9/CRVd6ZZD9rK50MkK3E0JXWfZNQnEbuu4aS+xVEqZA06VfQeuA9ydJFaoxpTooY8IJXjgMH/4wwqmCdF3L62IMitw98fA23mnV9G+ZcFEySmdwyylgeu3vn/npq3fjGEZhA1MINBw3N+Xscb37f8DxMKD6CcU0Ev4D50PbGF2UE15R9wbg78LSzwvebmIe9Wx2e8ObZo/n8lgi8QOt/8AuJ1bNPFOf3EAAAAASUVORK5CYII=">
+                          <br>
+                          <span class="flight-no">{{y.Itinerary[0].FNo}}-{{y.Itinerary[0].FCode}}</span>
+                        </ion-col>
+
+                        <ion-col size-sm="4" size-xs="4" size-md="4" size-lg="4" size-xl="4">
+
+                        </ion-col>
+                        <ion-col size-sm="4" size-xs="4" size-md="4" size-lg="4" size-xl="4">
+
+                        </ion-col>
+                      </ion-row>
+
+                    </mat-tab>
+
+
+                    <mat-tab label="Fare Summary">
+
+                      <ion-row class="row pt-4 pb-4">
+                        <ion-col size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12">
+                          <ion-row style="padding-top: 13px;">
+                            <ion-col size-sm="2" size-xs="2" size-md="2" size-lg="2" size-xl="2"
+                              class="ion-text-center">
+                              <ion-icon size="large" name="airplane" class="rotate-0"></ion-icon>
+                            </ion-col>
+                            <ion-col size-sm="3" size-xs="3" size-md="3" size-lg="3" size-xl="3"
+                              class="ion-text-center">
+                              <span class="DTAA">{{y.Itinerary[0].Src}} To {{y.Itinerary[0].Des}}</span>
+                            </ion-col>
+                            <ion-col size-sm="3" size-xs="3" size-md="3" size-lg="3" size-xl="3"
+                              class="ion-text-center">
+                              <span class="DTAA">{{y.Itinerary[0].DDate | date:'fullDate'}}</span>
+                            </ion-col>
+                            <ion-col size-sm="2" size-xs="2" size-md="2" size-lg="2" size-xl="2"
+                              class="ion-text-center">
+                              <span class="DTAA">Stops = {{y.Stop}}</span>
+                            </ion-col>
+                            <ion-col size-sm="2" size-xs="2" size-md="2" size-lg="2" size-xl="2"
+                              class="ion-text-center">
+                              <span class="DTAA">Seats = {{y.Seat}}</span>
+                            </ion-col>
+                          </ion-row>
+                        </ion-col>
+                        <ion-col size-sm="1" size-xs="1" size-md="1" size-lg="1" size-xl="1 " class="ion-text-center">
+                          <!-- <div [style.background-position]="y.Itinerary[0].FLogo" class="fltLogo vfl767"></div> -->
+                          <img height="30px"
+                            src="data:image/png;base64,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">
+                          <br>
+                          <span class="flight-no">{{y.Itinerary[0].FNo}}-{{y.Itinerary[0].FCode}}</span>
+                        </ion-col>
+                        <ion-col size-sm="1" size-xs="1" size-md="1" size-lg="1" size-xl="1 " class="ion-text-center">
+
+                        </ion-col>
+                        <ion-col size-sm="9" size-xs="9" size-md="9" size-lg="9" size-xl="9">
+                          <table>
+                            <thead>
+                              <tr>
+                                <th>
+
+                                </th>
+                                <th>
+                                  Basic Fare
+                                </th>
+                                <th>
+                                  Taxes
+                                </th>
+                                <th>
+                                  Total Fare
+                                </th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td>
+                                  Adults
+                                </td>
+                                <td>
+                                  {{y.Fare.Adt.Basic}}
+                                </td>
+                                <td>
+                                  {{y.Fare.Adt.Taxes}}
+                                </td>
+                                <td>
+                                  {{y.Fare.Adt.Total}} * {{this.sr_str.Adt}} = {{y.Fare.Adt.Total*this.sr_str.Adt}}
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>
+                                  Childs
+                                </td>
+                                <td>
+                                  {{y.Fare.Chd.Basic}}
+                                </td>
+                                <td>
+                                  {{y.Fare.Chd.Taxes}}
+                                </td>
+                                <td>
+                                  {{y.Fare.Chd.Total}} * {{this.sr_str.Chd}} = {{y.Fare.Chd.Total*this.sr_str.Chd}}
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>
+                                  Infants
+                                </td>
+                                <td>
+                                  {{y.Fare.Inf.Basic}}
+                                </td>
+                                <td>
+                                  {{y.Fare.Inf.Taxes}}
+                                </td>
+                                <td>
+                                  {{y.Fare.Inf.Total}} * {{this.sr_str.Inf}} = {{y.Fare.Inf.Total*this.sr_str.Inf}}
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>
+
+                                </td>
+                                <td>
+
+                                </td>
+                                <td>
+                                  <b>Grand Total</b>
+                                </td>
+                                <td>
+                                  <b>Rs. {{y.Fare.GrandTotal}}</b>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </ion-col>
+
+                      </ion-row>
+                    </mat-tab>
+
+
+                    <mat-tab label="T&C">
+                      <ion-row>
+                        <ion-col size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12">
+                          <ion-row style="padding-top: 13px;">
+                            <ion-col size-sm="2" size-xs="2" size-md="2" size-lg="2" size-xl="2"
+                              class="ion-text-center">
+                              <ion-icon size="large" name="airplane" class="rotate-0"></ion-icon>
+                            </ion-col>
+                            <ion-col size-sm="3" size-xs="3" size-md="3" size-lg="3" size-xl="3"
+                              class="ion-text-center">
+                              <span class="DTAA">{{y.Itinerary[0].Src}} To {{y.Itinerary[0].Des}}</span>
+                            </ion-col>
+                            <ion-col size-sm="3" size-xs="3" size-md="3" size-lg="3" size-xl="3"
+                              class="ion-text-center">
+                              <span class="DTAA">{{y.Itinerary[0].DDate | date:'fullDate'}}</span>
+                            </ion-col>
+                            <ion-col size-sm="2" size-xs="2" size-md="2" size-lg="2" size-xl="2"
+                              class="ion-text-center">
+                              <span class="DTAA">Stops = {{y.Stop}}</span>
+                            </ion-col>
+                            <ion-col size-sm="2" size-xs="2" size-md="2" size-lg="2" size-xl="2"
+                              class="ion-text-center">
+                              <span class="DTAA">Seats = {{y.Seat}}</span>
+                            </ion-col>
+                          </ion-row>
+                        </ion-col>
+                      </ion-row>
+                      <ul>
+                        <li>For B2C customers 200Rs charges per person per sector will be charged on all cancellations
+                          and
+                          200Rs as Rescheduling charges.</li>
+                        <li>The above Fare Rules are just a guideline for your convenience and is subject to changes by
+                          the Airline from time to time.</li>
+                        <li>In case of no-show or ticket not cancelled within the stipulated time only statutory taxes
+                          are
+                          refundable</li>
+                        <li>Partial cancellation is not allowed on tickets booked under special discounted fares.</li>
+                        <li>Changes/cancellations are subject to 4hrs prior to departure.</li>
+                        <li>The charges are per passenger per sector.</li>
+                        <li>Infant fare is non-refundable.</li>
+
+                      </ul>
+                    </mat-tab>
+                  </mat-tab-group>
+
+                </ion-card>
+              </ion-col>
+            </ion-row>
+
+
+
+          </ion-col>
+
+        </ion-row>
+
+
+        <div>
+
+        </div>
+
+      </ion-col>
+
+    </ion-row>
+    <!-- ONE WAY FLIGHT END HERE -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- FILTER DIV START HERE -->
+    <div class="dropdown">
+      <ion-row *ngIf="side_div" class="dropdown-content">
+        <!-- AIRLINES -->
+        <ion-col size-md="12" size-lg="12" size-xl="12" class="ion-text-start">
+          <span class="F_NAME">Airlines</span>
+        </ion-col>
+        <mat-accordion>
+          <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <ion-label class="f-label">
+                  <ion-icon name="airplane"></ion-icon> Airlines :
+                </ion-label>
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <ion-item *ngFor="let entry of Come_FLIGHTS" lines="none">
+              <ion-label class="f-b-label">{{entry.val}}</ion-label>
+              <ion-checkbox slot="end" [(ngModel)]="entry.isChecked" (ionChange)="flt_name_filter(entry)">
+              </ion-checkbox>
+            </ion-item>
+          </mat-expansion-panel>
+        </mat-accordion>
+
+
+
+        <!-- Onwards -->
+        <ion-col size-md="12" size-lg="12" size-xl="12" class="ion-text-start">
+          <span class="F_NAME">Onwards</span>
+        </ion-col>
+        <mat-accordion>
+          <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <ion-label class="f-label">
+                  <ion-icon name="pin"></ion-icon> Stops :
+                </ion-label>
+              </mat-panel-title>
+
+            </mat-expansion-panel-header>
+            <ion-item *ngFor="let entry of STOPS" lines="none">
+              <ion-label class="f-b-label">{{entry.Name}}</ion-label>
+              <ion-checkbox slot="end" [(ngModel)]="entry.isChecked" (ionChange)="stop_filter(entry)">
+              </ion-checkbox>
+            </ion-item>
+          </mat-expansion-panel>
+          <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <ion-label class="f-label">
+                  <ion-icon name="timer"></ion-icon> Departure Time :
+                </ion-label>
+              </mat-panel-title>
+
+            </mat-expansion-panel-header>
+            <ion-item *ngFor="let entry of DEP_TIME" lines="none">
+              <ion-label class="f-b-label">{{entry.val1}} - {{entry.val2}}</ion-label>
+              <ion-checkbox slot="end" [(ngModel)]="entry.isChecked" (ionChange)="dep_time_filter(entry)">
+              </ion-checkbox>
+            </ion-item>
+          </mat-expansion-panel>
+
+          <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <ion-label class="f-label">
+                  <ion-icon name="timer"></ion-icon> Arrival Time :
+                </ion-label>
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <ion-item *ngFor="let entry of ARR_TIME" lines="none">
+              <ion-label class="f-b-label">{{entry.val1}} - {{entry.val2}}</ion-label>
+              <ion-checkbox slot="end" [(ngModel)]="entry.isChecked" (ionChange)="arr_time_filter(entry)">
+              </ion-checkbox>
+            </ion-item>
+          </mat-expansion-panel>
+
+        </mat-accordion>
+
+
+
+        <!-- RETURN -->
+        <ion-col size-md="12" size-lg="12" size-xl="12" class="ion-text-start">
+          <span class="F_NAME">Return</span>
+        </ion-col>
+        <mat-accordion>
+          <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <ion-label class="f-label">
+                  <ion-icon name="pin"></ion-icon> Stops :
+                </ion-label>
+              </mat-panel-title>
+
+            </mat-expansion-panel-header>
+            <ion-item *ngFor="let entry of STOPS_RET" lines="none">
+              <ion-label class="f-b-label">{{entry.Name}}</ion-label>
+              <ion-checkbox slot="end" [(ngModel)]="entry.isChecked" (ionChange)="stop_filter_ret(entry)">
+              </ion-checkbox>
+            </ion-item>
+          </mat-expansion-panel>
+          <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <ion-label class="f-label">
+                  <ion-icon name="timer"></ion-icon> Departure Time :
+                </ion-label>
+              </mat-panel-title>
+
+            </mat-expansion-panel-header>
+            <ion-item *ngFor="let entry of DEP_TIME_RET" lines="none">
+              <ion-label class="f-b-label">{{entry.val1}} - {{entry.val2}}</ion-label>
+              <ion-checkbox slot="end" [(ngModel)]="entry.isChecked" (ionChange)="dep_time_filter_ret(entry)">
+              </ion-checkbox>
+            </ion-item>
+          </mat-expansion-panel>
+
+          <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <ion-label class="f-label">
+                  <ion-icon name="timer"></ion-icon> Arrival Time :
+                </ion-label>
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <ion-item *ngFor="let entry of ARR_TIME_RET" lines="none">
+              <ion-label class="f-b-label">{{entry.val1}} - {{entry.val2}}</ion-label>
+              <ion-checkbox slot="end" [(ngModel)]="entry.isChecked" (ionChange)="arr_time_filter_ret(entry)">
+              </ion-checkbox>
+            </ion-item>
+          </mat-expansion-panel>
+
+        </mat-accordion>
+      </ion-row>
+
+    </div>
+    <!-- FILTER DIV ENDS HERE -->
+
+
+
+    <!-- ROUND TRIP START  HERE-->
+
+
+    <ion-row *ngIf="this.sr_str.Trip == 'D2'" style="padding-bottom: 150px;">
+      <!-- SEARCH DETAILS START -->
+      <ion-col size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12"
+        style="position: sticky; top:0px; z-index: 99999;padding: 0px;border-bottom: 1px solid rgba(151, 151, 151, 0.808); background-color: white;">
+        <ion-row>
+          <ion-col size-md="1" size-lg="1" size-xl="1"></ion-col>
+          <ion-col size-md="10" size-lg="10" size-xl="10">
+            <ion-row>
+              <ion-col size-sm="2" size-xs="2" size-md="3" size-lg="3" size-xl="3" class="date_ipt ion-text-start">
+                <span>{{this.sr_str.Sector[0].Src}}</span>
+                <span style="display: inline-block;padding: 0px 10px;">
+                  <div style="width: 6px ;height: 6px;">
+                    <ion-icon name="airplane" style="font-size: 10px;padding: 0px;margin: 0px;"></ion-icon>
+                  </div>
+                  <div style="width: 6px ;height: 6px;">
+                    <ion-icon name="airplane"
+                      style="font-size: 10px;transform: rotate( -180deg);padding: 0px;margin: 0px;"></ion-icon>
+                  </div>
+                </span>
+                <span> {{this.sr_str.Sector[0].Des}}</span>
+
+
+
+              </ion-col>
+              <ion-col size-sm="2" size-xs="2" size-md="2" size-lg="2" size-xl="2" class="date_ipt ion-text-center">
+                onward : {{this.sr_str.Sector[0].DDate|date:'longDate'}}
+
+
+              </ion-col>
+              <ion-col size-sm="2" size-xs="2" size-md="2" size-lg="2" size-xl="2" class="date_ipt ion-text-center">
+
+
+                Return : {{this.sr_str.Sector[1].DDate|date:'longDate'}}
+              </ion-col>
+              <ion-col size-sm="2" size-xs="2" size-md="2" size-lg="2" size-xl="3" class="date_ipt ion-text-center">
+                <span *ngIf="this.sr_str.Adt>'0'">{{this.sr_str.Adt}} Adt | </span>
+                <span *ngIf="this.sr_str.Chd>'0'"> {{this.sr_str.Chd}} Chd | </span>
+                <span *ngIf="this.sr_str.Inf>'0'"> {{this.sr_str.Inf}} Inf</span>
+              </ion-col>
+              <ion-col size-sm="2" size-xs="2" size-md="2" size-lg="2" size-xl="2" class="date_ipt ion-text-end">
+                <button class="mdfy-srh" (click)="presentPopover($event)">Modify Search</button>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+
+
+
+        </ion-row>
+      </ion-col>
+
+      <!-- FILTER BUTTON -->
+      <span [ngClass]="[!side_div?'vertical-text':'left']" (click)="side_div_active()">
+        Filters
+      </span>
+      <!-- SEARCH DETAILS END -->
+
+      <ion-col size-sm="12" size-xs="12" size-md="1" size-lg="1" size-xl="1"></ion-col>
+
+
+      <!-- FIRST FLIGHT -->
+      <ion-col size-sm="12" size-xs="12" size-md="5" size-lg="5" size-xl="5">
+
+        <!-- LEFT HEADER -->
+        <ion-row style="border: 1px solid rgb(151, 151, 151, 0.808);background-color: white; margin: 0px 0px 10px 0px;">
+
+          <ion-col size-md="3" size-lg="3" size-xl="3" class="ion-text-start">
+            <span class="head-cmn">
+              <ion-icon name="airplane"></ion-icon> Flights
+            </span>
+          </ion-col>
+
+
+          <ion-col size-md="2" size-lg="2" size-xl="2" class="ion-text-start"><span class="head-cmn">
+              <ion-icon class="rotate-0" name="airplane"></ion-icon> Time
+            </span>
+          </ion-col>
+
+
+          <ion-col size-md="3" size-lg="3" size-xl="3" class="ion-text-center"><span class="head-cmn">
+              <ion-icon name="timer"></ion-icon> Duration
+            </span>
+
+          </ion-col>
+
+
+          <ion-col size-md="2" size-lg="2" size-xl="2" class="ion-text-end"><span class="head-cmn">
+              <ion-icon class="rotate-90" name="airplane"></ion-icon> Time
+            </span>
+          </ion-col>
+
+
+
+
+          <ion-col size-md="2" size-lg="2" size-xl="2" class="ion-text-end"><span class="head-cmn">
+              <ion-icon name="cash"></ion-icon> Price<ion-icon name="caret-down-outline" *ngIf="down1"
+                (click)="sortBalAsc()" style="cursor: pointer; color: red;"></ion-icon>
+              <ion-icon name="caret-up-outline" *ngIf="up1" (click)="sortBalDesc()"
+                style="cursor: pointer; color: red;"></ion-icon>
+            </span>
+          </ion-col>
+
+        </ion-row>
+
+        <!-- LEFT SIDE FLIGHTS -->
+        <ion-row *ngFor="let y of arr_data" class="ion-padding-top ion-padding-bottom b-card"
+          style="border: 1px solid rgb(151, 151, 151, 0.808);background-color: white;">
+          <ion-col size-md="3" size-lg="3" size-xl="3" class="ion-text-start">
+            <span class="mark1 water-mark">18785869</span>
+            <span>
+              <span>
+                <div [style.background-position]="y.Itinerary[0].FLogo" class="fltLogo"></div>
+              </span>
+              <span class="alias">{{y.Alias}}</span>
+            </span>
+            <br> <span class="F_NAME">{{y.Itinerary[0].FName}}, {{y.Itinerary[0].FNo}}</span><br>
+          </ion-col>
+
+
+          <ion-col size-md="2" size-lg="2" size-xl="2" class="ion-text-start">
+            <span class="D_TIME">{{y.Itinerary[0].DDate| date:'shortTime'}}</span><br>
+            <span class="DATE_SHOW">{{y.Itinerary[0].DDate|date:'EEE'}},
+              {{y.Itinerary[0].DDate|date:'longDate'}}</span><br>
+            <span class="D_NAME">{{y.Itinerary[0].SrcName}}</span>
+          </ion-col>
+
+
+          <ion-col size-md="3" size-lg="3" size-xl="3" class="ion-text-center">
+            <span class="mark4 water-mark">18785869</span>
+            <span class="DUR">{{y.Itinerary[0].Dur}}</span><br>
+            <span *ngIf="y.Stop=='0'" class="STOP">
+
+              <span class="circle"></span>
+              <div class="SIZE-DIV"></div>
+              <span class="circle"></span>
+
+              Non Stop
+            </span>
+            <span *ngIf="y.Stop=='1'" class="STOP">
+              <span class="circle"></span>
+              <div class="SIZE-DIV1"></div>
+              <span class="circle"></span>
+              <div class="SIZE-DIV1"></div>
+              <span class="circle"></span>
+              One Stop
+            </span>
+            <span *ngIf="y.Stop=='2'" class="STOP">
+              <span class="circle"></span>
+              <div class="SIZE-DIV2"></div>
+              <span class="circle"></span>
+              <div class="SIZE-DIV2"></div>
+              <span class="circle"></span>
+              <div class="SIZE-DIV2"></div>
+              <span class="circle"></span>
+              Two Stop
+            </span>
+
+          </ion-col>
+
+
+          <ion-col size-md="2" size-lg="2" size-xl="2" class="ion-text-end">
+            <span class="D_TIME">{{y.Itinerary[0].ADate|
+              date:'shortTime'}}</span><br>
+            <span class="DATE_SHOW">{{y.Itinerary[0].DDate|date:'EEE'}},
+              {{y.Itinerary[0].DDate|date:'longDate'}}</span><br>
+            <span class="D_NAME">{{y.Itinerary[0].DesName}}</span>
+          </ion-col>
+
+
+
+          <ion-col size-md="2" size-lg="2" size-xl="2" class="ion-text-end">
+            <span class="mark5 water-mark">18785869</span>
+            <span class="DTAA">Seats = {{y.Seat}}</span><br>
+            <span class="AMT">Rs {{y.Fare.GrandTotal}}</span><br>
+            <input type="checkbox"  [checked]="y.Id==chk_id"   (change)="clicked(y)" style="width: 20px;height:20px;border-radius: 0px;">
+          
+
+          </ion-col>
+        </ion-row>
+
+      </ion-col>
+
+
+
+      <!-- RETURN FLIGHT -->
+
+      <ion-col size-sm="12" size-xs="12" size-md="5" size-lg="5" size-xl="5">
+
+        <!-- RIGHT HEADER -->
+        <ion-row style="border: 1px solid rgb(151, 151, 151, 0.808);background-color: white; margin: 0px 0px 10px 0px;">
+
+          <ion-col size-md="3" size-lg="3" size-xl="3" class="ion-text-start">
+            <span class="head-cmn">
+              <ion-icon name="airplane"></ion-icon> Flights
+            </span>
+          </ion-col>
+
+
+          <ion-col size-md="2" size-lg="2" size-xl="2" class="ion-text-start"><span class="head-cmn">
+              <ion-icon class="rotate-0" name="airplane"></ion-icon> Time
+            </span>
+          </ion-col>
+
+
+          <ion-col size-md="3" size-lg="3" size-xl="3" class="ion-text-center"><span class="head-cmn">
+              <ion-icon name="timer"></ion-icon> Duration
+            </span>
+
+          </ion-col>
+
+
+          <ion-col size-md="2" size-lg="2" size-xl="2" class="ion-text-end"><span class="head-cmn">
+              <ion-icon class="rotate-90" name="airplane"></ion-icon> Time
+            </span>
+          </ion-col>
+
+
+
+
+          <ion-col size-md="2" size-lg="2" size-xl="2" class="ion-text-end"><span class="head-cmn">
+              <ion-icon name="cash"></ion-icon> Price<ion-icon name="caret-down-outline" *ngIf="down2"
+                (click)="sortBalAsc_RET()" style="cursor: pointer; color: red;"></ion-icon>
+              <ion-icon name="caret-up-outline" *ngIf="up2" (click)="sortBalDesc_RET()"
+                style="cursor: pointer; color: red;"></ion-icon>
+            </span>
+          </ion-col>
+
+        </ion-row>
+
+        <!-- RIGHT SIDE FLIGHT -->
+        <ion-row *ngFor="let y of arr_data1" class="ion-padding-top ion-padding-bottom b-card"
+          style="border: 1px solid rgb(151, 151, 151, 0.808);background-color: white;">
+          <ion-col size-md="3" size-lg="3" size-xl="3" class="ion-text-start">
+            <span class="mark1 water-mark">18785869</span>
+            <span>
+              <span>
+                <div [style.background-position]="y.Itinerary[0].FLogo" class="fltLogo"></div>
+              </span>
+              <span class="alias">{{y.Alias}}</span>
+            </span>
+            <br> <span class="F_NAME">{{y.Itinerary[0].FName}}, {{y.Itinerary[0].FNo}}</span><br>
+          </ion-col>
+
+
+          <ion-col size-md="2" size-lg="2" size-xl="2" class="ion-text-start">
+            <span class="D_TIME">{{y.Itinerary[0].DDate| date:'shortTime'}}</span><br>
+            <span class="DATE_SHOW">{{y.Itinerary[0].DDate|date:'EEE'}},
+              {{y.Itinerary[0].DDate|date:'longDate'}}</span><br>
+            <span class="D_NAME">{{y.Itinerary[0].SrcName}}</span>
+          </ion-col>
+
+
+          <ion-col size-md="3" size-lg="3" size-xl="3" class="ion-text-center">
+            <span class="mark4 water-mark">18785869</span>
+            <span class="DUR">{{y.Itinerary[0].Dur}}</span><br>
+            <span *ngIf="y.Stop=='0'" class="STOP">
+
+              <span class="circle"></span>
+              <div class="SIZE-DIV"></div>
+              <span class="circle"></span>
+
+              Non Stop
+            </span>
+            <span *ngIf="y.Stop=='1'" class="STOP">
+              <span class="circle"></span>
+              <div class="SIZE-DIV1"></div>
+              <span class="circle"></span>
+              <div class="SIZE-DIV1"></div>
+              <span class="circle"></span>
+              One Stop
+            </span>
+            <span *ngIf="y.Stop=='2'" class="STOP">
+              <span class="circle"></span>
+              <div class="SIZE-DIV2"></div>
+              <span class="circle"></span>
+              <div class="SIZE-DIV2"></div>
+              <span class="circle"></span>
+              <div class="SIZE-DIV2"></div>
+              <span class="circle"></span>
+              Two Stop
+            </span>
+
+          </ion-col>
+
+
+          <ion-col size-md="2" size-lg="2" size-xl="2" class="ion-text-end">
+            <span class="D_TIME">{{y.Itinerary[0].ADate|
+              date:'shortTime'}}</span><br>
+            <span class="DATE_SHOW">{{y.Itinerary[0].DDate|date:'EEE'}},
+              {{y.Itinerary[0].DDate|date:'longDate'}}</span><br>
+            <span class="D_NAME">{{y.Itinerary[0].DesName}}</span>
+          </ion-col>
+
+
+
+          <ion-col size-md="2" size-lg="2" size-xl="2" class="ion-text-end">
+            <span class="mark5 water-mark">18785869</span>
+            <span class="DTAA">Seats = {{y.Seat}}</span><br>
+            <span class="AMT">Rs {{y.Fare.GrandTotal}}</span><br>
+            <input type="checkbox" [checked]="y.Id==chk_id_ret" (change)="clicked_ret(y)" style="width: 20px;height:20px">
+
+          </ion-col>
+
+        </ion-row>
+
+
+
+
+      </ion-col>
+      <!-- ROUND TRIP END  HERE-->
+
+      <!-- BOTTOM FIXED DIV -->
+
+      <ion-col class="bottom-div " col size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12"
+        style="padding: 0px;">
+        <ion-row>
+          <ion-col size-md="1" size-lg="1" size-xl="1"></ion-col>
+          <!-- LEFT SIDE -->
+          <ion-col size-md="5" size-lg="5" size-xl="5" style="border-right: 1px solid black;">
+            <ion-row>
+              <ion-col size-md="2" size-lg="2" size-xl="2" class="ion-text-start">
+                <span>
+                  <span>
+                    <div [style.background-position]="this.selected_flight_1.Itinerary[0].FLogo" class="fltLogo"></div>
+                  </span>
+                  <span class="alias">{{this.selected_flight_1.Alias}}</span>
+                </span>
+                <br>
+                <span class="F_NAME">{{this.selected_flight_1.Itinerary[0].FName}},
+                  {{this.selected_flight_1.Itinerary[0].FNo}}</span><br>
+              </ion-col>
+
+              <ion-col size-md="3" size-lg="3" size-xl="3" class="ion-text-end">
+                <span class="D_TIME">{{this.selected_flight_1.Itinerary[0].DDate| date:'shortTime'}}</span>
+                <span class="DATE_SHOW">{{this.selected_flight_1.Itinerary[0].DDate|date:'EEE'}},
+                  {{this.selected_flight_1.Itinerary[0].DDate|date:'longDate'}}</span><br>
+                <span class="D_NAME">{{this.selected_flight_1.Itinerary[0].Src}}</span> ,
+                <span class="D_NAME">{{this.selected_flight_1.Itinerary[0].SrcName}}</span>
+              </ion-col>
+
+              <ion-col size-md="1" size-lg="1" size-xl="1" class="ion-text-center">
+                <ion-icon name="airplane" style="font-size: 14px;padding: 0px;margin: 0px;"></ion-icon>
+              </ion-col>
+
+              <ion-col size-md="3" size-lg="3" size-xl="3" class="ion-text-start">
+                <span class="D_TIME">{{this.selected_flight_1.Itinerary[0].ADate| date:'shortTime'}}</span>
+                <span class="DATE_SHOW">{{this.selected_flight_1.Itinerary[0].ADate|date:'EEE'}},
+                  {{this.selected_flight_1.Itinerary[0].ADate|date:'longDate'}}</span><br>
+                <span class="D_NAME">{{this.selected_flight_1.Itinerary[0].Des}}</span> ,
+                <span class="D_NAME">{{this.selected_flight_1.Itinerary[0].DesName}}</span>
+              </ion-col>
+
+              <ion-col size-md="3" size-lg="3" size-xl="3" class="ion-text-end">
+                <span class="bottom_dur">{{this.selected_flight_1.Itinerary[0].Dur}}
+                  <span *ngIf="this.selected_flight_1.Stop=='0'">
+                    Non Stop
+                  </span>
+                  <span *ngIf="this.selected_flight_1.Stop=='1'">
+                    One Stop
+                  </span>
+                  <span *ngIf="this.selected_flight_1.Stop=='2'">
+                    Two Stop
+                  </span>
+                </span>
+                <br>
+                <span class="AMT">Rs {{this.selected_flight_1.Fare.GrandTotal}}</span><br>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+          <!-- RIGHT SIDE -->
+          <ion-col size-md="5" size-lg="5" size-xl="5" style="border-right: 1px solid black;">
+            <ion-row>
+              <ion-col size-md="2" size-lg="2" size-xl="2" class="ion-text-start">
+                <span>
+                  <span>
+                    <div [style.background-position]="this.selected_flight_1.Itinerary[0].FLogo" class="fltLogo"></div>
+                  </span>
+                  <span class="alias">{{this.selected_flight_2.Alias}}</span>
+                </span>
+                <br>
+                <span class="F_NAME">{{this.selected_flight_2.Itinerary[0].FName}},
+                  {{this.selected_flight_2.Itinerary[0].FNo}}</span>
+              </ion-col>
+
+              <ion-col size-md="3" size-lg="3" size-xl="3" class="ion-text-end">
+                <span class="D_TIME">{{this.selected_flight_2.Itinerary[0].DDate| date:'shortTime'}}</span>
+                <span class="DATE_SHOW">{{this.selected_flight_2.Itinerary[0].DDate|date:'EEE'}},
+                  {{this.selected_flight_2.Itinerary[0].DDate|date:'longDate'}}</span><br>
+                <span class="D_NAME">{{this.selected_flight_2.Itinerary[0].Src}}</span> ,
+                <span class="D_NAME">{{this.selected_flight_2.Itinerary[0].SrcName}}</span>
+              </ion-col>
+
+              <ion-col size-md="1" size-lg="1" size-xl="1" class="ion-text-center">
+                <ion-icon name="airplane" style="font-size: 14px;padding: 0px;margin: 0px;"></ion-icon>
+              </ion-col>
+
+              <ion-col size-md="3" size-lg="3" size-xl="3" class="ion-text-start">
+                <span class="D_TIME">{{this.selected_flight_2.Itinerary[0].ADate| date:'shortTime'}}</span>
+                <span class="DATE_SHOW">{{this.selected_flight_2.Itinerary[0].ADate|date:'EEE'}},
+                  {{this.selected_flight_2.Itinerary[0].ADate|date:'longDate'}}</span><br>
+                <span class="D_NAME">{{this.selected_flight_2.Itinerary[0].Des}}</span> ,
+                <span class="D_NAME">{{this.selected_flight_2.Itinerary[0].DesName}}</span>
+              </ion-col>
+
+              <ion-col size-md="3" size-lg="3" size-xl="3" class="ion-text-end">
+                <span class="bottom_dur">{{this.selected_flight_2.Itinerary[0].Dur}}
+                  <span *ngIf="this.selected_flight_2.Stop=='0'">
+                    Non Stop
+                  </span>
+                  <span *ngIf="this.selected_flight_2.Stop=='1'">
+                    One Stop
+                  </span>
+                  <span *ngIf="this.selected_flight_2.Stop=='2'">
+                    Two Stop
+                  </span></span>
+                <br>
+                <span class="AMT">Rs {{this.selected_flight_2.Fare.GrandTotal}}</span><br>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+          <!-- BOOOK NOW BUTTON -->
+          <ion-col size-md="1" size-lg="1" size-xl="1" class="ion-text-center">
+            <button class="BOOKNOW" (click)="selectFlight(y)">
+              Rs {{this.selected_flight_1.Fare.GrandTotal + this.selected_flight_2.Fare.GrandTotal}}
+            </button>
+            <span class="DETAILS" (click)="showBottomDivFull()">
+              <span *ngIf="!bottomHeight">View Details <ion-icon name="arrow-dropdown"
+                  style="cursor: pointer; color: red;"></ion-icon></span>
+              <span *ngIf="bottomHeight">Hide Details <ion-icon name="arrow-dropup"
+                  style="cursor: pointer; color: red;"></ion-icon></span>
+
+            </span>
+
+          </ion-col>
+        </ion-row>
+
+
+        <!-- VIEW DETAILS -->
+        <ion-row>
+          <ion-col size-md="12" size-lg="12" size-xl="12" style="z-index: 11;padding: 0px;" *ngIf="bottomHeight">
+            <ion-row>
+              <ion-col size-md="1" size-lg="1" size-xl="1"></ion-col>
+              <!-- LEFT SIDE -->
+              <ion-col size-md="5" size-lg="5" size-xl="5"
+                style="height: 250px; overflow-y: auto;border-right: 1px solid black;padding: 0px;">
+                <mat-tab-group animationDuration="0s" [selectedIndex]="0">
+                  <mat-tab label="Flight Details">
+                    <ion-row *ngFor="let i of this.selected_flight_1.Itinerary"
+                      style="border-bottom: 1px solid rgb(250, 101, 101);">
+                      <ion-col size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12">
+                        <ion-row style="padding-top: 13px;">
+                          <ion-col size-sm="2" size-xs="2" size-md="2" size-lg="2" size-xl="2 " class="ion-text-start">
+                            <div [style.background-position]="i.FLogo" class="fltLogo vfl767"></div>
+
+                            <br>
+                            <span class="flight-no">{{i.FNo}}-{{i.FCode}}</span>
+                          </ion-col>
+                          <ion-col size-sm="2" size-xs="2" size-md="3" size-lg="3" size-xl="3" class="ion-text-center">
+                            <span class="DTAA">{{i.Src}} To {{i.Des}}</span>
+                          </ion-col>
+                          <ion-col size-sm="2" size-xs="2" size-md="3" size-lg="3" size-xl="3" class="ion-text-center">
+                            <span class="DTAA">{{i.DDate | date:'fullDate'}}</span>
+                          </ion-col>
+                          <ion-col size-sm="2" size-xs="2" size-md="2" size-lg="2" size-xl="2" class="ion-text-center">
+                            <span class="DTAA">Stops = {{this.selected_flight_1.Stop}}</span>
+                          </ion-col>
+                          <ion-col size-sm="2" size-xs="2" size-md="2" size-lg="2" size-xl="2" class="ion-text-end">
+                            <span class="DTAA">Seats = {{this.selected_flight_1.Seat}}</span>
+                          </ion-col>
+                        </ion-row>
+                      </ion-col>
+
+
+
+
+                      <ion-col size-sm="4" size-xs="4" size-md="4" size-lg="4" size-xl="4" class="ion-text-start">
+                        <span class="flight-t1">{{i.SrcName |uppercase}} </span><br>
+                        <span class="D_TIME">{{i.DDate| date:'shortTime'}} </span><br>
+                        <span class="flight-t3">{{i.DDate| date:'longDate'}}</span><br>
+                        <span class="flight-t3">{{i.DArpt}}</span><br>
+                        <span class="flight-t3">Terminal : {{i.DTrmnl}}</span><br>
+
+                      </ion-col>
+
+                      <ion-col size-sm="4" size-xs="4" size-md="4" size-lg="4" size-xl="4" class="ion-text-center">
+                        <br>
+
+                        <span class="STOP">
+                          <span>{{this.selected_flight_1.Itinerary[0].Dur
+                            }}</span><br>
+                          <span class="circle"></span>
+                          <div class="SIZE-DIV"></div>
+                          <span class="circle"></span><br>
+                          <span class="DUR">Economy</span><br>
+
+                        </span>
+
+
+                      </ion-col>
+                      <ion-col size-sm="4" size-xs="4" size-md="4" size-lg="4" size-xl="4" class="ion-text-end">
+                        <span class="flight-t1">{{i.DesName|uppercase}}</span><br>
+                        <span class="D_TIME">{{i.ADate| date:'shortTime'}} </span><br>
+                        <span class="flight-t3">{{i.ADate|date:'longDate'}}</span><br>
+                        <span class="flight-t3">{{i.AArpt}}</span><br>
+                        <span class="flight-t3">Terminal : {{i.ATrmnl}}</span><br>
+                      </ion-col>
+
+                    </ion-row>
+                  </mat-tab>
+
+                  <mat-tab label="Baggage Information">
+
+                    <ion-row>
+                      <ion-col size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12">
+                        <ion-row style="padding-top: 13px;">
+                          <ion-col size-sm="2" size-xs="2" size-md="2" size-lg="2" size-xl="2 " class="ion-text-start">
+                            <div [style.background-position]="this.selected_flight_1.Itinerary[0].FLogo"
+                              class="fltLogo vfl767"></div>
+
+                            <br>
+                            <span
+                              class="flight-no">{{this.selected_flight_1.Itinerary[0].FNo}}-{{this.selected_flight_1.Itinerary[0].FCode}}</span>
+                          </ion-col>
+                          <ion-col size-sm="2" size-xs="2" size-md="3" size-lg="3" size-xl="3" class="ion-text-center">
+                            <span class="DTAA">{{this.selected_flight_1.Itinerary[0].Src}} To
+                              {{this.selected_flight_1.Itinerary[0].Des}}</span>
+                          </ion-col>
+                          <ion-col size-sm="2" size-xs="2" size-md="3" size-lg="3" size-xl="3" class="ion-text-center">
+                            <span class="DTAA">{{this.selected_flight_1.Itinerary[0].DDate | date:'fullDate'}}</span>
+                          </ion-col>
+                          <ion-col size-sm="2" size-xs="2" size-md="2" size-lg="2" size-xl="2" class="ion-text-center">
+                            <span class="DTAA">Stops = {{this.selected_flight_1.Stop}}</span>
+                          </ion-col>
+                          <ion-col size-sm="2" size-xs="2" size-md="2" size-lg="2" size-xl="2" class="ion-text-end">
+                            <span class="DTAA">Seats = {{this.selected_flight_1.Seat}}</span>
+                          </ion-col>
+                        </ion-row>
+                      </ion-col>
+                      <ion-col size-sm="1" size-xs="1" size-md="1" size-lg="1" size-xl="1 " class="ion-text-center">
+                        <div [style.background-position]="this.selected_flight_1.Itinerary[0].FLogo"
+                          class="fltLogo vfl767"></div>
+
+                        <br>
+                        <span
+                          class="flight-no">{{this.selected_flight_1.Itinerary[0].FNo}}-{{this.selected_flight_1.Itinerary[0].FCode}}</span>
+                      </ion-col>
+
+                      <ion-col size-sm="4" size-xs="4" size-md="4" size-lg="4" size-xl="4">
+
+                      </ion-col>
+                      <ion-col size-sm="4" size-xs="4" size-md="4" size-lg="4" size-xl="4">
+
+                      </ion-col>
+                    </ion-row>
+
+                  </mat-tab>
+
+                  <mat-tab label="Fare Summary">
+
+                    <ion-row class="row pt-4 pb-4">
+                      <ion-col size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12">
+                        <ion-row style="padding-top: 13px;">
+                          <ion-col size-sm="2" size-xs="2" size-md="2" size-lg="2" size-xl="2 " class="ion-text-start">
+                            <div [style.background-position]="this.selected_flight_1.Itinerary[0].FLogo"
+                              class="fltLogo vfl767"></div>
+
+                            <br>
+                            <span
+                              class="flight-no">{{this.selected_flight_1.Itinerary[0].FNo}}-{{this.selected_flight_1.Itinerary[0].FCode}}</span>
+                          </ion-col>
+                          <ion-col size-sm="2" size-xs="2" size-md="3" size-lg="3" size-xl="3" class="ion-text-center">
+                            <span class="DTAA">{{this.selected_flight_1.Itinerary[0].Src}} To
+                              {{this.selected_flight_1.Itinerary[0].Des}}</span>
+                          </ion-col>
+                          <ion-col size-sm="2" size-xs="2" size-md="3" size-lg="3" size-xl="3" class="ion-text-center">
+                            <span class="DTAA">{{this.selected_flight_1.Itinerary[0].DDate | date:'fullDate'}}</span>
+                          </ion-col>
+                          <ion-col size-sm="2" size-xs="2" size-md="2" size-lg="2" size-xl="2" class="ion-text-center">
+                            <span class="DTAA">Stops = {{this.selected_flight_1.Stop}}</span>
+                          </ion-col>
+                          <ion-col size-sm="2" size-xs="2" size-md="2" size-lg="2" size-xl="2" class="ion-text-end">
+                            <span class="DTAA">Seats = {{this.selected_flight_1.Seat}}</span>
+                          </ion-col>
+                        </ion-row>
+                      </ion-col>
+                      <ion-col size-sm="1" size-xs="1" size-md="1" size-lg="1" size-xl="1 " class="ion-text-center">
+                        <div [style.background-position]="this.selected_flight_1.Itinerary[0].FLogo"
+                          class="fltLogo vfl767"></div>
+
+                        <br>
+                        <span
+                          class="flight-no">{{this.selected_flight_1.Itinerary[0].FNo}}-{{this.selected_flight_1.Itinerary[0].FCode}}</span>
+                      </ion-col>
+                      <ion-col size-sm="1" size-xs="1" size-md="1" size-lg="1" size-xl="1 " class="ion-text-center">
+
+                      </ion-col>
+                      <ion-col size-sm="9" size-xs="9" size-md="9" size-lg="9" size-xl="9">
+                        <table>
+                          <thead>
+                            <tr>
+                              <th>
+
+                              </th>
+                              <th>
+                                Basic Fare
+                              </th>
+                              <th>
+                                Taxes
+                              </th>
+                              <th>
+                                Total Fare
+                              </th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>
+                                Adults
+                              </td>
+                              <td>
+                                {{this.selected_flight_1.Fare.Adt.Basic}}
+                              </td>
+                              <td>
+                                {{this.selected_flight_1.Fare.Adt.Taxes}}
+                              </td>
+                              <td>
+                                {{this.selected_flight_1.Fare.Adt.Total}} * {{this.sr_str.Adt}} =
+                                {{this.selected_flight_1.Fare.Adt.Total*this.sr_str.Adt}}
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                Childs
+                              </td>
+                              <td>
+                                {{this.selected_flight_1.Fare.Chd.Basic}}
+                              </td>
+                              <td>
+                                {{this.selected_flight_1.Fare.Chd.Taxes}}
+                              </td>
+                              <td>
+                                {{this.selected_flight_1.Fare.Chd.Total}} * {{this.sr_str.Chd}} =
+                                {{this.selected_flight_1.Fare.Chd.Total*this.sr_str.Chd}}
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                Infants
+                              </td>
+                              <td>
+                                {{this.selected_flight_1.Fare.Inf.Basic}}
+                              </td>
+                              <td>
+                                {{this.selected_flight_1.Fare.Inf.Taxes}}
+                              </td>
+                              <td>
+                                {{this.selected_flight_1.Fare.Inf.Total}} * {{this.sr_str.Inf}} =
+                                {{this.selected_flight_1.Fare.Inf.Total*this.sr_str.Inf}}
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+
+                              </td>
+                              <td>
+
+                              </td>
+                              <td>
+                                <b>Grand Total</b>
+                              </td>
+                              <td>
+                                <b>Rs. {{this.selected_flight_1.Fare.GrandTotal}}</b>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </ion-col>
+
+                    </ion-row>
+                  </mat-tab>
+
+                  <mat-tab label="T&C">
+                    <ion-row>
+                      <ion-col size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12">
+                        <ion-row style="padding-top: 13px;">
+                          <ion-col size-sm="2" size-xs="2" size-md="2" size-lg="2" size-xl="2 " class="ion-text-start">
+                            <div [style.background-position]="this.selected_flight_1.Itinerary[0].FLogo"
+                              class="fltLogo vfl767"></div>
+
+                            <br>
+                            <span
+                              class="flight-no">{{this.selected_flight_1.Itinerary[0].FNo}}-{{this.selected_flight_1.Itinerary[0].FCode}}</span>
+                          </ion-col>
+                          <ion-col size-sm="2" size-xs="2" size-md="3" size-lg="3" size-xl="3" class="ion-text-center">
+                            <span class="DTAA">{{this.selected_flight_1.Itinerary[0].Src}} To
+                              {{this.selected_flight_1.Itinerary[0].Des}}</span>
+                          </ion-col>
+                          <ion-col size-sm="2" size-xs="2" size-md="3" size-lg="3" size-xl="3" class="ion-text-center">
+                            <span class="DTAA">{{this.selected_flight_1.Itinerary[0].DDate | date:'fullDate'}}</span>
+                          </ion-col>
+                          <ion-col size-sm="2" size-xs="2" size-md="2" size-lg="2" size-xl="2" class="ion-text-center">
+                            <span class="DTAA">Stops = {{this.selected_flight_1.Stop}}</span>
+                          </ion-col>
+                          <ion-col size-sm="2" size-xs="2" size-md="2" size-lg="2" size-xl="2" class="ion-text-end">
+                            <span class="DTAA">Seats = {{this.selected_flight_1.Seat}}</span>
+                          </ion-col>
+                        </ion-row>
+                      </ion-col>
+                    </ion-row>
+                    <ul>
+                      <li>For B2C customers 200Rs charges per person per sector will be charged on all cancellations
+                        and
+                        200Rs as Rescheduling charges.</li>
+                      <li>The above Fare Rules are just a guideline for your convenience and is subject to changes by
+                        the Airline from time to time.</li>
+                      <li>In case of no-show or ticket not cancelled within the stipulated time only statutory taxes
+                        are
+                        refundable</li>
+                      <li>Partial cancellation is not allowed on tickets booked under special discounted fares.</li>
+                      <li>Changes/cancellations are subject to 4hrs prior to departure.</li>
+                      <li>The charges are per passenger per sector.</li>
+                      <li>Infant fare is non-refundable.</li>
+
+                    </ul>
+                  </mat-tab>
+                </mat-tab-group>
+              </ion-col>
+              <!-- RIGHT SIDE -->
+              <ion-col size-md="5" size-lg="5" size-xl="5"
+                style="height: 250px; overflow-y: auto; border-right: 1px solid black;padding: 0px;">
+                <mat-tab-group animationDuration="0s" [selectedIndex]="0">
+                  <mat-tab label="Flight Details">
+                    <ion-row *ngFor="let i of this.selected_flight_2.Itinerary"
+                      style="border-bottom: 1px solid rgb(250, 101, 101);">
+                      <ion-col size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12">
+                        <ion-row style="padding-top: 13px;">
+                          <ion-col size-sm="2" size-xs="2" size-md="2" size-lg="2" size-xl="2 " class="ion-text-start">
+                            <div [style.background-position]="i.FLogo" class="fltLogo vfl767"></div>
+
+                            <br>
+                            <span class="flight-no">{{i.FNo}}-{{i.FCode}}</span>
+                          </ion-col>
+                          <ion-col size-sm="2" size-xs="2" size-md="3" size-lg="3" size-xl="3" class="ion-text-center">
+                            <span class="DTAA">{{i.Src}} To {{i.Des}}</span>
+                          </ion-col>
+                          <ion-col size-sm="2" size-xs="2" size-md="3" size-lg="3" size-xl="3" class="ion-text-center">
+                            <span class="DTAA">{{i.DDate | date:'fullDate'}}</span>
+                          </ion-col>
+                          <ion-col size-sm="2" size-xs="2" size-md="2" size-lg="2" size-xl="2" class="ion-text-center">
+                            <span class="DTAA">Stops = {{this.selected_flight_1.Stop}}</span>
+                          </ion-col>
+                          <ion-col size-sm="2" size-xs="2" size-md="2" size-lg="2" size-xl="2" class="ion-text-end">
+                            <span class="DTAA">Seats = {{this.selected_flight_1.Seat}}</span>
+                          </ion-col>
+                        </ion-row>
+                      </ion-col>
+
+                      <ion-col size-sm="4" size-xs="4" size-md="4" size-lg="4" size-xl="4" class="ion-text-start">
+                        <span class="flight-t1">{{i.SrcName |uppercase}} </span><br>
+                        <span class="D_TIME">{{i.DDate| date:'shortTime'}} </span><br>
+                        <span class="flight-t3">{{i.DDate| date:'longDate'}}</span><br>
+                        <span class="flight-t3">{{i.DArpt}}</span><br>
+                        <span class="flight-t3">Terminal : {{i.DTrmnl}}</span><br>
+
+                      </ion-col>
+
+                      <ion-col size-sm="4" size-xs="4" size-md="4" size-lg="4" size-xl="4" class="ion-text-center">
+                        <br>
+
+                        <span class="STOP">
+                          <span>{{this.selected_flight_1.Itinerary[0].Dur
+                            }}</span><br>
+                          <span class="circle"></span>
+                          <div class="SIZE-DIV"></div>
+                          <span class="circle"></span><br>
+                          <span class="DUR">Economy</span><br>
+
+                        </span>
+
+
+                      </ion-col>
+                      <ion-col size-sm="4" size-xs="4" size-md="4" size-lg="4" size-xl="4" class="ion-text-end">
+                        <span class="flight-t1">{{i.DesName|uppercase}}</span><br>
+                        <span class="D_TIME">{{i.ADate| date:'shortTime'}} </span><br>
+                        <span class="flight-t3">{{i.ADate|date:'longDate'}}</span><br>
+                        <span class="flight-t3">{{i.AArpt}}</span><br>
+                        <span class="flight-t3">Terminal : {{i.ATrmnl}}</span><br>
+                      </ion-col>
+
+                    </ion-row>
+                  </mat-tab>
+
+                  <mat-tab label="Baggage Information">
+
+                    <ion-row>
+                      <ion-col size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12">
+                        <ion-row style="padding-top: 13px;">
+                          <ion-col size-sm="2" size-xs="2" size-md="2" size-lg="2" size-xl="2" class="ion-text-center">
+                            <ion-icon size="large" name="airplane" class="rotate-0"></ion-icon>
+                          </ion-col>
+                          <ion-col size-sm="3" size-xs="3" size-md="3" size-lg="3" size-xl="3" class="ion-text-center">
+                            <span class="DTAA">{{this.selected_flight_2.Itinerary[0].Src}} To
+                              {{this.selected_flight_2.Itinerary[0].Des}}</span>
+                          </ion-col>
+                          <ion-col size-sm="3" size-xs="3" size-md="3" size-lg="3" size-xl="3" class="ion-text-center">
+                            <span class="DTAA">{{this.selected_flight_2.Itinerary[0].DDate | date:'fullDate'}}</span>
+                          </ion-col>
+                          <ion-col size-sm="2" size-xs="2" size-md="2" size-lg="2" size-xl="2" class="ion-text-center">
+                            <span class="DTAA">Stops = {{this.selected_flight_2.Stop}}</span>
+                          </ion-col>
+                          <ion-col size-sm="2" size-xs="2" size-md="2" size-lg="2" size-xl="2" class="ion-text-center">
+                            <span class="DTAA">Seats = {{this.selected_flight_2.Seat}}</span>
+                          </ion-col>
+                        </ion-row>
+                      </ion-col>
+                      <ion-col size-sm="1" size-xs="1" size-md="1" size-lg="1" size-xl="1 " class="ion-text-center">
+                        <div [style.background-position]="this.selected_flight_2.Itinerary[0].FLogo"
+                          class="fltLogo vfl767"></div>
+
+                        <br>
+                        <span
+                          class="flight-no">{{this.selected_flight_2.Itinerary[0].FNo}}-{{this.selected_flight_2.Itinerary[0].FCode}}</span>
+                      </ion-col>
+
+                      <ion-col size-sm="4" size-xs="4" size-md="4" size-lg="4" size-xl="4">
+
+                      </ion-col>
+                      <ion-col size-sm="4" size-xs="4" size-md="4" size-lg="4" size-xl="4">
+
+                      </ion-col>
+                    </ion-row>
+
+                  </mat-tab>
+
+                  <mat-tab label="Fare Summary">
+
+                    <ion-row class="row pt-4 pb-4">
+                      <ion-col size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12">
+                        <ion-row style="padding-top: 13px;">
+                          <ion-col size-sm="2" size-xs="2" size-md="2" size-lg="2" size-xl="2" class="ion-text-center">
+                            <ion-icon size="large" name="airplane" class="rotate-0"></ion-icon>
+                          </ion-col>
+                          <ion-col size-sm="3" size-xs="3" size-md="3" size-lg="3" size-xl="3" class="ion-text-center">
+                            <span class="DTAA">{{this.selected_flight_2.Itinerary[0].Src}} To
+                              {{this.selected_flight_2.Itinerary[0].Des}}</span>
+                          </ion-col>
+                          <ion-col size-sm="3" size-xs="3" size-md="3" size-lg="3" size-xl="3" class="ion-text-center">
+                            <span class="DTAA">{{this.selected_flight_2.Itinerary[0].DDate | date:'fullDate'}}</span>
+                          </ion-col>
+                          <ion-col size-sm="2" size-xs="2" size-md="2" size-lg="2" size-xl="2" class="ion-text-center">
+                            <span class="DTAA">Stops = {{this.selected_flight_2.Stop}}</span>
+                          </ion-col>
+                          <ion-col size-sm="2" size-xs="2" size-md="2" size-lg="2" size-xl="2" class="ion-text-center">
+                            <span class="DTAA">Seats = {{this.selected_flight_2.Seat}}</span>
+                          </ion-col>
+                        </ion-row>
+                      </ion-col>
+                      <ion-col size-sm="1" size-xs="1" size-md="1" size-lg="1" size-xl="1 " class="ion-text-center">
+                        <div [style.background-position]="this.selected_flight_2.Itinerary[0].FLogo"
+                          class="fltLogo vfl767"></div>
+
+                        <br>
+                        <span
+                          class="flight-no">{{this.selected_flight_2.Itinerary[0].FNo}}-{{this.selected_flight_2.Itinerary[0].FCode}}</span>
+                      </ion-col>
+                      <ion-col size-sm="1" size-xs="1" size-md="1" size-lg="1" size-xl="1 " class="ion-text-center">
+
+                      </ion-col>
+                      <ion-col size-sm="9" size-xs="9" size-md="9" size-lg="9" size-xl="9">
+                        <table>
+                          <thead>
+                            <tr>
+                              <th>
+
+                              </th>
+                              <th>
+                                Basic Fare
+                              </th>
+                              <th>
+                                Taxes
+                              </th>
+                              <th>
+                                Total Fare
+                              </th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>
+                                Adults
+                              </td>
+                              <td>
+                                {{this.selected_flight_2.Fare.Adt.Basic}}
+                              </td>
+                              <td>
+                                {{this.selected_flight_2.Fare.Adt.Taxes}}
+                              </td>
+                              <td>
+                                {{this.selected_flight_2.Fare.Adt.Total}} * {{this.sr_str.Adt}} =
+                                {{this.selected_flight_2.Fare.Adt.Total*this.sr_str.Adt}}
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                Childs
+                              </td>
+                              <td>
+                                {{this.selected_flight_2.Fare.Chd.Basic}}
+                              </td>
+                              <td>
+                                {{this.selected_flight_2.Fare.Chd.Taxes}}
+                              </td>
+                              <td>
+                                {{this.selected_flight_2.Fare.Chd.Total}} * {{this.sr_str.Chd}} =
+                                {{this.selected_flight_2.Fare.Chd.Total*this.sr_str.Chd}}
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                Infants
+                              </td>
+                              <td>
+                                {{this.selected_flight_2.Fare.Inf.Basic}}
+                              </td>
+                              <td>
+                                {{this.selected_flight_2.Fare.Inf.Taxes}}
+                              </td>
+                              <td>
+                                {{this.selected_flight_2.Fare.Inf.Total}} * {{this.sr_str.Inf}} =
+                                {{this.selected_flight_2.Fare.Inf.Total*this.sr_str.Inf}}
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+
+                              </td>
+                              <td>
+
+                              </td>
+                              <td>
+                                <b>Grand Total</b>
+                              </td>
+                              <td>
+                                <b>Rs. {{this.selected_flight_2.Fare.GrandTotal}}</b>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </ion-col>
+
+                    </ion-row>
+                  </mat-tab>
+
+                  <mat-tab label="T&C">
+                    <ion-row>
+                      <ion-col size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12">
+                        <ion-row style="padding-top: 13px;">
+                          <ion-col size-sm="2" size-xs="2" size-md="2" size-lg="2" size-xl="2" class="ion-text-center">
+                            <ion-icon size="large" name="airplane" class="rotate-0"></ion-icon>
+                          </ion-col>
+                          <ion-col size-sm="3" size-xs="3" size-md="3" size-lg="3" size-xl="3" class="ion-text-center">
+                            <span class="DTAA">{{this.selected_flight_2.Itinerary[0].Src}} To
+                              {{this.selected_flight_2.Itinerary[0].Des}}</span>
+                          </ion-col>
+                          <ion-col size-sm="3" size-xs="3" size-md="3" size-lg="3" size-xl="3" class="ion-text-center">
+                            <span class="DTAA">{{this.selected_flight_2.Itinerary[0].DDate | date:'fullDate'}}</span>
+                          </ion-col>
+                          <ion-col size-sm="2" size-xs="2" size-md="2" size-lg="2" size-xl="2" class="ion-text-center">
+                            <span class="DTAA">Stops = {{this.selected_flight_2.Stop}}</span>
+                          </ion-col>
+                          <ion-col size-sm="2" size-xs="2" size-md="2" size-lg="2" size-xl="2" class="ion-text-center">
+                            <span class="DTAA">Seats = {{this.selected_flight_2.Seat}}</span>
+                          </ion-col>
+                        </ion-row>
+                      </ion-col>
+                    </ion-row>
+                    <ul>
+                      <li>For B2C customers 200Rs charges per person per sector will be charged on all cancellations
+                        and
+                        200Rs as Rescheduling charges.</li>
+                      <li>The above Fare Rules are just a guideline for your convenience and is subject to changes by
+                        the Airline from time to time.</li>
+                      <li>In case of no-show or ticket not cancelled within the stipulated time only statutory taxes
+                        are
+                        refundable</li>
+                      <li>Partial cancellation is not allowed on tickets booked under special discounted fares.</li>
+                      <li>Changes/cancellations are subject to 4hrs prior to departure.</li>
+                      <li>The charges are per passenger per sector.</li>
+                      <li>Infant fare is non-refundable.</li>
+
+                    </ul>
+                  </mat-tab>
+                </mat-tab-group>
+              </ion-col>
+
+            </ion-row>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+
+    </ion-row>
+
+  </ion-grid>
+</ion-content>

@@ -1,0 +1,75 @@
+<ion-grid>
+  <ion-row *ngIf="Id=='0'">
+
+    <ion-col size-xs="12" size-sm="12" size-md="12" size-lg="12" size-xl="12">
+      <img alt="logo" src="../../../assets//17_micro-interactions.gif">
+    </ion-col>
+    <ion-col size-xs="12" size-sm="12" size-md="12" size-lg="12" size-xl="12" class="ion-text-center ">
+      <h1 class="cmc">
+        <span style="color: #445f99;">PLEASE WAIT WE ARE FETCHING </span>
+        <span style="color: #e9182d;"><b>{{src}} </b></span>
+        <span style="color: #445f99;">TO </span>
+        <span style="color: #e9182d;"><b>{{des}} </b></span>
+        <span style="color: #445f99;">FLIGHT DETAILS</span>
+      </h1>
+    </ion-col>
+
+  </ion-row>
+
+  <ion-row *ngIf="Id=='1'">
+
+    <ion-col size-xs="12" size-sm="12" size-md="12" size-lg="12" size-xl="12">
+      <img alt="logo" src="../../../assets//17_micro-interactions.gif">
+    </ion-col>
+    <ion-col size-xs="12" size-sm="12" size-md="12" size-lg="12" size-xl="12" class="ion-text-center ">
+      <h1 class="cmc">
+        <span style="color: #445f99;">PLEASE WAIT WE ARE FETCHING </span>
+        <span style="color: #e9182d;"><b>{{src}} </b></span>
+        <span style="color: #445f99;">TO </span>
+        <span style="color: #e9182d;"><b>{{des}} </b></span>
+        <span style="color: #445f99;">FLIGHT DETAILS</span> <br>
+        <span style="color: #445f99;">AND </span>
+        <span style="color: #e9182d;"><b>{{des}} </b></span>
+        <span style="color: #445f99;">TO </span>
+        <span style="color: #e9182d;"><b>{{src}} </b></span>
+        <span style="color: #445f99;">FLIGHT DETAILS</span>
+      </h1>
+    </ion-col>
+
+  </ion-row>
+
+
+  <ion-row *ngIf="Id=='5'">
+
+    <ion-col size-xs="12" size-sm="12" size-md="12" size-lg="12" size-xl="12" class="ion-text-center">
+      <h1 class="cmc">
+        <span style="color: #e9182d;"><b>Fare Checking</b></span> <ion-progress-bar type="indeterminate"></ion-progress-bar>
+      </h1>
+    </ion-col>
+
+
+  </ion-row>
+
+
+
+
+  <ion-row *ngIf="Id=='10'">
+
+    <ion-col size-xs="12" size-sm="12" size-md="12" size-lg="12" size-xl="12">
+      <img alt="logo" src="../../../assets//17_micro-interactions.gif">
+    </ion-col>
+    <ion-col size-xs="12" size-sm="12" size-md="12" size-lg="12" size-xl="12" class="ion-text-center">
+      <h1 class="cmc">
+        <span style="color: #e9182d;"><b>SORRY </b></span>
+        <span style="color: #445f99;">FLIGHT NOT FOUND</span>
+      </h1>
+    </ion-col>
+    <ion-col size-xs="12" size-sm="12" size-md="12" size-lg="12" size-xl="12" class="ion-text-center">
+      <h1 class="cmc">
+        <span style="color: #445f99;">Search Again</span>
+        <span style="color: #e9182d; cursor:pointer;" (click)="navigate()"><b> CLICK HERE </b></span>
+      </h1>
+    </ion-col>
+
+  </ion-row>
+</ion-grid>

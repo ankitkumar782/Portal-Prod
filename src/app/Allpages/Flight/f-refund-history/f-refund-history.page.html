@@ -1,0 +1,87 @@
+<ion-content>
+  <ion-row class="ion-padding-top s-bar">
+    <ion-col size-sm="12" size-xs="12" size-md="2" size-lg="2" size-xl="2">
+
+
+    </ion-col>
+    <ion-col size-sm="12" size-xs="12" size-md="8" size-lg="8" size-xl="8">
+      <ion-row style=" padding-top: 10px;">
+        <ion-col size-sm="12" size-xs="12" size-md="4" size-lg="4" size-xl="4">
+          <fieldset>
+            
+            <input type="text" [(ngModel)]="Bookingid" placeholder="BOOKING ID">
+          </fieldset>
+
+        </ion-col>
+
+       
+
+        <ion-col size-sm="12" size-xs="12" size-md="4" size-lg="4" size-xl="4">
+          <button class="submit-btn" type="submit" (click)="search()">
+            Cancellation status
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col size-xs="12" size-sm="12" size-md="12" size-lg="12" size-xl="12" *ngIf="show">
+      <table id="tab6" class="table">
+        <thead class="thead">
+          <tr>
+            
+            <th class="padding th">
+              Booking Id
+            </th>
+            <th class="padding th">
+              Pnr
+            </th>
+            <th class="padding th">
+              Cancellation Status
+            </th>
+            <th class="padding th">
+              Fare
+            </th>
+            <th class="padding th">
+              AirlineCancelFee
+            </th>
+            <th class="padding th">
+              CancelServiceCharge
+            </th>
+            <th class="padding th">
+              RefundableAmount
+            </th>
+            <th class="padding th">
+              CancelRemark
+            </th>
+            <th class="padding th">
+              RefundRemark
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="hvr">
+           
+            <td class="td" style="color: rgb(255, 0, 0); cursor: pointer">
+              <b>{{response?.BookingId}}</b></td>
+              <td class="td">{{response?.BPnr}}</td>
+              <td class="td"><span *ngIf="response?.IsCancelled">CANCELLED</span><span *ngIf="!response?.IsCancelled">Not CANCELLED</span></td>
+              <td class="td">{{response?.Fare}}</td>
+              <td class="td">{{response?.AirlineCancelFee}}</td>
+              <td class="td">{{response?.CancelServiceCharge}}</td>
+              <td class="td">{{response?.RefundableAmount}}</td>
+              <td class="td">{{response?.OI.CancelRemark}}</td>
+              <td class="td">{{response?.OI.RefundRemark}}</td>
+             
+             
+            
+
+           
+          </tr>
+        </tbody>
+      </table>
+
+    </ion-col>
+  </ion-row>
+</ion-content>

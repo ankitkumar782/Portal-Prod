@@ -1,0 +1,108 @@
+<ion-header>
+
+
+  <ion-toolbar>
+
+
+
+    <ion-title>
+      <ion-grid>
+        <ion-row class="h-Box">
+          <ion-col size-xs="2" size-sm="1" size-md="1" size-lg="1" size-xl="1">
+            <ion-menu-button auto-hide="false" (click)="Menu1()"></ion-menu-button>
+          </ion-col>
+
+          <ion-col size-xs="2" size-sm="2" size-md="2" size-lg="2" size-xl="2">
+            <img alt="logo" class="header_logo2" src="../assets/logo.png" [routerLink]="['/','home','fsearch']">
+          </ion-col>
+
+          <ion-col size-xs="4" size-sm="4" size-md="4" size-lg="4" size-xl="4" class="" style="display: flex; justify-content: start; align-items: center;">
+            <ul>
+              <!-- <li>
+                <ion-icon name="person-circle"></ion-icon> <span>PSLV</span>
+              </li> -->
+              <li style="float: right; margin-bottom: 12px;">
+                <div>
+
+                  <span>
+                    <ion-icon name="wallet-outline"
+                      style="color: #213D77; margin-right: 10px; font-size: 15px; font-weight: 500;"></ion-icon>
+                  </span>
+                  <span class="cfont h-text"><b>{{count| currency:'INR'}}</b></span>
+                </div>
+              </li>
+              <!-- <li>
+                <ion-icon name="train"></ion-icon> <span>10000</span>
+              </li> -->
+
+              <!-- <li style="float: right;">
+                <div style="display: flex; " (click)="logout()">
+                  <span lines="none" class="line-up">
+                    <ion-icon slot="start" name="log-out-outline" style="color: #213D77; font-size: 20px;"></ion-icon>
+                  </span>
+                  <span style=" font-size: 15px; font-weight: 500;">LogOut </span>
+                </div>
+              </li> -->
+            </ul>
+          </ion-col>
+
+          <ion-col size-xs="4" size-sm="4" size-md="4" size-lg="4" size-xl="4" class="" style="display: flex; justify-content: end; align-items: center;">
+            <ul>
+              <li style="float: right; margin-bottom: 8px;">
+                <div style="display: flex;" (click)="logout()">
+                  <span lines="none" class="line-up">
+                    <ion-icon slot="start" name="log-out-outline" style="color: #213D77; font-size: 20px;"></ion-icon>
+                  </span>
+                  <span style="font-weight: 500;">LogOut </span>
+                </div>
+              </li>
+            </ul>
+          </ion-col>
+
+        </ion-row>
+      </ion-grid>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-app class="for-app cfont">
+  <ion-split-pane contentId="main-content">
+    <ion-menu contentId="main-content" type="overlay" class="ion-text-center" *ngIf="bigMenu" swipeGesture="false">
+      <ion-content class="side-Menu">
+
+        <ion-list id="inbox-list" *ngFor="let d of Menu,let i = index" lines="none">
+          <ion-item *ngIf="d.active=='true'" (click)="toggleSubMenu(d)" (ionClick)="d.showDetails=!d.showDetails "
+            class="side-Menu-Main main-tag line-up" lines="none" style="margin-left: 10;">
+            <ion-icon class="Side-Icon" slot="start" name={{d.icon}}></ion-icon>
+            <ion-label>{{d.title}}</ion-label>
+            <ion-icon name="caret-down-outline" *ngIf="d.showDetails" style="color: #213d77;"></ion-icon>
+            <ion-icon name="caret-up-outline" *ngIf="!d.showDetails" style="color: #213d77;"></ion-icon>
+          </ion-item>
+
+          <ion-list *ngIf="!d.showDetails" lines="none">
+            <ion-item *ngFor="let s_Menu of d.subMenu" [routerLink]="['/','home',s_Menu.url]" lines="none"
+              class="sb-menu side-Menu-Main">
+              <!-- <ion-icon class="Side-Icon" size="small" name={{s_Menu.icon}}></ion-icon> -->
+              <ion-label> {{s_Menu.title}}</ion-label>
+              <!-- <ion-icon size="small" name={{s_Menu.Eicon}}></ion-icon> -->
+            </ion-item>
+          </ion-list>
+
+          <ion-item *ngIf="!d.subMenu" [routerLink]="['/','home',d.url]" (click)="myAccount()"
+            class="main-tag line-up side-Menu-Main" routerDirection="forward">
+            <ion-icon class="Side-Icon" slot="start" name={{d.icon}}></ion-icon>
+            <ion-label>{{d.title}} </ion-label>
+          </ion-item>
+        </ion-list>
+
+        <ion-col size-xs="4" size-sm="4" size-md="1" size-lg="1" size-xl="1">
+          <img alt="logo" class="header_logo" src="../assets/logo.png" style="margin-top: 90px;">
+        </ion-col>
+
+
+      </ion-content>
+
+    </ion-menu>
+    <ion-router-outlet id="main-content"></ion-router-outlet>
+  </ion-split-pane>
+
+</ion-app>

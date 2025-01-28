@@ -1,0 +1,990 @@
+<ion-content class="padding-none bg-color" [scrollEvents]="true" (ionScroll)="onScroll($event)">
+  <ion-grid class=" for-app">
+    <ion-row color="primary" class="s-bar img-B" style="display: flex; justify-content: center;">
+      <!-- <ion-col size-md="1" size-lg="1" size-xl="1" class="ion-padding-top"></ion-col> -->
+      <ion-col size-sm="10" size-xs="12" size-md="10" size-lg="10" size-xl="10" class="padding-none search-Box">
+        <ion-row>
+          <!-- <ion-col size-sm="9" size-xs="9 " size-md="9" size-lg="9" size-xl="2"></ion-col>
+          <ion-col size-sm="3" size-xs="3" size-md="3" size-lg="3" size-xl="2" class="FTH "
+            [ngClass]="[i.isAfterActive?'FTHActive':'!FTHActive']" *ngFor="let i of trip_selection_arr"
+            (click)="trip_selection_function(i)">
+            {{i.Name}}
+          </ion-col> -->
+          <!-- <ul>
+            <li class="FTH " style="border-radius: 10px 10px 0px 10px;" [ngClass]="[i.isAfterActive?'FTHActive':'!FTHActive']" *ngFor="let i of trip_selection_arr"
+              (click)="trip_selection_function(i)">
+              {{i.Name}}
+            </li>
+          </ul> -->
+
+
+
+
+
+          <!-- ************************2nd form************************************** -->
+
+          <ion-col size-sm="12" size-xs="12 " size-md="12" size-lg="12" size-xl="12"
+            style="border: 1px solid red; border-radius: 10px; display: none;">
+
+            <ul>
+              <li class="FTH" [ngClass]="[i.isAfterActive?'FTHActive':'!FTHActive']"
+                *ngFor="let i of trip_selection_arr" (click)="trip_selection_function(i)">
+                {{i.Name}}
+              </li>
+            </ul>
+          </ion-col>
+        </ion-row>
+
+        <ion-card class="card-Box SB2" style="border-radius: 20px;">
+          <form [formGroup]="flightData" (ngSubmit)="checkFlight_one()">
+
+            <!-- ONE WAY    ROUND TRIP ADVANCE TRIP -->
+            <ion-row color="primary" class="tp_mgn" *ngIf="multi_trip">
+
+
+              <ion-col size-sm="12" size-xs="12 " size-md="6" size-lg="6" size-xl="6">
+
+
+                <ul class="checkbox-list">
+                  <li class="FTH" [ngClass]="[i.isAfterActive?'FTHActive':'!FTHActive']"
+                    *ngFor="let i of trip_selection_arr" (click)="trip_selection_function(i)">
+                    {{i.Name}}
+                  </li>
+                </ul>
+
+                <!-- 
+                <ul class="checkbox-list">
+                  <li>
+                    <input type="checkbox" id="one-way" name="one-way">
+                    <label for="one-way">One Way</label>
+                  </li>
+                  <li>
+                    <input type="checkbox" id="round-trip" name="round-trip">
+                    <label for="round-trip">Round Trip</label>
+                  </li>
+                </ul> -->
+
+              </ion-col>
+              <ion-col class="f-text" size-sm="12" size-xs="12" size-md="6" size-lg="6" size-xl="6">
+                <h3>Book Flight Tickets</h3>
+              </ion-col>
+
+
+              <ion-col class="f-form-box" size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12">
+                <ion-row>
+                  <ion-col size-sm="12" size-xs="12" size-md="2" size-lg="2" size-xl="2" class="inputBox"
+                    >
+                    <fieldset>
+                      <legend>
+                        <!-- <ion-icon class="rotate-0" name="airplane-outline"></ion-icon>  -->
+                        {{fieldsName.from}}
+                      </legend>
+                      <span>
+                        {{from}}
+                      </span>
+                      <input type="text" formControlName="A_airport" [(ngModel)]="arrARP" (keyup)="arr_s_h()"
+                        placeholder="DEL, Delhi, India">
+                    </fieldset>
+                    <div style="max-height: 250px; overflow-y: auto;   box-shadow: 1px 1px 10px -2px #8f8a8a;
+                    padding: 2px 0px;border: 1px solid rgb(212, 212, 212);width: 240px;margin-left: 5px;"
+                      *ngIf="arr_show" class="popover__content">
+
+                      <ul style="list-style-type: none;cursor: pointer;margin: 0px; padding: 0px;width: 100%;">
+                        <li *ngFor="let data of arp | searchFilter: arrARP" (click)="getarrVal(data)"
+                          style="padding: 10px 15px; color: black; font-family: serif; font-size: 14px;font-family: Arial, Helvetica, sans-serif;">
+                          {{data.city}} ,{{data.country}} [
+                          <span style="color: rgb(21, 49, 110); font-size: 10px;">
+                            <b>{{data.code}}</b>
+                          </span>
+                          ]
+                        </li>
+                      </ul>
+
+                    </div>
+                    <ion-text *ngIf="Error.A_airport.touched || Error.A_airport.dirty">
+                      <span class="err" *ngIf="Error.A_airport.errors"
+                        style="font-size: 13px; color: red;">{{fieldsName.error_msg}}</span>
+                    </ion-text>
+                  </ion-col>
+
+                  <ion-col size-sm="12" size-xs="12" size-md="1" size-lg="1" size-xl="1"
+                    style="display: flex; justify-content: center;align-items: center; color: #213d77;">
+                    <div class="" (click)="swap_city()">
+                      <ion-icon class="swap-icon" name="swap-horizontal-outline" style="color: #213d77;"></ion-icon>
+                    </div>
+
+                  </ion-col>
+
+                  <ion-col size-sm="12" size-xs="12" size-md="2" size-lg="2" size-xl="2" class="inputBox">
+                    <fieldset>
+                      <legend>
+                        <!-- <ion-icon class="rotate-0" name="airplane-outline"></ion-icon> -->
+                        {{fieldsName.to}}
+                      </legend>
+
+                      <span>
+                        {{to}}
+                      </span>
+                      <input type="text" formControlName="D_airport" [(ngModel)]="depARP" (keyup)="arr_show_dep_fun()"
+                        placeholder="BOM, Mumbai, India">
+                    </fieldset>
+                    <div style="max-height: 250px; overflow-y: auto;   box-shadow: 1px 1px 10px -2px #8f8a8a;
+                    padding: 2px 0px;border: 1px solid rgb(212, 212, 212);width: 240px;margin-left: 5px;"
+                      *ngIf="arr_show_dep" class="popover__content">
+
+                      <ul style="list-style-type: none;cursor: pointer;margin: 0px; padding: 0px;width: 100%;">
+                        <li *ngFor="let data of arp | searchFilter: depARP" (click)="getDepValFun(data)"
+                          style="padding: 10px 15px; color: black; font-family: serif; font-size: 14px; font-family: Arial, Helvetica, sans-serif;">
+                          {{data.city}} ,{{data.country}} [
+                          <span style="color: rgb(21, 49, 110); font-size: 10px;">
+                            <b>{{data.code}}</b>
+                          </span>
+                          ]
+                        </li>
+                      </ul>
+
+                    </div>
+                    <ion-text *ngIf="Error.D_airport.touched || Error.D_airport.dirty">
+                      <span class="err" *ngIf="Error.D_airport.errors"
+                        style="font-size: 13px; color: red;">{{fieldsName.error_msg}}</span>
+                    </ion-text>
+
+
+                  </ion-col>
+
+
+
+
+                  <ion-col size-sm="12" size-xs="12" size-md="2" size-lg="2" size-xl="2" class="inputBox"
+                    >
+                    <!-- DEPARTURE DATE-->
+                    <fieldset>
+                      <legend>
+                       
+                        {{fieldsName.dep_date}}
+                      </legend>
+                      <span style="font-size: 24px; font-weight: normal; color: black;">
+                        {{changedate1 | date:'dd MMM yyy' }}
+                      </span>
+                      <input type="date" placeholder="{{todayt}}" [disabled]="round_trip" [(ngModel)]="changedate1"
+                        style="width: 100%; " formControlName="D_date" [max]=" maxDate" [min]="todayt">
+                      <!-- <input style="width: 70%;" matInput [min]="todayt" [matDatepicker]="picker"
+                        (click)="picker.open()" formControlName="D_date" placeholder="{{todayt}}"
+                        (dateChange)="returnDate($event.target.value)" [max]=" maxDate">
+                      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                      <mat-datepicker #picker></mat-datepicker> -->
+                    </fieldset>
+                    <ion-text *ngIf="Error.D_date.touched || Error.D_date.dirty">
+                      <span class="err" *ngIf="Error.D_date.errors">{{fieldsName.error_msg}}</span>
+                    </ion-text>
+                  </ion-col>
+
+                  <ion-col class="inputBox" size-sm="12" size-xs="12" size-md="2" size-lg="2" size-xl="2"
+                    >
+                    <!-- ARRIVAL DATE -->
+                    <fieldset>
+                      <legend>
+                       
+                        {{fieldsName.ret_date}}
+                      </legend>
+
+                      <span *ngIf="!round_trip">
+                        {{changedate2 | date:'dd MMM yyy' }}
+                      </span>
+                      <span style="font-size: 23px; font-weight: normal; color: grey;" *ngIf="round_trip">
+                        Round Trip
+                      </span>
+                      <input type="date" placeholder="{{todayt}}" [attr.disabled]="round_trip ? true : null"
+                        [(ngModel)]="changedate2" style="width: 100%;" formControlName="A_date" [min]="minDate">
+                      <!-- <input style="width: 70%;" matInput formControlName="A_date" [min]="minDate"
+                        (click)="picker1.open()" placeholder="{{todayt}}" [matDatepicker]="picker1"
+                        (dateChange)="returnDateMax($event.target.value)" [disabled]="round_trip"> -->
+                      <!-- <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                      <mat-datepicker #picker1></mat-datepicker> -->
+                    </fieldset>
+                  </ion-col>
+
+                  <ion-col class="inputBox" size-sm="12" size-xs="12" size-md="2" size-lg="2" size-xl="2"
+                    >
+                    <fieldset style="position: relative;">
+                      <legend>
+                        <ion-icon name="calendar-outline"
+                          style="color: black; font-size: 18px; margin-right: 3px;">
+                        </ion-icon> 
+                        <span style="font-size: 15px;"> Travellers </span>
+                      </legend>
+
+
+                      <span (click)="paxDivHide()"
+                        style="color: black; font-size: 40px; font-weight: normal; border-bottom: 2px solid black; padding: 5px;">
+                        {{totalpax}} Adults
+                      </span>
+
+                      <div *ngIf="pax_div" 
+                        style="position: absolute;top: 28px;z-index: 999;width: 200px;height: auto; border-radius: 20px; background-color: #213d77;  box-shadow: 1px 1px 10px -2px #8f8a8a;border: 1px solid rgb(209, 209, 209); padding: 3px;">
+                        <span (click)="paxDivHide()" style="float: right; cursor: pointer; font-size: 25px; font-weight: bold; margin-right: 5px;">
+                          <!-- close -->
+                          <ion-icon name="close-outline" style="color: white;"></ion-icon>
+                        </span>
+                        <div>
+                          <fieldset style="padding: 4px 0px;width: 80%;margin-left: 20px; margin-top: 5px;">
+                            <legend style="color: white;">
+                              <!-- <ion-icon name="calendar-outline"></ion-icon>  -->
+                              Adults
+                            </legend>
+                            <select class="TravelBox"formControlName="Adults">
+                              <option *ngFor="let i of adult">
+                                {{i}}
+                              </option>
+                            </select>
+                           
+                          </fieldset>
+                        </div>
+                        <div>
+                          <fieldset style="padding: 7px 0px;width: 80%;margin-left: 20px;margin-top: 5px;">
+                            <legend style="color: white;">
+                              <!-- <ion-icon name="calendar-outline"></ion-icon> -->
+                               Childs
+                            </legend>
+                            <select class="TravelBox" formControlName="Childs">
+                              <option *ngFor="let i of childrens">
+                                {{i}}
+                              </option>
+                            </select>
+                          </fieldset>
+                        </div>
+                        <div>
+                          <fieldset style="padding: 7px 0px;width: 80%;margin-left: 20px; margin-top: 5px;">
+                            <legend style="color: white;">
+                              <!-- <ion-icon name="calendar-outline"></ion-icon> -->
+                               Infants
+                            </legend>
+                            <select class="TravelBox" formControlName="Infants">
+                              <option *ngFor="let i of infants">
+                                {{i}}
+                              </option>
+                            </select>
+                          </fieldset>
+                        </div>
+
+                      </div>
+                    </fieldset>
+                  </ion-col>
+
+
+                  <ion-col class="P-classesBox" size-sm="12" size-xs="12" size-md="6" size-lg="6" size-xl="6" style="margin-top: 10px;">
+                    <ul class="checkbox-list2">
+                      <li class="FTH2">
+                        First
+                      </li>
+                      <li class="FTH2">
+                        Bussiness
+                      </li>
+                      <li class="FTH2">
+                        Premium First
+                      </li>
+                      <li class="FTH2">
+                        Premium Economy
+                      </li>
+                      <li class="FTH2">
+                        Economy Coach
+                      </li>
+                    </ul>
+                  </ion-col>
+
+
+                  <ion-col size-sm="12" size-xs="12" size-md="6" size-lg="6" size-xl="6" style="margin-top: 10px;">
+                    <ion-row>
+
+                      <ion-col size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12">
+                        <div class="more-Opt">
+                          <ion-text (click)="moreFields=!moreFields" style=" color: #213d77">
+                            More Options
+                          </ion-text>
+                          <ion-icon name="caret-down-outline" *ngIf="!moreFields" style=" color: #213d77;"
+                            (click)="moreFields=!moreFields"></ion-icon>
+                          <ion-icon name="caret-up-outline" *ngIf="moreFields" style=" color: #213d77;"
+                            (click)="moreFields=!moreFields"></ion-icon>
+                        </div>
+                      </ion-col>
+
+
+                      <ion-col size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12">
+                        <ion-row>
+
+
+                          <ion-col size-sm="12" size-xs="12" size-md="6" size-lg="6" size-xl="6" *ngIf="moreFields"
+                            >
+                            <!-- PREFERRED CLASS -->
+                            <fieldset>
+                              <legend style="font-size: 15px;">{{fieldsName.pref_cls}}</legend>
+                              <input formControlName="PClass" list="p_class" placeholder="Economy" (click)="arp_s_h()"
+                                (keyup)="arp_s_h()" style="width: 100%; font-size: 20px;">
+                            </fieldset>
+                            <datalist id="p_class" *ngIf="arp_show">
+                              <option *ngFor="let class_all of F_class">{{class_all}}</option>
+                            </datalist>
+                          </ion-col>
+
+                          <ion-col size-sm="12" size-xs="12" size-md="6" size-lg="6" size-xl="6" *ngIf="moreFields"
+                            >
+                            <!-- PREFERRED FLIGHT -->
+                            <fieldset>
+                              <legend style="font-size: 15px;">{{fieldsName.pref_flt}}</legend>
+                              <input formControlName="PFlight" list="p_flight" placeholder="All" (click)="arp_s_h()"
+                                (keyup)="arp_s_h()" style="width: 100%; font-size: 20px;">
+                            </fieldset>
+                            <datalist id="p_flight" *ngIf="arp_show">
+                              <option *ngFor="let pflight of F_flights">{{pflight}}</option>
+                            </datalist>
+                          </ion-col>
+
+
+                        </ion-row>
+                      </ion-col>
+
+                    </ion-row>
+                  </ion-col>
+
+
+
+
+                  <ion-col size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12"
+                    style="display: flex; justify-content: center;">
+                    <!-- SEARCH BUTTON -->
+                    <!-- <button class="submit-btn2" type="submit" [disabled]="!flightData.valid">
+                      <span class="material-icons">search</span> <span
+                        style="margin-left: 5px;">{{fieldsName.button}}</span>
+                    </button> -->
+                    <button class="submit-btn2" type="submit">
+                      <span class="material-icons">search</span> <span
+                        style="margin-left: 5px;">{{fieldsName.button}}</span>
+                    </button>
+                  </ion-col>
+
+
+
+
+                </ion-row>
+              </ion-col>
+
+
+            </ion-row>
+
+          </form>
+
+
+          <!-- MULTI TRIP -->
+          <ion-row color="primary" justify-content-center *ngIf="!multi_trip">
+            <form [formGroup]="pax_all_obj" (ngSubmit)="onSubmit()">
+              <ion-col size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12">
+                <ion-row>
+
+                  <ion-col size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12" *ngIf="add_pass_show">
+                    <ion-text (click)="addItem()">Add Flight {{ind+1}} <ion-icon name="add-circle-outline"></ion-icon>
+                    </ion-text>
+                  </ion-col>
+                </ion-row>
+                <ion-row formArrayName="pax_arr" *ngFor="let item of getControlspaxarr(); let i = index;">
+                  <ion-col [formGroupName]="i" size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12">
+                    <ion-row>
+                      <ion-col size-sm="12" size-xs="12" size-md="6" size-lg="6" size-xl="6">
+                        <fieldset>
+                          <legend>
+                            <ion-icon class="rotate-0" name="airplane-outline"></ion-icon> {{fieldsName.from}}
+                          </legend>
+                          <input formControlName="D_airport" list="D_airport" placeholder="DEL, Delhi, India"
+                            (keyup)="arp_s_h()">
+                        </fieldset>
+
+                        <datalist id="D_airport" *ngIf="arp_show">
+                          <option *ngFor="let arpt of arp">{{arpt.code}} , {{arpt.city}} , {{arpt.country}}</option>
+                        </datalist>
+                        <!-- <fieldset>
+                          <legend>
+                            <ion-icon class="rotate-0" name="airplane-outline"></ion-icon> {{fieldsName.from}}
+                          </legend>
+                          <input type="text" formControlName="D_airport" [(ngModel)]="depARP" (keyup)="arp_s_h()" placeholder="Choose Departure City">
+                        </fieldset>
+                        <div style="height: auto; overflow-y: auto;   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+                        padding: 2px 0px;border: 1px solid rgb(212, 212, 212);" *ngIf="arp_show" class="popover__content">
+                
+                          <ul style="list-style-type: none;cursor: pointer;margin: 0px; padding: 0px;">
+                            <li *ngFor="let data of arp | searchFilter: depARP" (click)="getarpval(data)" style="padding: 10px 15px; color: black; font-family: serif; font-size: 14px; border-bottom: 1px solid rgb(212, 212, 212);">
+                              {{data.code}} ,{{data.city}} ,{{data.country}}
+                            </li>
+                          </ul>
+                
+                        </div> -->
+                        <ion-text *ngIf="Error.D_airport.touched || Error.D_airport.dirty">
+                          <span class="err" *ngIf="Error.D_airport.errors">{{fieldsName.error_msg}}</span>
+                        </ion-text>
+                      </ion-col>
+
+
+
+                      <ion-col size-sm="12" size-xs="12" size-md="6" size-lg="6" size-xl="6">
+                        <fieldset>
+                          <legend>
+                            <ion-icon class="rotate-90" name="airplane-outline"></ion-icon> {{fieldsName.to}}
+                          </legend>
+                          <input formControlName="A_airport" list="A_airport" placeholder="Bom, Mumbai, India"
+                            (keyup)="arp_s_h()">
+                        </fieldset>
+                        <datalist id="A_airport" *ngIf="arp_show">
+                          <option *ngFor="let arpt_new of arp_new">{{arpt_new.code}} , {{arpt_new.city}} ,
+                            {{arpt_new.country}}</option>
+                        </datalist>
+                        <!-- <fieldset>
+                          <legend>
+                            <ion-icon class="rotate-0" name="airplane-outline"></ion-icon> {{fieldsName.to}}
+                          </legend>
+                          <input type="text" formControlName="A_airport"  [(ngModel)]="arrARP" (keyup)="arr_s_h()" placeholder="Choose Arrival City">
+                        </fieldset>
+                        <div style="height: auto; overflow-y: auto;   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+                        padding: 2px 0px;border: 1px solid rgb(212, 212, 212);" *ngIf="arr_show" class="popover__content">
+                
+                          <ul style="list-style-type: none;cursor: pointer;margin: 0px; padding: 0px;">
+                            <li *ngFor="let data of arp | searchFilter: arrARP" (click)="getarrVal(data)" style="padding: 10px 15px; color: black; font-family: serif; font-size: 14px; border-bottom: 1px solid rgb(212, 212, 212);">
+                              {{data.code}} ,{{data.city}} ,{{data.country}}
+                            </li>
+                          </ul>
+                
+                        </div> -->
+                        <ion-text *ngIf="Error.A_airport.touched || Error.A_airport.dirty">
+                          <span class="err" *ngIf="Error.A_airport.errors">{{fieldsName.error_msg}}</span>
+                        </ion-text>
+                      </ion-col>
+
+
+
+                      <ion-col size-sm="12" size-xs="12" size-md="6" size-lg="6" size-xl="6">
+                        <fieldset>
+                          <legend>
+                            <ion-icon name="calendar-outline"></ion-icon> {{fieldsName.dep_date}}
+                          </legend>
+                          <input style="width: 70%;" matInput [min]="todayt" [matDatepicker]="picker"
+                            formControlName="D_date" placeholder="{{todayt}}">
+                          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                          <mat-datepicker #picker></mat-datepicker>
+                        </fieldset>
+                        <ion-text *ngIf="Error.D_date.touched || Error.D_date.dirty">
+                          <span class="err" *ngIf="Error.D_date.errors">{{fieldsName.error_msg}}</span>
+                        </ion-text>
+                      </ion-col>
+
+                      <!-- 
+                      <ion-col size-sm="12" size-xs="12" size-md="6" size-lg="4" size-xl="3" *ngIf="i>'1'"
+                        style="margin-top: 30px;">
+
+                        <ion-text (click)="removeRow(i)">
+                          <ion-icon name="close-circle-outline"></ion-icon>
+                        </ion-text>
+                      </ion-col> -->
+
+                    </ion-row>
+
+                  </ion-col>
+                </ion-row>
+
+
+
+              </ion-col>
+            </form>
+            <ion-col size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12">
+              <ion-row>
+                <ion-col size-xs="4" size-sm="4" size-md="4" size-lg="4" size-xl="4">
+                  <fieldset>
+                    <legend>{{fieldsName.adt}}</legend>
+                    <mat-select value="1" [(ngModel)]="d_Adult">
+                      <mat-option value="1">
+                        1
+                      </mat-option>
+                      <mat-option value="2">
+                        2
+                      </mat-option>
+                      <mat-option value="3">
+                        3
+                      </mat-option>
+                    </mat-select>
+                  </fieldset>
+                  <span style="margin-left: 10px;font-size: 10px; color: #445f99;">Age 12 above</span>
+                </ion-col>
+
+
+
+                <ion-col size-xs="4" size-sm="4" size-md="4" size-lg="4" size-xl="4">
+                  <fieldset>
+                    <legend>{{fieldsName.chd}}</legend>
+                    <mat-select value="0" [(ngModel)]="d_Child">
+                      <mat-option value="0">
+                        0
+                      </mat-option>
+                      <mat-option value="1">
+                        1
+                      </mat-option>
+                      <mat-option value="2">
+                        2
+                      </mat-option>
+                    </mat-select>
+                  </fieldset>
+                  <span style="margin-left: 10px;font-size: 10px; color: #445f99;">Age 2 - 12 </span>
+                </ion-col>
+
+
+                <ion-col size-xs="4" size-sm="4" size-md="4" size-lg="4" size-xl="4">
+                  <fieldset>
+                    <legend>{{fieldsName.inf}}</legend>
+                    <mat-select value="0" [(ngModel)]="d_Infants">
+                      <mat-option value="0">
+                        0
+                      </mat-option>
+                      <mat-option value="1">
+                        1
+                      </mat-option>
+                      <mat-option value="2">
+                        2
+                      </mat-option>
+                    </mat-select>
+                  </fieldset>
+                  <span style="margin-left: 10px;font-size: 10px; color: #445f99;">Age 0 - 2</span>
+                </ion-col>
+
+
+                <ion-col size-md="4" size-lg="4" size-xl="4"></ion-col>
+                <ion-col size-sm="12" size-xs="12" size-md="4" size-lg="4" size-xl="4">
+                  <button class="submit-btn" type="submit" (click)="onSubmit()">
+                    <span class="material-icons">search</span> {{fieldsName.button}}
+                  </button>
+                </ion-col>
+              </ion-row>
+            </ion-col>
+
+          </ion-row>
+
+
+        </ion-card>
+
+        <!-- ************************2nd form************************************** -->
+
+
+        <!-- <ion-card class="SB ion-padding" > -->
+        <!-- <form [formGroup]="flightData" (ngSubmit)="checkFlight_one()">
+
+           
+            <ion-row color="primary" justify-content-center class="tp_mgn" *ngIf="multi_trip" style="display: flex; justify-content: center;">
+              <ion-col size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12" >
+                <ion-row >
+
+
+                  <ion-col size-sm="12" size-xs="12" size-md="5" size-lg="5" size-xl="5" >
+
+
+                    <fieldset>
+                      <legend>
+                        <ion-icon class="rotate-0" name="airplane-outline"></ion-icon> {{fieldsName.from}}
+                      </legend>
+                      <input type="text" formControlName="A_airport" [(ngModel)]="arrARP" (keyup)="arr_s_h()"
+                        placeholder="Choose Departure City">
+                    </fieldset>
+                    <div style="max-height: 250px; overflow-y: auto;   box-shadow: 1px 1px 10px -2px #8f8a8a;
+                    padding: 2px 0px;border: 1px solid rgb(212, 212, 212);width: 240px;margin-left: 5px;"
+                      *ngIf="arr_show" class="popover__content">
+
+                      <ul style="list-style-type: none;cursor: pointer;margin: 0px; padding: 0px;width: 100%;">
+                        <li *ngFor="let data of arp | searchFilter: arrARP" (click)="getarrVal(data)"
+                          style="padding: 10px 15px; color: black; font-family: serif; font-size: 14px;font-family: Arial, Helvetica, sans-serif;">
+                          {{data.city}} ,{{data.country}} [
+                          <span style="color: rgb(21, 49, 110);">
+                            <b>{{data.code}}</b>
+                          </span>
+                          ]
+                        </li>
+                      </ul>
+
+                    </div>
+                    <ion-text *ngIf="Error.A_airport.touched || Error.A_airport.dirty">
+                      <span class="err" *ngIf="Error.A_airport.errors">{{fieldsName.error_msg}}</span>
+                    </ion-text>
+                  </ion-col>
+                  <ion-col class="p-margin none" size-sm="4" size-xs="4" size-md="2" size-lg="2" size-xl="2" style="display: flex; justify-content: center; align-items: center;">
+                    <div class="" (click)="swap_city()">
+                      <ion-icon size="large" name="swap-horizontal-outline"></ion-icon>
+                    </div>
+                  </ion-col>
+
+                  <ion-col size-sm="12" size-xs="12" size-md="5" size-lg="5" size-xl="5">
+                    <fieldset>
+                      <legend>
+                        <ion-icon class="rotate-0" name="airplane-outline"></ion-icon> {{fieldsName.to}}
+                      </legend>
+                      <input type="text" formControlName="D_airport" [(ngModel)]="depARP" (keyup)="arr_show_dep_fun()"
+                        placeholder="Choose Arrival City">
+                    </fieldset>
+                    <div style="max-height: 250px; overflow-y: auto;   box-shadow: 1px 1px 10px -2px #8f8a8a;
+                    padding: 2px 0px;border: 1px solid rgb(212, 212, 212);width: 240px;margin-left: 5px;"
+                      *ngIf="arr_show_dep" class="popover__content">
+
+                      <ul style="list-style-type: none;cursor: pointer;margin: 0px; padding: 0px;width: 100%;">
+                        <li *ngFor="let data of arp | searchFilter: depARP" (click)="getDepValFun(data)"
+                          style="padding: 10px 15px; color: black; font-family: serif; font-size: 14px;font-family: Arial, Helvetica, sans-serif;">
+                          {{data.city}} ,{{data.country}} [
+                          <span style="color: rgb(21, 49, 110);">
+                            <b>{{data.code}}</b>
+                          </span>
+                          ]
+                        </li>
+                      </ul>
+
+                    </div>
+                    <ion-text *ngIf="Error.D_airport.touched || Error.D_airport.dirty">
+                      <span class="err" *ngIf="Error.D_airport.errors">{{fieldsName.error_msg}}</span>
+                    </ion-text>
+
+
+                  </ion-col>
+
+
+
+
+                  <ion-col size-sm="12" size-xs="12" size-md="5" size-lg="5" size-xl="5">
+                  
+                    <fieldset>
+                      <legend>
+                        <ion-icon name="calendar-outline"></ion-icon> {{fieldsName.dep_date}}
+                      </legend>
+                      <input type="date" placeholder="{{todayt}}" [disabled]="round_trip" style="width: 100%;" formControlName="D_date" [max]=" maxDate" [min]="todayt">
+                    
+                    </fieldset>
+                    <ion-text *ngIf="Error.D_date.touched || Error.D_date.dirty">
+                      <span class="err" *ngIf="Error.D_date.errors">{{fieldsName.error_msg}}</span>
+                    </ion-text>
+                  </ion-col>
+
+                  <ion-col size-md="2" size-lg="2" size-xl="2"></ion-col>
+
+                  <ion-col size-sm="12" size-xs="12" size-md="5" size-lg="5" size-xl="5">
+                  
+                    <fieldset>
+                      <legend>
+                        <ion-icon name="calendar-outline"></ion-icon> {{fieldsName.ret_date}}
+                      </legend>
+                      <input type="date" placeholder="{{todayt}}" [disabled]="round_trip" style="width: 100%;" formControlName="A_date" [min]="minDate">
+                     
+                    </fieldset>
+                  </ion-col>
+                </ion-row>
+              </ion-col>
+
+              <ion-col size-xs="4" size-sm="4" size-md="4" size-lg="4" size-xl="4">
+              
+                <fieldset>
+                  <legend>{{fieldsName.adt}}</legend>
+                 
+                  <input formControlName="Adults" list="p_class" placeholder="adult"  [(ngModel)]="d_Adult"
+                    >
+                </fieldset>
+                <datalist id="p_class" *ngIf="arp_show">
+                  <option  [value]="adt" *ngFor="let adt of adult">{{adt}}</option>
+                </datalist>
+                
+                <span style="margin-left: 10px;font-size: 12px; font-weight: bolder; color: #445f99;">Age 12 above</span>
+              </ion-col>
+
+             
+
+              <ion-col size-xs="4" size-sm="4" size-md="4" size-lg="4" size-xl="4">
+               
+                <fieldset>
+                  <legend>{{fieldsName.chd}}</legend>
+                
+
+                  <input formControlName="Childs" list="p_class" placeholder="chd"  [(ngModel)]="d_Child"
+                    >
+                </fieldset>
+                <datalist id="p_class" *ngIf="arp_show">
+                  <option  [value]="chd" *ngFor="let chd of childrens">{{chd}}</option>
+                </datalist>
+                
+                <span style="margin-left: 10px;font-size: 12px; font-weight: bolder; color: #445f99;">Age 2 - 12 </span>
+              </ion-col>
+
+
+         
+
+              <ion-col size-xs="4" size-sm="4" size-md="4" size-lg="4" size-xl="4">
+              
+                <fieldset>
+                  <legend>{{fieldsName.inf}}</legend>
+                
+                  <input formControlName="Infants" list="p_class" placeholder="inf" [(ngModel)]="d_Infants"
+                  >
+              </fieldset>
+              <datalist id="p_class" *ngIf="arp_show">
+                <option  [value]="inf" *ngFor="let inf of infants">{{inf}}</option>
+              </datalist>
+                <span style="margin-left: 10px;font-size: 12px; font-weight: bolder; color: #445f99;">Age 0 - 2</span>
+              </ion-col>
+
+              <ion-col size-sm="6" size-xs="6" size-md="8" size-lg="8" size-xl="9"> </ion-col>
+              <ion-col size-sm="6" size-xs="6" size-md="4" size-lg="4" size-xl="3" style="border: 2px solid rgba(0, 0, 0, 0.519); margin-top: 8px; border-radius: 15px; text-align: center; font-size: 17px; font-weight: bold;">
+                <ion-text (click)="moreFields=!moreFields" style=" color: #445f99;">
+                  More Options
+                </ion-text>
+                <ion-icon name="caret-down-outline" *ngIf="!moreFields" style=" color: #445f99;" (click)="moreFields=!moreFields"></ion-icon>
+                <ion-icon name="caret-up-outline" *ngIf="moreFields" style=" color: #445f99;" (click)="moreFields=!moreFields"></ion-icon>
+              </ion-col>
+
+              <ion-col size-sm="12" size-xs="12" size-md="6" size-lg="6" size-xl="6" *ngIf="moreFields">
+              
+                <fieldset>
+                  <legend>{{fieldsName.pref_cls}}</legend>
+                  <input formControlName="PClass" list="p_class" placeholder="Economy" (click)="arp_s_h()"
+                    (keyup)="arp_s_h()">
+                </fieldset>
+                <datalist id="p_class" *ngIf="arp_show">
+                  <option *ngFor="let class_all of F_class">{{class_all}}</option>
+                </datalist>
+              </ion-col>
+
+              <ion-col size-sm="12" size-xs="12" size-md="6" size-lg="6" size-xl="6" *ngIf="moreFields">
+               
+                <fieldset>
+                  <legend>{{fieldsName.pref_flt}}</legend>
+                  <input formControlName="PFlight" list="p_flight" placeholder="All" (click)="arp_s_h()"
+                    (keyup)="arp_s_h()">
+                </fieldset>
+                <datalist id="p_flight" *ngIf="arp_show">
+                  <option *ngFor="let pflight of F_flights">{{pflight}}</option>
+                </datalist>
+              </ion-col>
+
+             
+              <ion-col size-sm="12" size-xs="12" size-md="6" size-lg="6" size-xl="6">
+              
+                <button class="submit-btn" type="submit" [disabled]="!flightData.valid">
+                  <span class="material-icons">search</span> <span style="margin-left: 5px;">{{fieldsName.button}}</span> 
+                </button>
+              </ion-col>
+
+            </ion-row>
+
+          </form> -->
+
+
+
+        <!-- <ion-row color="primary" justify-content-center *ngIf="!multi_trip">
+            <form [formGroup]="pax_all_obj" (ngSubmit)="onSubmit()">
+              <ion-col size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12">
+                <ion-row>
+
+                  <ion-col size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12" *ngIf="add_pass_show">
+                    <ion-text (click)="addItem()">Add Flight {{ind+1}} <ion-icon name="add-circle-outline"></ion-icon>
+                    </ion-text>
+                  </ion-col>
+                </ion-row>
+                <ion-row formArrayName="pax_arr"
+                  *ngFor="let item of getControlspaxarr(); let i = index;">
+                  <ion-col [formGroupName]="i" size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12">
+                    <ion-row>
+                      <ion-col size-sm="12" size-xs="12" size-md="6" size-lg="6" size-xl="6">
+                        <fieldset>
+                          <legend>
+                            <ion-icon class="rotate-0" name="airplane-outline"></ion-icon> {{fieldsName.from}}
+                          </legend>
+                          <input formControlName="D_airport" list="D_airport" placeholder="DEL, Delhi, India"
+                            (keyup)="arp_s_h()">
+                        </fieldset>
+
+                        <datalist id="D_airport" *ngIf="arp_show">
+                          <option *ngFor="let arpt of arp">{{arpt.code}} , {{arpt.city}} , {{arpt.country}}</option>
+                        </datalist>
+                       
+                        <ion-text *ngIf="Error.D_airport.touched || Error.D_airport.dirty">
+                          <span class="err" *ngIf="Error.D_airport.errors">{{fieldsName.error_msg}}</span>
+                        </ion-text>
+                      </ion-col>
+
+
+
+                      <ion-col size-sm="12" size-xs="12" size-md="6" size-lg="6" size-xl="6">
+                        <fieldset>
+                          <legend>
+                            <ion-icon class="rotate-90" name="airplane-outline"></ion-icon> {{fieldsName.to}}
+                          </legend>
+                          <input formControlName="A_airport" list="A_airport" placeholder="Bom, Mumbai, India"
+                            (keyup)="arp_s_h()">
+                        </fieldset>
+                        <datalist id="A_airport" *ngIf="arp_show">
+                          <option *ngFor="let arpt_new of arp_new">{{arpt_new.code}} , {{arpt_new.city}} ,
+                            {{arpt_new.country}}</option>
+                        </datalist>
+                       
+                        <ion-text *ngIf="Error.A_airport.touched || Error.A_airport.dirty">
+                          <span class="err" *ngIf="Error.A_airport.errors">{{fieldsName.error_msg}}</span>
+                        </ion-text>
+                      </ion-col>
+
+
+
+                      <ion-col size-sm="12" size-xs="12" size-md="6" size-lg="6" size-xl="6">
+                        <fieldset>
+                          <legend>
+                            <ion-icon name="calendar-outline"></ion-icon> {{fieldsName.dep_date}}
+                          </legend>
+                          <input style="width: 70%;" matInput [min]="todayt" [matDatepicker]="picker"
+                            formControlName="D_date" placeholder="{{todayt}}">
+                          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                          <mat-datepicker #picker></mat-datepicker>
+                        </fieldset>
+                        <ion-text *ngIf="Error.D_date.touched || Error.D_date.dirty">
+                          <span class="err" *ngIf="Error.D_date.errors">{{fieldsName.error_msg}}</span>
+                        </ion-text>
+                      </ion-col>
+
+
+                    </ion-row>
+
+                  </ion-col>
+                </ion-row>
+
+
+
+              </ion-col>
+            </form>
+            <ion-col size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12">
+              <ion-row>
+                <ion-col size-xs="4" size-sm="4" size-md="4" size-lg="4" size-xl="4">
+                  <fieldset>
+                    <legend>{{fieldsName.adt}}</legend>
+                    <mat-select value="1" [(ngModel)]="d_Adult">
+                      <mat-option value="1">
+                        1
+                      </mat-option>
+                      <mat-option value="2">
+                        2
+                      </mat-option>
+                      <mat-option value="3">
+                        3
+                      </mat-option>
+                    </mat-select>
+                  </fieldset>
+                  <span style="margin-left: 10px;font-size: 10px; color: #445f99;">Age 12 above</span>
+                </ion-col>
+
+
+
+                <ion-col size-xs="4" size-sm="4" size-md="4" size-lg="4" size-xl="4">
+                  <fieldset>
+                    <legend>{{fieldsName.chd}}</legend>
+                    <mat-select value="0" [(ngModel)]="d_Child">
+                      <mat-option value="0">
+                        0
+                      </mat-option>
+                      <mat-option value="1">
+                        1
+                      </mat-option>
+                      <mat-option value="2">
+                        2
+                      </mat-option>
+                    </mat-select>
+                  </fieldset>
+                  <span style="margin-left: 10px;font-size: 10px; color: #445f99;">Age 2 - 12 </span>
+                </ion-col>
+
+
+                <ion-col size-xs="4" size-sm="4" size-md="4" size-lg="4" size-xl="4">
+                  <fieldset>
+                    <legend>{{fieldsName.inf}}</legend>
+                    <mat-select value="0" [(ngModel)]="d_Infants">
+                      <mat-option value="0">
+                        0
+                      </mat-option>
+                      <mat-option value="1">
+                        1
+                      </mat-option>
+                      <mat-option value="2">
+                        2
+                      </mat-option>
+                    </mat-select>
+                  </fieldset>
+                  <span style="margin-left: 10px;font-size: 10px; color: #445f99;">Age 0 - 2</span>
+                </ion-col>
+
+
+                <ion-col size-md="4" size-lg="4" size-xl="4"></ion-col>
+                <ion-col size-sm="12" size-xs="12" size-md="4" size-lg="4" size-xl="4">
+                  <button class="submit-btn" type="submit" (click)="onSubmit()">
+                    <span class="material-icons">search</span> {{fieldsName.button}}
+                  </button>
+                </ion-col>
+              </ion-row>
+            </ion-col>
+
+          </ion-row> -->
+
+
+        <!-- </ion-card> -->
+      </ion-col>
+    </ion-row>
+
+    <!-- <ion-row>
+      <ion-col size-sm="12" size-xs="12" size-md="2" size-lg="2" size-xl="2" style="background-color: white;" class="popover__wrapper">
+
+        <fieldset>
+          <legend>
+            <ion-icon class="rotate-0" name="airplane-outline"></ion-icon> {{fieldsName.from}}
+          </legend>
+          <input type="text" [(ngModel)]="query" (keyup)="arp_s_h()">
+        </fieldset>
+        <div style="height: 250px; overflow-y: auto;   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        padding: 2px 0px;border: 1px solid rgb(212, 212, 212);" *ngIf="arp_show" class="popover__content">
+
+          <ul style="list-style-type: none;cursor: pointer;margin: 0px; padding: 0px;">
+            <li *ngFor="let data of arp | searchFilter: query" (click)="getarpval(data)" style="padding: 10px 15px; color: black; font-family: serif; font-size: 14px; border-bottom: 1px solid rgb(212, 212, 212);">
+              {{data.code}} ,{{data.city}} ,{{data.country}}
+            </li>
+          </ul>
+
+        </div>
+
+
+      </ion-col>
+    </ion-row>
+   -->
+    <!-- <app-banner-slider></app-banner-slider>
+
+
+      
+    <app-footer></app-footer> -->
+
+
+    <ion-slides [options]="slideOpts" pager="true" style="padding: 0px 0px; ">
+      <ion-slide>
+        <img src="https://kafilaholidays.in/upload/1.jpg?ver=1624949818190">
+      </ion-slide>
+      <!-- <ion-slide>
+        <img src="https://kafilaholidays.in/upload/2.jpg?ver=1624949818190">
+      </ion-slide> -->
+      <ion-slide>
+        <img src="https://kafilaholidays.in/upload/3.jpg?ver=1624949818190">
+      </ion-slide>
+      <ion-slide>
+        <img src="https://kafilaholidays.in/upload/4.jpg?ver=1624949818190">
+      </ion-slide>
+      <ion-slide>
+        <img src="https://kafilaholidays.in/upload/5.jpg?ver=1624949818190">
+      </ion-slide>
+      <ion-slide>
+        <img src="https://kafilaholidays.in/upload/6.jpg?ver=1624949818190">
+      </ion-slide>
+      <ion-slide>
+        <img src="https://kafilaholidays.in/upload/7.jpg?ver=1624949818190">
+      </ion-slide>
+      <ion-slide>
+        <img src="https://kafilaholidays.in/upload/3.jpg?ver=1664536190391">
+      </ion-slide>
+    </ion-slides>
+
+  </ion-grid>
+</ion-content>

@@ -1,0 +1,885 @@
+<ion-content [scrollEvents]="true" (ionScroll)="onScroll($event)">
+  <ion-grid>
+    <!-- <ion-row class="srh-stick ion-text-center">
+      <ion-col size-sm="4" size-xs="4" size-md="1" size-lg="1" size-xl="1" class="date_ipt none">
+
+      </ion-col>
+      <ion-col size-sm="3" size-xs="3" size-md="1" size-lg="1" size-xl="1" class="date_ipt pup-clr">
+        <span>One Way</span>
+
+      </ion-col>
+      <ion-col size-sm="4" size-xs="4" size-md="1" size-lg="1" size-xl="1" class="date_ipt pup-clr">
+        {{this.sr_str.Sector[0].Src}} <ion-icon name="arrow-forward"></ion-icon> {{this.sr_str.Sector[0].Des}}
+      </ion-col>
+      <ion-col size-sm="5" size-xs="5" size-md="1" size-lg="1" size-xl="1" class="date_ipt pup-clr">
+        {{this.sr_str.Sector[0].DDate|date:'longDate'}}
+      </ion-col>
+      <ion-col size-sm="3" size-xs="3" size-md="1" size-lg="1" size-xl="1" class="date_ipt pup-clr">
+        <span *ngIf="!this.sr_str.PC">Economy</span>
+        <span *ngIf="this.sr_str.PC">{{this.sr_str.PC}}</span> Class
+      </ion-col>
+      <ion-col size-sm="3" size-xs="3" size-md="1" size-lg="1" size-xl="1" class="date_ipt pup-clr">
+        <span *ngIf="!this.sr_str.PF">All Type</span>
+        <span *ngIf="this.sr_str.PF">{{this.sr_str.PF}} Flight</span>
+      </ion-col>
+      <ion-col size-sm="2" size-xs="2" size-md="1" size-lg="1" size-xl="1" class="date_ipt pup-clr">
+        <span *ngIf="this.sr_str.Adt>'0'">{{this.sr_str.Adt}} Adult</span>
+      </ion-col>
+      <ion-col size-sm="2" size-xs="2" size-md="1" size-lg="1" size-xl="1" class="date_ipt pup-clr">
+        <span *ngIf="this.sr_str.Chd>'0'"> {{this.sr_str.Chd}} Child</span>
+        <span *ngIf="this.sr_str.Chd=='0'">0 Child</span>
+      </ion-col>
+      <ion-col size-sm="2" size-xs="2" size-md="1" size-lg="1" size-xl="1" class="date_ipt pup-clr">
+        <span *ngIf="this.sr_str.Inf>'0'"> {{this.sr_str.Inf}} Infant</span>
+        <span *ngIf="this.sr_str.Inf=='0'"> 0 Infant</span>
+      </ion-col>
+      <ion-col size-sm="12" size-xs="12" size-md="2" size-lg="2" size-xl="2" class="date_ipt ">
+        <button class="mdfy-srh pup-bg-clr" (click)="m_show=!m_show">Modify Search</button>
+      </ion-col>
+      <ion-col size-sm="12" size-xs="12" size-md="1" size-lg="1" size-xl="1" class="date_ipt none">
+
+      </ion-col>
+    </ion-row> -->
+
+    <!-- <ion-row *ngIf="!m_show" style="background-color: white;border-bottom: 1px solid #445f99; padding: 10px 0px; "> -->
+
+
+    <app-flight-search-popover *ngIf="!m_show" (newItemEvent)="addItem($event)" [arp_show]="arp_show"
+      (callFn)="test($event)">
+    </app-flight-search-popover>
+
+
+    <!-- </ion-row> -->
+
+
+    <!-- ONE WAY FLIGHT START HERE -->
+    <ion-row>
+
+      <ion-col size-sm="12" size-xs="12" size-md="1" size-lg="1" size-xl="1" class="none"></ion-col>
+
+      <ion-col size-sm="12" size-xs="12" size-md="10" size-lg="10" size-xl="10" class="p-0">
+        <ion-row>
+          <!-- FILTER DIV START HERE -->
+          <ion-col class="none" size-md="3" size-lg="3" size-xl="3" class="p-0 filter_Main">
+
+
+            <ion-row>
+              <!-- <ion-col size-md="12" size-lg="12" size-xl="12" class="ion-text-center pup-bg-clr" style="
+                  color: white;
+                  font-size: 18px;
+                  font-weight: 500;
+                  font-family: arial;
+                  padding: 25px 0px;
+                  ">
+                  <span *ngIf="!isSkelton">Flight Found = {{arr_data.length}}</span>
+                </ion-col> -->
+
+
+
+
+              <ion-col size-md="12" size-lg="12" size-xl="12" class="airlines_Main" *ngIf="!isSkelton">
+                <span class="filter_Head" (click)="checkair()">
+                  <ion-icon name="chevron-down-outline" *ngIf="airline" color="black"></ion-icon><ion-icon
+                    name="chevron-forward-outline" *ngIf="!airline" color="black"></ion-icon>
+                  AIRLINES
+                </span>
+                <span *ngIf="reset_airline_key" class="reset_Btn" (click)="reset_airline_filter()">Reset
+                </span>
+
+
+                <ul style="padding: 5px 0px 5px 5px;" *ngIf="airline">
+                  <li *ngFor="let entry of Come_FLIGHTS" style="display: flex; align-items: end;">
+                    <input type="checkbox" [checked]="airlineId==entry.val" (change)="flt_name_filter(entry)"
+                      style="height: 20px; width: 20px; border-radius: 20px; cursor: pointer; margin-top: 5px;">
+                    <label style="font-size: 15px;
+                      font-weight: 400;
+                      font-family: arial;
+                      margin-left: 10px; color: #7F7F7F;">{{entry.val}} </label>
+                  </li>
+                </ul>
+              </ion-col>
+
+
+              <ion-col size-md="12" size-lg="12" size-xl="12" class="airlines_Main" *ngIf="!isSkelton">
+                <span class="filter_Head" (click)="checkprice()">
+                  <ion-icon name="chevron-down-outline" *ngIf="price" color="black"></ion-icon><ion-icon
+                    name="chevron-forward-outline" *ngIf="!price" color="black"></ion-icon>
+                  PRICE
+                </span>
+                <ion-range (ionChange)="myOnChangeSlider($event)" *ngIf="price" dualKnobs="false"
+                  min="{{this.f_all_data.MinimumFare}}" max="{{this.f_all_data.MaximumFare}}" pin step="500"
+                  snaps="false" color="primary">
+
+                </ion-range>
+                <div *ngIf="price">
+                  <span style="font-size: 12px;
+                  float: inline-start;
+                  margin-bottom: 5px;
+                  font-weight: 500;
+                  font-family: arial;
+                  color: #7F7F7F;">₹ {{this.f_all_data.MinimumFare}}</span>
+                  <span style="font-size: 12px;
+                  float: inline-end;
+                  margin-bottom: 5px;
+                  font-weight: 500;
+                  font-family: arial;
+                  color: #7F7F7F;">₹ {{this.f_all_data.MaximumFare}}</span>
+                </div>
+
+              </ion-col>
+
+              <ion-col size-md="12" size-lg="12" size-xl="12" class="airlines_Main" *ngIf="!isSkelton">
+                <span class="filter_Head" (click)="checkstop()">
+                  <ion-icon name="chevron-down-outline" *ngIf="stops_" color="black"></ion-icon><ion-icon
+                    name="chevron-forward-outline" *ngIf="!stops_" color="black"></ion-icon>
+                  STOPS
+                </span>
+                <span *ngIf="reset_stop_key" class="reset_Btn" (click)="reset_stop_filter()">Reset
+                </span>
+
+                <ul style="padding: 5px 0px 5px 5px;" *ngIf="stops_">
+                  <li *ngFor="let entry of STOPS" style="display: flex; align-items: end;">
+                    <ng-container>
+                      <input type="checkbox" [checked]="stpId==entry.val" (change)="getStop(entry)"
+                        style="height: 20px; width: 20px; border-radius: 20px; cursor: pointer; margin-top: 5px;">
+                      <label style="font-size: 15px;
+                      font-weight: 500;
+                      font-family: arial;
+                      margin-left: 10px; color: #7F7F7F;">{{entry.Name}} ({{entry.count}})</label>
+                    </ng-container>
+
+                  </li>
+                </ul>
+              </ion-col>
+
+              <ion-col size-md="12" size-lg="12" size-xl="12" class="airlines_Main">
+
+                <span class="filter_Head" (click)="dep()">
+                  <ion-icon name="chevron-down-outline" *ngIf="dep_time" color="black"
+                    (click)="dep()"></ion-icon><ion-icon name="chevron-forward-outline" *ngIf="!dep_time" color="black"
+                    (click)="dep()"></ion-icon>
+                  DEPARTURE FROM {{sr_str.Sector[0].Src| uppercase }}
+                </span>
+
+                <span *ngIf="reset_depDate_key" class="reset_Btn" (click)="reset_depDate_filter()">Reset </span>
+                <ul *ngIf="dep_time">
+                  <li [ngClass]="[entry.isChecked?'li-active':'li-inactive']" style="margin-left: 5px; color: #7F7F7F;"
+                    *ngFor="let entry of DEP_TIME" class="dept_From" (click)="dep_time_filter(entry)">
+                    <div>
+                      <img src='../../../../assets/{{entry.img}}' class="setImg">
+                    </div>
+                    <div>
+                      {{entry.title}}
+                    </div>
+
+                  </li>
+
+
+                </ul>
+              </ion-col>
+
+              <ion-col size-md="12" size-lg="12" size-xl="12" class="airlines_Main">
+                <span class="filter_Head" (click)="arr()">
+                  <ion-icon name="chevron-down-outline" *ngIf="arr_time" color="black"
+                    (click)="arr()"></ion-icon><ion-icon name="chevron-forward-outline" *ngIf="!arr_time" color="black"
+                    (click)="arr()"></ion-icon>
+                  ARRIVAL AT {{sr_str.Sector[0].Des| uppercase }}
+                </span>
+
+                <span *ngIf="reset_arrDate_key" class="reset_Btn" (click)="reset_arrDate_filter()">Reset </span>
+                <ul *ngIf="arr_time">
+                  <li [ngClass]="[entry.isChecked?'li-active':'li-inactive']" class="dept_From"
+                    *ngFor="let entry of ARR_TIME" style="margin-left: 5px; color: #7F7F7F;"
+                    (click)="arr_time_filter(entry)">
+                    <div>
+                      <img src='../../../../assets/{{entry.img}}' class="setImg">
+                    </div>
+                    <div>
+                      {{entry.title}}
+                    </div>
+
+                  </li>
+
+                </ul>
+              </ion-col>
+
+              <!-- <ion-col size-md="12" size-lg="12" size-xl="12">
+                <span
+                  style="font-size: 18px; font-weight: 600; font-family: arial; color: black;padding: 0px 0px 0px 10px;margin-top:0px;">Arrival
+                  Time
+                </span>
+                <span *ngIf="reset_arrDate_key"
+                  style="float: right; cursor: pointer;color: red;font-size: 15px; font-family: arial;font-weight: 500;padding: 0px 10px 0px 0px;"
+                  (click)="reset_arrDate_filter()">Reset <ion-icon name="refresh"></ion-icon></span>
+                <ul style="padding: 10px 0px 5px 10px;list-style-type: none;">
+                  <li *ngFor="let entry of ARR_TIME">
+                    <input type="checkbox" [checked]="arrDateId==entry.val1" (change)="arr_time_filter(entry)"
+                      style="width: 20px;height:20px;border-radius: 0px;">
+                    <label style="    font-size: 16px;
+                      font-weight: 500;
+                      font-family: arial;
+                      padding-left: 10px;color: black;">{{entry.val1}} - {{entry.val2}} ({{entry.count}})</label>
+                  </li>
+                </ul>
+              </ion-col> -->
+            </ion-row>
+
+          </ion-col>
+          <!-- FILTER DIV END HERE -->
+
+
+          <ion-col size-sm="12" size-xs="12" size-md="9" size-lg="9" size-xl="9" *ngIf="dnf">
+            <ion-card style="height: 300px;">
+              <ion-row>
+
+                <ion-col size-xs="12" size-sm="12" size-md="12" size-lg="12" size-xl="12" class="ion-text-center">
+                  <h1 class="cmc">
+                    <span style="color: #e9182d;"><b>SORRY </b></span>
+                    <span style="color: #445f99;">FLIGHT NOT FOUND</span>
+                  </h1>
+                </ion-col>
+                <ion-col size-xs="12" size-sm="12" size-md="12" size-lg="12" size-xl="12" class="ion-text-center">
+                  <h1 class="cmc">
+                    <span style="color: #445f99;">Search Again</span>
+                    <span style="color: #e9182d; cursor:pointer;" (click)="navigate()"><b> CLICK HERE </b></span>
+                  </h1>
+                </ion-col>
+              </ion-row>
+            </ion-card>
+
+
+          </ion-col>
+          <ion-col size-sm="12" size-xs="12" size-md="9" size-lg="9" size-xl="9" *ngIf="isSkelton">
+            <ion-card *ngFor="let i of skArray" class="p-0" style="margin: 10px;border-radius: 0px;">
+              <ion-row style="padding: 10px 0px 0px 0px">
+                <ion-col size-sm="4" size-xs="4" size-md="2" size-lg="2" size-xl="2" class="">
+                  <ion-skeleton-text animated style="width: 40%; height: 27px"></ion-skeleton-text>
+                  <ion-skeleton-text animated style="width: 70%"></ion-skeleton-text>
+                  <ion-skeleton-text animated style="width: 20%"></ion-skeleton-text>
+                </ion-col>
+
+                <ion-col size-sm="8" size-xs="8" size-md="2" size-lg="2" size-xl="2" class="ion-text-center none-big">
+                </ion-col>
+
+                <ion-col size-sm="4" size-xs="4" size-md="2" size-lg="2" size-xl="2" class="ion-text-start">
+                  <ion-skeleton-text animated style="width: 40%"></ion-skeleton-text>
+                  <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+                </ion-col>
+
+
+                <ion-col size-sm="4" size-xs="4" size-md="2" size-lg="2" size-xl="2" class="ion-text-center">
+                  <ion-skeleton-text animated style="width: 40%"></ion-skeleton-text>
+                  <ion-skeleton-text animated style="width: 90%"></ion-skeleton-text>
+                  <ion-skeleton-text animated style="width: 40%"></ion-skeleton-text>
+                </ion-col>
+
+
+                <ion-col size-sm="4" size-xs="4" size-md="2" size-lg="2" size-xl="2" class="ion-text-end">
+                  <ion-skeleton-text animated style="width: 40%"></ion-skeleton-text>
+                  <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+                </ion-col>
+
+
+
+                <ion-col size-sm="4" size-xs="4" size-md="2" size-lg="2" size-xl="2" class="ion-text-center none">
+                  <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+                  <ion-skeleton-text animated style="width: 40%"></ion-skeleton-text>
+                </ion-col>
+
+
+                <ion-col size-sm="12" size-xs="12" size-md="2" size-lg="2" size-xl="2" class="ion-text-center">
+
+                  <ion-skeleton-text animated style="width: 90%; height: 37px"></ion-skeleton-text>
+
+                </ion-col>
+
+              </ion-row>
+            </ion-card>
+          </ion-col>
+
+          <ion-col size-sm="12" size-xs="12" size-md="9" size-lg="9" size-xl="9" *ngIf="Skelton">
+            <ion-row>
+              <!-- <ion-col size-sm="5" size-xs="5" size-md="9" size-lg="9" size-xl="9" class="none-big ion-text-center ">
+                <ion-card class="p-10">
+                  <span class="t-filter">Filters</span>
+                </ion-card>
+              </ion-col> -->
+
+              <ion-col size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12" class="p-0">
+                <ion-card
+                  style="margin-bottom: 5px;border-radius: 0px; border: 1px solid rgb(209, 209, 209); background-color: white;">
+                  <ion-row class="p-0" style="background-color: white;">
+
+                    <ion-col size-sm="4" size-xs="4" size-md="2" size-lg="2" size-xl="2"
+                      class="ion-text-start p-10 pup-clr">
+
+                      <span (click)="prvDate()" class="t-filter ">
+                        <ion-icon name="caret-up-outline"
+                          style="cursor: pointer; color: #152D5A;  transform: rotate(-90deg);"></ion-icon> <b>Previous
+                          Date</b>
+                      </span>
+
+                    </ion-col>
+
+                    <ion-col size-sm="4" size-xs="4" size-md="2" size-lg="2" size-xl="2"
+                      class="ion-text-start p-10 pup-clr">
+                      <!-- <span class="t-filter"><b>Departure Time</b>
+                        <ion-icon name="caret-down-outline" style="cursor: pointer; color: red;"></ion-icon>
+                      </span> -->
+
+                    </ion-col>
+
+                    <ion-col size-sm="4" size-xs="4" size-md="2" size-lg="2" size-xl="2"
+                      class="ion-text-center p-10 pup-clr">
+                      <!-- <span class="t-filter"><b>Stop</b>
+                        <ion-icon name="caret-down-outline" style="cursor: pointer; color: red;"></ion-icon>
+                      </span> -->
+
+                    </ion-col>
+
+                    <ion-col size-sm="4" size-xs="4" size-md="2" size-lg="2" size-xl="2"
+                      class="ion-text-center p-10 pup-clr">
+                      <!-- <span class="t-filter"><b>Arrival Time</b>
+                        <ion-icon name="caret-down-outline" style="cursor: pointer; color: red;"></ion-icon>
+                      </span> -->
+
+                    </ion-col>
+
+
+
+                    <ion-col size-sm="4" size-xs="4" size-md="2" size-lg="2" size-xl="2"
+                      class="ion-text-start p-10 pup-clr">
+                      <!-- <span class="t-filter"><b>Price : High To Low</b>
+                        <ion-icon name="caret-down-outline" style="cursor: pointer; color: red;"></ion-icon>
+                      </span> -->
+
+                    </ion-col>
+
+
+
+
+
+                    <ion-col size-sm="4" size-xs="4" size-md="2" size-lg="2" size-xl="2"
+                      class="ion-text-end p-10 pup-clr">
+                      <span (click)="nxtDate()" class="t-filter"> <b>Next Date </b>
+                        <ion-icon name="caret-down-outline"
+                          style="cursor: pointer; color: #152D5A; transform: rotate(-90deg); "></ion-icon>
+                      </span>
+                    </ion-col>
+                  </ion-row>
+                </ion-card>
+
+                <ion-card *ngFor="let y of arr_data; let i = index" class="p-0 F-Detail-Box"
+                  style="margin: 10px;border-radius: 10px; padding: 5px;">
+
+                  <ion-row style="padding: 10px 0px 0px 0px">
+
+
+
+
+                    <ion-col size-sm="4" size-xs="4" size-md="2" size-lg="2" size-xl="2" class=""
+                      style="display: flex; align-items: center;">
+
+                      <!-- <div [style.background-position]="y.Itinerary[0].FLogo" class="fltLogo"> -->
+                      <img src="../../../../assets/akasa-air-logo.png" width="20px" *ngIf="y.Itinerary[0].FCode=='QP'">
+                      <img src="../../../../assets/indigo-logo.png" width="20px" *ngIf="y.Itinerary[0].FCode=='6E'">
+                      <img src="../../../../assets/air-india-logo.png" width="20px" *ngIf="y.Itinerary[0].FCode=='AI'">
+                      <img src="../../../../assets/vistara-logo.png" width="20px" *ngIf="y.Itinerary[0].FCode=='UK'">
+                      <img src="../../../../assets/spicejet-logo-tail.png" width="20px"
+                        *ngIf="y.Itinerary[0].FCode=='SG'">
+                      <!-- image -->
+                      <!-- </div> -->
+                      <div class="" style="margin-right: 5px; margin-left: 10px;">
+
+                        <span class="F_NAME"><b>{{y.Itinerary[0].FName}}</b></span><br>
+                        <span class="F-CODE">{{y.Itinerary[0].FCode}}-{{y.Itinerary[0].FNo}}</span><br>
+                        <span class="F-ALIAS">{{y.Offer.Msg}}</span>
+
+                      </div>
+                    </ion-col>
+
+                    <ion-col size-sm="8" size-xs="8" size-md="2" size-lg="2" size-xl="2"
+                      class="ion-text-center none-big"><span class="AMT">Rs
+                        {{y.Fare.GrandTotal}}</span><br>
+                      <span (click)="indexHidden=i;hide=i" *ngIf="i!==hide" class="DETAILS"> View Details </span>
+                      <span (click)="indexHidden=i;hide=i-arr_data.length" *ngIf="i==hide" class="DETAILS">Hide Details
+                      </span>
+                    </ion-col>
+
+                    <ion-col size-sm="4" size-xs="4" size-md="2" size-lg="2" size-xl="2" class="ion-text-start"><span
+                        class="D_TIME pup-clr">{{y.Itinerary[0].DDate| date:'HH:mm'}}</span><br><span
+                        class="D_NAME">{{y.Itinerary[0].Src}}, {{y.Itinerary[0].SrcName |uppercase}}</span>
+
+                    </ion-col>
+
+
+                    <ion-col size-sm="4" size-xs="4" size-md="2" size-lg="2" size-xl="2" class="ion-text-center"><span
+                        class="DUR">{{y.Itinerary[0].Dur}}</span><br>
+                      <span class="STOP">
+                        <div class="" style="display: flex; justify-content: center; align-items: center;">
+
+                          <div>----------------------------- </div>
+                          &nbsp; <ion-icon name="airplane" style="color: #5E5E5E;"></ion-icon> <br>
+                        </div>
+
+                        <!-- <span class="circle"></span> -->
+
+                        <span *ngIf="y.Stop=='0'">Non Stop</span>
+                        <span *ngIf="y.Stop=='1'">One Stop</span>
+                        <span *ngIf="y.Stop=='2'">Two Stop</span>
+                      </span>
+
+
+                    </ion-col>
+
+
+                    <ion-col size-sm="4" size-xs="4" size-md="2" size-lg="2" size-xl="2" class="ion-text-end"><span
+                        class="D_TIME pup-clr">{{y.Itinerary[y.Itinerary.length-1].ADate|
+                        date:'HH:mm'}}</span><br><span class="D_NAME">{{y.Itinerary[y.Itinerary.length-1].Des}},
+                        {{y.Itinerary[y.Itinerary.length-1].DesName |uppercase}}</span></ion-col>
+
+
+
+                    <ion-col size-sm="4" size-xs="4" size-md="2" size-lg="2" size-xl="2" class="ion-text-center none">
+
+                      <span class="AMT">₹ {{y.Fare.GrandTotal}}</span><br>
+
+                      <span style="color: #5E5E5E; font-size: 11px; cursor: pointer; font-weight: 700;"
+                        (click)="farechk(y)">Net Fare </span>
+
+
+                      <span style="color: green; font-size: 11px;" *ngIf="b_chk_id==y.Id">
+                        <span *ngIf="!fare_diff_show">
+                          = Checking...
+                        </span>
+                      </span>
+
+                      <span *ngIf="fchk_id==y.Id">
+
+                        <span style="color: green; font-size: 11px;" *ngIf="fare_diff_show"> =
+                          <b>₹ {{fare_chk_res.NETFARE}}</b>
+                        </span>
+
+                      </span>
+
+
+
+
+                    </ion-col>
+                    <ion-col size-sm="12" size-xs="12" size-md="2" size-lg="2" size-xl="2" class="ion-text-center">
+                      <button class="BOOKNOW pup-bg-clr" (click)="selectFlight(y)">
+                        Book Now
+                      </button><br>
+                      <span (click)="indexHidden=i;hide=i" *ngIf="i!==hide" class="DETAILS"> + Flight Details </span>
+                      <span (click)="indexHidden=i;hide=i-arr_data.length" *ngIf="i==hide" class="DETAILS"> - Hide
+                        Details
+                      </span>
+                    </ion-col>
+                    <!-- <ion-col size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12" *ngIf="y.Offer.Msg"
+                      style="border-top: 1px solid rgb(189, 189, 189);background-color: rgba(221, 221, 221, 0.315);padding: 15px 0px 15px 10px;">
+                      <span style="font-size: 13px; font-weight: 500;color: rgb(0, 0, 0); ">
+                        Itinerary: DELBOM|G8-KF|08:05|10:15|0 Stop|0d:2h:10m|3,899
+                      </span>
+                    </ion-col> -->
+                    <!-- <ion-col size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12" *ngIf="!y.Offer.Msg"
+                      style="border-top: 1px solid rgb(189, 189, 189); height: 25px; margin-top: 5px;">
+                      <span style="font-size: 11px; font-weight: 600;color: green;">
+                        <ion-icon name="pricetag"></ion-icon> {{y.Offer.Msg}}
+                      </span>
+                    </ion-col> -->
+                  </ion-row>
+                  <ng-container *ngIf="i==indexHidden;">
+                    <mat-tab-group animationDuration="0s" *ngIf="i==hide">
+                      <!-- <mat-tab-group animationDuration="0s" *ngIf="y.Id==a" [hidden]="!stops" [selectedIndex]="0"> -->
+                      <!-- <mat-tab-group animationDuration="0s" *ngIf="y.Id==a"  [selectedIndex]="0"> -->
+                      <mat-tab label="Flight Details">
+
+                        <ion-row *ngFor="let i of y.Itinerary">
+                          <ion-col size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12">
+                            <ion-row style="background-color: #F4F6F8;">
+                              <ion-col size-sm="2" size-xs="2" size-md="2" size-lg="2" size-xl="2"
+                                style="display: flex; align-items: center;" class="ion-text-center">
+                                <!-- <div [style.background-position]="y.Itinerary[0].FLogo" class="fltLogo"> -->
+                                <!-- image -->
+                                <!-- </div> -->
+                                <img src="../../../../assets/akasa-air-logo.png" width="20px"
+                                  *ngIf="y.Itinerary[0].FCode=='QP'">
+                                <img src="../../../../assets/indigo-logo.png" width="20px"
+                                  *ngIf="y.Itinerary[0].FCode=='6E'">
+                                <img src="../../../../assets/air-india-logo.png" width="20px"
+                                  *ngIf="y.Itinerary[0].FCode=='AI'">
+                                <img src="../../../../assets/vistara-logo.png" width="20px"
+                                  *ngIf="y.Itinerary[0].FCode=='UK'">
+                                <img src="../../../../assets/spicejet-logo-tail.png" width="20px"
+                                  *ngIf="y.Itinerary[0].FCode=='SG'">
+                                <div class="" style="margin-right: 5px;">
+
+                                  <span class="F_NAME pup-clr"><b>{{y.Itinerary[0].FName}}</b></span><br>
+                                  <span class="F-CODE-2"
+                                    style="font-size: 10px;">{{y.Itinerary[0].FCode}}-{{y.Itinerary[0].FNo}}</span>
+
+                                </div>
+                              </ion-col>
+                              <ion-col size-sm="2" size-xs="2" size-md="3" size-lg="3" size-xl="3"
+                                class="ion-text-center">
+                                <!-- <span class="DTAA">{{i.Src}} To {{i.Des}}</span> -->
+                              </ion-col>
+                              <ion-col size-sm="2" size-xs="2" size-md="3" size-lg="3" size-xl="3"
+                                class="ion-text-center">
+                                <!-- <span class="DTAA">{{i.DDate | date:'fullDate'}}</span> -->
+                              </ion-col>
+                              <ion-col size-sm="2" size-xs="2" size-md="2" size-lg="2" size-xl="2"
+                                class="ion-text-center">
+                                <!-- <span class="DTAA">Stops = {{y.Stop}}</span> -->
+                              </ion-col>
+
+                            </ion-row>
+                          </ion-col>
+
+
+
+
+                          <ion-col size-sm="4" size-xs="4" size-md="4" size-lg="4" size-xl="4" class="ion-text-end"
+                            style="padding: 10px;">
+                            <span class="D_TIME">{{i.DDate| date:'shortTime'}} </span><br>
+                            <span class="flight-t3">{{i.DDate| date:'longDate'}}</span><br>
+                            <span class="flight-t1">{{i.SrcName |uppercase}} <font color="black">
+                                [{{y.Itinerary[0].Src|uppercase}}] </font></span><br>
+                            <span class="flight-t4">{{i.DArpt}}</span><br>
+                            <span class="flight-t4">Terminal : {{i.DTrmnl}}</span><br>
+
+                          </ion-col>
+
+                          <ion-col size-sm="4" size-xs="4" size-md="4" size-lg="4" size-xl="4" class="ion-text-center">
+                            <span class="DUR">{{y.Itinerary[0].Dur}}</span><br>
+                            <span class="STOP">
+                              <div class="" style="display: flex; justify-content: center; align-items: center;">
+
+                                <div>----------------------------- </div>
+                                &nbsp; <ion-icon name="airplane" style="color: #5E5E5E;"></ion-icon> <br>
+                              </div>
+
+                              <!-- <span class="circle"></span> -->
+
+                              <!-- <span *ngIf="y.Stop=='0'">Non Stop</span>
+                            <span *ngIf="y.Stop=='1'">One Stop</span>
+                            <span *ngIf="y.Stop=='2'">Two Stop</span> -->
+
+                              <span size-sm="2" size-xs="2" size-md="2" size-lg="2" size-xl="2" class="ion-text-end">
+                                <span class="DTAA">Seats = {{y.Seat}}</span>
+                              </span>
+                            </span>
+
+
+
+                          </ion-col>
+
+                          <ion-col size-sm="4" size-xs="4" size-md="4" size-lg="4" size-xl="4" class="ion-text-start">
+                            <span class="D_TIME">{{i.ADate| date:'shortTime'}} </span><br>
+                            <span class="flight-t3">{{i.ADate|date:'longDate'}}</span><br>
+                            <span class="flight-t1">{{i.DesName|uppercase}} <font color="black">
+                                [{{y.Itinerary[0].Des|uppercase}}] </font></span><br>
+                            <span class="flight-t4">{{i.AArpt}}</span><br>
+                            <span class="flight-t4">Terminal : {{i.ATrmnl}}</span><br>
+                          </ion-col>
+
+                        </ion-row>
+
+
+                      </mat-tab>
+
+                      <mat-tab label="Baggage Information">
+
+                        <ion-row>
+                          <ion-col size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12">
+
+                          </ion-col>
+                          <ion-col size-sm="1" size-xs="1" size-md="1" size-lg="1" size-xl="1 " class="ion-text-center">
+
+                          </ion-col>
+
+                          <ion-col size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12">
+                            <table>
+                              <thead style="background-color: #F4F6F8; color: blue;">
+                                <tr>
+                                  <th>
+                                    Sector/Flight
+                                  </th>
+                                  <th>
+                                    Check in Baggage
+                                  </th>
+                                  <th>
+                                    Cabin Baggage
+                                  </th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr>
+                                  <td>
+                                    {{y.Itinerary[0].Src}} - {{y.Itinerary[0].Des}}
+                                  </td>
+                                  <td>
+                                    15Kg (Adult)
+                                  </td>
+                                  <td>
+                                    7Kg (Adult)
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+
+                            <ul>
+                              <li>
+                                <small>
+                                  The information presented above is as obtained from the airline reservation
+                                  system. kafilatravel.in does not guarantee the accuracy of this information.
+                                </small>
+                              </li>
+                              <li>
+                                <small>
+                                  The baggage allowance may vary according to stop-overs, connecting flights and changes
+                                  in airline rules.
+                                </small>
+                              </li>
+                            </ul>
+
+                            <div class="alert-Box">
+                              <small>
+                                <ion-icon name="alert-circle" style="font-size: 15px; "></ion-icon>
+                                Adding of additional baggage is subject to load factor of the flight. Incase if baggage
+                                could not be added, payment for the additional baggage paid will be reverted.
+                              </small>
+                            </div>
+                          </ion-col>
+                        </ion-row>
+
+                      </mat-tab>
+
+
+                      <mat-tab label="Fare Summary">
+
+                        <ion-row>
+
+                          <ion-col size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12">
+
+                          </ion-col>
+                          <ion-col size-sm="1" size-xs="1" size-md="1" size-lg="1" size-xl="1 " class="ion-text-center">
+
+                          </ion-col>
+                          <ion-col size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12">
+                            <table>
+                              <thead style="background-color: #F4F6F8; color: blue;">
+                                <tr>
+                                  <th>
+                                    Passenger Type
+                                  </th>
+                                  <th>
+                                    Basic Fare
+                                  </th>
+                                  <th>
+                                    Yq
+                                  </th>
+                                  <th>
+                                    Taxes
+                                  </th>
+                                  <th>
+                                    Total Fare
+                                  </th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr>
+                                  <td>
+                                    Adults
+                                  </td>
+                                  <td>
+                                    {{y.Fare.Adt.Basic}}
+                                  </td>
+
+                                  <td>
+                                    {{y.Fare.Adt.Yq}}
+                                  </td>
+                                  <td>
+                                    {{y.Fare.Adt.Taxes}}
+                                  </td>
+                                  <td>
+                                    {{y.Fare.Adt.Total}} * {{this.sr_str.Adt}} = {{y.Fare.Adt.Total*this.sr_str.Adt}}
+                                  </td>
+                                </tr>
+                                <tr *ngIf='y.Fare.Chd!==null'>
+                                  <td>
+                                    Childs
+                                  </td>
+                                  <td>
+                                    {{y.Fare.Chd.Basic}}
+                                  </td>
+                                  <td>
+                                    {{y.Fare.Chd.Yq}}
+                                  </td>
+                                  <td>
+                                    {{y.Fare.Chd.Taxes}}
+                                  </td>
+                                  <td>
+                                    {{y.Fare.Chd.Total}} * {{this.sr_str.Chd}} = {{y.Fare.Chd.Total*this.sr_str.Chd}}
+                                  </td>
+                                </tr>
+                                <tr *ngIf='y.Fare.Inf!==null'>
+                                  <td>
+                                    Infants
+                                  </td>
+                                  <td>
+                                    {{y.Fare.Inf.Basic}}
+                                  </td>
+                                  <td>
+                                    {{y.Fare.Inf.Yq}}
+                                  </td>
+
+                                  <td>
+                                    {{y.Fare.Inf.Taxes}}
+                                  </td>
+                                  <td>
+                                    {{y.Fare.Inf.Total}} * {{this.sr_str.Inf}} = {{y.Fare.Inf.Total*this.sr_str.Inf}}
+                                  </td>
+                                </tr>
+                                <tr>
+
+                                  <td colspan="4">
+                                    <b>Grand Total</b>
+                                  </td>
+                                  <td>
+                                    <b>Rs. {{y.Fare.GrandTotal}}</b>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </ion-col>
+
+                        </ion-row>
+                      </mat-tab>
+
+
+                      <mat-tab label="FARE RULE">
+                        <ion-row>
+                          <ion-col size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12">
+
+                          </ion-col>
+                          <ion-col size-sm="1" size-xs="1" size-md="1" size-lg="1" size-xl="1 " class="ion-text-center">
+
+                          </ion-col>
+
+
+                          <table>
+                            <thead style="background-color: #F4F6F8; color: blue;">
+                              <tr>
+                                <th colspan="6" style="font-weight: bold;">
+                                  Cancel
+                                </th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td colspan="4">
+                                  Cancel Before {{y.FareRule.CBH}} of departure time.
+                                </td>
+
+                                <td>
+                                  {{y.FareRule.CBHA}}
+                                </td>
+
+
+                              </tr>
+
+
+                              <tr>
+                                <td colspan="4">
+                                  Cancel within {{y.FareRule.CWBH}} of departure time.
+                                </td>
+
+                                <td>
+                                  {{y.FareRule.CWBHA}}
+                                </td>
+
+
+                              </tr>
+
+
+
+                              <!-- <td colspan="4">
+                                  <b>Grand Total</b>
+                                </td>
+                                <td>
+                                  <b>Rs. {{y.Fare.GrandTotal}}</b>
+                                </td> -->
+
+                            </tbody>
+                          </table>
+
+
+
+                          <table>
+                            <thead style="background-color: #F4F6F8; color: blue;">
+                              <tr>
+                                <th colspan="6" style="font-weight: bold;">
+                                  Reschedule
+                                </th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td colspan="4">
+                                  Reschedule Before {{y.FareRule.RBH}} of departure time.
+                                </td>
+
+                                <td>
+                                  {{y.FareRule.RBHA}}
+                                </td>
+
+
+                              </tr>
+
+
+                              <tr>
+                                <td colspan="4">
+                                  Reschedule within {{y.FareRule.RWBH}} of departure time.
+                                </td>
+
+                                <td>
+                                  {{y.FareRule.RWBHA}}
+                                </td>
+
+
+                              </tr>
+
+
+
+
+
+                            </tbody>
+                          </table>
+
+                          <!-- <span>Cancellation between</span><small>{{y.FareRule.CWBH}}</small><strong>={{y.FareRule.CWBHA}}</strong><br>
+                            Cancellation after   {{y.FareRule.CBH}}={{y.FareRule.CBHA}} -->
+
+
+
+
+                        </ion-row>
+
+                      </mat-tab>
+                    </mat-tab-group>
+                  </ng-container>
+
+                </ion-card>
+
+              </ion-col>
+            </ion-row>
+
+          </ion-col>
+
+        </ion-row>
+      </ion-col>
+
+    </ion-row>
+    <!-- ONE WAY FLIGHT END HERE -->
+  </ion-grid>
+</ion-content>

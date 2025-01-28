@@ -1,0 +1,721 @@
+$mobile: "(max-width : 767px)";
+$tablet: "(min-width : 768px) and (max-width : 1024px)";
+$desktop: "(min-width : 1025px)";
+
+
+
+@media only screen,
+(max-width:3000px) {
+  .img-B {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    // background-image: url("https://wallpaperaccess.com/full/254367.png");
+    // background-image: url("../../../../assets/mainBg.jpg");
+    background-image: url('../../../../assets/f_Search_Bg.jpg');
+    // background-image: url('../../../../assets/bg6.jpg');
+
+
+    // height: 100%;
+  }
+
+  .P-classesBox {
+    display: block;
+  }
+
+  ul {
+    margin: 0px;
+    padding: 0px;
+  }
+
+  ul li {
+    display: inline-block;
+    padding: 10px 20px;
+  }
+
+  .content {
+
+    overflow: auto;
+    position: relative;
+  }
+
+  mat-select {
+    padding: 10px;
+  }
+
+  .content::before {
+    content: "";
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: -1;
+    display: block;
+    background-image: url("../../../../assets/fliht.JPG");
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    -webkit-filter: blur(5px);
+    -moz-filter: blur(5px);
+    -o-filter: blur(5px);
+    -ms-filter: blur(5px);
+    filter: blur(5px);
+  }
+
+  mat-select {
+    padding: 10px;
+  }
+
+  .s-bar {
+    // padding: 110px 0px 200px 0px;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+  }
+
+  ion-grid {
+    padding: 0px;
+  }
+
+  .padding-none {
+    padding: 0px;
+  }
+
+  .rotate-90 {
+    display: inline-block;
+    transform: rotate(45deg);
+  }
+
+  .rotate-0 {
+    display: inline-block;
+    transform: rotate(-45deg);
+  }
+
+  .bg-color {
+    --ion-background-color: rgb(245, 245, 245);
+  }
+
+  ion-item {
+    --ion-background-color: #fff;
+  }
+
+  input {
+    outline: none;
+    border: none;
+    border-bottom: 2px solid black;
+    // width: 100%;
+    // padding: 10px;
+    background-color: transparent;
+    color: black;
+    padding: 5px;
+    // gap: 0px;
+  }
+
+  input:disabled {
+    cursor: not-allowed;
+  }
+
+  ion-icon {
+    color: #e9182d;
+  }
+
+  .label {
+    font-size: 20px;
+    font-weight: 500;
+  }
+
+  ion-text {
+    color: #213d77;
+    font-weight: 500;
+    cursor: pointer;
+    font-family: "poppins";
+  }
+
+  .R-label {
+    font-weight: 500;
+    font-size: 14px;
+  }
+
+  .FTH {
+    color: #213d77;
+    background-color: #fff;
+    font-size: 14px;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    // padding: 10px 0px 5px 0px;
+    cursor: pointer;
+    border-top: 1px solid #213d77;
+    border-left: 1px solid #213d77;
+  }
+
+  .FTHActive {
+    background-color: #213d77;
+    color: #fff;
+  }
+
+  .f-text h3 {
+    float: right;
+    color: black;
+    font-weight: 500;
+    font-family: poppins;
+    text-align: center;
+  }
+
+  .inputBox span {
+    font-size: 20px;
+    font-weight: normal;
+    color: black;
+  }
+
+  .f-form-box {
+    border-top: 1px solid rgba(0, 0, 0, 0.108);
+    border-radius: 30px;
+    margin-top: 20px;
+  }
+
+  .SB2 {
+    padding: 16px;
+  }
+
+  .swap-icon {
+    font-size: 25px;
+  }
+
+  .inputBox {
+    transition: background-color 0.7s;
+    /* add this line */
+    margin-left: 10px;
+  }
+
+  .inputBox:hover {
+    background-color: #F1F7FF;
+  }
+
+  .submit-btn2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    padding: 16px 0px;
+    background: #213d77;
+    color: white;
+    font-size: 19px;
+    font-family: serif;
+    border: none;
+    font-weight: 500;
+    opacity: 1;
+    box-shadow: 1px 1px 1px 1px black;
+    border-radius: 10px;
+    margin-top: 5px;
+    // margin: 10px 0px 0px 0px;
+    letter-spacing: 2px;
+  }
+
+  .more-Opt {
+    border: 2px solid rgba(0, 0, 0, 0.519);
+    border-radius: 10px;
+    text-align: center;
+    font-size: 17px;
+    font-weight: bold;
+    float: right;
+    width: 50%;
+    padding: 7px;
+  }
+
+  .side {
+    border-right: 1px solid #213d77;
+  }
+
+  .round-l {
+    border-top-left-radius: 5px;
+  }
+
+  .round-r {
+    border-top-right-radius: 5px;
+  }
+
+  .SB {
+    // background-color: #fff;
+    border: 1px solid rgba(255, 255, 255, .25);
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.45);
+    box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(15px);
+    // border-top: 2px solid #e9182d;
+    // border-left: 1px solid #e9182d;
+    // border-right: 1px solid #e9182d;
+    // border-bottom: 1px solid #e9182d;
+
+    z-index: 9999;
+    margin: 0px;
+  }
+
+  .submit-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 16px 0px;
+    background: #e9182d;
+    color: white;
+    font-size: 19px;
+    font-family: serif;
+    border: none;
+    font-weight: 500;
+    opacity: 1;
+    box-shadow: 1px 1px 1px 1px black;
+    border-radius: 10px;
+    margin-top: 5px;
+    // margin: 10px 0px 0px 0px;
+    letter-spacing: 2px;
+  }
+
+  .submit-btn:disabled {
+    opacity: 0.8;
+    cursor: not-allowed;
+  }
+
+  .span-btn {
+    width: 100%;
+    padding: 15px 10px;
+    background: #ffffff;
+    color: #e9182d;
+    font-size: 14px;
+    font-family: serif;
+    border: 1px solid #e9182d;
+    opacity: 1;
+    box-shadow: 1px 1px 1px 1px lightgrey;
+    border-radius: 5px;
+    margin: 10px 0px 0px 0px !important;
+    letter-spacing: 2px;
+    text-align: center;
+    cursor: pointer;
+  }
+
+  .tp_mgn {
+    // padding: 20px 0px 0px 0px;
+  }
+
+  .tp_mgn2 {
+    // padding: 18px 0px 0px 0px;
+  }
+
+  .material-icons {
+    font-family: "Material Icons";
+    font-weight: normal;
+    font-style: normal;
+    font-size: 18px;
+    line-height: 0;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ion-radio {
+    margin: 10px 10px 0px 10px;
+  }
+
+  ion-radio-group {
+    color: black;
+    padding: 20px 0px 0px 0px;
+  }
+
+  ion-slides {
+    padding: 30px 0px 0px 0px;
+  }
+
+  .err {
+    padding: 20px 0px 0px 15px;
+    color: red;
+    font-size: 11px;
+  }
+
+  fieldset {
+    border: none;
+    font-family: "poppins";
+    // border-radius: 5px;
+    // border-radius: 5px;
+    // border: 1px solid rgb(207, 207, 207);
+    // padding: 0px 15px;
+  }
+
+  legend {
+    color: #000;
+    font-weight: 400;
+    font-size: 15px;
+    display: flex;
+  }
+
+  .border {
+    height: 30px;
+    width: 30px;
+    text-align: center;
+    border-radius: 50%;
+    padding: 7px 0px 0px 0px;
+    margin: 18px 0px 0px 40px;
+    cursor: pointer;
+    border: 1px solid #213d77;
+  }
+}
+
+.disp {
+  display: none;
+}
+
+.popover__wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.popover__content {
+  width: 98%;
+  opacity: 1;
+  z-index: 10;
+  position: absolute;
+  background-color: white;
+}
+
+@media only screen and (max-width: 767px) {
+
+  .P-classesBox {
+    display: none;
+  }
+
+  .s-bar {
+    padding: 0px 0px 50px 0px;
+  }
+  .img-B {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: max-content;
+    // background-image: url("https://wallpaperaccess.com/full/254367.png");
+    // background-image: url("../../../../assets/mainBg.jpg");
+    background-image: url('../../../../assets/f_Search_Bg.jpg');
+    // background-image: url('../../../../assets/bg6.jpg');
+
+
+    // height: 100%;
+  }
+  .SB {
+    background-color: #fff;
+    border-top: 2px solid #e9182d;
+    border-left: 1px solid #e9182d;
+    border-right: 1px solid #e9182d;
+    border-bottom: 1px solid #e9182d;
+
+    z-index: 9999;
+    margin: 0px;
+  }
+
+  .round-l {
+    border-top-left-radius: 0px;
+  }
+
+  .round-r {
+    border-top-right-radius: 0px;
+  }
+
+  .border {
+    text-align: center;
+    border-radius: 50%;
+    padding: 5px 0px 0px 0px;
+    margin: 18px 0px 0px 0px;
+    cursor: pointer;
+    border: 1px solid #0d2c4f;
+  }
+
+  .round-r2 {
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    border: 1px solid #213d77;
+  }
+
+  .p-margin {
+    // margin: 0px 0px 0px 150px;
+  }
+
+  .R-label {
+    font-weight: 500;
+    font-size: 16px;
+  }
+
+  .label {
+    font-size: 17px;
+    font-weight: 500;
+  }
+
+  input {
+    // width: 70%;
+    // box-sizing: border-box;
+
+  }
+
+  input::placeholder {
+    font-size: 14px;
+  }
+
+  .FTH {
+    color: #213d77;
+    background-color: #fff;
+    font-size: 16px;
+    text-align: center;
+    font-family: serif;
+    padding: 0px 0px 0px 0px;
+    cursor: pointer;
+    border-radius: 50px;
+    border-top: 1px solid #213d77;
+    border-left: 1px solid #213d77;
+    border-bottom: 1px solid #213d77;
+  }
+
+  .FTHActive {
+    background-color: #213d77;
+
+    color: #fff;
+  }
+
+  .f-text {
+    color: black;
+    font-weight: 500;
+    font-family: poppins;
+    display: flex;
+    justify-content: center;
+  }
+
+  .inputBox span {
+    font-size: 17px;
+    font-weight: bold;
+    color: black;
+  }
+
+  legend {
+    color: #000;
+    font-weight: 400;
+    font-size: 13px;
+    display: flex;
+  }
+
+  .f-form-box {
+    border-top: 1px solid rgba(0, 0, 0, 0.108);
+    border-radius: 10px;
+    margin-top: 20px;
+    margin: auto;
+    // border: 1px solid red;
+  }
+
+  .SB2 {
+    background-color: white;
+    padding: 5px;
+  }
+
+  .inputBox {
+    transition: background-color 0.7s;
+    /* add this line */
+    margin-left: 0px;
+  }
+
+  .inputBox:hover {
+    // background-color: #F1F7FF;
+    background-color: transparent;
+  }
+
+  .swap-icon {
+    font-size: 25px;
+    // margin-top: 5px;
+    // border: 1px solid red;
+    rotate: 90deg;
+    margin-bottom: -10px;
+  }
+
+  input {
+    outline: none;
+    border: none;
+    border-bottom: 2px solid black;
+    // width: 100%;
+    // padding: 10px;
+    background-color: transparent;
+    color: black;
+    padding: 0px;
+    width: 100%;
+  }
+
+  .submit-btn2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 16px 0px;
+    background: #213d77;
+    color: white;
+    font-size: 19px;
+    font-family: serif;
+    border: none;
+    font-weight: 500;
+    opacity: 1;
+    box-shadow: 1px 1px 1px 1px black;
+    border-radius: 10px;
+    margin-top: 5px;
+    // margin: 10px 0px 0px 0px;
+    letter-spacing: 2px;
+  }
+
+  .P-classesBox {
+    display: none;
+  }
+
+  .more-Opt {
+    border: 2px solid rgba(0, 0, 0, 0.519);
+    border-radius: 10px;
+    text-align: center;
+    font-size: 17px;
+    font-weight: bold;
+    // float: right;
+    width: 100%;
+    padding: 7px;
+  }
+
+  .for-app {
+    padding: 18px 0px 0px 0px;
+  }
+
+  ion-card {
+    border-radius: 0%;
+  }
+}
+
+// 2nd form 
+
+
+
+
+.checkbox-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+
+}
+
+.checkbox-list li {
+  margin-right: 20px;
+  border: 1px solid rgba(0, 0, 0, 0.433);
+  border-radius: 50px;
+  // background-color: #EBEBEB;
+  cursor: pointer;
+  font-family: "poppins";
+  font-weight: 700;
+}
+
+.checkbox-list li:hover {
+  // background-color: #F1F7FF;
+  opacity: 0.9;
+  cursor: pointer;
+}
+
+.checkbox-list li:last-child {
+  margin-right: 0;
+}
+
+.checkbox-list input[type="checkbox"] {
+  margin-right: 10px;
+  border-radius: 20px;
+}
+
+.checkbox-list label {
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+}
+
+// *********************search btn 
+// .searcMain {
+//   position: relative;
+//   height: max-content; 
+// }
+
+// .searchBtn {
+//   position: absolute;
+//   bottom: -15px;
+//   left: 35%;
+// }
+
+// .searchBtn {
+//   position: absolute;
+//   bottom: -15px; 
+//   left: 50%;    
+//   transform: translateX(-50%); 
+// }\
+.card-Box {
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.700), rgba(255, 255, 255, 0.700)), url('../../../../assets/pattern.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+// more options
+.checkbox-list2 {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+}
+
+.checkbox-list2 li {
+  margin-right: 20px;
+  // border: 1px solid rgba(0, 0, 0, 0.433);
+  border: 1px solid rgba(0, 0, 0, 0.636);
+  // border: 1px solid #008CFF;
+  border-radius: 5px;
+  // background-color: #EBEBEB;
+  cursor: pointer;
+}
+
+.checkbox-list2 li:hover {
+  // background-color: #F1F7FF;
+  opacity: 0.9;
+  cursor: pointer;
+  background-color: #EAF5FF;
+}
+
+.checkbox-list2 li:last-child {
+  margin-right: 0;
+}
+
+.checkbox-list2 input[type="checkbox"] {
+  margin-right: 10px;
+  border-radius: 20px;
+}
+
+.checkbox-list2 label {
+  font-size: 13px;
+  font-weight: bold;
+  color: #333;
+}
+
+.FTH2 {
+  // color: #213d77;
+  color: black;
+  font-weight: bold;
+  background-color: transparent;
+  font-size: 11px;
+  font-family: "poppins";
+  cursor: pointer;
+}
+
+.FTH2Active {
+  background-color: transparent;
+  color: black;
+}
+.TravelBox{
+  width: 100%;
+  // outline: none;
+  // border-bottom: 1px solid white;
+  border-radius: 10px;
+  padding: 3px;
+}

@@ -1,0 +1,63 @@
+* {
+  font-family: serif;
+}
+
+.justify {
+  text-align: justify;
+}
+.center {
+  text-align: center;
+}
+.about {
+  color: rgb(13, 100, 13);
+  font-family: serif;
+}
+.p-heading {
+  margin: 20px 0px 0px 0px;
+}
+.circular--square {
+  border-radius: 50%;
+}
+.director {
+  font-size: 20px;
+}
+.director-name {
+  font-size: 24px;
+  font-weight: 600;
+  color: #0d2c4f;
+  font-family: "Dancing Script", cursive;
+}
+.team{
+  font-size: 24px;
+  font-weight: 600;
+  color: rgb(13, 100, 13);
+  font-family:serif;
+}
+.a-cont {
+  font-size: 16px;
+  line-height: 2;
+}
+
+.footer-hover:hover {
+  text-decoration: underline;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+@media only screen and (max-width: 3000px) {
+}
+@media only screen and (max-width: 1440px) and (min-width: 1025px) {
+}
+
+@media only screen and (max-width: 768px) and (min-width: 605px) {
+}
+
+@media only screen and (max-width: 605px) and (min-width: 426px) {
+}
+
+@media only screen and (max-width: 425px) and (min-width: 320px) {
+}
+
+ion-slides {
+  width: 100%;
+}

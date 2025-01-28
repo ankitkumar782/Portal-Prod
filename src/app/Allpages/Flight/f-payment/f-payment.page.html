@@ -1,0 +1,329 @@
+<ion-content>
+  <ion-row class="ion-margin-top">
+    <ion-col size-sm="12" size-xs="12" size-md="1" size-lg="1" size-xl="1">
+    </ion-col>
+    <ion-col size-sm="12" size-xs="12" size-md="10" size-lg="10" size-xl="10" class="ion-margin-top">
+      <ion-row class="ion-margin-top">
+        <ion-col size-sm="12" size-xs="12" size-md="10" size-lg="10" size-xl="10">
+
+          <ion-card>
+            <ion-row style="padding: 20px 10px; background-color: white;">
+              <ion-col size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12">
+
+                <span style="    font-size: 18px;
+                color: #213d77;
+                font-weight: 500;
+                text-decoration: underline;">
+                  Review Itinerary
+                </span>
+                <span style="color: rgb(11, 99, 11);">(Date of Journey = {{slt_flt.Itinerary[0].DDate|
+                  date:'mediumDate'}})</span>
+              </ion-col>
+              <ng-container *ngFor="let d of slt_flt.Itinerary">
+                <ion-col size-sm="12" size-xs="12" size-md="2" size-lg="2" size-xl="2" class="ion-text-start"
+                  style="background-color: white; padding-left: 20px;">
+                  <div [style.background-position]="d.FLogo" class="fltLogo left"></div>
+                  <div class="left" style="font-size: 11px;font-weight: 600;color: red;">{{slt_flt.Alias}}</div><br>
+                  <span class="F_NAME">{{d.FName}}</span><br>
+                  <span class="F-CODE">{{d.FCode}} -
+                    {{d.FNo}}</span><br>
+
+
+                </ion-col>
+
+                <ion-col size-sm="4" size-xs="4" size-md="3" size-lg="4" size-xl="4" class="ion-text-start"
+                  style="background-color: white;">
+
+                  <span style="font-size: 24px;font-weight: 500;color: #213d77;">{{d.DDate|
+                    date:'shortTime'}}</span><br>
+                  <span style="font-size: 16px;font-weight: 400;color: #000;">{{d.SrcName}} ( {{d.Src}} )</span><br>
+                  <span style="font-size: 14px;font-weight: 400;color: rgb(87, 87, 87);">{{d.DArpt}}
+
+                    <br> Terminal : {{d.ATrmnl|uppercase}}
+
+                  </span>
+                </ion-col>
+
+                <ion-col size-sm="4" size-xs="4" size-md="3" size-lg="2" size-xl="2" class="ion-text-center"
+                  style="background-color: white;">
+                  <span class="DUR">{{d.Dur}}</span><br>
+                  <span *ngIf="slt_flt.Stop=='0'" class="STOP">
+                    Stops = 0 
+                  </span>
+                  <span *ngIf="slt_flt.Stop=='1'" class="STOP">
+                    Stops = 1
+                  </span>
+                  <span *ngIf="slt_flt.Stop=='2'" class="STOP">
+                    Stops = 2
+                  </span><br>
+                  <div style=" color: rgb(0, 0, 0);background-color: rgb(217, 232, 248);height: 20px;margin: 10px 0px 0px 0px;">Available Seat's =
+                    {{d.Seat}}</div>
+                </ion-col>
+
+                <ion-col size-sm="4" size-xs="4" size-md="3" size-lg="4" size-xl="4" class="ion-text-end"
+                  style="background-color: white;padding-right: 20px;">
+                  <span style="font-size: 24px;font-weight: 500;color: #213d77;">{{d.ADate|date:'shortTime'}}</span><br>
+                  <span style="font-size: 16px;font-weight: 400;color: #000;">{{d.DesName}} ( {{d.Des}} )</span><br>
+                  <span style="font-size: 14px;font-weight: 400;color: rgb(87, 87, 87);">{{d.AArpt}}<br> Terminal : {{d.DTrmnl|uppercase}}</span>
+                </ion-col>
+              </ng-container>
+              <ion-col size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12" style="margin-top: 20px;">
+                <span style="    font-size: 18px;
+                color: #213d77;
+                font-weight: 500;
+                text-decoration: underline;">
+                  Travellers' Details
+                </span>
+                <table>
+                  <thead>
+                    <tr>
+                      <th style="width: 5%;">S.no</th>
+                      <th> Full Name</th>
+                      <th style="width: 10%;">Gender</th>
+                      <th style="width: 20%;">Date Of Birth</th>
+                      <th style="width: 20%;">Pax Type</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let d of f_chk_res.PaxInfo.Passengers; let i = index">
+                      <td>{{i+1}}</td>
+                      <td>{{d.Title}}. {{d.FName}} {{d.LName}}</td>
+                      <td>{{d.Gender}}</td>
+                      <td *ngIf="d.Dob">{{d.Dob}}</td>
+                      <td *ngIf="!d.Dob">N/A</td>
+                      <td>
+                        <span *ngIf="d.PaxType=='ADT'">
+                          Adult
+                        </span>
+                        <span *ngIf="d.PaxType=='CHD'">
+                          Child
+                        </span>
+                        <span *ngIf="d.PaxType=='INF'">
+                          Infant
+                        </span>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </ion-col>
+
+              <ion-col size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12" style="margin-top: 20px;">
+                <span style="    font-size: 18px;
+                color: #213d77;
+                font-weight: 500;
+                text-decoration: underline;">
+                  Contact Details
+                </span>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Mobile No.</th>
+                      <th>Email Address</th>
+
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>{{f_chk_res.PaxInfo.PaxMobile}}</td>
+                      <td>{{f_chk_res.PaxInfo.PaxEmail}}</td>
+
+                    </tr>
+                  </tbody>
+                </table>
+
+                <p style="    font-size: 18px;
+                color: #213d77;
+                font-weight: 500;
+                text-decoration: underline;margin-top: 20px;">
+                  Baggage Information
+                </p>
+                <table  *ngFor="let d of f_chk_res.PaxInfo.Passengers">
+                  <thead>
+                    <tr>
+                      <th>Baggage</th>
+                      <th>Cabbin Baggage</th>
+
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let a of d.Baggage">
+                      <td>{{a.SsrDesc}}</td>
+                      <td>{{a.OI}}</td>
+
+                    </tr>
+                  </tbody>
+                </table>
+
+                <p style="    font-size: 18px;
+                color: #213d77;
+                font-weight: 500;
+                text-decoration: underline;margin-top: 20px;">
+                  seat Information
+                </p>
+                <table  *ngFor="let d of f_chk_res.PaxInfo.Passengers">
+                  <thead>
+                    <tr>
+                      <th>seat</th>
+                      <!-- <th>Cabbin Baggage</th> -->
+
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let a of d.Seat">
+                      <td>{{a.SeatCode}}</td>
+                      <!-- <td>{{a.OI}}</td> -->
+
+                    </tr>
+                  </tbody>
+                </table>
+
+
+                <p style="    font-size: 18px;
+                color: #213d77;
+                font-weight: 500;
+                text-decoration: underline;margin-top: 20px;">
+                  Meal
+                  Information
+                </p>
+                <table  *ngFor="let d of f_chk_res.PaxInfo.Passengers">
+                  <thead>
+                    <tr>
+                      <th>Meal
+                      </th>
+                      <!-- <th>Cabbin Baggage</th> -->
+
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let a of d.Meal">
+                      <td>{{a.SsrDesc}}</td>
+                      <!-- <td>{{a.OI}}</td> -->
+
+                    </tr>
+                  </tbody>
+                </table>
+
+
+                <p style="    font-size: 18px;
+                color: #213d77;
+                font-weight: 500;
+                text-decoration: underline;margin-top: 20px;">
+                  Important Information
+                </p>
+                
+                <ul>
+                  <li style="color: black;font-size: 13px;">
+                    All passengers entering Maharashtra have to carry a negative RT-PCR test report along with a sample
+                    taken within 72 hours post arrival. RT-PCR Test timeline begins from the report allocation time.
+                    Passengers travelling to Maharashtra will not be permitted to board the flights if they are not
+                    carrying a valid test report. Fully vaccinated passengers don't have to carry a negative report if
+                    they are travelling within Maharashtra. They can travel with a final COVID vaccination certificate.
+                  </li>
+                  <li style="color: black;font-size: 13px;">
+                    Passengers who have completed their vaccination (both the doses) can enter the state of Maharashtra
+                    after completing 15 days from receipt of the 2nd dose of vaccination. No negative RT-PCR test is
+                    required for fully vaccinated passengers.
+                  </li>
+                </ul>
+
+                <p style="margin-top: 20px;">
+                  <input type="checkbox" checked style="  width: 20px;
+                  height: 20px;
+                  background: white;
+                  border-radius: 5px;
+                  border: 2px solid #555;
+                  margin-top: 5px;">
+                  <span style="color: black;font-size: 13px;">
+                    I have READ and AGREE to the
+                  </span>
+                  <span style="color: forestgreen;font-size: 13px;cursor: pointer;">
+                    Terms & Conditions
+                  </span>
+                </p>
+                <button style="margin-top: 20px;" class="BOOKNOW" (click)="makePNR()">Make PNR</button>
+
+                <!-- <app-payment [(Data)]="message"></app-payment> -->
+              </ion-col>
+            </ion-row>
+          </ion-card>
+
+        </ion-col>
+
+        <ion-col size-sm="12" size-xs="12" size-md="2" size-lg="2" size-xl="2" class="side-cont">
+          <ion-card>
+            <ion-row>
+              <ion-col size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12"
+                style="cursor: pointer;;background: #213d77!important ;padding:10px 10px 10px 10px;height: 55px; text-align: center;">
+                <h5 style="font-size: 15px;color: #fff;">Fare Summary <span *ngIf="show_fare">
+                    <ion-icon name="add-circle-outline" style="float: right; font-size: 25px;color: #fff;"
+                      *ngIf="!istax" (click)="istax=!istax"></ion-icon>
+                    <ion-icon name="close-circle-outline" style="float: right; font-size: 25px;color: #fff"
+                      *ngIf="istax" (click)="istax=!istax"></ion-icon>
+                  </span></h5>
+              </ion-col>
+
+              <ion-col size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12"
+                style="background-color: white;padding: 10px;">
+                <p *ngIf="f_chk_res.FareChkRes.Param.Adt >'0'" style="margin:10px 0px">
+                  <span class="faredetails"><b>Adult</b></span>
+                  <span style="float: right;padding-right: 20px;color: black;">{{f_chk_res.FareChkRes.Param.Adt}} *
+                    {{slt_flt.Fare.Adt.Total}}</span>
+
+                </p>
+                <div *ngIf="istax">
+                  <div *ngIf="f_chk_res.FareChkRes.Param.Adt >'0'">
+                    <p><span class="faredetails">Basic</span><span
+                        style="float: right;padding-right: 20px; color: black;">{{slt_flt.Fare.Adt.Basic}}</span></p>
+                    <p><span class="faredetails">Taxes</span><span
+                        style="float: right;padding-right: 20px; color: black;">{{slt_flt.Fare.Adt.Taxes}}</span></p>
+                  </div>
+                </div>
+                <div style="border-bottom:1px solid gray;" *ngIf="f_chk_res.FareChkRes.Param.Adt>'0'"></div>
+
+                <p *ngIf="f_chk_res.FareChkRes.Param.Chd >'0'" style="margin:10px 0px">
+                  <span class="faredetails"><b>Child</b></span>
+                  <span style="float: right;padding-right: 20px;color: black;">{{f_chk_res.FareChkRes.Param.Chd}} *
+                    {{slt_flt.Fare.Chd.Total}}</span>
+                </p>
+                <div *ngIf="istax">
+                  <div *ngIf="f_chk_res.FareChkRes.Param.Chd >'0'">
+                    <p><span class="faredetails">Basic</span><span
+                        style="float: right;padding-right: 20px; color: black;">{{slt_flt.Fare.Chd.Basic}}</span></p>
+                    <p><span class="faredetails">Taxes</span><span
+                        style="float: right;padding-right: 20px; color: black;">{{slt_flt.Fare.Chd.Taxes}}</span></p>
+                  </div>
+                </div>
+
+                <div style="border-bottom:1px solid gray;" *ngIf="f_chk_res.FareChkRes.Param.Chd>'0'"></div>
+
+
+                <p *ngIf="f_chk_res.FareChkRes.Param.Inf>'0'" style="margin:10px 0px">
+                  <span class="faredetails"><b>Infant</b></span>
+                  <span style="float: right;padding-right: 20px; color: black;">{{f_chk_res.FareChkRes.Param.Inf}} *
+                    {{slt_flt.Fare.Inf.Total}}</span>
+                </p>
+
+                <div *ngIf="istax">
+                  <div *ngIf="f_chk_res.FareChkRes.Param.Inf>'0'">
+                    <p><span class="faredetails">Basic</span><span
+                        style="float: right;padding-right: 20px; color: black;">{{slt_flt.Fare.Inf.Basic}}</span></p>
+                    <p><span class="faredetails">Taxes</span><span
+                        style="float: right;padding-right: 20px; color: black;">{{slt_flt.Fare.Inf.Taxes}}</span></p>
+                  </div>
+                </div>
+
+                <div style="border-bottom:1px solid gray;" *ngIf="f_chk_res.FareChkRes.Param.Inf>'0'"></div>
+                <h6 style="margin:10px 0px">
+                  <span class="faredetails">Total Fare</span>
+                  <span style="float: right; padding-right: 20px;color: black;">Rs. {{slt_flt.Fare.GrandTotal}}</span>
+                </h6>
+              </ion-col>
+            </ion-row>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-col>
+
+  </ion-row>
+</ion-content>
+<!-- <app-flight-ticket *ngIf="showTicket" [(finalPnrObj)]="pnr_res_send"></app-flight-ticket> -->

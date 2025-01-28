@@ -1,0 +1,155 @@
+<ion-header>
+
+  <ion-row class="top-Head-upper none1 none2 none3">
+  
+    <ion-col class="mail" size-sm="2" size-md="3" size-lg="5" size-xl="7">
+      <!-- <ion-label class="top-Head-upper-r">
+        <ion-icon name="mail"></ion-icon> support@kafilatravel.in
+      </ion-label> -->
+    </ion-col>
+
+    <!-- <ion-col class="mail" size-sm="4" size-md="3" size-lg="2" size-xl="4">
+       <ion-label class="top-Head-upper-r">
+        <ion-icon name="call"></ion-icon> +91 8587855513
+      </ion-label> 
+    </ion-col> -->
+
+    <ion-col size-xs="12" size-sm="10" size-md="9" size-lg="7" size-xl="5">
+      <ul class="top-Head-upper-ul">
+        <li class="top-Head-upper-li" >
+          <ion-label class="top-Head-upper-r" (click)="contactus()">
+            <ion-icon name="call"></ion-icon> 24 * 7 Helpline
+          </ion-label>
+        </li>
+
+        <li class="top-Head-upper-li" >
+          <ion-label class="top-Head-upper-r" (click)="addedShortly()">
+            <ion-icon name="logo-google-playstore"></ion-icon> Download App
+          </ion-label>
+        </li>
+
+        <li class="top-Head-upper-li" >
+          <ion-label class=" top-Head-upper-r"  (click)="addedShortly()">
+            <ion-icon name="language"></ion-icon> Eng
+          </ion-label>
+        </li>
+
+        <li class="top-Head-upper-li ">
+          <ion-label class=" top-Head-upper-r">
+            <img alt="logo" class="INR" src="../assets/rupee.png"> INR
+          </ion-label>
+        </li>
+
+        <li class="top-Head-upper-li ">
+          <ion-label class=" top-Head-upper-r">
+            <img alt="country" src="https://img.icons8.com/color/22/000000/india.png" />
+          </ion-label>
+        </li>
+        <li class="top-Head-upper-li ">
+          <ion-label class=" top-Head-upper-r"  (click)="contactus()">
+            <ion-icon name="help"></ion-icon> Help
+          </ion-label>
+        </li>
+
+      </ul>
+    </ion-col>
+  </ion-row>
+
+
+  <ion-row class="mid-Head-Row">
+    <ion-col size-xs="1" size-sm="0" size-md="0" size-lg="1" size-xl="1"></ion-col>
+
+    <ion-col size-xs="3" size-sm="3" size-md="2" size-lg="3 " size-xl="2">
+      <img alt="logo2"  src="../assets/logo.png" (click)="index()" style="cursor: pointer;">
+      <!-- <h2 style="font-family: cursive;">Kafila Tour And Travels</h2> -->
+    </ion-col>
+
+    <ion-col size-xs="8" size-sm="9" size-md="10" size-lg="8" size-xl="9">
+
+      <ul style="padding-top: 10px">
+        <li class="dropdown mail none2">
+
+          <ion-label class="dropbtn s-app mail none">
+            India Tours <ion-icon name="caret-down-outline" class="rotate"></ion-icon>
+          </ion-label>
+          <div class="dropdown-content">
+            <a>Goa</a>
+            <a>Jaipur</a>
+            <a>Shimla</a>
+            <a>Gwalior</a>
+            <a>Mysore</a>
+            <a>Nashik</a>
+            <a>Pathankot</a>
+            <a>Agra</a>
+          </div>
+        </li>
+        <li class="dropdown mail none2">
+
+          <ion-label class="dropbtn s-app mail none">
+            International Tours <ion-icon name="caret-down-outline" class="rotate"></ion-icon>
+          </ion-label>
+
+          <div class="dropdown-content">
+            <a>Thailand</a>
+            <a>Maldives</a>
+            <a>Dubai</a>
+            <a>Paris</a>
+            <a>Singapore</a>
+            <a>Hong Kong</a>
+            <a>Turkey</a>
+            <a>Philippines</a>
+            <a>Japan</a>
+            <a>Greece</a>
+            <a>Egypt</a>
+          </div>
+
+
+
+
+        </li>
+        <li class="dropdown mail none2">
+
+          <ion-label class="dropbtn s-app mail none">
+            Destinations <ion-icon name="caret-down-outline" class="rotate"></ion-icon>
+          </ion-label>
+
+
+          <div class="dropdown-content">
+            <a> Andaman & Nicobar</a>
+            <a>Goa</a>
+
+          </div>
+        </li>
+        <li class="app">
+          <ion-label class=" s-app mail" (click)="aboutus()">
+            <ion-icon name="information-circle"></ion-icon> About Us
+          </ion-label>
+        </li>
+        <li class="app">
+          <ion-label class=" s-app mail" (click)="contactus()">
+            <ion-icon name="call"></ion-icon> Contact Us
+          </ion-label>
+        </li>
+        <li class="papp none2" (click)="payUpload()">
+          <ion-label class=" s-app">
+            <ion-icon name="cash"></ion-icon>  Payment Upload
+          </ion-label>
+        </li>
+        <li (click)="register()">
+          <ion-label class=" s-app">
+            <ion-icon name="person-add"></ion-icon>  Register As Partner
+          </ion-label>
+        </li>
+        <li>
+          <ion-label class=" s-app" (click)="presentPopover($event)">
+            <ion-icon name="person-circle-outline"></ion-icon>
+            Account Login
+            <ion-icon name="caret-down-outline"></ion-icon>
+          </ion-label>
+        </li>
+      </ul>
+    </ion-col>
+
+  </ion-row>
+
+</ion-header>

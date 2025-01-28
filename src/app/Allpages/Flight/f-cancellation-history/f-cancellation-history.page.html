@@ -1,0 +1,279 @@
+<ion-content>
+  <ion-row class="ion-padding-top s-bar">
+
+
+    <ion-col size-sm="12" size-xs="12" size-md="2" size-lg="2" size-xl="2">
+
+
+    </ion-col>
+
+    <!-- <ion-col size-sm="12" size-xs="12" size-md="8" size-lg="8" size-xl="8">
+      <ion-row
+        style="border-left: 2px solid #445f99; border-bottom: 2px solid #445f99; border-right: 2px solid #445f99; padding-top: 10px;">
+        <ion-col size-sm="12" size-xs="12" size-md="4" size-lg="4" size-xl="4">
+          <fieldset>
+            <legend>
+              <ion-icon name="calendar-outline"></ion-icon> From
+            </legend>
+            <input type="date" [max]="maxDate" [(ngModel)]="from">
+          </fieldset>
+
+        </ion-col>
+
+        <ion-col size-sm="12" size-xs="12" size-md="4" size-lg="4" size-xl="4">
+          <fieldset>
+            <legend>
+              <ion-icon name="calendar-outline"></ion-icon> To
+            </legend>
+            <input type="date" [max]="maxDate" [(ngModel)]="to">
+          </fieldset>
+        </ion-col>
+
+        <ion-col size-sm="12" size-xs="12" size-md="4" size-lg="4" size-xl="4">
+          <button class="submit-btn" type="submit" (click)="apiHit()">
+            <span class="material-icons">search</span> Search Cancellation History
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-col> -->
+    <hr style="width:50%; text-align:left; margin: left 1px;">
+
+
+
+
+
+
+
+
+  </ion-row>
+
+  <ion-row>
+
+    <ion-col size-sm="12" size-xs="12" size-md="4" size-lg="4" size-xl="4" >
+      <!-- <button class="submit-btn" type="submit"  (click)="addvalue()" >
+        <span class="material-icons" style="justify-content: center;">search</span>
+        Search By <ion-icon name="add-circle-outline"></ion-icon>
+      </button> -->
+
+      <fieldset>
+        <legend>
+          <ion-icon name="at"></ion-icon> Search by 
+        </legend>
+        <!-- <ion-list> -->
+          <!-- <ion-item>
+            <ion-select interface="popover" placeholder="Search By" [(ngModel)]="FromData">
+              <ion-select-option value="CANCELLED">CANCELLED</ion-select-option>
+              <ion-select-option value="PENDING">PENDING</ion-select-option>
+              <ion-select-option value="FAILED">FAILED</ion-select-option>
+              <ion-select-option value="ALL">ALL</ion-select-option>
+            </ion-select>
+          </ion-item> -->
+        <!-- </ion-list> -->     
+        <select class="selbox" [(ngModel)]="FromData">
+          <option value="" disabled="disabled" selected="selected">Select option</option>
+          <option value="SUCCESS">SUCCESS</option>
+          <option value="PENDING">PENDING</option>
+          <option value="FAILED">FAILED</option>
+          <option value="ALL">ALL</option>
+         
+         
+        </select>          
+      
+      </fieldset>
+
+    </ion-col>
+
+
+
+
+    
+
+
+    <ion-col size-sm="12" size-xs="12" size-md="4" size-lg="4" size-xl="4">
+
+      <!-- <ion-row> -->
+      <!-- <input type="date" [(ngModel)]="fromDate" placeholder="Enter from Date "> -->
+      <!-- <input type="date" [(ngModel)]="toDate" placeholder="Enter To Date "> -->
+      <fieldset>
+        <legend>
+          <ion-icon name="calendar-outline"></ion-icon> From
+        </legend>
+        <input type="date" [(ngModel)]="fromDate" placeholder="Enter from Date ">
+      </fieldset>
+    </ion-col>
+
+    <ion-col size-sm="12" size-xs="12" size-md="4" size-lg="4" size-xl="4">
+
+      <fieldset>
+        <legend>
+          <ion-icon name="calendar-outline"></ion-icon> To
+        </legend>
+        <input type="date" [(ngModel)]="toDate" placeholder="Enter To Date ">
+      </fieldset>
+
+
+      <!-- </ion-row> -->
+
+      <!-- <input type="text" [(ngModel)]="Env"  placeholder="enter Env ">
+        <input type="text" [(ngModel)]="Pnr"  placeholder="enter Pnr ">
+        <input type="text" [(ngModel)]="FName"  placeholder="enter FName ">
+        <input type="text" [(ngModel)]="LName"  placeholder="enter LName ">
+        <input type="text" [(ngModel)]="BookingId"  placeholder="enter BookingId "> -->
+
+    </ion-col>
+    <ion-col size-sm="12" size-xs="12" size-md="4" size-lg="4" size-xl="4">
+      <button class="submit-btn" type="submit" (click)="filter()">Search By </button>
+    </ion-col>
+
+
+  </ion-row>
+
+  <ion-row style="padding: 0px;">
+    <ion-col size-xs="12" size-sm="12" size-md="12" size-lg="12" size-xl="12">
+      <!-- <ion-badge color="primary" style="margin: 5px 0px 0px 15px;padding: 5px;">Total Result =
+          {{resultArr.length}}
+        </ion-badge> -->
+
+      <!-- <ion-badge color="success" style="margin-left: 20px;;padding: 5px; " class="ionp">Total Booking Amount =
+        {{this.amt |
+        currency:'INR'}}
+      </ion-badge> -->
+      <!-- <span>From = {{maxDate}} To = {{maxDate}}</span> -->
+
+      <ion-badge color="tertiary" class="ionp" style="cursor: pointer;float: right;margin: 5px 20px 0px 0px;"
+        (click)="exportexcel()">
+        <img src="https://img.icons8.com/material-outlined/12/ffffff/download--v1.png" /> Download Excel
+      </ion-badge>
+      <!-- <ion-badge color="danger" class="ionp" style="cursor: pointer;float: right;margin: 5px 20px 0px 0px;"
+        (click)="openPDF()">
+        <img src="https://img.icons8.com/material-outlined/12/ffffff/download--v1.png" /> Download Pdf
+      </ion-badge> -->
+
+      <table id="tab2" class="table">
+        <thead class="thead">
+          <tr>
+            <th class="padding th">
+              #
+            </th>
+            <th class="padding th">
+              Booking Id
+            </th>
+            <th class="padding th">
+              CType
+            </th>
+            <th class="padding th">
+              Mode
+            </th>
+            <th class="padding th">
+              RefundBy
+            </th>
+            <th class="padding th">
+              CancelRemark
+
+            </th>
+            <th class="padding th">
+              RefundRemark
+
+            </th>
+            <!-- <th class="padding th">
+                Booked By
+              </th>
+              <th class="padding th">
+                PCC Alias
+              </th> -->
+            <th class="padding th">
+              FCode
+            </th>
+            <!-- <th class="padding th">
+                Email Id
+  
+              </th> -->
+
+            <!-- <th class="padding th">
+              Trans Id
+  
+            </th> -->
+            <th class="padding th">
+              Sector
+            </th>
+            <th class="padding th">
+              Pax Name
+            </th>
+            <th class="padding th">
+              Pnr
+            </th>
+            <th class="padding th">
+              Split Pnr
+            </th>
+            <th class="padding th">
+              Fare
+            </th>
+            <th class="padding th">
+              AirlineCancelFee
+            </th>
+            <th class="padding th">
+              CancelServiceCharge
+            </th>
+            <th class="padding th">
+              RefundableAmount
+            </th>
+            <th class="padding th">
+              Status
+            </th>
+
+            <th class="padding th">
+              Request Time
+            </th>
+            <th class="padding th">
+              Response Time
+            </th>
+
+
+            <!-- <th class="padding th">
+                Cancellation
+              </th> -->
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let d of resultArr, index as i" class="hvr">
+            <td class="td">{{i+1}}</td>
+            <td class="td" style="color: rgb(255, 0, 0); cursor: pointer">
+              <b (click)="PNR(d)">{{d.BookingId}}</b>
+            </td>
+            <td class="td">{{d.CType}}</td>
+            <td class="td">{{d.OI.CancelledBy}}</td>
+            <td class="td">{{d.OI.RefundBy}}</td>
+           
+            <td class="td"> <textarea readonly>{{d.OI.CancelRemark}}</textarea></td>
+          
+            <td class="td"><textarea readonly>{{d.OI.RefundRemark}}</textarea ></td>
+            <td class="td">{{d.FCode}}</td>
+           
+            <td class="td"*ngIf='d.CType=="FULL"'></td>
+            <td class="td"*ngIf='d.CType=="PARTIAL"'>{{d.CSector[0].Src}}-{{d.CSector[0].Des}}</td>
+            <td class="td"*ngIf='d.CType=="FULL"'></td>
+            <td class="td"*ngIf='d.CType=="PARTIAL"'>{{d.CSector[0].CPax[0].FName}} {{d.CSector[0].CPax[0].lName}}</td>
+
+            <td style="color: rgb(8, 144, 255);" class="td"><b>{{d.BPnr}}</b></td>
+
+            <td style="color: rgb(8, 144, 255);" class="td"><b>{{d.SPnr}}</b></td>
+            <td style="color: rgb(26, 114, 30);" class="td"><b>{{d.Fare }}</b></td>
+            <td style="color: rgb(26, 114, 30);" class="td"><b>{{d.AirlineCancelFee }}</b></td>
+            <td style="color: rgb(26, 114, 30);" class="td"><b>{{d.CancelServiceCharge }}</b></td>
+            <td style="color: rgb(26, 114, 30);" class="td"><b>{{d.RefundableAmount}}</b></td>
+            <td class="td"><b *ngIf="d.IsCancelled">Cancelled</b>   <b *ngIf="!d.IsCancelled">Pending</b></td>
+            <td class="td">{{d.Etime | date: 'dd/MM/yyyy'}} / {{d.Etime | date:"HH:mm"}}</td>
+            <td class="td">{{d.Utime | date: 'dd/MM/yyyy'}} / {{d.Utime | date:"HH:mm"}}</td>
+
+
+
+          </tr>
+        </tbody>
+      </table>
+
+
+    </ion-col>
+  </ion-row>
+
+</ion-content>
