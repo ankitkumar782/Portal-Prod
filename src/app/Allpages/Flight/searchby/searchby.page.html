@@ -176,7 +176,7 @@
                 <td class="td">{{d.Utime }}</td>
                 <td class="td">
                   <ion-button *ngIf="d.BookingStatus=='CONFIRMED'" color="danger"
-                    (click)="CancelTicket2(d)">Cancel</ion-button>
+                    (click)="CancelTicket2(d,i)">Cancel</ion-button>
                   <!-- <ion-button color="danger" (click)="CancelTicket(d)">Cancel</ion-button> -->
                 </td>
                 <!-- <td class="td" >
@@ -228,13 +228,31 @@
           <!-- <ion-button slot="end" (click)="confirmCancellation()" *ngIf="hideconfirmbutton">Confirm</ion-button> -->
 
           <!-- </ion-toolbar> -->
+          <!-- <ng-container *ngFor="let a of resultArr[index].PaxName,index as i">
+            <ion-col size-sm="12" size-xs="12" size-md="6" size-lg="6" size-xl="6" style="display: flex; justify-content: left; align-items: end;">
+              <span style="margin-left: 7px;"><input type="checkbox"  [(ngModel)]="isChecked1"> </span> 
+
+                <span style="margin-left: 5px; font-size: 20px;" class="cfont">{{a.FName}} </span>
+                <button (click)="clickkr(i)">click me</button>
+             
+            </ion-col>
+          </ng-container> -->
+
+          <p style="margin-left: 7px; color: rgba(0, 0, 0, 0.716); font-weight: bold; font-size: 20px;">Passengers Names</p>
+          <ng-container *ngFor="let a of resultArr[index].PaxName; index as i">
+            <ion-col size-sm="12" size-xs="12" size-md="6" size-lg="6" size-xl="6" style="display: flex; justify-content: left; align-items: end;">
+              <span style="margin-left: 7px;">
+                <input type="checkbox" [(ngModel)]="isCheckedArr[i]" (change)="onCheckboxChange(i, isCheckedArr[i])">
+              </span>
+              <span style="margin-left: 5px; font-size: 18px;" class="cfont">{{ a.FName }}  {{a.LName}}</span>
+              <!-- <button (click)="clickkr(i)">click me</button> -->
+            </ion-col>
+          </ng-container>
+          
 
           <form [formGroup]="remarksCommit">
 
-
-             
-
-
+            
             <ion-row style="display: flex; justify-content: center; align-items: center;">
               <ion-col size-sm="12" size-xs="12" size-md="4" size-lg="4" size-xl="4" class="c-Font selbox">
                 <select formControlName="rescode">
@@ -242,7 +260,7 @@
                     <option value="" disabled="disabled" selected="selected">Select Reason</option>
                     <option value="CTP">CTP (Change In Travels Plans)</option>
                     <option value="MMF">MMF (Missed My Flight)</option>
-                    <option value="FCA">FCA (Flight Cancelled by Airline) / DGCA</option>
+                    <option value="FCA">FCA (Flight Cancelled by Airline)</option>
                     <option value="WFB">WFB (Wrong Flight Booked)</option>
                     <option value="ORS">ORS (Other Reasons)</option>
                   </optgroup>
@@ -446,288 +464,428 @@
       </div>
 
   </ng-container>
+  <ng-container *ngIf="loader">
+
+    <ion-row style="display: flex; justify-content: center; align-items: center; margin-top: 120px;">
+      <ion-col size-sm="12" size-xs="12" size-md="4" size-lg="4" size-xl="4">
+        <ion-card>
+          <!-- <ion-button slot="start" (click)="goBackcancel()">Go Back</ion-button>
+          <h3 style="text-align: center;">Cancellation Charges</h3>
+         
+          <ion-button slot="end" (click)="confirmCancellation()" *ngIf="hideconfirmbutton">Confirm</ion-button> -->
+
+
+
+
+          <ion-col size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12" style="padding: 15px;"
+            class="c-Font selbox">
+
+            <ion-row style="display: flex; justify-content: center;">
+
+              <ion-col size-md="12" size-lg="12" size-xl="12">
+                <!-- <h1> PLEASE WAIT WE ARE PROCESSING YOUR REQUEST... </h1> -->
+                <div class="page">
+                  <header style="text-align: center; font-weight: 800;">
+                    <h6 style="font-size: 18px;">Cancellation Charges LOADING. </h6>
+                    <ion-spinner></ion-spinner>
+                    <!-- <p>PLEASE WAIT WE ARE PROCESSING YOUR REQUEST....</p> -->
+                  </header>
+                </div>
+                
+              </ion-col>
+
+            </ion-row>
+
+          </ion-col>
+
+
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+  </ng-container>
 
   <ion-col size-md="11" size-lg="11" size-xl="11"> </ion-col>
   <ion-col size-md="1" size-lg="1" size-xl="1"></ion-col>
-  <div style='background: transparent; width: 100%;' *ngIf="showticket">
-    <div class='c'></div>
-    <br />
-    <table
-      style='padding: 5px 10px 5px; border: #d8d8d8 1px double; box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12); background: #fff;'
-      cellspacing='0' cellpadding='0' width='767' align='center'>
-      <tr>
-        <td>
-          <table cellspacing='0' cellpadding='0' style='width: 97%; margin: auto; margin-top: 10px;'>
-            <tr style='text-align: center;'>
-              <td width='209' style='text-align: left;'>
-                <div style='font-size: 26px; font-weight: bold; color: #f03900;'>Flight E-Ticket</div>
-                <div style='font-size: 12px; line-height: 10px;'><i>As on dated
-                    <b>{{test.SelectFlights.DDate}}</b>
-                  </i></div>
-              </td>
-              <td width='201' style='text-align: right;'>
-                <ion-icon name="close-circle-outline" class="close" (click)="hide()"></ion-icon>
-                <div style='font-size: 18px; font-weight: bold; color: #f03900;'>Kafila Hospitality and
-                  Travels Pvt Ltd</div>
-                <!-- <div style='font-size: 12px;'></div>
-                <div style='font-size: 12px;'>9899911993</div> -->
-                <div style='font-size: 12px;'>{{test.PaxInfo.PaxEmail}}</div>
-                <div style='font-size: 12px;'>{{test.PaxInfo.PaxMobile}}</div>
-              </td>
-            </tr>
-            <tr style='border: 0; padding: 5px;' height='10' cellspacing='0' cellpadding='0' bgcolor='transparent'>
-              <td></td>
-            </tr>
-            <tr class='ClassStrip'>
-              <td style='text-align: left; font-size: 14px; padding: 2px; color: #111; background: #efefef;'
-                width='300'>
-                APNR ~ <b>{{test.BookingInfo.APnr}}</b>
-                GPNR ~ <b>{{test.BookingInfo.GPnr}}</b>
-              </td>
-              <td style='text-align: right; font-size: 14px; padding: 2px; color: #111; background: #efefef;'
-                width='300'>
-                Booking Id ~ <b>{{test.BookingInfo.BookingId}}</b></td>
-            </tr>
+  <ion-col size-md="11" size-lg="11" size-xl="11">
+    <div style='background: transparent; width: 100%;' *ngIf="showticket">
+      <div class='c'></div>
+      <br />
+      <table
+        style='padding: 5px 10px 5px; border: #d8d8d8 1px double; box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12); background: #fff;'
+        cellspacing='0' cellpadding='0' width='767' align='center'>
+        <tr>
+          <td>
+            <table cellspacing='0' cellpadding='0' style='width: 97%; margin: auto; margin-top: 10px;'>
+              <tr style='text-align: center;'>
+                <td width='209' style='text-align: left;'>
+                  <div style='font-size: 26px; font-weight: bold; color: #f03900;'>Flight E-Ticket</div>
+                  <div style='font-size: 12px; line-height: 10px;'><i>As on dated
+                      <b>{{test.SelectFlights.DDate}}</b>
+                    </i></div>
+                </td>
+                <td width='201' style='text-align: right;'>
+                  <ion-icon name="close-circle-outline" class="close" (click)="hide()"></ion-icon>
+                  <div style='font-size: 18px; font-weight: bold; color: #f03900;'>Kafila Hospitality and
+                    Travels Pvt Ltd</div>
+                  <!-- <div style='font-size: 12px;'></div> -->
+                  <div style='font-size: 12px;'>Customer Email Id :- {{test.PaxInfo.PaxEmail}}</div>
+                  <div style='font-size: 12px;'>Customer Mobile No :- {{test.PaxInfo.PaxMobile}}</div>
+                </td>
+              </tr>
+              <tr style='border: 0; padding: 5px;' height='10' cellspacing='0' cellpadding='0' bgcolor='transparent'>
+                <td></td>
+              </tr>
+              <tr class='ClassStrip'>
+                <td style='text-align: left; font-size: 14px; padding: 2px; color: #111; background: #efefef;'
+                  width='300'>
+                  APNR ~ <b>{{test.BookingInfo.APnr}}</b>
+                  GPNR ~ <b>{{test.BookingInfo.GPnr}}</b>
+                </td>
+                <td style='text-align: right; font-size: 14px; padding: 2px; color: #111; background: #efefef;'
+                  width='300'>
+                  Booking Id ~ <b>{{test.BookingInfo.BookingId}}</b></td>
+              </tr>
+            </table>
+            <table style='border: 0; padding: 5px;' height='12' cellspacing='0' cellpadding='0' bgcolor='#fff'>
+              <tr>
+                <td></td>
+              </tr>
+            </table>
+
+            <table style='border: 0; padding: 5px;' height='12' cellspacing='0' cellpadding='0' bgcolor='#fff'>
+              <tr>
+                <td></td>
+              </tr>
+            </table>
+
+            <!--flight 1-->
+            <table cellspacing='0' cellpadding='0' style='width: 97%; margin: auto; border-bottom: 1px solid #ccc'
+              *ngFor=" let d of test.SelectFlights">
+              <tr
+                style='padding: 3px 5px; font-size: 15px; background: transparent; color: #555; font-weight: bold; border-bottom: 0px solid #CCC;line-height: 24px;'>
+                <td colspan='4' style='font-size: 14px;'><span style='display: none'>Onward</span>
+                  <div style='float: left; background-position: -242px -441px' class='fltLogo'></div>
+
+                  <span>Flight Summary </span>
+
+                </td>
+
+              </tr>
+
+              <tr class='ClassHead'>
+                <td width='73'>Flight</td>
+                <td width='73'>Date</td>
+                <td width='73'>From / Trml</td>
+                <td width='73'>To / Trml</td>
+                <td width='73'>Departs</td>
+                <td width='73'>Arrives</td>
+
+              </tr>
+              <tr class='ClassHeadContent' *ngFor=" let a of d.Itinerary">
+                <td width='73'>{{a.FCode}}{{a.FNo}}</td>
+                <td width='73'>{{a.DDate}}</td>
+                <td width='93'>{{a.SrcName}} / {{a.DTrmnl}}</td>
+                <td width='93'>{{a.DesName}} / {{a.ATrmnl}}</td>
+                <td width='63'>{{a.DDate}}</td>
+                <td width='63'>{{a.ADate}}</td>
+
+              </tr>
+
+
+            </table>
+
+
+            <!--pax-->
+            <table cellspacing='0' cellpadding='0' style='width: 97%; margin: auto; border-bottom: 1px solid #ccc'
+              *ngFor="let a of test.PaxInfo.Passengers">
+              <tr class='ClassTitle'>
+                <td colspan='5' width='97%'>Traveller's Summary</td>
+              </tr>
+              <tr class='ClassHead'>
+                <td>No</td>
+                <td class='txt-lt pad-lt-5'>Passenger Name</td>
+                <td>Type</td>
+                <td>Gender </td>
+                <td>DOB</td>
+                <td>Ticket</td>
+                <td>Passport No</td>
+                <td>Expiry</td>
+
+              </tr>
+              <tr class='MailTr'
+                style='font-size: 11px; text-align: center; line-height: 19px; font-size: 13px; background: #fff'>
+                <td style='padding: 2px 0; border-right: 1px solid  #ff8a8a;'>1</td>
+                <td
+                  style='font-weight: bold; padding: 2px 0; border-right: 1px solid  #ff8a8a; text-align: left; padding: 2px 0px 2px 5px;'>
+                  {{a.FName}} {{a.LName}}</td>
+                <td style='padding: 2px 0; border-right: 1px solid  #ff8a8a;'>{{a.PaxType}}</td>
+                <td style='padding: 2px 0; border-right: 1px solid  #ff8a8a;'>{{a.Gender}}</td>
+                <td style='padding: 2px 0; border-right: 1px solid  #ff8a8a;'>{{a.Dob}}</td>
+                <td style='padding: 2px 0; border-right: 1px solid  #ff8a8a;'>{{a.Optional.TicketNumber}}</td>
+                <td style='padding: 2px 0; border-right: 1px solid  #ff8a8a;'>{{a.Optional.PassportNo}}</td>
+                <td style='padding: 2px 0; border-right: 1px solid  #ff8a8a;'>{{a.Optional.PassportExpiryDate}}</td>
+
+              </tr>
+
+            </table>
+            <table style='border: 0; padding: 5px;' height='12' cellspacing='0' cellpadding='0' bgcolor='#fff'>
+              <tr>
+                <td></td>
+              </tr>
+            </table>
+
+            <ng-container *ngFor="let b of seat">
+              <table cellspacing='0' cellpadding='0' style='width: 97%; margin: auto; border-bottom: 1px solid #ccc'
+                *ngFor="let a of b">
+                <tr class='ClassTitle'>
+                  <td colspan='5' width='97%'>Seat Summary</td>
+                </tr>
+                <tr class='ClassHead'>
+                  <td>Deck</td>
+                  <td class='txt-lt pad-lt-5'>Compartemnt</td>
+                  <td>Group</td>
+                  <td>SeatCode </td>
+                  <td>SeatRow</td>
+                  <td>Price</td>
+  
+                </tr>
+                <tr class='MailTr'
+                  style='font-size: 11px; text-align: center; line-height: 19px; font-size: 13px; background: #fff'>
+                  <td style='padding: 2px 0; border-right: 1px solid  #ff8a8a;'>{{a.Deck}}</td>
+                  <td
+                    style='font-weight: bold; padding: 2px 0; border-right: 1px solid  #ff8a8a; text-align: left; padding: 2px 0px 2px 5px;'>
+                    {{a.Compartemnt}} </td>
+                  <td style='padding: 2px 0; border-right: 1px solid  #ff8a8a;'>{{a.Group}}</td>
+                  <td style='padding: 2px 0; border-right: 1px solid  #ff8a8a;'>{{a.SeatCode}}</td>
+                  <td style='padding: 2px 0; border-right: 1px solid  #ff8a8a;'>{{a.SeatRow}}</td>
+                  <td style='padding: 2px 0; border-right: 1px solid  #ff8a8a;'>{{a.Price}}</td>
+  
+                </tr>
+  
+              </table>
+            </ng-container>
+  
+  
+  
+              <table cellspacing='0' cellpadding='0' style='width: 97%; margin: auto; border-bottom: 1px solid #ccc'
+                *ngFor="let a of meal.Meal">
+                <tr class='ClassTitle'>
+                  <td colspan='5' width='97%'>Meal Summary</td>
+                </tr>
+                <tr class='ClassHead'>
+                  <td>SsrCode</td>
+                  <td class='txt-lt pad-lt-5'>SsrDesc</td>
+                  <td>Complmnt</td>
+                  <td>SsrFor </td>
+                  <td>OI</td>
+                  <td>Price</td>
+  
+                </tr>
+                <tr class='MailTr'
+                  style='font-size: 11px; text-align: center; line-height: 19px; font-size: 13px; background: #fff'>
+                  <td style='padding: 2px 0; border-right: 1px solid  #ff8a8a;'>{{a.SsrCode}}</td>
+                  <td
+                    style='font-weight: bold; padding: 2px 0; border-right: 1px solid  #ff8a8a; text-align: left; padding: 2px 0px 2px 5px;'>
+                    {{a.SsrDesc}} </td>
+                  <td style='padding: 2px 0; border-right: 1px solid  #ff8a8a;'>{{a.Complmnt}}</td>
+                  <td style='padding: 2px 0; border-right: 1px solid  #ff8a8a;'>{{a.SsrFor}}</td>
+                  <td style='padding: 2px 0; border-right: 1px solid  #ff8a8a;'>{{a.OI}}</td>
+                  <td style='padding: 2px 0; border-right: 1px solid  #ff8a8a;'>{{a.Price}}</td>
+  
+                </tr>
+  
+              </table>
+
+              <table style='border: 0; padding: 5px;' height='12' cellspacing='0' cellpadding='0' bgcolor='#fff'>
+                <tr>
+                  <td></td>
+                </tr>
+              </table>
+              <table cellspacing='0' cellpadding='0' *ngIf="test.PaxInfo.GstData?.IsGst"
+              style='width: 97%; margin: auto; border-bottom: 1px solid #ccc'>
+              <tr class='ClassTitle'>
+                  <td colspan='5' width='97%'>GST DETAILS</td>
+              </tr>
+              <tr class='ClassHead'>
+                  <td width='100'>NAME</td>
+                  <td width='200' class='txt-lt pad-lt-5'>Mobile</td>
+                  <td width='200'>Address</td>
+                  <td width='200'>Email</td>
+                  <td width='200'>Gstn</td>
+                  <td width='200'>Pin</td>
+              </tr>
+              <tr class='ClassHeadContent'>
+                  <td width='100'>{{test.PaxInfo.GstData.GstDetails.Name}}</td>
+                  <td width='200' class='txt-lt pad-lt-5'>{{test.PaxInfo.GstData.GstDetails.Mobile}}</td>
+                  <td width='200'>{{test.PaxInfo.GstData.GstDetails.Address}}</td>
+                  <td width='200'>{{test.PaxInfo.GstData.GstDetails.Email}}</td>
+                  <td width='200'>{{test.PaxInfo.GstData.GstDetails.Gstn}}</td>
+                  <td width='200'>{{test.PaxInfo.GstData.GstDetails.Pin}}</td>
+              </tr>
+  
           </table>
-          <table style='border: 0; padding: 5px;' height='12' cellspacing='0' cellpadding='0' bgcolor='#fff'>
-            <tr>
-              <td></td>
-            </tr>
-          </table>
-
-          <table style='border: 0; padding: 5px;' height='12' cellspacing='0' cellpadding='0' bgcolor='#fff'>
-            <tr>
-              <td></td>
-            </tr>
-          </table>
-
-          <!--flight 1-->
-          <table cellspacing='0' cellpadding='0' style='width: 97%; margin: auto; border-bottom: 1px solid #ccc'
-            *ngFor=" let d of test.SelectFlights">
-            <tr
-              style='padding: 3px 5px; font-size: 15px; background: transparent; color: #555; font-weight: bold; border-bottom: 0px solid #CCC;line-height: 24px;'>
-              <td colspan='4' style='font-size: 14px;'><span style='display: none'>Onward</span>
-                <div style='float: left; background-position: -242px -441px' class='fltLogo'></div>
-
-                <span>Flight Summary </span>
-
-              </td>
-
-            </tr>
-
-            <tr class='ClassHead'>
-              <td width='73'>Flight</td>
-              <td width='73'>Date</td>
-              <td width='73'>From / Trml</td>
-              <td width='73'>To / Trml</td>
-              <td width='73'>Departs</td>
-              <td width='73'>Arrives</td>
-
-            </tr>
-            <tr class='ClassHeadContent' *ngFor=" let a of d.Itinerary">
-              <td width='73'>{{a.FCode}}{{a.FNo}}</td>
-              <td width='73'>{{a.DDate}}</td>
-              <td width='93'>{{a.SrcName}} / {{a.DTrmnl}}</td>
-              <td width='93'>{{a.DesName}} / {{a.ATrmnl}}</td>
-              <td width='63'>{{a.DDate}}</td>
-              <td width='63'>{{a.ADate}}</td>
-
-            </tr>
+  
 
 
-          </table>
+            <table cellspacing='0' cellpadding='0' style='width: 97%; margin: auto; border-bottom: 1px solid #ccc'>
+              <tr class='ClassTitle'>
+                <td colspan='5' width='97%'>FareBreakup
+                  Summary</td>
+              </tr>
+              <tr class='ClassHead'>
+                <!-- <td>No</td> -->
+                <td width='400' class='txt-lt pad-lt-5'>No</td>
+                <td width='400' class='txt-lt pad-lt-5'>Type</td>
+                <td width='400' class='txt-lt pad-lt-5'>amount</td>
 
 
-          <!--pax-->
-          <table cellspacing='0' cellpadding='0' style='width: 97%; margin: auto; border-bottom: 1px solid #ccc'
-            *ngFor="let a of test.PaxInfo.Passengers">
-            <tr class='ClassTitle'>
-              <td colspan='5' width='97%'>Traveller's Summary</td>
-            </tr>
-            <tr class='ClassHead'>
-              <td>No</td>
-              <td class='txt-lt pad-lt-5'>Passenger Name</td>
-              <td>Type</td>
-              <td>Gender </td>
-              <td>DOB</td>
+              </tr>
+              <tr style='background: #fff !important; font-weight: normal' class='ClassHeadContent'
+                *ngFor=" let d of tax; index as i ">
+                <td width='100'>{{i+1}}</td>
+                <td width='200' class='txt-lt pad-lt-5'>{{d.CType}}({{d.CCode}})</td>
 
-            </tr>
-            <tr class='MailTr'
-              style='font-size: 11px; text-align: center; line-height: 19px; font-size: 13px; background: #fff'>
-              <td style='padding: 2px 0; border-right: 1px solid  #ff8a8a;'>1</td>
-              <td
-                style='font-weight: bold; padding: 2px 0; border-right: 1px solid  #ff8a8a; text-align: left; padding: 2px 0px 2px 5px;'>
-                {{a.FName}} {{a.LName}}</td>
-              <td style='padding: 2px 0; border-right: 1px solid  #ff8a8a;'>{{a.PaxType}}</td>
-              <td style='padding: 2px 0; border-right: 1px solid  #ff8a8a;'>{{a.Gender}}</td>
-              <td style='padding: 2px 0; border-right: 1px solid  #ff8a8a;'>{{a.Dob}}</td>
+                <td width='200'>{{d.Amt}}</td>
+              </tr>
 
-            </tr>
-
-          </table>
-          <table style='border: 0; padding: 5px;' height='12' cellspacing='0' cellpadding='0' bgcolor='#fff'>
-            <tr>
-              <td></td>
-            </tr>
-          </table>
+            </table>
 
 
-          <table cellspacing='0' cellpadding='0' style='width: 97%; margin: auto; border-bottom: 1px solid #ccc'>
-            <tr class='ClassTitle'>
-              <td colspan='5' width='97%'>FareBreakup
-                Summary</td>
-            </tr>
-            <tr class='ClassHead'>
-              <!-- <td>No</td> -->
-              <td width='400' class='txt-lt pad-lt-5'>No</td>
-              <td width='400' class='txt-lt pad-lt-5'>Type</td>
-              <td width='400' class='txt-lt pad-lt-5'>amount</td>
+            <table cellspacing='0' cellpadding='0' style='width: 97%; margin: auto; border-bottom: 1px solid #ccc'
+              *ngFor=" let d of test.SelectFlights">
+              <tr class='ClassTitle'>
+                <td colspan='5' width='97%'>Fare Summary</td>
+              </tr>
+              <tr class='ClassHead'>
+                <td>No</td>
+                <td width='400' class='txt-lt pad-lt-5'>Type</td>
 
+                <td>Total (Inr)</td>
+              </tr>
+              <tr style='background: #fff !important; font-weight: normal' class='ClassHeadContent'>
+                <td width='100'>1</td>
+                <td width='200' class='txt-lt pad-lt-5'>Basic</td>
 
-            </tr>
-            <tr style='background: #fff !important; font-weight: normal' class='ClassHeadContent'
-              *ngFor=" let d of tax; index as i ">
-              <td width='100'>{{i+1}}</td>
-              <td width='200' class='txt-lt pad-lt-5'>{{d.CType}}({{d.CCode}})</td>
+                <td width='200'>{{d.Fare.BasicTotal}}</td>
+              </tr>
+              <tr style='background: #fdffe2 !important; font-weight: normal' class='ClassHeadContent'>
+                <td width='100'>2</td>
+                <td width='200' class='txt-lt pad-lt-5'>YQ</td>
 
-              <td width='200'>{{d.Amt}}</td>
-            </tr>
+                <td width='200'>{{d.Fare.YqTotal}}</td>
+              </tr>
+              <tr style='background: #fff !important; font-weight: normal' class='ClassHeadContent'>
+                <td width='100'>3</td>
+                <td width='200' class='txt-lt pad-lt-5'>Taxes </td>
 
-          </table>
+                <td width='200'>{{d.Fare.TaxesTotal}}</td>
+              </tr>
 
+              <tr style='background: #fff !important; font-weight: bold' class='ClassHeadContent'>
+                <td width='100'>5</td>
+                <td width='200' class='txt-lt pad-lt-5'>Grand Total</td>
 
-          <table cellspacing='0' cellpadding='0' style='width: 97%; margin: auto; border-bottom: 1px solid #ccc'
-            *ngFor=" let d of test.SelectFlights">
-            <tr class='ClassTitle'>
-              <td colspan='5' width='97%'>Fare Summary</td>
-            </tr>
-            <tr class='ClassHead'>
-              <td>No</td>
-              <td width='400' class='txt-lt pad-lt-5'>Type</td>
+                <td width='200'>{{d.Fare.GrandTotal}}</td>
+              </tr>
+            </table>
 
-              <td>Total (Inr)</td>
-            </tr>
-            <tr style='background: #fff !important; font-weight: normal' class='ClassHeadContent'>
-              <td width='100'>1</td>
-              <td width='200' class='txt-lt pad-lt-5'>Basic</td>
+            <table style='border: 0; padding: 5px;' height='12' cellspacing='0' cellpadding='0' bgcolor='#fff'>
+              <tr>
+                <td></td>
+              </tr>
+            </table>
+            <table cellspacing='0' cellpadding='0' style='width: 97%; margin: auto; border-bottom: 1px solid #ccc'
+              *ngFor=" let d of test.SelectFlights">
+              <tr class='ClassTitle'>
+                <td colspan='5' width='97%'>Flight Inclusion</td>
+              </tr>
+              <tr class='ClassHead'>
+                <td width='100'>No</td>
+                <td width='200' class='txt-lt pad-lt-5'>Type</td>
+                <td width='200'>Onward</td>
+                <td width='200'>Return</td>
+              </tr>
+              <tr class='ClassHeadContent'>
+                <td width='100'>1</td>
+                <td width='200' class='txt-lt pad-lt-5'>Check-In Baggage</td>
+                <td width='200'>{{d.FareRule.CHKNBG}}</td>
+                <td width='200'>ASAP Airlines</td>
+              </tr>
+              <tr class='ClassHeadContent'>
+                <td width='100'>2</td>
+                <td width='200' class='txt-lt pad-lt-5'>Cabin Baggage</td>
+                <td width='200'>{{d.FareRule.CBNBG}}</td>
+                <td width='200'>ASAP Airlines</td>
+              </tr>
+              <tr class='ClassHeadContent'>
+                <td width='100'>3</td>
+                <td width='200' class='txt-lt pad-lt-5'>Cancelation Fee</td>
+                <td width='200'>{{d.FareRule.CBH}} - {{d.FareRule.CBHA}} <br> {{d.FareRule.CWBH}} -
+                  {{d.FareRule.CWBHA}}</td>
+                <td width='200'>ASAP Airlines</td>
+              </tr>
+              <tr class='ClassHeadContent'>
+                <td width='100'>4</td>
+                <td width='200' class='txt-lt pad-lt-5'>Date Change Fee</td>
+                <td width='200'>{{d.FareRule.RBH}} - {{d.FareRule.RBHA}} <br> {{d.FareRule.RWBH}} -
+                  {{d.FareRule.RWBHA}}</td>
+                <td width='200'>ASAP Airlines</td>
+              </tr>
+            </table>
 
-              <td width='200'>{{d.Fare.BasicTotal}}</td>
-            </tr>
-            <tr style='background: #fdffe2 !important; font-weight: normal' class='ClassHeadContent'>
-              <td width='100'>2</td>
-              <td width='200' class='txt-lt pad-lt-5'>YQ</td>
+            <!--Important Terms-->
+            <table class='imp-note' border='0' cellspacing='0' cellpadding='0' width='767' align='center'>
+              <tr>
+                <u>Important Terms:</u>
 
-              <td width='200'>{{d.Fare.YqTotal}}</td>
-            </tr>
-            <tr style='background: #fff !important; font-weight: normal' class='ClassHeadContent'>
-              <td width='100'>3</td>
-              <td width='200' class='txt-lt pad-lt-5'>Taxes </td>
-
-              <td width='200'>{{d.Fare.TaxesTotal}}</td>
-            </tr>
-
-            <tr style='background: #fff !important; font-weight: bold' class='ClassHeadContent'>
-              <td width='100'>5</td>
-              <td width='200' class='txt-lt pad-lt-5'>Grand Total</td>
-
-              <td width='200'>{{d.Fare.GrandTotal}}</td>
-            </tr>
-          </table>
-
-          <table style='border: 0; padding: 5px;' height='12' cellspacing='0' cellpadding='0' bgcolor='#fff'>
-            <tr>
-              <td></td>
-            </tr>
-          </table>
-          <table cellspacing='0' cellpadding='0' style='width: 97%; margin: auto; border-bottom: 1px solid #ccc'
-            *ngFor=" let d of test.SelectFlights">
-            <tr class='ClassTitle'>
-              <td colspan='5' width='97%'>Flight Inclusion</td>
-            </tr>
-            <tr class='ClassHead'>
-              <td width='100'>No</td>
-              <td width='200' class='txt-lt pad-lt-5'>Type</td>
-              <td width='200'>Onward</td>
-              <td width='200'>Return</td>
-            </tr>
-            <tr class='ClassHeadContent'>
-              <td width='100'>1</td>
-              <td width='200' class='txt-lt pad-lt-5'>Check-In Baggage</td>
-              <td width='200'>{{d.FareRule.CHKNBG}}</td>
-              <td width='200'>ASAP Airlines</td>
-            </tr>
-            <tr class='ClassHeadContent'>
-              <td width='100'>2</td>
-              <td width='200' class='txt-lt pad-lt-5'>Cabin Baggage</td>
-              <td width='200'>{{d.FareRule.CBNBG}}</td>
-              <td width='200'>ASAP Airlines</td>
-            </tr>
-            <tr class='ClassHeadContent'>
-              <td width='100'>3</td>
-              <td width='200' class='txt-lt pad-lt-5'>Cancelation Fee</td>
-              <td width='200'>{{d.FareRule.CBH}} - {{d.FareRule.CBHA}} <br> {{d.FareRule.CWBH}} - {{d.FareRule.CWBHA}}
-              </td>
-              <td width='200'>ASAP Airlines</td>
-            </tr>
-            <tr class='ClassHeadContent'>
-              <td width='100'>4</td>
-              <td width='200' class='txt-lt pad-lt-5'>Date Change Fee</td>
-              <td width='200'>{{d.FareRule.RBH}} - {{d.FareRule.RBHA}} <br> {{d.FareRule.RWBH}} - {{d.FareRule.RWBHA}}
-              </td>
-              <td width='200'>ASAP Airlines</td>
-            </tr>
-          </table>
-
-          <!--Important Terms-->
-          <table class='imp-note' border='0' cellspacing='0' cellpadding='0' width='767' align='center'>
-            <tr>
-              <u>Important Terms:</u>
-
-            </tr>
-            <tr>
-              <td><span class='circle-bullet'></span>&nbsp;Check-in begins 2 hours before scheduled departure
-                and closes
-                45
-                minutes prior to the departure time.</td>
-            </tr>
-            <tr>
-              <td><span class='circle-bullet'></span>&nbsp;Passengers, including children and infant, must
-                present with
-                valid
-                identification while checki-in</td>
-            </tr>
-            <tr>
-              <td><span class='circle-bullet'></span>&nbsp;Use your Airline PNR for all communication about
-                Terminal
-                Queries,
-                Baggage, Booking Status.</td>
-            </tr>
-            <tr>
-              <td><span class='circle-bullet'></span>&nbsp;We are not be responsible for any Flight
-                delay/Cancellation
-                from
-                airline's end.</td>
-            </tr>
-            <tr>
-              <td><span class='circle-bullet'></span>&nbsp;Change permitted more than 2 hours prior to
-                departure with
-                payment of
-                change fee and difference in fare if applicable.</td>
-            </tr>
-            <tr>
-              <td><span class='circle-bullet'></span>&nbsp;In case of cancellations less than 6 hours before
-                departure
-                please
-                cancel with the airlines directly. We are not responsible for any losses if the request is
-                received less
-                than 6
-                hours before departure.</td>
-            </tr>
-          </table>
-      </tr>
-    </table>
-    <table style='border: 0; padding: 5px;' height='10' cellspacing='0' cellpadding='0' bgcolor='#fff'></table>
-    <br />
-    <br />
-  </div>
+              </tr>
+              <tr>
+                <td><span class='circle-bullet'></span>&nbsp;Check-in begins 2 hours before scheduled departure
+                  and closes
+                  45
+                  minutes prior to the departure time.</td>
+              </tr>
+              <tr>
+                <td><span class='circle-bullet'></span>&nbsp;Passengers, including children and infant, must
+                  present with
+                  valid
+                  identification while checki-in</td>
+              </tr>
+              <tr>
+                <td><span class='circle-bullet'></span>&nbsp;Use your Airline PNR for all communication about
+                  Terminal
+                  Queries,
+                  Baggage, Booking Status.</td>
+              </tr>
+              <tr>
+                <td><span class='circle-bullet'></span>&nbsp;We are not be responsible for any Flight
+                  delay/Cancellation
+                  from
+                  airline's end.</td>
+              </tr>
+              <tr>
+                <td><span class='circle-bullet'></span>&nbsp;Change permitted more than 2 hours prior to
+                  departure with
+                  payment of
+                  change fee and difference in fare if applicable.</td>
+              </tr>
+              <tr>
+                <td><span class='circle-bullet'></span>&nbsp;In case of cancellations less than 6 hours before
+                  departure
+                  please
+                  cancel with the airlines directly. We are not responsible for any losses if the request is
+                  received less
+                  than 6
+                  hours before departure.</td>
+              </tr>
+            </table>
+        </tr>
+      </table>
+      <table style='border: 0; padding: 5px;' height='10' cellspacing='0' cellpadding='0' bgcolor='#fff'></table>
+      <br />
+      <br />
+    </div>
+  </ion-col>
+  <ion-col size-md="1" size-lg="1" size-xl="1"> </ion-col>
 </ion-content>

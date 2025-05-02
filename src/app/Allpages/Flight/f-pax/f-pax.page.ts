@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators, FormBuilder, FormArray } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import { PostService } from '../../../Services/Crud_Services/post.service';
+import { ModalController } from '@ionic/angular';
+import { SeatSelectionComponent } from '../seat-selection/seat-selection.component';
 export const MAX_SELECTION = 9;
 @Component({
   selector: 'app-f-pax',
@@ -20,7 +22,8 @@ export class FPaxPage implements OnInit {
   minDate = new Date(new Date().getTime() - 3600 * 1000 * 24 * 30 * 12 * 12).toISOString().split('T')[0];
   INF_MINDATE = new Date(new Date().getTime() - 3600 * 1000 * 24 * 30 * 12 * 2).toISOString().split('T')[0];
   showReview = false
-  constructor(private route: Router, private fb: FormBuilder, private datepipe: DatePipe, private post_service: PostService) { }
+  flightName: string;
+  constructor(private route: Router, private fb: FormBuilder, private datepipe: DatePipe, private post_service: PostService, private modalCtrl: ModalController) { }
   f_chk_res: any
   slt_flt: any
   adt_sub_arr: any = FormArray;
@@ -45,6 +48,7 @@ export class FPaxPage implements OnInit {
   ghj;
   totst:number=0;
   TOTSEAT:any
+  isModal: boolean = false;
   ngOnInit() {
 
 
@@ -165,6 +169,8 @@ export class FPaxPage implements OnInit {
       this.showinfant = true;
     }
 
+    // Set the flight name when data is loaded
+    this.flightName = this.slt_flt?.Itinerary[0]?.FName;
 
     // setTimeout(() => {
     //   localStorage.clear()
@@ -552,5 +558,53 @@ export class FPaxPage implements OnInit {
     } else {
       this.Seatsdata2.maxReached = false;
     }
+  }
+
+
+  showadult=false
+
+  async openSeatSelection() {
+    const modal = await this.modalCtrl.create({
+      component: SeatSelectionComponent,
+      componentProps: {
+        seats: this.seats,
+        rangei: this.rangei,
+        rangej: this.rangej,
+        Seatsdata1: this.Seatsdata1,
+        maxSeats: 1
+      },
+      cssClass: 'seat-selection-modal'
+    });
+
+    modal.onDidDismiss().then((data) => {
+      if (data?.data?.seats) {
+        this.Seatsdata1 = data.data.seats;
+        this.updateSelectedSeats();
+      }
+    });
+
+    return await modal.present();
+  }
+
+  dismiss() {
+    this.modalCtrl.dismiss({
+      seats: this.Seatsdata1
+    });
+  }
+
+  updateSelectedSeats() {
+    if (!this.seats || !this.rangei || !this.Seatsdata1?.attr) {
+      return [];
+    }
+    
+    let selectedSeats = [];
+    for (let i = 0; i < this.rangei.length; i++) {
+      for (let j = 0; j < this.rangej.length; j++) {
+        if (this.Seatsdata1.attr[i]?.[j]?.selected && this.seats[i]?.[j]) {
+          selectedSeats.push(this.seats[i][j].SeatCode);
+        }
+      }
+    }
+    return selectedSeats;
   }
 }

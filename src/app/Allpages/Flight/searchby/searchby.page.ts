@@ -57,6 +57,10 @@ export class SearchbyPage implements OnInit {
 
   toDate
   fromDate
+  meal;
+  mealamount;
+  seat=[];
+  loader: boolean=false;
   // env: string;
   constructor(private pstService: PostService) { }
   searchBy() {
@@ -112,7 +116,9 @@ export class SearchbyPage implements OnInit {
     console.log(obj)
     this.pstService.POST('/FReport', obj).subscribe((res) => {
       console.log(res)
+      
       this.resultArr = res
+      this.isCheckedArr = new Array(this.resultArr[0].PaxName.length).fill(false);
 
     },
       (err) => {
@@ -166,6 +172,26 @@ export class SearchbyPage implements OnInit {
           })
         })
       })
+      this.test.PaxInfo.Passengers.forEach((ele) => {
+        this.seat.push(ele.Seat)
+        // ele.Seat.forEach((ele)=>{
+        //   this.seat.push(ele.Seat)
+        // })
+        // this.seat.Seat?.forEach((a) => {
+        //   this.seatamount += a.Price
+        //   console.log(a.Price)
+        // })
+  
+      })
+  
+      this.test.PaxInfo.Passengers?.forEach((ele) => {
+        this.meal = ele
+        this.meal.Meal?.forEach((a) => {
+          this.mealamount += a.Price
+          // console.log(a.Price)
+        })
+  
+      })
 
 
 
@@ -215,10 +241,10 @@ export class SearchbyPage implements OnInit {
   }
 
   reasonarr = []
-  CancelTicket2(d: any) {
+  CancelTicket2(d: any,i:any) {
     this.ShowCancelModel = true;
     this.ShowModelDATA = false;
-
+    this.index=i;
     var b = `https://fhapip.ksofttechnology.com/api/FReport/ADMIN?P_TYPE=API&R_TYPE=FLIGHT&R_NAME=GetCRList&AID=${this.Agentid}&TOKEN=${this.Token}`
 
     this.pstService.GET(b).subscribe((res) => {
@@ -241,7 +267,8 @@ export class SearchbyPage implements OnInit {
   select() {
     let res = {}
     console.log(this.remarksCommit.value)
-
+    this.showtable = false
+    this.loader = true
     this.reasonarr.forEach((ele) => {
       if (ele.ReasonCode == this.remarksCommit.value.rescode) {
         res = {
@@ -253,8 +280,32 @@ export class SearchbyPage implements OnInit {
         }
       }
     })
-
-    let cance =
+    let cance
+    if(this.isCheckedArr){
+      cance={
+        "P_TYPE": "API",
+        "R_TYPE": "FLIGHT",
+        "R_NAME": "CANCEL",
+        "R_DATA": {
+            "ACTION": "CANCEL_CHARGE",
+            "BOOKING_ID": this.cancelBookingId,
+            "CANCEL_TYPE": "PARTIAL_CANCELLATION",
+            "REASON": res,
+            "SECTORS": [
+                this.sec
+            ],
+            "TRACE_ID": ""
+        },
+        "AID": this.Agentid,
+      "MODULE": "B2B",
+      "IP": "182.73.146.154",
+      "TOKEN": this.Token,
+      "ENV": this.env,
+      "Version": "1.0.0.0.0.0"
+    }
+    }
+    else{
+     cance =
     {
       "P_TYPE": "API",
       "R_TYPE": "FLIGHT",
@@ -272,12 +323,13 @@ export class SearchbyPage implements OnInit {
       "TOKEN": this.Token,
       "ENV": this.env,
       "Version": "1.0.0.0.0.0"
-    }
-    console.log(cance);
-
+    }}
+    
+console.log(cance)
     this.pstService.POST('/FCancel', cance).subscribe((res) => {
       console.log(res)
-      if(res?.Charges?.AirlineCancellationFee){
+      if(res?.Charges){
+        this.loader = false
         alert("Reason Submitted ")
         this.showcharges = true
         this.hideconfirmbutton=true
@@ -295,15 +347,23 @@ export class SearchbyPage implements OnInit {
         this.serviceCharge = res.Charges.ServiceFee;
       }
       else if(res.Status=="Failed"){
+        this
         alert(res.ErrorMessage)
         location.reload();
       }
       else if(res.Status=="PENDING"){
+        this.loader = false
         this.showcharges = true
         this.showtable = false
         this.charge=res
       }
+      else if(res.Result=="unable to cancel."){
+        alert(res.Result)
+        this.loader = false
+        location.reload();
+      }
       else{
+        this.loader = false
         alert("Reason Not Submitted")
         location.reload();
       }
@@ -323,6 +383,7 @@ export class SearchbyPage implements OnInit {
     this.showstatus = false
     this.showtable = false
     this.ShowModelDATA = true;
+    window.location.reload();
     // console.log("Cancel button pressed");
   }
   showstatus = false
@@ -523,4 +584,48 @@ export class SearchbyPage implements OnInit {
     })
 
   }
+  isCheckedArr: boolean[] = [];
+
+  onCheckboxChange(index: number, isChecked: boolean): void {
+    console.log(`Checkbox at index ${index} is now ${isChecked ? 'checked' : 'unchecked'}`);
+    console.log(this.isCheckedArr)
+    this.clickkr()
+  }
+  index
+  clickkr(){
+    
+   
+    let temp=this.resultArr[this.index].OI
+
+    let ddate=temp.split("|");
+    console.log(ddate)
+    let response=ddate[1].split(",")[0]
+   
+  
+    // let depdate=this.bkn_rt.Param.Sector[0].DDate
+    
+    let b=this.resultArr[this.index].Sector.split(",")
+    
+    let paxdeatails=[]
+    this.isCheckedArr.forEach((ele,ind)=>{
+      if(ele==true){
+        paxdeatails.push({
+          "TTL": "MR",
+          "PAX_TYPE": this.resultArr[this.index].PaxName[ind].PaxType,
+          "FNAME": this.resultArr[this.index].PaxName[ind].FName,
+          "LNAME": this.resultArr[this.index].PaxName[ind].LName
+      })
+      }
+    })
+     this.sec= {
+      "Src": b[0],
+      "Des": b[1],
+      "DDate": response,
+      "PAX": paxdeatails
+  }
+
+  console.log(this.sec)
+  }
+
+   sec
 }

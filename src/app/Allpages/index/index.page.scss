@@ -1,12 +1,13 @@
-*{
+* {
   font-family: serif;
 }
 
 
-.back-c{
+.back-c {
   background-color: #e4e4e46b;
 }
-ion-col{
+
+ion-col {
   padding: 0px;
 }
 
@@ -14,175 +15,199 @@ ion-col{
 
 @media only screen and (max-width: 3000px) {
 
-  .justify{
+  .justify {
     text-align: justify;
   }
 
-  .t-spot{
+  .t-spot {
     height: 220px;
-    width:  445px;
+    width: 445px;
   }
-  .padding{
+
+  .padding {
     padding: 0px 20px 20px 20px;
     text-align: justify;
   }
-  
-  ion-button{
+
+  ion-button {
     margin: 0px 0px 20px 20px;
   }
- 
-  ion-item{
-    ion-label{
+
+  ion-item {
+    ion-label {
       margin: 0px;
     }
-   
+
   }
 
-  .c-Header{
-    padding: 20px 0px 0px 0px;
-    font-weight: 500;
-    color: #0c7939;
-    font-size: 24px;
-    font-family: cursive;
+  .c-Header {
+    // padding: 20px 0px 0px 0px;
+    font-weight: bold;
+    // color: #0c7939;
+    color: #213d77;
+    font-size: 2.1rem;
+    // font-family: cursive;
+    font-family: poppins;
   }
-  .c-content{
+
+  .c-content {
     font-size: 16px;
     color: red;
     text-align: center;
   }
-  .cb-content{
+
+  .cb-content {
     font-size: 12px;
     color: black;
-    
+
   }
-  .mss-content{
+
+  .mss-content {
     font-size: 15px;
     color: rgb(255, 81, 0);
     padding: 0px;
     margin: 0px;
   }
-  .mss-content-2{
-    font-size: 13px;
-    color: black;
+
+  .mss-content-2 {
+    font-size: 15px;
+    // color: black;
     padding: 0px;
     margin: 0px;
+    text-align: justify;
   }
-  
-  .name{
-    padding: 70px 0px 0px 0px;
+
+  .name {
+    // padding: 70px 0px 0px 0px;
     font-weight: 800;
     color: #0c7939;
     font-family: serif;
   }
 
 
-  .float{
+  .float {
     float: right;
   }
-  .s-text{
-   
+
+  .s-text {
+
     color: #000;
     padding: 0px 5px;
   }
 }
-@media only screen and (max-width: 1441px)and (min-width: 1025px ) {
-  .s-text{
+
+@media only screen and (max-width: 1441px)and (min-width: 1025px) {
+  .s-text {
     font-size: 14px;
     color: #000;
     padding: 0px 5px;
   }
-  .name{
-    padding: 50px 0px 0px 0px;
+
+  .name {
+    // padding: 50px 0px 0px 0px;
     font-weight: 800;
     color: #0c7939;
     font-family: serif;
     font-size: 22px;
   }
-  .c-content{
+
+  .c-content {
     font-size: 14px;
     color: red;
     text-align: center;
   }
-  .cb-content{
+
+  .cb-content {
     font-size: 12px;
     color: black;
-    
+
   }
-  .c-Header{
+
+  .c-Header {
     padding: 20px 0px 0px 0px;
     font-weight: 500;
     color: #0c7939;
     font-size: 22px;
   }
-  .t-spot{
+
+  .t-spot {
     height: 220px;
-    width:  445px;
+    width: 445px;
   }
- 
-  .float{
+
+  .float {
     float: right;
   }
-  .mss-content{
+
+  .mss-content {
     font-size: 16px;
     color: red;
     padding: 0px;
   }
-  .mss-content-2{
+
+  .mss-content-2 {
     font-size: 14px;
-    color: black;
+    // color: black;
 
   }
 }
 
 
 
-@media only screen and (max-width: 1024px)and (min-width: 768px ) {
-  .none{
+@media only screen and (max-width: 1024px)and (min-width: 768px) {
+  .none {
     display: none;
   }
-  .name{
-    padding: 50px 0px 0px 0px;
+
+  .name {
+    // padding: 50px 0px 0px 0px;
     font-weight: 800;
     color: #0c7939;
     font-family: serif;
     font-size: 18px;
   }
- 
-  .c-Header{
+
+  .c-Header {
     padding: 20px 0px 0px 0px;
     font-weight: 500;
     color: #0c7939;
     font-size: 20px;
   }
-  .c-content{
+
+  .c-content {
     font-size: 12px;
     color: red;
     text-align: center;
   }
-  .cb-content{
-    font-size: 12px;
-    color: black;
-    
-  }
-  .t-spot{
-    height: 220px;
-    width:  445px;
-  }
- 
-  .float{
-    float: right;
-  }
-  .mss-content{
-    font-size: 14px;
-    color: red;
-    padding: 0px;
-  }
-  .mss-content-2{
+
+  .cb-content {
     font-size: 12px;
     color: black;
 
   }
-  .s-text{
+
+  .t-spot {
+    height: 220px;
+    width: 445px;
+  }
+
+  .float {
+    float: right;
+  }
+
+  .mss-content {
+    font-size: 14px;
+    color: red;
+    padding: 0px;
+  }
+
+  .mss-content-2 {
+    font-size: 12px;
+    // color: black;
+
+  }
+
+  .s-text {
     font-size: 9px;
     color: #000;
     padding: 0px 5px;
@@ -192,130 +217,154 @@ ion-col{
 
 
 
-@media only screen and (max-width: 768px)and (min-width: 605px ) {
-  .s-text{
+@media only screen and (max-width: 768px)and (min-width: 605px) {
+  .s-text {
     font-size: 9px;
     color: #000;
     padding: 0px 5px;
   }
-  .name{
-    padding: 50px 0px 0px 0px;
+
+  .name {
+    // padding: 50px 0px 0px 0px;
     font-weight: 800;
     color: #0c7939;
     font-family: serif;
     font-size: 18px;
   }
-  .none1{
+
+  .none1 {
     display: none;
   }
- 
-  .c-Header{
+
+  .c-Header {
     padding: 20px 0px 0px 0px;
     font-weight: 500;
     color: #0c7939;
     font-size: 18px;
   }
-  .c-content{
+
+  .c-content {
     font-size: 12px;
     color: red;
     text-align: center;
   }
-  .cb-content{
+
+  .cb-content {
     font-size: 10px;
     color: black;
-    
+
   }
-  .t-spot{
+
+  .t-spot {
     height: 160px;
-    width:  245px;
+    width: 245px;
   }
-  .INR{
+
+  .INR {
     height: 14px;
-    width:  14px;
+    width: 14px;
   }
-  ion-col{
-    padding: 0px!important;
+
+  ion-col {
+    padding: 0px !important;
     margin: 0px;
   }
-  ion-row{
+
+  ion-row {
     padding: 0px;
   }
-  .float{
+
+  .float {
     float: right;
   }
-  .mss-content{
+
+  .mss-content {
     font-size: 12px;
     color: red;
     padding: 0px;
   }
-  .mss-content-2{
+
+  .mss-content-2 {
     font-size: 10px;
-    color: black;
+    // color: black;
 
   }
 }
-    
 
-@media only screen and (max-width: 605px )and (min-width: 426px ) {
-  .none2{
+
+@media only screen and (max-width: 605px)and (min-width: 426px) {
+  .none2 {
     display: none;
   }
-  .name{
-    padding: 30px 0px 0px 0px;
+
+  .name {
+    // padding: 30px 0px 0px 0px;
     font-weight: 800;
     color: #0c7939;
     font-family: serif;
     font-size: 16px;
   }
-.app{
+
+  .app {
     display: none;
   }
-  .c-Header{
+
+  .c-Header {
     padding: 20px 0px 0px 0px;
     font-weight: 500;
     color: #0c7939;
     font-size: 18px;
   }
-  .c-content{
+
+  .c-content {
     font-size: 10px;
     color: red;
     text-align: center;
   }
-  .cb-content{
+
+  .cb-content {
     font-size: 9px;
     color: black;
-    
+
   }
-  .t-spot{
+
+  .t-spot {
     height: 120px;
-    width:  245px;
+    width: 245px;
   }
-  ion-col{
-    padding: 0px!important;
+
+  ion-col {
+    padding: 0px !important;
     margin: 0px;
   }
-  ion-row{
+
+  ion-row {
     padding: 0px;
   }
-  .float{
+
+  .float {
     float: right;
   }
-  .mss-content{
+
+  .mss-content {
     font-size: 12px;
     color: red;
     padding: 0px;
   }
-  .mss-content-2{
+
+  .mss-content-2 {
     font-size: 10px;
-    color: black;
+    // color: black;
 
   }
-  .s-text{
+
+  .s-text {
     font-size: 9px;
     color: #000;
     padding: 0px 5px;
   }
-  .subs-ipt{
+
+  .subs-ipt {
     outline: 0px;
     padding: 5px 0px;
     // border: 1px  solid #0c7939;
@@ -324,11 +373,12 @@ ion-col{
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
   }
-  .subs-btn{
+
+  .subs-btn {
     color: #fff;
     background-color: #0c7939;
-    padding:11px 0px;
-    width:50%;
+    padding: 11px 0px;
+    width: 50%;
     font-size: 10px;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
@@ -339,86 +389,100 @@ ion-col{
 
 
 
-@media only screen and (max-width: 425px ) and (min-width: 320px){
-  .none3{
+@media only screen and (max-width: 425px) and (min-width: 320px) {
+  .none3 {
     display: none;
   }
-  .name{
-    padding: 30px 0px 0px 0px;
+
+  .name {
+    // padding: 30px 0px 0px 0px;
     font-weight: 800;
     color: #0c7939;
     font-family: serif;
-    font-size:16px;
+    font-size: 16px;
     margin: 0px;
   }
-  .s-text{
+
+  .s-text {
     font-size: 9px;
     color: #000;
     padding: 0px 5px;
   }
-  .app{
+
+  .app {
     display: none;
   }
-  .c-Header{
+
+  .c-Header {
     padding: 20px 0px 0px 0px;
     font-weight: 500;
     color: #0c7939;
     font-size: 18px;
   }
-  .c-content{
+
+  .c-content {
     font-size: 10px;
     color: red;
     text-align: center;
   }
-  .cb-content{
+
+  .cb-content {
     font-size: 9px;
     color: black;
-    
-  }
-  .t-spot{
-    height: 120px;
-    width:  245px;
+
   }
 
-  ion-col{
-    padding: 0px!important;
+  .t-spot {
+    height: 120px;
+    width: 245px;
+  }
+
+  ion-col {
+    padding: 0px !important;
     margin: 0px;
   }
-  .papp{
+
+  .papp {
     display: none;
   }
-  ion-row{
+
+  ion-row {
     padding: 0px;
   }
 
-  .float{
+  .float {
     float: left;
   }
-  .c-Header{
+
+  .c-Header {
     padding: 20px 0px 0px 0px;
   }
-  .c-content{
+
+  .c-content {
     font-size: 10px;
     color: red;
     text-align: center;
   }
-  .cb-content{
+
+  .cb-content {
     font-size: 8px;
     color: black;
-    
+
   }
-  .mss-content{
+
+  .mss-content {
     font-size: 12px;
     color: red;
 
   }
-  .mss-content-2{
+
+  .mss-content-2 {
     font-size: 10px;
-    color: black;
+    // color: black;
 
   }
- 
- 
+
+
 }
 
 
@@ -443,16 +507,20 @@ ion-col{
   font-weight: 500;
   color: #0c7939;
 }
+
 .back-c {
   background-color: #e4e4e46b;
 }
+
 ion-col {
   padding: 0px;
 }
+
 ion-header {
   position: sticky;
   top: 0px;
 }
+
 ion-toolbar {
   --background: var(--ion-item-background, var(--ion-background-color, #ffffff));
   color: #fff;
@@ -465,6 +533,7 @@ ion-toolbar {
   padding: 16px;
   font-size: 16px;
   border: none;
+  font-family: poppins;
 }
 
 .dropdown {
@@ -477,34 +546,41 @@ ion-toolbar {
   position: absolute;
   background-color: #ffffff;
   min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 99999;
   border-radius: 0px 0px 5px 5px;
 }
 
 .dropdown-content a {
   color: black;
-  padding: 12px 16px;
+  padding: 15px;
   text-decoration: none;
   display: block;
   border-bottom: 1px solid rgb(202, 202, 202);
   cursor: pointer;
   font-weight: 600;
   font-size: 16px;
+  font-family: poppins;
 }
 
-.dropdown-content a:hover {background-color: rgb(233, 233, 233);}
+.dropdown-content a:hover {
+  background-color: rgb(233, 233, 233);
+}
 
-.dropdown:hover .dropdown-content {display: block;}
+.dropdown:hover .dropdown-content {
+  display: block;
+}
 
-.dropdown:hover .rotate{
+.dropdown:hover .rotate {
   transform: rotate(180deg);
 }
+
 @media only screen and (max-width: 3000px) {
   .country {
     height: 20px;
     width: 45px;
   }
+
   .justify {
     text-align: justify;
   }
@@ -517,14 +593,14 @@ ion-toolbar {
   ion-button {
     margin: 0px 0px 20px 20px;
   }
- 
+
   ion-item {
     ion-label {
       margin: 0px;
     }
   }
 
- 
+
   .INR {
     height: 14px;
     width: 14px;
@@ -532,15 +608,17 @@ ion-toolbar {
 
 
 
- 
+
   .mail {
     padding: 4px 0px 0px 0px;
   }
+
   .header_logo {
     height: 45px;
     width: 80px;
     cursor: pointer;
   }
+
   .top-Head-upper-r {
     padding: 0px 6px;
     cursor: pointer;
@@ -548,19 +626,23 @@ ion-toolbar {
     font-family: cursive;
     font-size: 12px;
   }
+
   ul {
     display: inline-flex;
     list-style: none;
     margin: 0px 0px 0px 0px;
     padding: 0px;
+
     li {
       padding: 4px 6px 0px 10px;
+
       a {
         // color: #fff;
         text-decoration: none;
       }
     }
   }
+
   .mid-Head-Row {
     padding: 5px 0px 0px 0px;
     background-color: #ffffff;
@@ -568,30 +650,39 @@ ion-toolbar {
   }
 
   .s-app {
-    font-size: 14px;
+    font-size: 16px;
     cursor: pointer;
-    font-family: cursive;
-    font-weight: 600;
+    font-family: poppins;
+    // font-weight: 600;
 
   }
+
   .name {
-    padding: 70px 0px 0px 0px;
+    // padding: 70px 0px 0px 0px;
     font-weight: 800;
     color: #0c7939;
     // font-family: serif;
   }
- 
-  
+
+  .fotterPageBox{
+    color: rgba(255, 255, 255, .5);
+    font-size: 17px;
+    cursor: pointer;
+    // padding: 10px;
+  }
+
 }
+
 @media only screen and (max-width: 1441px) and (min-width: 1025px) {
 
   .name {
-    padding: 50px 0px 0px 0px;
+    // padding: 50px 0px 0px 0px;
     font-weight: 800;
     color: #0c7939;
     font-family: serif;
     font-size: 22px;
   }
+
   .mail {
     padding: 10px 0px 0px 0px;
   }
@@ -600,11 +691,13 @@ ion-toolbar {
     height: 14px;
     width: 14px;
   }
+
   .header_logo {
     height: 45px;
     width: 80px;
     cursor: pointer;
   }
+
   .top-Head-upper-r {
     padding: 0px 6px;
     cursor: pointer;
@@ -612,19 +705,23 @@ ion-toolbar {
     font-family: cursive;
     font-size: 12px;
   }
+
   ul {
     display: inline-flex;
     list-style: none;
     margin: 0px 0px 0px 0px;
     padding: 0px;
+
     li {
       padding: 10px 5px 0px 5px;
+
       a {
         // color: #fff;
         text-decoration: none;
       }
     }
   }
+
   .mid-Head-Row {
     padding: 15px 0px 0px 0px;
     background-color: #fff;
@@ -636,40 +733,44 @@ ion-toolbar {
     cursor: pointer;
     padding: 10px 0px 0px 0px;
   }
- 
+
 }
 
 @media only screen and (max-width: 1024px) and (min-width: 768px) {
   .none {
     display: none;
   }
+
   .name {
-    padding: 50px 0px 0px 0px;
+    // padding: 50px 0px 0px 0px;
     font-weight: 800;
     color: #0c7939;
     font-family: serif;
     font-size: 18px;
   }
+
   .header_logo {
     height: 45px;
     width: 80px;
     cursor: pointer;
   }
- 
+
   .INR {
     height: 14px;
     width: 14px;
   }
+
   .s-app {
     font-size: 12px;
     cursor: pointer;
   }
+
   .mail {
     padding: 0px 0px 0px 0px;
     font-size: 9px;
   }
 
-  
+
 }
 
 @media only screen and (max-width: 768px) and (min-width: 605px) {
@@ -678,22 +779,25 @@ ion-toolbar {
     color: #000;
     padding: 0px 5px;
   }
+
   .name {
-    padding: 50px 0px 0px 0px;
+    // padding: 50px 0px 0px 0px;
     font-weight: 800;
     color: #0c7939;
     font-family: serif;
     font-size: 18px;
   }
+
   .none1 {
     display: none;
   }
+
   .header_logo {
     height: 35px;
     width: 70px;
     cursor: pointer;
   }
- 
+
   .INR {
     height: 14px;
     width: 14px;
@@ -709,14 +813,17 @@ ion-toolbar {
     list-style: none;
     margin: 0px 0px 0px 0px;
     padding: 0px;
+
     li {
       padding: 0px 6px 0px 10px;
+
       a {
         // color: #fff;
         text-decoration: none;
       }
     }
   }
+
   ion-row {
     padding: 0px;
   }
@@ -726,34 +833,38 @@ ion-toolbar {
     cursor: pointer;
   }
 
- 
+
 }
 
 @media only screen and (max-width: 605px) and (min-width: 426px) {
   .none2 {
     display: none;
   }
+
   .name {
-    padding: 30px 0px 0px 0px;
+    // padding: 30px 0px 0px 0px;
     font-weight: 800;
     color: #0c7939;
     font-family: serif;
     font-size: 16px;
   }
+
   .app {
     display: none;
   }
+
   .c-Header {
     padding: 20px 0px 0px 0px;
     font-weight: 500;
     color: #0c7939;
     font-size: 18px;
   }
-  
+
   .INR {
     height: 12px;
     width: 12px;
   }
+
   .header_logo {
     height: 35px;
     width: 70px;
@@ -771,44 +882,52 @@ ion-toolbar {
     float: left;
     padding: 0px 0px 0px 5px;
     margin: 10px 0px 0px 0px;
+
     li {
       padding: 0px 0px 0px 30px;
+
       a {
         // color: #fff;
         text-decoration: none;
       }
     }
   }
+
   ion-row {
     padding: 0px;
   }
+
   .s-app {
     font-size: 10px;
     cursor: pointer;
   }
- 
+
 }
 
 @media only screen and (max-width: 425px) and (min-width: 320px) {
   .none3 {
     display: none;
   }
+
   .name {
-    padding: 30px 0px 0px 0px;
+    // padding: 30px 0px 0px 0px;
     font-weight: 800;
     color: #0c7939;
     font-family: serif;
     font-size: 16px;
     margin: 0px;
   }
+
   .s-text {
     font-size: 9px;
     color: #000;
     padding: 0px 5px;
   }
+
   .app {
     display: none;
   }
+
   .c-Header {
     padding: 20px 0px 0px 0px;
     font-weight: 500;
@@ -820,10 +939,12 @@ ion-toolbar {
     height: 12px;
     width: 12px;
   }
+
   .header_logo {
     height: 35px;
     width: 70px;
   }
+
   .mail {
     display: none;
   }
@@ -838,30 +959,252 @@ ion-toolbar {
     background-color: #fff;
     color: #213d77;
   }
+
   .papp {
     display: none;
   }
+
   ul {
     display: inline-flex;
     list-style: none;
     float: left;
     padding: 0px 0px 0px 5px;
     margin: 10px 0px 0px 0px;
+
     li {
       padding: 0px 0px 0px 10px;
+
       a {
         // color: #fff;
         text-decoration: none;
       }
     }
   }
+
   ion-row {
     padding: 0px;
   }
+
   .s-app {
     font-size: 9px;
     cursor: pointer;
   }
- 
+
 }
 
+// category
+.categoryBox {
+  border-radius: 10px;
+  margin: auto;
+  margin-top: 10px;
+  cursor: pointer;
+  color: black;
+  position: relative;
+  overflow: hidden;
+  /* Ensure that the zoomed image doesn't overflow the box */
+}
+
+.img-Box {
+  position: relative;
+  /* Ensure the pseudo-element is positioned correctly */
+}
+
+.img-Box img {
+  width: 100%;
+  /* Make sure the image takes the full width of the container */
+  transition: transform 1s ease;
+  /* Smooth transition for transform */
+}
+
+.img-Box::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.2);
+  /* Slight blackish tint */
+  transition: background-color 1s ease;
+  /* Smooth transition for background color */
+  z-index: 1;
+  /* Ensure it is above the image */
+}
+
+.img-Box:hover::before {
+  background-color: rgba(0, 0, 0, 0.7);
+  /* Darker blackish tint on hover */
+}
+
+.img-Box:hover img {
+  transform: scale(1.1);
+  /* Zoom in effect on hover */
+}
+
+.img-Text {
+  font-size: 2rem;
+  font-weight: bold;
+  color: white;
+  position: absolute;
+  bottom: 0px;
+  left: 10px;
+  z-index: 2;
+  /* Ensure text is above the overlay */
+}
+
+// holiday 
+.holiday-Box {
+  border-radius: 10px;
+  margin: auto;
+  width: 100%;
+  // height: 350px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  /* Ensures content doesn't overflow */
+  transition: background-color 0.3s ease;
+  /* Smooth background color transition */
+}
+
+.holiday-Box:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+  /* Slightly change background color on hover */
+}
+
+.h-img-Box {
+  position: relative;
+  /* Position relative for the pseudo-element */
+}
+
+.h-img-Box img {
+  width: 100%;
+  height: 250px;
+  /* Make sure the image is responsive */
+  background-size: cover;
+  display: block;
+  /* Remove bottom space */
+}
+
+.h-img-Box::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.1);
+  /* Blackish overlay */
+  transition: opacity 0.7s ease;
+  /* Smooth transition for the overlay */
+  opacity: 1;
+  /* Fully visible by default */
+  z-index: 1;
+  /* Ensure it sits above the image */
+}
+
+.holiday-Box:hover .h-img-Box::before {
+  opacity: 0;
+  /* Fade out the overlay on hover */
+}
+
+.h-Content {
+  position: absolute;
+  bottom: -100%;
+  /* Start hidden below the box */
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.5);
+  /* Lighter dark background */
+  color: white;
+  /* Text color */
+  padding: 20px;
+  /* Add some padding */
+  transition: bottom 0.7s ease;
+  /* Slow down the slide-up animation */
+}
+
+.holiday-Box:hover .h-Content {
+  bottom: 0;
+  /* Slide up to show */
+}
+
+.holiday-Box:hover .h-img-Box {
+  filter: brightness(0.4);
+  /* Lighten the image slightly */
+}
+
+.h-Btn {
+  padding: 5px;
+  border-radius: 5px;
+  margin-top: 5px;
+  font-size: 15px;
+  font-family: poppins;
+  font-weight: 600;
+  background-color: #488AFF;
+}
+
+// services
+.serviceBox {
+  // border: 1px solid red;
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+}
+
+.serviceBox img {
+  margin: auto;
+  width: 80%;
+  height: 100%;
+  border-radius: 10px;
+}
+
+.feature1 {
+  // border: 1px solid green;
+  background-color: rgba(26, 55, 77, 0.05);
+  padding: 20px;
+  border-radius: 20px;
+  text-align: center;
+  margin-top: 10px;
+  // box-shadow: 0 4px 10px 2px rgba(0, 0, 0, 0.175);
+}
+
+.feature1 img {
+  width: 100px;
+  margin: auto;
+}
+
+.miniBox {
+  // border: 1px solid red;
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.miniBox2 {
+  // border: 1px solid red;
+  padding: 5px;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+// footer
+.whiteHeadPhone {
+  display: block !important;
+}
+
+.whiteHeadPhone img {
+  width: 30px !important;
+}
+.footerIcon {
+  -webkit-box-pack: center !important;
+  -ms-flex-pack: center !important;
+  // justify-content: center !important;
+}
+// header
+  // .headerMAin{
+  //   background-image: url(../../../assets/headerBg.png);
+  //   background-position: top center;
+  // }
+//  body{
+//     background-image: url("../../../assets/bg-homepage.23223c27.webp");
+//   }

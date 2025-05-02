@@ -213,7 +213,7 @@ export class FlightSearchPopoverComponent implements OnInit {
               "DDate": this.convertDate(this.flightData.value.D_date)
             }
           ],
-          "PF": this.flightData.value.PFlight,
+          "PF": "",
           "PC": "",
           "Routing": "Direct",
           "Ver": "1.0.0.0",

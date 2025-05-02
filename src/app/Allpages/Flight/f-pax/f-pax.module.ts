@@ -8,7 +8,7 @@ import { FPaxPageRoutingModule } from './f-pax-routing.module';
 
 import { FPaxPage } from './f-pax.page';
 import { FormShareModule } from '../../../form-share/form-share.module';
-
+import { SeatSelectionModule } from '../seat-selection/seat-selection.module';
 @NgModule({
   imports: [
     CommonModule,
@@ -16,6 +16,7 @@ import { FormShareModule } from '../../../form-share/form-share.module';
     IonicModule,
     FPaxPageRoutingModule,
     FormShareModule,
+    SeatSelectionModule,
     ReactiveFormsModule
     
   ],

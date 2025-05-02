@@ -17,7 +17,7 @@ export class LoginPopoverComponent implements OnInit {
   constructor(public popoverController: PopoverController, private post_service: PostService, public rout: Router, public tost_srvice: ToasterService) { }
 
   ngOnInit() { }
-a
+  a
   set_cre = new FormGroup({
     cre1: new FormControl('', [Validators.required]),
     cre2: new FormControl('', [Validators.required]),
@@ -33,7 +33,7 @@ a
       this.evv = "D"
       // console.log(this.evv)
     }
-    else if (this.booleanValue == false){
+    else if (this.booleanValue == false) {
       this.evv = "P"
       // console.log(this.evv)
     }
@@ -49,7 +49,7 @@ a
 
     sessionStorage.setItem("ENV", "P")
     sessionStorage.setItem("url", "https://fhapip.ksofttechnology.com/api")
-    
+
     if (data.cred1 !== "" && data.cred2 !== "" && data.cred3 !== "") {
       let lgn = {
         "TYPE": "AUTH",
@@ -64,35 +64,35 @@ a
           }
         ]
       }
-      
-      this.decode(data.cred2.toUpperCase()+"|"+data.cred3.toUpperCase());
-      this.env=sessionStorage.getItem("ENV")
-           sessionStorage.setItem("Token",this.passwordMd5)
-           sessionStorage.setItem("Agentid",data.cred1)
-           let obj={
-           "P_TYPE": "API",
-           "R_TYPE": "FLIGHT",
-           "R_NAME": "FlightAgencyBalance", 
-           "AID": data.cred1,
-           "MODULE": "B2B",
-           "IP": "182.73.146.154",
-           "TOKEN": this.passwordMd5,
-           "ENV": this.env,
-           "Version": "1.0.0.0.0.0"
-          }
-       
-         this.post_service.POST("/FReport", obj).subscribe(res => {
-           console.log(res)
-           if(res[0]?.Agentid==data.cred1){
-            console.log('hello')
-            this.rout.navigate(['home/fsearch'])
-           }
-           else {
-            this.loader = true
-                 this.tost_srvice.presentToast("Wrong Credentials")
-              }
-           
-         })
+
+      this.decode(data.cred2.toUpperCase() + "|" + data.cred3.toUpperCase());
+      this.env = sessionStorage.getItem("ENV")
+      sessionStorage.setItem("Token", this.passwordMd5)
+      sessionStorage.setItem("Agentid", data.cred1)
+      let obj = {
+        "P_TYPE": "API",
+        "R_TYPE": "FLIGHT",
+        "R_NAME": "FlightAgencyBalance",
+        "AID": data.cred1,
+        "MODULE": "B2B",
+        "IP": "182.73.146.154",
+        "TOKEN": this.passwordMd5,
+        "ENV": this.env,
+        "Version": "1.0.0.0.0.0"
+      }
+
+      this.post_service.POST("/FReport", obj).subscribe(res => {
+        console.log(res)
+        if (res[0]?.Agentid == data.cred1) {
+          console.log('hello')
+          this.rout.navigate(['home/fsearch'])
+        }
+        else {
+          this.loader = true
+          this.tost_srvice.presentToast("Wrong Credentials")
+        }
+
+      })
     }
     else {
 

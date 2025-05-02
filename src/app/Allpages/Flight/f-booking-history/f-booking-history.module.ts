@@ -10,6 +10,7 @@ import { FBookingHistoryPage } from './f-booking-history.page';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { MdbModalModule } from 'mdb-angular-ui-kit/modal';
 @NgModule({
@@ -24,7 +25,8 @@ import { MdbModalModule } from 'mdb-angular-ui-kit/modal';
     NgxPaginationModule,
     MatDialogModule,
     MdbModalModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatProgressSpinnerModule
   ],
   declarations: [FBookingHistoryPage]
 })

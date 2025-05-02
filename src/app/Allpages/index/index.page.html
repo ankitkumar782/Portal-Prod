@@ -5,74 +5,74 @@
     <ion-header>
 
       <ion-row class="top-Head-upper none1 none2 none3">
-      
+
         <ion-col class="mail" size-sm="2" size-md="3" size-lg="5" size-xl="7">
           <!-- <ion-label class="top-Head-upper-r">
             <ion-icon name="mail"></ion-icon> support@kafilatravel.in
           </ion-label> -->
         </ion-col>
-    
+
         <!-- <ion-col class="mail" size-sm="4" size-md="3" size-lg="2" size-xl="4">
            <ion-label class="top-Head-upper-r">
             <ion-icon name="call"></ion-icon> +91 8587855513
           </ion-label> 
         </ion-col> -->
-    
+
         <ion-col size-xs="12" size-sm="10" size-md="9" size-lg="7" size-xl="5">
           <ul class="top-Head-upper-ul">
-            <li class="top-Head-upper-li" >
+            <li class="top-Head-upper-li">
               <ion-label class="top-Head-upper-r" (click)="contactus()">
                 <ion-icon name="call"></ion-icon> 24 * 7 Helpline
               </ion-label>
             </li>
-    
-            <li class="top-Head-upper-li" >
+
+            <li class="top-Head-upper-li">
               <ion-label class="top-Head-upper-r" (click)="addedShortly()">
                 <ion-icon name="logo-google-playstore"></ion-icon> Download App
               </ion-label>
             </li>
-    
-            <li class="top-Head-upper-li" >
-              <ion-label class=" top-Head-upper-r"  (click)="addedShortly()">
+
+            <li class="top-Head-upper-li">
+              <ion-label class=" top-Head-upper-r" (click)="addedShortly()">
                 <ion-icon name="language"></ion-icon> Eng
               </ion-label>
             </li>
-    
-            <li class="top-Head-upper-li " >
+
+            <li class="top-Head-upper-li ">
               <ion-label class=" top-Head-upper-r">
                 <img alt="logo" class="INR" src="../assets/rupee.png"> INR
               </ion-label>
             </li>
-    
+
             <li class="top-Head-upper-li ">
               <ion-label class=" top-Head-upper-r">
                 <img alt="country" src="https://img.icons8.com/color/22/000000/india.png" />
               </ion-label>
             </li>
-            <li class="top-Head-upper-li " >
-              <ion-label class=" top-Head-upper-r"  (click)="contactus()">
+            <li class="top-Head-upper-li ">
+              <ion-label class=" top-Head-upper-r" (click)="contactus()">
                 <ion-icon name="help"></ion-icon> Help
               </ion-label>
             </li>
-    
+
           </ul>
         </ion-col>
       </ion-row>
-    
-    
-      <ion-row class="mid-Head-Row">
+
+
+      <ion-row class="mid-Head-Row" style="padding: 15px; box-shadow: 0 4px 10px 2px rgba(0, 0, 0, 0.175); border-radius: 10px;">
         <ion-col size-xs="1" size-sm="0" size-md="0" size-lg="1" size-xl="1"></ion-col>
-    
+
         <ion-col size-xs="3" size-sm="3" size-md="2" size-lg="3 " size-xl="2">
-          <img alt="logo"  src="../assets/logo.png" (click)="index()" style="cursor: pointer;" width="30%">
+          <img alt="logo" src="../assets/logo.png" (click)="index()" style="cursor: pointer;" width="30%">
           <!-- <h2 style="font-family: cursive;">Kafila Tour And Travels</h2> -->
         </ion-col>
-    
+
         <ion-col size-xs="8" size-sm="9" size-md="10" size-lg="8" size-xl="9">
-    
+
           <ul style="padding-top: 10px">
             <li class="dropdown mail none2">
-    
+
               <ion-label class="dropbtn s-app mail none">
                 India Tours <ion-icon name="caret-down-outline" class="rotate"></ion-icon>
               </ion-label>
@@ -88,11 +88,11 @@
               </div>
             </li>
             <li class="dropdown mail none2">
-    
+
               <ion-label class="dropbtn s-app mail none">
                 International Tours <ion-icon name="caret-down-outline" class="rotate"></ion-icon>
               </ion-label>
-    
+
               <div class="dropdown-content">
                 <a>Thailand</a>
                 <a>Maldives</a>
@@ -106,22 +106,22 @@
                 <a>Greece</a>
                 <a>Egypt</a>
               </div>
-    
-    
-    
-    
+
+
+
+
             </li>
             <li class="dropdown mail none2">
-    
+
               <ion-label class="dropbtn s-app mail none">
                 Destinations <ion-icon name="caret-down-outline" class="rotate"></ion-icon>
               </ion-label>
-    
-    
+
+
               <div class="dropdown-content">
                 <a> Andaman & Nicobar</a>
                 <a>Goa</a>
-    
+
               </div>
             </li>
             <li class="app">
@@ -136,14 +136,15 @@
             </li>
             <li class="papp none2" (click)="payUpload()">
               <ion-label class=" s-app">
-                <ion-icon name="cash"></ion-icon>  Payment Upload
+                <ion-icon name="cash"></ion-icon> Payment Upload
               </ion-label>
             </li>
             <li (click)="register()">
               <ion-label class=" s-app">
-                <ion-icon name="person-add"></ion-icon>  Register As Partner
+                <ion-icon name="person-add"></ion-icon> Register As Partner
               </ion-label>
             </li>
+
             <li>
               <ion-label class=" s-app" (click)="presentPopover($event)">
                 <ion-icon name="person-circle-outline"></ion-icon>
@@ -151,167 +152,388 @@
                 <ion-icon name="caret-down-outline"></ion-icon>
               </ion-label>
             </li>
+            
           </ul>
         </ion-col>
-    
+
       </ion-row>
-    
+
     </ion-header>
     <!-- HEADER END -->
 
 
     <!-- BANNER START -->
     <!-- <app-banner-slider></app-banner-slider> -->
-    <ion-slides [options]="slideOpts" pager="true" style="padding: 0px 0px;">
-      <ion-slide>
-        <img src="https://kafilaholidays.in/upload/1.jpg?ver=1624949818190">
-      </ion-slide>
-      <!-- <ion-slide>
-        <img src="https://kafilaholidays.in/upload/2.jpg?ver=1624949818190">
-      </ion-slide> -->
-      <ion-slide>
-        <img src="https://kafilaholidays.in/upload/3.jpg?ver=1624949818190">
-      </ion-slide>
-      <ion-slide>
-        <img src="https://kafilaholidays.in/upload/4.jpg?ver=1624949818190">
-      </ion-slide>
-      <ion-slide>
-        <img src="https://kafilaholidays.in/upload/5.jpg?ver=1624949818190">
-      </ion-slide>
-      <ion-slide>
-        <img src="https://kafilaholidays.in/upload/6.jpg?ver=1624949818190">
-      </ion-slide>
-      <ion-slide>
-        <img src="https://kafilaholidays.in/upload/7.jpg?ver=1624949818190">
-      </ion-slide>
-      <ion-slide>
-        <img src="https://kafilaholidays.in/upload/3.jpg?ver=1664536190391">
-      </ion-slide>
-    </ion-slides>
-    
+
+
+    <ion-row>
+      <ion-col size-xs="12" size-sm="12" size-md="12" size-lg="12" size-xl="12">
+        <ion-row>
+
+          <ion-col size-xs="2" size-sm="2" size-md="2" size-lg="2" size-xl="2" style="display: flex; justify-content: center; align-items: center;">
+            <img src="../../../assets/bigplain.png" alt="">
+            <!-- <img alt="logo" src="../../../assets/bags.png"> -->
+
+          </ion-col>
+
+          <ion-col size-xs="8" size-sm="8" size-md="8" size-lg="8" size-xl="8"
+          style="margin-bottom: 10px; margin-top: 10px;">
+          <ion-slides [options]="slideOpts" pager="true" style=" height: 100%; border-radius: 20px;">
+            <ion-slide>
+              <img src="https://kafilaholidays.in/upload/1.jpg?ver=1624949818190">
+            </ion-slide>
+            <!-- <ion-slide>
+              <img src="https://kafilaholidays.in/upload/2.jpg?ver=1624949818190">
+            </ion-slide> -->
+            <ion-slide>
+              <img src="https://kafilaholidays.in/upload/3.jpg?ver=1624949818190">
+            </ion-slide>
+            <ion-slide>
+              <img src="https://kafilaholidays.in/upload/4.jpg?ver=1624949818190">
+            </ion-slide>
+            <ion-slide>
+              <img src="https://kafilaholidays.in/upload/5.jpg?ver=1624949818190">
+            </ion-slide>
+            <ion-slide>
+              <img src="https://kafilaholidays.in/upload/6.jpg?ver=1624949818190">
+            </ion-slide>
+            <ion-slide>
+              <img src="https://kafilaholidays.in/upload/7.jpg?ver=1624949818190">
+            </ion-slide>
+            <ion-slide>
+              <img src="https://kafilaholidays.in/upload/3.jpg?ver=1664536190391">
+            </ion-slide>
+          </ion-slides>
+  
+        </ion-col>
+
+        <ion-col size-xs="2" size-sm="2" size-md="2" size-lg="2" size-xl="2" style="display: flex; justify-content: center; align-items: center;">
+          <img src="../../../assets/traveler.jpg" alt="">
+        </ion-col>
+
+
+        </ion-row>
+      </ion-col>
+
+      
+    </ion-row>
+
+
+
     <!-- BANNER END -->
 
-    <!-- INDEX STATIC CONTENT START -->
-    <ion-grid style="padding:50px 0px; " class="back-c">
+    <ion-grid style="display: none;">
       <ion-row>
-        <ion-col size-md="1" size-lg="1" size-xl="1"></ion-col>
-        <ion-col size-xs="12" size-sm="12" size-md="10" size-lg="10" size-xl="10">
-          <ion-row>
+        <ion-col size-md="2" size-lg="2" size-xl="2" n class="categoryBox">
+          <a href="#">
+            <div>
+              <section class="img-Box">
+                <img alt="logo" class="t-spot" src="../assets/delhi.jpg">
+              </section>
 
-            <ion-col style="text-align: center;" size-md="4" size-lg="4" size-xl="4">
-            
-            </ion-col>
+              <div class="">
+                <p class="img-Text">
+                  Delhi
+                </p>
+              </div>
 
-            <ion-col style="text-align: center; border-bottom: 2px solid red;" size-xs="12" size-sm="12" size-md="4"
-              size-lg="4" size-xl="4">
-              <p class="c-Header">Top Destinations </p>
-            </ion-col>
-
-            <ion-col style="text-align: center;" size-md="4" size-lg="4" size-xl="4"></ion-col>
-
-            <ion-col size-xs="6" size-sm="6" size-md="4" size-lg="4" size-xl="4">
-              <ion-card>
-                <ion-card-content class="justify c-content">
-                  <img alt="logo" class="t-spot" src="../assets/delhi.jpg">
-                  <ion-text>New Delhi</ion-text>
-                </ion-card-content>
-
-                <ion-card-content class="padding cb-content">
-                  <ion-text>With so many lovely places to visit and thrilling Things to Do in Delhi, no one can deny the
-                    perks of travelling to this amazing destination in India. You have everything here, from romantic to
-                    family-friendly spots and fun spaces for shopping or eating to socializing hubs. And on top of it,
-                    the endless options of great accommodation in Delhi only add to the charm.</ion-text>
-                </ion-card-content>
-              </ion-card>
-            </ion-col>
-
-            <ion-col size-xs="6" size-sm="6" size-md="4" size-lg="4" size-xl="4">
-              <ion-card>
-                <ion-card-content class="justify c-content">
-                  <img alt="logo" class="t-spot" src="../assets/mumbai.jpg">
-                  <ion-text>Mumbai</ion-text>
-                </ion-card-content>
-
-                <ion-card-content class="padding cb-content">
-                  <ion-text>Mumbai, the city where dreams are made and fulfilled! If you
-                    are planning a trip to Mumbai, make sure you visit the right places to imbibe the dynamic
-                    effervescence of this city. To help you with that, we have listed down some of the amazing places
-                    visit in Mumbai, which will make you fall in love with this extravagant city over and over again.
-                  </ion-text>
-                </ion-card-content>
-              </ion-card>
-            </ion-col>
-
-            <ion-col size-xs="6" size-sm="6" size-md="4" size-lg="4" size-xl="4">
-              <ion-card>
-                <ion-card-content class="justify c-content">
-                  <img alt="logo" class="t-spot" src="../assets/goa.jpg">
-                  <ion-text>Goa</ion-text>
-                </ion-card-content>
-
-                <ion-card-content class="padding cb-content">
-                  <ion-text>This fun capital of India boasts of sun-kissed beaches, palm trees, cashew plantations,
-                    centuries old monuments, the epic Goan fish curry rice, cashew fenny, festivals, flea markets, Santa
-                    Monica Cruise Ride, Spice Farms and what not!!! Dance the night away to the vibrant beats of Trance
-                    in the nightlife of Goa and wake up to the most serene sunrises on the calm beaches.</ion-text>
-                </ion-card-content>
-              </ion-card>
-            </ion-col>
-
-            <ion-col size-xs="6" size-sm="6" size-md="4" size-lg="4" size-xl="4">
-              <ion-card>
-                <ion-card-content class="justify c-content">
-                  <img alt="logo" class="t-spot" src="../assets/amritsar.jpg">
-                  <ion-text>Amritsar</ion-text>
-                </ion-card-content>
-
-                <ion-card-content class="padding cb-content">
-                  <ion-text>A trip to Amritsar is like striking travel gold. The largest urban area in Punjab, Amritsar
-                    is one of India's most deeply spiritual cities. Tens of thousands of devout Sikhs and cultural
-                    tourists alike make a pilgrimage to Amritsar every day for one main reason: A visit to the famous
-                    Golden Temple. </ion-text>
-                </ion-card-content>
-              </ion-card>
-            </ion-col>
-
-            <ion-col size-xs="6" size-sm="6" size-md="4" size-lg="4" size-xl="4">
-              <ion-card>
-                <ion-card-content class="justify c-content">
-                  <img alt="logo" class="t-spot" src="../assets/chennai.jpg">
-                  <ion-text>Chennai</ion-text>
-                </ion-card-content>
-
-                <ion-card-content class="padding cb-content">
-                  <ion-text>Being one of the biggest economic and educational centres of South India, Chennai has become
-                    one of the top places for IT firms and many other businesses to flourish. We’re sure that you too
-                    must have visited this ever-hustling city at least once for official work or are going to in near
-                    future!</ion-text>
-                </ion-card-content>
-              </ion-card>
-            </ion-col>
-
-            <ion-col size-xs="6" size-sm="6" size-md="4" size-lg="4" size-xl="4">
-              <ion-card>
-                <ion-card-content class="justify c-content">
-                  <img alt="logo" class="t-spot" src="../assets/jaipur.jpg">
-                  <ion-text>Jaipur</ion-text>
-                </ion-card-content>
-
-                <ion-card-content class="padding cb-content">
-                  <ion-text>Jaipur, the Pink City of India, is an exotic destination, to say the least. From royal
-                    palaces to peppy pubs and from regal forts to plush restaurants, the city offers a fascinating mix
-                    of attractions for an avid traveler. A quality that’s inherent to Rajasthan’s imperial culture and
-                    heritage.</ion-text>
-                </ion-card-content>
-              </ion-card>
-            </ion-col>
-
-          </ion-row>
+            </div>
+          </a>
+          <ion-col>
+          </ion-col>
         </ion-col>
       </ion-row>
     </ion-grid>
 
-    <ion-grid style="padding:50px 0px;" class="back-c">
+
+
+    <!-- POPULAR DESTINATION -->
+    <ion-grid style="margin-top: 5px;">
+      <ion-row>
+
+        <ion-col size-md="10" size-lg="10" size-xl="10" size-sm="10"
+          style="margin: auto; border-radius: 10px;">
+          <ion-row style="padding: 7px;">
+
+            <ion-col style="text-align: center;" size-xs="12" size-sm="12" size-md="12" size-lg="12" size-xl="12">
+              <p class="c-Header">Popular Destinations </p>
+            </ion-col>
+
+            <ion-col size-md="4" size-sm="12" size-lg="4" size-xl="4" style="padding: 10px;">
+              <div class="categoryBox">
+                <div>
+                  <section class="img-Box">
+                    <img alt="logo" class="t-spot" src="../assets/delhi.jpg">
+                  </section>
+
+                  <div class="">
+                    <p class="img-Text">
+                      Delhi
+                    </p>
+                  </div>
+
+                </div>
+              </div>
+              <ion-col>
+              </ion-col>
+            </ion-col>
+
+            <ion-col size-md="4" size-sm="12" size-lg="4" size-xl="4" style="padding: 10px;">
+              <div class="categoryBox">
+                <div>
+                  <section class="img-Box">
+                    <img alt="logo" class="t-spot" src="../assets/mumbai.jpg">
+                  </section>
+
+                  <div class="">
+                    <p class="img-Text">
+                      Mumbai
+                    </p>
+                  </div>
+
+                </div>
+              </div>
+              <ion-col>
+              </ion-col>
+            </ion-col>
+
+            <ion-col size-md="4" size-sm="12" size-lg="4" size-xl="4" style="padding: 10px;">
+              <div class="categoryBox">
+                <div>
+                  <section class="img-Box">
+                    <img alt="logo" class="t-spot" src="../assets/goa.jpg">
+                  </section>
+
+                  <div class="">
+                    <p class="img-Text">
+                      Goa
+                    </p>
+                  </div>
+
+                </div>
+              </div>
+              <ion-col>
+              </ion-col>
+            </ion-col>
+
+            <ion-col size-md="4" size-sm="12" size-lg="4" size-xl="4" style="padding: 10px;">
+              <div class="categoryBox">
+                <div>
+                  <section class="img-Box">
+                    <img alt="logo" class="t-spot" src="../assets/amritsar.jpg">
+                  </section>
+
+                  <div class="">
+                    <p class="img-Text">
+                      Amritsar
+                    </p>
+                  </div>
+
+                </div>
+              </div>
+              <ion-col>
+              </ion-col>
+            </ion-col>
+
+            <ion-col size-md="4" size-sm="12" size-lg="4" size-xl="4" style="padding: 10px;">
+              <div class="categoryBox">
+                <div>
+                  <section class="img-Box">
+                    <img alt="logo" class="t-spot" src="../assets/chennai.jpg">
+                  </section>
+
+                  <div class="">
+                    <p class="img-Text">
+                      Chennai
+                    </p>
+                  </div>
+
+                </div>
+              </div>
+              <ion-col>
+              </ion-col>
+            </ion-col>
+
+            <ion-col size-md="4" size-sm="12" size-lg="4" size-xl="4" style="padding: 10px;">
+              <div class="categoryBox">
+                <div>
+                  <section class="img-Box">
+                    <img alt="logo" class="t-spot" src="../assets/jaipur.jpg">
+                  </section>
+
+                  <div class="">
+                    <p class="img-Text">
+                      Jaipur
+                    </p>
+                  </div>
+
+                </div>
+              </div>
+              <ion-col>
+              </ion-col>
+            </ion-col>
+
+          </ion-row>
+        </ion-col>
+
+
+      </ion-row>
+    </ion-grid>
+
+
+    <!-- holiday packages -->
+    <ion-grid style="margin-top: 20px;">
+      <ion-row>
+        <ion-col size-md="10" size-lg="10" size-xl="10"
+          style="margin: auto; border-radius: 10px;">
+          <ion-row style="padding: 10px;">
+
+            <ion-col style="text-align: center;" size-xs="12" size-sm="12" size-md="12" size-lg="12" size-xl="12">
+              <p class="c-Header">Holiday Packages </p>
+            </ion-col>
+
+            <ion-col size-md="4" size-lg="4" size-xl="4" style="padding: 10px;">
+              <div class="holiday-Box">
+                <section class="h-img-Box">
+                  <img alt="logo" class="img-responsive" src="../assets/andaman.jpg">
+                </section>
+
+                <div class="h-Content">
+                  <p style="color: tomato; font-weight: bold;">
+                    Hotel Azzure By Spree, Velha Goa
+                  </p>
+                  <small>
+                    The hotel is a stone's throw away from Baga beach surrounded by lush green hills
+                  </small>
+
+
+                  <button href="" class="h-Btn" style="display: block;">
+                    see more
+                  </button>
+                </div>
+
+
+
+              </div>
+              <ion-col>
+              </ion-col>
+            </ion-col>
+
+            <ion-col size-md="4" size-lg="4" size-xl="4" style="padding: 10px;">
+              <div class="holiday-Box">
+                <section class="h-img-Box">
+                  <img alt="logo" class="img-responsive" src="../assets/acaia.jfif">
+                </section>
+
+                <div class="h-Content">
+                  <p style="color: tomato; font-weight: bold;">
+                    Acacia Hotel & Spa Goa
+                  </p>
+                  <small>
+                    Our hotels and resorts offer unsurpassed levels of hospitality and comfort comfort
+                  </small>
+
+
+                  <button href="" class="h-Btn" style="display: block;">
+                    see more
+                  </button>
+                </div>
+
+
+
+              </div>
+              <ion-col>
+              </ion-col>
+            </ion-col>
+
+            <ion-col size-md="4" size-lg="4" size-xl="4" style="padding: 10px;">
+              <div class="holiday-Box">
+                <section class="h-img-Box">
+                  <img alt="logo" class="img-responsive" src="../assets/andaman.jpg">
+                </section>
+
+                <div class="h-Content">
+                  <p style="color: tomato; font-weight: bold;">
+                    Hotel Azzure By Spree, Velha Goa
+                  </p>
+                  <small>
+                    The Andaman Islands are known for their palm-lined, white-sand beaches and tropical
+                    rainforests
+                  </small>
+
+
+                  <button href="" class="h-Btn" style="display: block;">
+                    see more
+                  </button>
+                </div>
+
+              </div>
+              <ion-col>
+              </ion-col>
+            </ion-col>
+
+            <ion-col size-md="4" size-lg="4" size-xl="4" style="padding: 10px;">
+              <div class="holiday-Box">
+                <section class="h-img-Box">
+                  <img alt="logo" class="img-responsive" src="../assets/acaia.jfif">
+                </section>
+
+                <div class="h-Content">
+                  <p style="color: tomato; font-weight: bold;">
+                    Acacia Hotel & Spa Goa
+                  </p>
+                  <small>
+                    Our hotels and resorts offer unsurpassed levels of hospitality and comfort
+                  </small>
+
+
+                  <button href="" class="h-Btn" style="display: block;">
+                    see more
+                  </button>
+                </div>
+
+
+
+              </div>
+              <ion-col>
+              </ion-col>
+            </ion-col>
+
+            <ion-col size-md="4" size-lg="4" size-xl="4" style="padding: 10px;">
+              <div class="holiday-Box">
+                <section class="h-img-Box">
+                  <img alt="logo" class="img-responsive" src="../assets/acaia.jfif">
+                </section>
+
+                <div class="h-Content">
+                  <p style="color: tomato; font-weight: bold;">
+                    Acacia Hotel & Spa Goa
+                  </p>
+                  <small>
+                    Our hotels and resorts offer unsurpassed levels of hospitality and comfort
+                  </small>
+
+
+                  <button href="" class="h-Btn" style="display: block;">
+                    see more
+                  </button>
+                </div>
+
+              </div>
+              <ion-col>
+              </ion-col>
+            </ion-col>
+            
+          </ion-row>
+
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+
+
+    <!-- holiday packages NONE-->
+    <ion-grid style="padding:50px 0px; display: none;" class="back-c">
       <ion-row>
         <ion-col size-md="1" size-lg="1" size-xl="1"></ion-col>
         <ion-col size-xs="12" size-sm="12" size-md="10" size-lg="10" size-xl="10">
@@ -403,7 +625,10 @@
       </ion-row>
     </ion-grid>
 
-    <ion-grid style="padding:50px 0px;" class="back-c">
+
+
+    <!-- Our Services NONE -->
+    <ion-grid style="padding:50px 0px; display: none;" class="back-c">
       <ion-row>
         <ion-col size-xs="1" size-sm="1" size-md="1" size-lg="1" size-xl="1">
         </ion-col>
@@ -520,7 +745,81 @@
       </ion-row>
     </ion-grid>
 
-    <ion-grid style="padding:50px 0px;" class="back-c">
+    <!-- **************************OUR SERVICES**************************** -->
+    <ion-grid style="margin-top: 20px;">
+      <ion-row>
+        <ion-col size-xs="11" size-sm="11" size-md="11" size-lg="11" size-xl="11"
+          style="margin: auto; border-radius: 10px; padding: 10px;">
+          <ion-row>
+
+            <ion-col style="text-align: center;" size-xs="12" size-sm="12" size-md="12" size-lg="12" size-xl="12">
+              <p class="c-Header">Our Services </p>
+            </ion-col>
+
+            <!-- left side img -->
+            <ion-col size-xs="4" size-sm="4" size-md="4" size-lg="4" size-xl="4" class="serviceBox">
+              <img alt="logo" src="../../../assets/heroServices.jpg">
+              <!-- <img alt="logo" src="../../../assets/bags.png"> -->
+            </ion-col>
+
+            <!-- right side content -->
+            <ion-col size-xs="4" size-sm="4" size-md="4" size-lg="4" size-xl="4">
+              <ion-row class="miniBox">
+
+                <ion-col size-xs="10" size-sm="10" size-md="10" size-lg="10" size-xl="10" class="feature1">
+                  <img src="../../../assets/plain.png" alt="">
+                  <h5>Flight Ticketing</h5>
+                  <small>
+                    The popular airlines include Vistara , GoAir , Air India , SpiceJet , AirAsia and IndiGo .
+                  </small>
+                </ion-col>
+
+                <ion-col size-xs="10" size-sm="10" size-md="10" size-lg="10" size-xl="10" class="feature1">
+                  <img src="../../../assets/trainHero.png" alt="">
+                  <h5>Train Ticketing</h5>
+                  <small>
+                    The popular airlines include Vistara , GoAir , Air India , SpiceJet , AirAsia and IndiGo .
+                  </small>
+                </ion-col>
+
+              </ion-row>
+
+            </ion-col>
+
+            <ion-col size-xs="4" size-sm="4" size-md="4" size-lg="4" size-xl="4">
+
+              <ion-row class="miniBox2">
+
+                <ion-col size-xs="10" size-sm="10" size-md="10" size-lg="10" size-xl="10" class="feature1">
+                  <img src="../../../assets/hotelHero.png" alt="">
+                  <h5>Hotels Booking</h5>
+                  <small>
+                    The popular airlines include Vistara , GoAir , Air India , SpiceJet , AirAsia and IndiGo .
+                  </small>
+                </ion-col>
+
+                <ion-col size-xs="10" size-sm="10" size-md="10" size-lg="10" size-xl="10" class="feature1">
+                  <img src="../../../assets/apiHero.png" alt="">
+                  <h5>API</h5>
+                  <small>
+                    The popular airlines include Vistara , GoAir , Air India , SpiceJet , AirAsia and IndiGo .
+                  </small>
+                </ion-col>
+
+              </ion-row>
+
+            </ion-col>
+
+          </ion-row>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <!-- ****************************************************** -->
+
+
+
+    <!-- Most Searchable Sector  -->
+    <ion-grid style="padding:50px 0px; display: none;" class="back-c">
       <ion-row>
         <ion-col size-xs="1" size-sm="1" size-md="1" size-lg="1" size-xl="1">
 
@@ -737,40 +1036,38 @@
     </ion-fab> -->
     <!-- INDEX STATIC CONTENT END -->
 
-    <!-- FOOTER START -->
-    <!-- <app-footer></app-footer> -->
-
-    <ion-grid>
+    <!-- FOOTER OLD -->
+    <ion-grid style="display: none;">
       <ion-row class="foot">
         <ion-col size-xs="1" size-sm="1" size-md="1" size-lg="1" size-xl="1"></ion-col>
         <ion-col size-xs="11" size-sm="11" size-md="10" size-lg="10" size-xl="10">
           <ion-row>
             <ion-col size-sm="12" size-xs="12" size-md="3" size-lg="3" size-xl="3">
-    
-    
+
+
               <h1 class="name">
                 Kafila Tours & Travels
               </h1>
-    
+
               <ion-label class="mss-content-2">
                 <ion-icon name="locate"></ion-icon>
                 10185-C, Arya Samaj Road, Karol Bagh, New Delhi - 110005.
               </ion-label>
-    
-    
-    
+
+
+
             </ion-col>
-    
-    
-    
+
+
+
             <ion-col size-sm="6" size-xs="6" size-md="3" size-lg="3" size-xl="3">
-    
+
               <ion-row class="ion-padding">
                 <ion-col class="main-footer-head" size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12">
                   Support & Terms
                 </ion-col>
                 <ion-col class="main-footer-min " size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12">
-                  <ion-label  class="footer-hover" (click)="contactus()">
+                  <ion-label class="footer-hover" (click)="contactus()">
                     <ion-icon name="call"></ion-icon> Contact Us
                   </ion-label>
                 </ion-col>
@@ -785,7 +1082,7 @@
                   </ion-label>
                 </ion-col>
                 <ion-col class="main-footer-min" size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12">
-                  <ion-label  class="footer-hover" (click)="addedShortly()">
+                  <ion-label class="footer-hover" (click)="addedShortly()">
                     <ion-icon name="information-circle"></ion-icon> Privacy & Policy
                   </ion-label>
                 </ion-col>
@@ -799,13 +1096,13 @@
                     <ion-icon name="person-add"></ion-icon> Register
                   </ion-label>
                 </ion-col>
-    
+
               </ion-row>
-    
+
             </ion-col>
-    
+
             <ion-col size-sm="6" size-xs="6" size-md="3" size-lg="3" size-xl="3">
-    
+
               <ion-row class="ion-padding">
                 <ion-col class="main-footer-head" size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12">
                   Contact Us
@@ -826,14 +1123,15 @@
                   </ion-label>
                 </ion-col>
               </ion-row>
-    
+
             </ion-col>
-    
-    
-    
+
+
+
             <ion-col size-sm="12" size-xs="12" size-md="3" size-lg="3" size-xl="3">
               <ion-row class="ion-padding">
-                <ion-col class="main-footer-min none2 none3" size-sm="6" size-xs="6" size-md="12" size-lg="12" size-xl="12">
+                <ion-col class="main-footer-min none2 none3" size-sm="6" size-xs="6" size-md="12" size-lg="12"
+                  size-xl="12">
                   <input class="subs-ipt"><button class="subs-btn">Subscribe</button>
                 </ion-col>
                 <ion-col class="main-footer-min" size-sm="6" size-xs="6" size-md="12" size-lg="12" size-xl="12">
@@ -845,12 +1143,12 @@
                 </ion-col>
               </ion-row>
             </ion-col>
-    
-    
+
+
           </ion-row>
         </ion-col>
       </ion-row>
-    
+
       <ion-row
         style="padding-top: 14px; background-color: rgba(179, 179, 179, 0.672); text-align: center; color: rgb(43, 43, 43);">
         <ion-col class="ion-padding" size-sm="6" size-xs="12" size-md="12" size-lg="12" size-xl="12">
@@ -858,7 +1156,391 @@
         </ion-col>
       </ion-row>
     </ion-grid>
+
+    <!-- FOOTER START -->
+    <!-- <app-footer></app-footer> -->
+
+    <ion-grid style="background-color: #05073C; margin-top: 20px; padding: 10px;">
+      <ion-row class="foot">
+        <ion-col size-xs="11" size-sm="11" size-md="11" size-lg="11" size-xl="11" style="margin: auto;">
+          <ion-row>
+            <ion-col size-xs="6" size-sm="6" size-md="6" size-lg="6" size-xl="6" style="padding: 20px;">
+              <ion-col style="display: flex;">
+                <img src="https://demoapus1.com/tourio/wp-content/uploads/2023/08/headphone-white.svg"
+                  style="width: 40px;" alt="">
+                <h6 style="color: white; display: inline; margin-left: 5px;">
+                  Speak to our expert at
+                  <a href="tel:8587855513" style="color: white; text-decoration: none;">85878 55513</a>
+                </h6>
+              </ion-col>
+            </ion-col>
+
+
+            <ion-col size-xs="6" size-sm="6" size-md="6" size-lg="6" size-xl="6" style="padding: 20px;">
+
+              <div style="display: flex; justify-content: end; align-items: center;">
+                <img src="https://demoapus1.com/tourio/wp-content/uploads/2023/08/headphone-white.svg" class="img-fluid"
+                  style="width: 40px; visibility: hidden;" alt="">
+                <h6 style="color: white; margin-right: 5px;">
+                  Follow Us:
+                </h6>
+
+                <div>
+                  <a href="https://api.whatsapp.com/send/?phone= 8587855513&amp;text=Hi%2C%0A%0AI+visited+Pathik+your+own+Trip+at+https%3A%2F%2Fwww.pathikyourowntrip.com%2F+.+I+am+interested+in+this+offer.+Do+contact+me+to+discuss+it+further.%0A%0AThanks%2C&amp;type=phone_number&amp;app_absent=0"
+                    target="_blank" style="color: white; text-decoration: none; margin-left: 5px; font-size: 20px;">
+                    <ion-icon name="logo-whatsapp"></ion-icon>
+                  </a>
+                  <a href="#" target="_blank"
+                    style="color: white; text-decoration: none; margin-left: 5px; font-size: 20px;">
+                    <ion-icon name="logo-facebook"></ion-icon>
+                  </a>
+                  <a href="#" target="_blank"
+                    style="color: white; text-decoration: none; margin-left: 5px; font-size: 20px;">
+                    <ion-icon name="logo-instagram"></ion-icon>
+                  </a>
+                  <a href="#" target="_blank"
+                    style="color: white; text-decoration: none; margin-left: 5px; font-size: 20px;">
+                    <ion-icon name="logo-youtube"></ion-icon>
+                  </a>
+                </div>
+              </div>
+
+            </ion-col>
+
+
+            <ion-col size-xs="12" size-sm="12" size-md="12" size-lg="12" size-xl="12"
+              style="border-top: 1px solid white; padding: 20px;">
+              <ion-row>
+                <ion-col size-sm="12" size-xs="12" size-md="5" size-lg="5" size-xl="5" style=" padding: 10px;">
+
+                  <h1 class="name" style="color: white;">
+                    Kafila Tours & Travels
+                  </h1>
+
+                  <ion-label class="mss-content-2" style="color: rgba(255, 255, 255, .5); text-align: justify;">
+                    <ion-icon name="locate"></ion-icon>
+                    KAFILA TOUR & TRAVELS, established in 2005, is based in Delhi with branches in Mumbai, Lucknow,
+                    Noida,
+                    and Patna. We provide travel services to B2B agents and corporate clients, serving 5,000 travel
+                    agents
+                    and 40 franchises across India, with an annual turnover of 500 Cr.
+                  </ion-label>
+
+
+
+                </ion-col>
+
+
+
+                <ion-col size-sm="6" size-xs="6" size-md="3" size-lg="3" size-xl="3" class="fotterPageBox">
+
+                  <ion-row style="padding: 10px;">
+
+                    <!-- <ion-col class="main-footer-head" size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12">
+                      Support & Terms
+                    </ion-col> -->
+
+                    <h1 class="name" style="color: white;">
+                      Pages
+                    </h1>
+
+                    <ion-col class="main-footer-min" size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12">
+                      <ion-label class="footer-hover" (click)="contactus()">
+                        <!-- <ion-icon name="call"></ion-icon> -->
+                        Contact Us
+                      </ion-label>
+                    </ion-col>
+                    <ion-col class="main-footer-min" size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12">
+                      <ion-label class="footer-hover" (click)="aboutus()">
+                        <!-- <ion-icon name="information-circle"></ion-icon> -->
+                        About us
+                      </ion-label>
+                    </ion-col>
+                    <ion-col class="main-footer-min" size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12">
+                      <ion-label class="footer-hover" (click)="addedShortly()">
+                        <!-- <ion-icon name="information-circle"></ion-icon> -->
+                        Terms & Conditions
+                      </ion-label>
+                    </ion-col>
+                    <ion-col class="main-footer-min" size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12">
+                      <ion-label class="footer-hover" (click)="addedShortly()">
+                        <!-- <ion-icon name="information-circle"></ion-icon> -->
+                        Privacy & Policy
+                      </ion-label>
+                    </ion-col>
+                    <ion-col class="main-footer-min" size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12">
+                      <ion-label class="footer-hover" (click)="addedShortly()">
+                        <!-- <ion-icon name="information-circle"></ion-icon> -->
+                        Rules & Restrictions
+                      </ion-label>
+                    </ion-col>
+                    <ion-col class="main-footer-min" size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12">
+                      <ion-label class="footer-hover">
+                        <!-- <ion-icon name="person-add"></ion-icon> -->
+                        Register
+                      </ion-label>
+                    </ion-col>
+
+                  </ion-row>
+
+                </ion-col>
+
+                <ion-col size-sm="6" size-xs="6" size-md="3" size-lg="3" size-xl="3" class="fotterPageBox">
+
+                  <ion-row style="padding: 10px;">
+                    <!-- <ion-col class="main-footer-head" size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12">
+                      Connect With Us
+                    </ion-col> -->
+
+                    <h1 class="name" style="color: white;">
+                      Connect With Us
+                    </h1>
+
+                    <ion-col class="main-footer-min" size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12">
+                      <ion-label class="footer-hover">
+                        <!-- <ion-icon name="call"></ion-icon> -->
+                        +91 8587855513
+                      </ion-label>
+                    </ion-col>
+                    <ion-col class="main-footer-min" size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12">
+                      <ion-label class="footer-hover">
+                        <!-- <ion-icon name="mail"></ion-icon> -->
+                        support@kafilatravel.in
+                      </ion-label>
+                    </ion-col>
+                    <ion-col class="main-footer-min" size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12">
+                      <ion-label class="footer-hover">
+                        <!-- <ion-icon name="mail"></ion-icon> -->
+                        feedback@kafilatravel.in
+                      </ion-label>
+                    </ion-col>
+
+                    <ion-col class="main-footer-min" size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12">
+                      <ion-label class="footer-hover">
+                        <!-- <ion-icon name="mail"></ion-icon> -->
+                        10185-C, Arya Samaj Road,Karol Bagh, New Delhi, 110005
+                      </ion-label>
+                    </ion-col>
+
+                  </ion-row>
+
+                </ion-col>
+              </ion-row>
+            </ion-col>
+
+
+
+
+            <ion-col size-sm="12" size-xs="12" size-md="3" size-lg="3" size-xl="3" style="display: none;">
+              <ion-row class="ion-padding">
+                <ion-col class="main-footer-min none2 none3" size-sm="6" size-xs="6" size-md="12" size-lg="12"
+                  size-xl="12">
+                  <input class="subs-ipt"><button class="subs-btn">Subscribe</button>
+                </ion-col>
+                <ion-col class="main-footer-min" size-sm="6" size-xs="6" size-md="12" size-lg="12" size-xl="12">
+                  Folllow Us On :
+                  <ion-icon class="logo" name="logo-facebook"></ion-icon>
+                  <ion-icon class="logo" name="logo-twitter"></ion-icon>
+                  <ion-icon class="logo" name="logo-youtube"></ion-icon>
+                  <ion-icon class="logo" name="logo-linkedin"></ion-icon>
+                </ion-col>
+              </ion-row>
+
+            </ion-col>
+
+            <ion-col size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12"
+              style="border-top: 1px solid white; padding: 10px;">
+              <ion-row>
+                <ion-col size-sm="6" size-xs="6" size-md="6" size-lg="6" size-xl="6"
+                  style="color: white; padding: 15px;">
+                  <ion-label class="bottom-footer">Copyright © 2022 www.kafilatravel.in. All rights reserved</ion-label>
+                </ion-col>
+
+                <ion-col size-sm="6" size-xs="6" size-md="6" size-lg="6" size-xl="6" style="padding: 15px;">
+                  <!-- <ion-label class="bottom-footer">Copyright © 2022 www.kafilatravel.in. All rights reserved</ion-label> -->
+                  <img src="../../../assets/footer1-1.png" alt="" style="float: right;">
+                </ion-col>
+              </ion-row>
+            </ion-col>
+
+
+
+          </ion-row>
+        </ion-col>
+
+      </ion-row>
+
+
+    </ion-grid>
     <!-- FOOTER END -->
 
   </ion-content>
 </ion-app>
+
+<!-- 
+
+<section class="mt-5">
+  <div class="p-md-5 p-4" style="background: #05073c;">
+    <div class="row g-0 m-0 justify-content-between">
+      <div class="col-12 row border-bottom pb-5 mb-5">
+        <div class="col-md-6 mb-4 mb-md-0 text-center text-md-start">
+          <div class="d-flex align-items-center px-4 px-md-0 whiteHeadPhone">
+            <img src="https://demoapus1.com/tourio/wp-content/uploads/2023/08/headphone-white.svg" class="img-fluid" style="width: 40px;" alt="">
+            <h6 class="text-white mb-0 ms-md-4">
+              Speak to our expert at <br class="d-block d-md-none">
+              <a href="tel:7240164702" class="text-decoration-none text-white">72401 64702</a>
+            </h6>
+          </div>
+        </div>
+        <div class="col-md-6 text-center text-md-end">
+          <div class="d-flex align-items-center justify-content-end footerIcon">
+            <img src="https://demoapus1.com/tourio/wp-content/uploads/2023/08/headphone-white.svg" class="img-fluid" style="width: 40px; visibility: hidden;" alt="">
+            <h6 class="text-white mb-0 ms-md-4">
+              Follow Us:
+            </h6>
+
+            <div class="ps-md-4 ps-2">
+              <a href="https://api.whatsapp.com/send/?phone=7009371052&amp;text=Hi%2C%0A%0AI+visited+Pathik+your+own+Trip+at+https%3A%2F%2Fwww.pathikyourowntrip.com%2F+.+I+am+interested+in+this+offer.+Do+contact+me+to+discuss+it+further.%0A%0AThanks%2C&amp;type=phone_number&amp;app_absent=0" target="_blank" class="text-white text-decoration-none mx-2">
+                <i class="fa-brands fa-whatsapp"></i>
+              </a>
+              <a href="https://www.facebook.com/Tripforevertrips?mibextid=LQQJ4d" target="_blank" class="text-white text-decoration-none mx-2">
+                <i class="fa-brands fa-facebook-f"></i>
+              </a>
+              <a href="https://www.instagram.com/pathiktrips/?igsh=Y2thdjE2YmRhMjJ3&amp;utm_source=qr" target="_blank" class="text-white text-decoration-none mx-2">
+                <i class="fa-brands fa-instagram"></i>
+              </a>
+              <a href="https://www.youtube.com/@pathiktrips3331" target="_blank" class="text-white text-decoration-none mx-2">
+                <i class="fa-brands fa-youtube"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 text-center text-md-start mb-4 mb-md-0">
+        <h5 class="text-white mb-4">
+          Pathik Your Own Trip
+        </h5>
+        <div>
+          <p class="text-white-50" style="text-align: justify;">
+            <small>
+              Passion for crafting unique journeys drives us at Pathik Your Own Trip. With expertise and care, we curate unforgettable adventures, ensuring every moment is a cherished experience.
+            </small>
+          </p>
+        </div>
+      </div>
+      <div class="col-md-3 ps-md-5 mb-5 mb-md-0">
+        <div class="row">
+          <div class="col-6 ps-4 ps-md-0">
+            <h5 class="text-white mb-4">
+              Pages
+            </h5>
+            <div>
+              <a href="/" class="mb-2 text-decoration-none">
+                <small class="text-white-50">
+                  Home
+                </small>
+              </a> <br>
+              <a href="/international" class="mb-2 text-decoration-none">
+                <small class="text-white-50">
+                  International
+                </small>
+              </a> <br>
+              <a href="/domestic" class="mb-2 text-decoration-none">
+                <small class="text-white-50">
+                  Domestic
+                </small>
+              </a> <br>
+              <a href="/blogs" class="mb-2 text-decoration-none">
+                <small class="text-white-50">
+                  Blogs
+                </small>
+              </a> <br>
+              <a href="/about" class="mb-2 text-decoration-none">
+                <small class="text-white-50">
+                  About
+                </small>
+              </a> <br>
+              <a href="/term&amp;condition" class="mb-2 text-decoration-none">
+                <small class="text-white-50">
+                  Term&amp;Conditions
+                </small>
+              </a> <br>
+            </div>
+          </div>
+          <div class="col-6 ps-4 ps-md-0">
+            <h5 class="text-white mb-4">
+              Destinations
+            </h5>
+            <div>
+              <a href="/Domestic/Backpacking" class="mb-2 text-decoration-none">
+                <small class="text-white-50">
+                  Backpacking
+                </small>
+              </a> <br>
+              <a href="/Domestic/McLeodganj" class="mb-2 text-decoration-none">
+                <small class="text-white-50">
+                  McLeodganj
+                </small>
+              </a> <br>
+              <a href="/Domestic/Manali" class="mb-2 text-decoration-none">
+                <small class="text-white-50">
+                  Manali
+                </small>
+              </a> <br>
+              <a href="/Domestic/Weekend" class="mb-2 text-decoration-none">
+                <small class="text-white-50">
+                  Weekend
+                </small>
+              </a> <br>
+              <a href="/Domestic/Leh" class="mb-2 text-decoration-none">
+                <small class="text-white-50">
+                  Leh Ladakh
+                </small>
+              </a> <br>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 text-center text-md-start">
+        <h5 class="text-white mb-4">
+          Connect With Us
+        </h5>
+        <div>
+          <small class="text-white-50 my-1">
+            <a class="text-decoration-none text-white-50" href="tel:+917240164702">+91 7240164702</a>,
+            <a class="text-decoration-none text-white-50" href="tel:+918284822248">+91 8284822248</a>
+          </small>
+          <br>
+          <a href="mailto:pathiktrips@gmail.com" class="text-decoration-none">
+            <small class="text-white-50">
+              pathiktrips@gmail.com
+            </small>
+          </a><br>
+          <a href="#" class="text-decoration-none">
+            <small class="text-white-50">
+              Sector 16 Rohini, New Delhi 110085
+            </small>
+          </a><br>
+        </div>
+      </div>
+
+      <div class="col-12 mt-5 border-top pt-3">
+        <div class="row text-center text-md-start">
+          <div class="col-md-6">
+            <small class="text-white">
+              © 2023 Travel Tour All Rights Reserved.
+            </small>
+          </div>
+          <div class="col-md-6 text-md-end mt-3 mt-md-0">
+            <img src="https://demoapus1.com/tourio/wp-content/uploads/2023/08/footer1-1.png" alt="">
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+
+-->

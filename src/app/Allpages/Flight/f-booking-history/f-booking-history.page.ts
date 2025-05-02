@@ -5,11 +5,13 @@ import jsPDF from 'jspdf';
 import 'jspdf-autotable';
 import { ActivatedRoute } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+// import { IonButton, IonLoading } from '@ionic/angular/standalone';
 @Component({
   selector: 'app-f-booking-history',
   templateUrl: './f-booking-history.page.html',
   styleUrls: ['./f-booking-history.page.scss'],
+  // imports: [IonButton, IonLoading],
 })
 export class FBookingHistoryPage implements OnInit {
   remarksCommit = new FormGroup({
@@ -97,6 +99,8 @@ export class FBookingHistoryPage implements OnInit {
 
   indexHidden = false
   select() {
+    this.showtable = false
+    this.loader = true
     let res = {}
     console.log(this.remarksCommit.value)
 
@@ -134,8 +138,10 @@ export class FBookingHistoryPage implements OnInit {
     console.log(cance);
 
     this.pstService.POST('/FCancel', cance).subscribe((res) => {
-      console.log(res)
-      if(res?.Charges?.AirlineCancellationFee){
+      console.log(res?.Charges)
+      
+      if(res?.Charges){
+        this.loader = false
         alert("Reason Submitted ")
         this.showcharges = true
         this.hideconfirmbutton=true
@@ -152,17 +158,26 @@ export class FBookingHistoryPage implements OnInit {
         this.pnrOf = res.Charges.Pnr;
         this.refundableammo = res.Charges.RefundableAmt;
         this.serviceCharge = res.Charges.ServiceFee;
+        this.loader = false
       }
       else if(res.Status=="Failed"){
+        this.loader = false
         alert(res.ErrorMessage)
         location.reload();
       }
       else if(res.Status=="PENDING"){
+        this.loader = false
         this.showcharges = true
         this.showtable = false
         this.charge=res
       }
+      else if(res.Result=="unable to cancel."){
+        alert(res.Result)
+        this.loader = false
+        location.reload();
+      }
       else{
+        this.loader = false
         alert("Reason Not Submitted")
         location.reload();
       }
@@ -177,12 +192,14 @@ export class FBookingHistoryPage implements OnInit {
   trac
   showcharges = false
   showtable = false
+  loader=false
   goBackcancel() {
     this.ShowCancelModel = false;
     this.showcharges = false
     this.showstatus = false
-    this.showtable=false
+    this.showtable=false  
     this.ShowModelDATA = true;
+    window.location.reload();
     // console.log("Cancel button pressed");
   }
   showstatus = false
@@ -499,13 +516,36 @@ export class FBookingHistoryPage implements OnInit {
         })
       })
 
+      this.test.PaxInfo.Passengers.forEach((ele) => {
+        this.seat.push(ele.Seat)
+        // ele.Seat.forEach((ele)=>{
+        //   this.seat.push(ele.Seat)
+        // })
+        // this.seat.Seat?.forEach((a) => {
+        //   this.seatamount += a.Price
+        //   console.log(a.Price)
+        // })
+  
+      })
+  
+      this.test.PaxInfo.Passengers?.forEach((ele) => {
+        this.meal = ele
+        this.meal.Meal?.forEach((a) => {
+          this.mealamount += a.Price
+          // console.log(a.Price)
+        })
+  
+      })
+
 
 
     }, (error) => {
       console.log(error)
     })
   }
-
+  seat=[]
+  meal
+  mealamount
   showticket = false
   showbooking = true
   test: any
