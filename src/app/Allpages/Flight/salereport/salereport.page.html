@@ -59,7 +59,7 @@
 
             <div *ngIf="spinner">
               <ion-item>
-                <h4 style="margin: 5rem; left: 40rem; position: absolute; color: seagreen;">LOADING...</h4>
+                <h4 style="margin: 5rem; left: 40rem; position: absolute; color: seagreen;">DOWNLOADING EXEL</h4>
                 <!-- <ion-spinner style="margin: 15rem; left: 40rem; position: absolute; color: seagreen;" name="circular"></ion-spinner> -->
               </ion-item>
             </div>
@@ -73,7 +73,7 @@
               <img src="https://img.icons8.com/material-outlined/12/ffffff/download--v1.png" /> Download Pdf
             </ion-badge> -->
 
-            <table id="tab3" class="table">
+            <!-- <table id="tab3" class="table">
               <thead class="thead">
                 <tr>
                   <th class="padding th">
@@ -302,19 +302,15 @@
 
 
 
-              <!-- <div class="spin" *ngIf="spinner">
-                <ion-item>
-                  <ion-spinner style="margin: 5rem;" name="circular"></ion-spinner>
-                </ion-item>
-              </div> -->
+             
 
 
 
 
 
               <tbody>
-                <tr *ngFor="let d of resultArr, index as i" class="hvr">
-                  <td class="td">{{i+1}}</td>
+                 <tr *ngFor="let d of resultArr" class="hvr">
+                
                   <td class="td" style="color: rgb(255, 0, 0); cursor: pointer">
                     <b>{{d.BookingId}}</b>
                   </td>
@@ -388,9 +384,9 @@
                   <td class="td"><b>{{d.PromoAmt}}</b></td>
                   <td class="td"><b>{{d.RefundableAmt}}</b></td>
 
-                </tr>
+                </tr> 
               </tbody>
-            </table>
+            </table> -->
 
           </ion-col>
         </ion-row>

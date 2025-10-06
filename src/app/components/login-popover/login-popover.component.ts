@@ -80,7 +80,7 @@ export class LoginPopoverComponent implements OnInit {
         "ENV": this.env,
         "Version": "1.0.0.0.0.0"
       }
-
+      console.log(obj)
       this.post_service.POST("/FReport", obj).subscribe(res => {
         console.log(res)
         if (res[0]?.Agentid == data.cred1) {

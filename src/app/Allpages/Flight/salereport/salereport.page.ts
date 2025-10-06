@@ -44,7 +44,7 @@ export class SalereportPage implements OnInit {
   constructor(private pstService: PostService) { }
 
   ngOnInit() {
-    this.env=sessionStorage.getItem("ENV")
+    this.env = sessionStorage.getItem("ENV")
 
     this.Token = sessionStorage.getItem("Token")
     this.Agentid = sessionStorage.getItem("Agentid")
@@ -98,225 +98,303 @@ export class SalereportPage implements OnInit {
     this.pstService.POSTDATA('/FReport', obj).subscribe((res) => {
       console.log(res)
 
-    // this.amt = 0
-    // this.pdfData = res.map(Object.values);
-    // for (let x of res) {
-    //   this.amt += parseInt(x.totalFare)
-    // }
+      // this.amt = 0
+      // this.pdfData = res.map(Object.values);
+      // for (let x of res) {
+      //   this.amt += parseInt(x.totalFare)
+      // }
 
-    if (res) {
-      this.spinner = false;
+      if (res) {
+        this.spinner = false;
 
-    }
-    this.resultArr = res
-    this.wait = false
-  },
+      }
+        this.resultArr = res
+      this.wait = false
+      this.exportexcel()
+    
+
+     
+    },
       (err) => {
-  console.log(err)
-  this.wait = true
-})
+        console.log(err)
+        this.wait = true
+      })
   }
 
-fileName = 'SaleReport.xlsx';
+  fileName = 'SaleReport.xlsx';
 exportexcel(): void {
-  let element = document.getElementById('tab3');
-  const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
+  if (!this.resultArr || this.resultArr.length === 0) {
+    console.warn("No data to export");
+    return;
+  }
+
+  const exportData = this.resultArr.map(d => ({
+    'Booking Id': d.BookingId,
+    'Booking Date': d.BookingDate,
+    'Agent Id': d.AgentId,
+    'Booking Type': d.BookingType ,
+    'Agent Name': d.AgentName ,
+    'Flight Code': d.FCode ,
+    'Agent Email Id': d.AgentEmailId ,
+    'Agent State': d.AgentState ,
+    'Agent Country': d.AgentCountry ,
+    'Amendment Id': d.AmendmentId ,
+    'Payment Status': d.PaymentStatus ,
+    'Amendment Type': d.AmendmentType ,
+    'Description': d.Description ,
+    'Amendment Date': d.AmendmentDate ,
+    'Arrival Date': d.ArrivalDate ,
+    'Arrival Time': d.ArrivalTime ,
+    'Departure Date': d.DepartureDate ,
+    'Departure Time': d.DepartureTime ,
+    'Days to Travel': d.Daystotravel ,
+    'Status': d.Status ,
+    'Flight Number': d.FlightNumber ,
+    'Passenger Name': d.PassengerName ,
+    'Pax Type': d.PaxType ,
+    'GDS PNR': d.GdsPnr ,
+    'PNR': d.Pnr ,
+    'Ticket Number': d.TicketNumber ,
+    'Total Fare': d.TotalFare ,
+    'Base Fare': d.BaseFare ,
+    'PHF': d.Phf ,
+    'TTF': d.Ttf ,
+    'ASF': d.Asf ,
+    'GST': d.Gst ,
+    'YQ': d.YQ ,
+    'YR': d.YR ,
+    'Taxable': d.Taxable ,
+    'TAF': d.TAF ,
+    'Other Taxes': d.OtherTaxes ,
+    'CGST': d.Cgst ,
+    'SGST': d.Sgst ,
+    'IGST': d.Igst ,
+    'UGST': d.Ugst ,
+    'RCF': d.Rcf ,
+    'PSF': d.Psf ,
+    'UDF': d.Udf ,
+    'JN': d.Jn ,
+    'Airline GST': d.AirlineGst ,
+    'OB': d.Ob ,
+    'OC': d.Oc ,
+    'Service Fee GST': d.ServiceFeeGST ,
+    'Gross Fare': d.GrossFare ,
+    'Service Fee': d.ServiceFee ,
+    'Gross Discount': d.GrossDiscount ,
+    'TDS': d.Tds ,
+    'Net Discount': d.NetDiscount ,
+    'Net Fare': d.NetFare ,
+    'Booking Class': d.BookingClass ,
+    'Trip Type': d.TripType ,
+    'Airline Code': d.AirlineCode ,
+    'Cabin Class': d.CabinClass ,
+    'Meal Price': d.MealPrice ,
+    'Seat Price': d.SeatPrice ,
+    'Baggage Price': d.BaggagePrice ,
+    'Deal Amount': d.DealAmt ,
+    'Cashback Amount': d.CbAmt ,
+    'Promo Amount': d.PromoAmt ,
+    'Refundable Amount': d.RefundableAmt 
+  }));
+
+  const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(exportData);
   const wb: XLSX.WorkBook = XLSX.utils.book_new();
-  XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
-  XLSX.writeFile(wb, this.fileName);
+  XLSX.utils.book_append_sheet(wb, ws, 'Sale Report');
+  XLSX.writeFile(wb, 'SaleReport.xlsx');
 }
 
-openPDF(): void {
-  var doc = new jsPDF('l', 'mm', [512, 392]);
-  doc.setFontSize(5);
-  doc.setTextColor(100);
+
+  openPDF(): void {
+    var doc = new jsPDF('l', 'mm', [512, 392]);
+    doc.setFontSize(5);
+    doc.setTextColor(100);
     (doc as any).autoTable({
-    head: [['FID', 'RID', 'Email Id', 'Booking Id', 'Amount', 'PNR', 'DEP Date', 'ETIME', 'Status', 'OI', 'IP']],
-    body: this.pdfData,
-  })
-// below line for Open PDF document in new tab
-doc.output('dataurlnewwindow')
-// below line for Download PDF document  
-doc.save('BookingReport' + this.maxDate + '.pdf');
+      head: [['FID', 'RID', 'Email Id', 'Booking Id', 'Amount', 'PNR', 'DEP Date', 'ETIME', 'Status', 'OI', 'IP']],
+      body: this.pdfData,
+    })
+    // below line for Open PDF document in new tab
+    doc.output('dataurlnewwindow')
+    // below line for Download PDF document  
+    doc.save('BookingReport' + this.maxDate + '.pdf');
   }
-// PNR(d: any) {
-//   console.log(d)
-//   let obj = {
-//     "P_TYPE": "CC",
-//     "R_TYPE": "FLIGHT",
-//     "R_NAME": "FlightBookingResponseCC",
-//     "R_DATA": {
-//       "TYPE": "PNRRES",
-//       "BOOKING_ID": d.BookingId,
-//       "TRACE_ID": d.TransId,
-//       "AGENT_ID": d.AgentId
-//     },
-//     "AID": this.Agentid,
-//     "MODULE": "B2B",
-//     "IP": "182.73.146.154",
-//     "TOKEN": this.Token,
-//     "ENV": "D",
-//     "Version": "1.0.0.0.0.0"
-//   }
+  // PNR(d: any) {
+  //   console.log(d)
+  //   let obj = {
+  //     "P_TYPE": "CC",
+  //     "R_TYPE": "FLIGHT",
+  //     "R_NAME": "FlightBookingResponseCC",
+  //     "R_DATA": {
+  //       "TYPE": "PNRRES",
+  //       "BOOKING_ID": d.BookingId,
+  //       "TRACE_ID": d.TransId,
+  //       "AGENT_ID": d.AgentId
+  //     },
+  //     "AID": this.Agentid,
+  //     "MODULE": "B2B",
+  //     "IP": "182.73.146.154",
+  //     "TOKEN": this.Token,
+  //     "ENV": "D",
+  //     "Version": "1.0.0.0.0.0"
+  //   }
 
-//   console.log(obj);
-//   this.pstService.POST('/FReport', obj).subscribe(result => {
-//     console.log(result)
-//     for (let i = 0; i < Math.floor(result.length / 2); i++) {
-//       [result[i], result[result.length - 1 - i]] = [result[result.length - 1 - i], result[i]];
-//     }
-//     this.test = result
-//     this.showticket = true
-//     this.showbooking = false
+  //   console.log(obj);
+  //   this.pstService.POST('/FReport', obj).subscribe(result => {
+  //     console.log(result)
+  //     for (let i = 0; i < Math.floor(result.length / 2); i++) {
+  //       [result[i], result[result.length - 1 - i]] = [result[result.length - 1 - i], result[i]];
+  //     }
+  //     this.test = result
+  //     this.showticket = true
+  //     this.showbooking = false
 
-//     this.test.FareBreakup.Journeys.forEach((ele) => {
-//       ele.Segments.forEach((seg) => {
-//         this.tax = seg.TaxBreakup
-//         console.log(this.tax)
-//         seg.TaxBreakup.forEach((TaxBreakup) => {
-//           console.log(TaxBreakup)
-//         })
-//       })
-//     })
-
-
-
-//   }, (error) => {
-//     console.log(error)
-//   })
-// }
-
-showticket = false
-showbooking = true
-test: any
-hide() {
-  this.showticket = false
-}
-
-
-//   fileName = 'BookingReport.xlsx';
-//   exportexcel(): void {
-//     let element = document.getElementById('tabl');
-//     const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
-//     const wb: XLSX.WorkBook = XLSX.utils.book_new();
-//     XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
-//     XLSX.writeFile(wb, this.fileName);
-// 1
-//   }
-
-search = []
-addbutton = true
-formsearcg = false
-addvalue() {
-  this.addbutton = false
-  this.formsearcg = true
-}
-
-
-removevalue(i) {
-  this.search.splice(i, 1);
-}
-
-FromData = ""
-data = ""
-bookinid
-pnr
-fname
-lname
-
-toDate
-fromDate
-StatusKey
-
-condition() {
-}
-searchBy() {
-  if (this.FromData == "BookingId") {
-    this.bookinid = this.data
-  }
-  else {
-    this.bookinid = ''
-  }
-  if (this.FromData == "Pnr") {
-    this.pnr = this.data
-  }
-  else {
-    this.pnr = ''
-  }
-  if (this.FromData == "FName") {
-    this.fname = this.data
-  }
-  else {
-    this.fname = ''
-  }
-  if (this.FromData == "LName") {
-    this.lname = this.data
-  }
-  else {
-    this.lname = ''
-  }
-  console.log(this.FromData, this.data)
-
-  // let obj = {
+  //     this.test.FareBreakup.Journeys.forEach((ele) => {
+  //       ele.Segments.forEach((seg) => {
+  //         this.tax = seg.TaxBreakup
+  //         console.log(this.tax)
+  //         seg.TaxBreakup.forEach((TaxBreakup) => {
+  //           console.log(TaxBreakup)
+  //         })
+  //       })
+  //     })
 
 
 
-  //   "P_TYPE": "API",
-  //   "R_TYPE": "FLIGHT",
-  //   "R_NAME": "USearch",
-  //   "R_DATA": {
-  //     "FromDate": this.data + "T00:00:00.097",
-  //     "ToDate": this.data + "T23:59:59.097",
-  //     "Env": this.data,
-  //     "Pnr": this.data,
-  //     "FName": this.data,
-  //     "LName": this.data,
-  //     "BookingId": this.data
-  //   },
-  //   "AID": this.Agentid,
-  //   "MODULE": "B2B",
-  //   "IP": "182.73.146.154",
-  //   "TOKEN": this.Token,
-  //   "ENV": "D",
-  //   "Version": "1.0.0.0.0.0"
+  //   }, (error) => {
+  //     console.log(error)
+  //   })
   // }
 
-  let obj = {
-    "P_TYPE": "API",
-    "R_TYPE": "FLIGHT",
-    "R_NAME": "USearch",
-    "R_DATA": {
-      "FromDate": this.fromDate + "T00:00:00.001Z",
-      "ToDate": this.toDate + "T23:59:59.999Z",
-      "Env": 'P',
-      "Pnr": this.pnr,
-      "FName": this.fname,
-      "LName": this.lname,
-      "BookingId": this.bookinid
-    },
-    "AID": this.Agentid,
-    "MODULE": "B2B",
-    "IP": "182.73.146.154",
-    "TOKEN": this.Token,
-    "ENV": this.env,
-    "Version": "1.0.0.0.0.0"
+  showticket = false
+  showbooking = true
+  test: any
+  hide() {
+    this.showticket = false
   }
-  console.log(obj)
-  this.pstService.POST('/FReport', obj).subscribe((res) => {
-    console.log(res)
-    // console.log(res.)
-    this.resultArr = res
-    this.resultArr.forEach(ele => {
-      //  console.log(ele.Pnr)        
-    });
-    // console.log(this.resultArr.Pnr)
-    //  this.StatusKey= this.pnr
 
-  },
-    (err) => {
-      console.log(err)
-    })
-}
+
+  //   fileName = 'BookingReport.xlsx';
+  //   exportexcel(): void {
+  //     let element = document.getElementById('tabl');
+  //     const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
+  //     const wb: XLSX.WorkBook = XLSX.utils.book_new();
+  //     XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+  //     XLSX.writeFile(wb, this.fileName);
+  // 1
+  //   }
+
+  search = []
+  addbutton = true
+  formsearcg = false
+  addvalue() {
+    this.addbutton = false
+    this.formsearcg = true
+  }
+
+
+  removevalue(i) {
+    this.search.splice(i, 1);
+  }
+
+  FromData = ""
+  data = ""
+  bookinid
+  pnr
+  fname
+  lname
+
+  toDate
+  fromDate
+  StatusKey
+
+  condition() {
+  }
+  searchBy() {
+    if (this.FromData == "BookingId") {
+      this.bookinid = this.data
+    }
+    else {
+      this.bookinid = ''
+    }
+    if (this.FromData == "Pnr") {
+      this.pnr = this.data
+    }
+    else {
+      this.pnr = ''
+    }
+    if (this.FromData == "FName") {
+      this.fname = this.data
+    }
+    else {
+      this.fname = ''
+    }
+    if (this.FromData == "LName") {
+      this.lname = this.data
+    }
+    else {
+      this.lname = ''
+    }
+    console.log(this.FromData, this.data)
+
+    // let obj = {
+
+
+
+    //   "P_TYPE": "API",
+    //   "R_TYPE": "FLIGHT",
+    //   "R_NAME": "USearch",
+    //   "R_DATA": {
+    //     "FromDate": this.data + "T00:00:00.097",
+    //     "ToDate": this.data + "T23:59:59.097",
+    //     "Env": this.data,
+    //     "Pnr": this.data,
+    //     "FName": this.data,
+    //     "LName": this.data,
+    //     "BookingId": this.data
+    //   },
+    //   "AID": this.Agentid,
+    //   "MODULE": "B2B",
+    //   "IP": "182.73.146.154",
+    //   "TOKEN": this.Token,
+    //   "ENV": "D",
+    //   "Version": "1.0.0.0.0.0"
+    // }
+
+    let obj = {
+      "P_TYPE": "API",
+      "R_TYPE": "FLIGHT",
+      "R_NAME": "USearch",
+      "R_DATA": {
+        "FromDate": this.fromDate + "T00:00:00.001Z",
+        "ToDate": this.toDate + "T23:59:59.999Z",
+        "Env": 'P',
+        "Pnr": this.pnr,
+        "FName": this.fname,
+        "LName": this.lname,
+        "BookingId": this.bookinid
+      },
+      "AID": this.Agentid,
+      "MODULE": "B2B",
+      "IP": "182.73.146.154",
+      "TOKEN": this.Token,
+      "ENV": this.env,
+      "Version": "1.0.0.0.0.0"
+    }
+    console.log(obj)
+    this.pstService.POST('/FReport', obj).subscribe((res) => {
+      console.log(res)
+      // console.log(res.)
+      this.resultArr = res
+      this.resultArr.forEach(ele => {
+        //  console.log(ele.Pnr)        
+      });
+      // console.log(this.resultArr.Pnr)
+      //  this.StatusKey= this.pnr
+
+    },
+      (err) => {
+        console.log(err)
+      })
+  }
 
 
 }

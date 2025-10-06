@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PostService } from '../../../Services/Crud_Services/post.service';
 import * as XLSX from 'xlsx';
-import { Subject } from 'rxjs';
+// import { Subject } from 'rxjs';
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -59,8 +59,8 @@ export class SearchbyPage implements OnInit {
   fromDate
   meal;
   mealamount;
-  seat=[];
-  loader: boolean=false;
+  seat = [];
+  loader: boolean = false;
   // env: string;
   constructor(private pstService: PostService) { }
   searchBy() {
@@ -116,7 +116,7 @@ export class SearchbyPage implements OnInit {
     console.log(obj)
     this.pstService.POST('/FReport', obj).subscribe((res) => {
       console.log(res)
-      
+
       this.resultArr = res
       this.isCheckedArr = new Array(this.resultArr[0].PaxName.length).fill(false);
 
@@ -181,16 +181,16 @@ export class SearchbyPage implements OnInit {
         //   this.seatamount += a.Price
         //   console.log(a.Price)
         // })
-  
+
       })
-  
+
       this.test.PaxInfo.Passengers?.forEach((ele) => {
         this.meal = ele
         this.meal.Meal?.forEach((a) => {
           this.mealamount += a.Price
           // console.log(a.Price)
         })
-  
+
       })
 
 
@@ -241,10 +241,10 @@ export class SearchbyPage implements OnInit {
   }
 
   reasonarr = []
-  CancelTicket2(d: any,i:any) {
+  CancelTicket2(d: any, i: any) {
     this.ShowCancelModel = true;
     this.ShowModelDATA = false;
-    this.index=i;
+    this.index = i;
     var b = `https://fhapip.ksofttechnology.com/api/FReport/ADMIN?P_TYPE=API&R_TYPE=FLIGHT&R_NAME=GetCRList&AID=${this.Agentid}&TOKEN=${this.Token}`
 
     this.pstService.GET(b).subscribe((res) => {
@@ -264,9 +264,9 @@ export class SearchbyPage implements OnInit {
   }
   traceid
   indexHidden = false
-  select() {
+  cancel_charge_req_function() {
     let res = {}
-    console.log(this.remarksCommit.value)
+    // console.log(this.remarksCommit.value)
     this.showtable = false
     this.loader = true
     this.reasonarr.forEach((ele) => {
@@ -280,53 +280,54 @@ export class SearchbyPage implements OnInit {
         }
       }
     })
-    let cance
-    if(this.isCheckedArr){
-      cance={
+    let CANCEL_CHARGE_obj
+    if (this.isCheckedArr) {
+      CANCEL_CHARGE_obj = {
         "P_TYPE": "API",
         "R_TYPE": "FLIGHT",
         "R_NAME": "CANCEL",
         "R_DATA": {
-            "ACTION": "CANCEL_CHARGE",
-            "BOOKING_ID": this.cancelBookingId,
-            "CANCEL_TYPE": "PARTIAL_CANCELLATION",
-            "REASON": res,
-            "SECTORS": [
-                this.sec
-            ],
-            "TRACE_ID": ""
+          "ACTION": "CANCEL_CHARGE",
+          "BOOKING_ID": this.cancelBookingId,
+          "CANCEL_TYPE": "PARTIAL_CANCELLATION",
+          "REASON": res,
+          "SECTORS": [
+            this.sec
+          ],
+          "TRACE_ID": ""
         },
         "AID": this.Agentid,
-      "MODULE": "B2B",
-      "IP": "182.73.146.154",
-      "TOKEN": this.Token,
-      "ENV": this.env,
-      "Version": "1.0.0.0.0.0"
+        "MODULE": "B2B",
+        "IP": "182.73.146.154",
+        "TOKEN": this.Token,
+        "ENV": this.env,
+        "Version": "1.0.0.0.0.0"
+      }
     }
+    else {
+      CANCEL_CHARGE_obj =
+      {
+        "P_TYPE": "API",
+        "R_TYPE": "FLIGHT",
+        "R_NAME": "CANCEL",
+        "R_DATA": {
+          "ACTION": "CANCEL_CHARGE",
+          "BOOKING_ID": this.cancelBookingId,
+          "CANCEL_TYPE": "FULL_CANCELLATION",
+          "Trace_Id": "",
+          "REASON": res
+        },
+        "AID": this.Agentid,
+        "MODULE": "B2B",
+        "IP": "182.73.146.154",
+        "TOKEN": this.Token,
+        "ENV": this.env,
+        "Version": "1.0.0.0.0.0"
+      }
     }
-    else{
-     cance =
-    {
-      "P_TYPE": "API",
-      "R_TYPE": "FLIGHT",
-      "R_NAME": "CANCEL",
-      "R_DATA": {
-        "ACTION": "CANCEL_CHARGE",
-        "BOOKING_ID": this.cancelBookingId,
-        "CANCEL_TYPE": "FULL_CANCELLATION",
-        "Trace_Id": "",
-        "REASON":res
-      },
-      "AID": this.Agentid,
-      "MODULE": "B2B",
-      "IP": "182.73.146.154",
-      "TOKEN": this.Token,
-      "ENV": this.env,
-      "Version": "1.0.0.0.0.0"
-    }}
-    
-console.log(cance)
-    this.pstService.POST('/FCancel', cance).subscribe((res) => {
+
+    console.log(CANCEL_CHARGE_obj)
+    this.pstService.POST('/FCancel', CANCEL_CHARGE_obj).subscribe((res) => {
       console.log(res)
       if(res?.Charges){
         this.loader = false
@@ -439,14 +440,14 @@ console.log(cance)
       else if (res.Status == 'Pending') {
         alert(" Pending" + res?.ErrorMessage)
       }
-      else if(res?.R_DATA?.Charges?.IsCanceled) {
+      else if (res?.R_DATA?.Charges?.IsCanceled) {
         alert("pnr cancelled succesfully")
         this.showtable = false;
         this.showcharges = false;
         this.showstatus = false;
-      this.ShowModelDATA = true;
+        this.ShowModelDATA = true;
       }
-      else{
+      else {
         alert("pls contact the call centre")
       }
     },
@@ -514,7 +515,7 @@ console.log(cance)
     this.pstService.GET(a).subscribe((res) => {
       console.log(res)
       this.statusresponse = res
-      if(this.statusresponse.Status=='PENDING'){
+      if (this.statusresponse.Status == 'PENDING') {
         alert(this.statusresponse.WarningMessage)
       }
       console.log(this.statusresponse.IsCancelled)
@@ -523,7 +524,7 @@ console.log(cance)
         this.ShowCancelModel = false
         window.location.reload();
       }
-      else if(this.statusresponse.IsCancelled==false){
+      else if (this.statusresponse.IsCancelled == false) {
         alert(`Cancellation Rejected Remark-${this.statusresponse.OI.CancelRemark}`)
 
       }
@@ -589,43 +590,60 @@ console.log(cance)
   onCheckboxChange(index: number, isChecked: boolean): void {
     console.log(`Checkbox at index ${index} is now ${isChecked ? 'checked' : 'unchecked'}`);
     console.log(this.isCheckedArr)
-    this.clickkr()
+    this.selected_pax()
   }
-  index
-  clickkr(){
-    
-   
-    let temp=this.resultArr[this.index].OI
 
-    let ddate=temp.split("|");
-    console.log(ddate)
-    let response=ddate[1].split(",")[0]
-   
-  
-    // let depdate=this.bkn_rt.Param.Sector[0].DDate
+
+
+
+
+  index
+  selected_pax() {
+
+
+    let ddate_oi = this.resultArr[this.index].OI
+
+    let temp_ddate_arr = ddate_oi.split("|");
     
-    let b=this.resultArr[this.index].Sector.split(",")
+    let final_ddate = temp_ddate_arr[1].split(",")[0]
+
+    let src_des_arr = this.resultArr[this.index].Sector.split(",")
+
+    let paxdeatails = []
     
-    let paxdeatails=[]
-    this.isCheckedArr.forEach((ele,ind)=>{
-      if(ele==true){
+    this.isCheckedArr.forEach((ele, ind) => {
+      if (ele == true) {
         paxdeatails.push({
           "TTL": "MR",
-          "PAX_TYPE": this.resultArr[this.index].PaxName[ind].PaxType,
-          "FNAME": this.resultArr[this.index].PaxName[ind].FName,
-          "LNAME": this.resultArr[this.index].PaxName[ind].LName
-      })
+          "PAX_TYPE": this.resultArr[this.index].PaxName[ind].PaxType||"",
+          "FNAME": this.resultArr[this.index].PaxName[ind].FName||"",
+          "LNAME": this.resultArr[this.index].PaxName[ind].LName||""
+        })
       }
     })
-     this.sec= {
-      "Src": b[0],
-      "Des": b[1],
-      "DDate": response,
-      "PAX": paxdeatails
+    this.sec = {
+      "Src": src_des_arr[0]||"",
+      "Des": src_des_arr[1]||"",
+      "DDate": final_ddate||"",
+      "PAX": paxdeatails||[]
+    }
+
+    console.log(this.sec)
   }
 
-  console.log(this.sec)
-  }
+  sec:sec_data
 
-   sec
+}
+
+interface passengers_data {
+  TTL:string,
+  PAX_TYPE:string,
+  FNAME:string,
+  LNAME:string
+}
+interface sec_data{
+  Src:string,
+  Des:string,
+  DDate:string,
+  PAX:passengers_data[]
 }

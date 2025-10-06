@@ -86,3 +86,39 @@ ion-label{
         width: 100%;
     }
 }
+
+
+.index-page {
+  --bg-color: #ffffff !important;
+  --text-color: #000000 !important;
+  --card-bg: #f0f0f0 !important;
+  --input-bg: #ffffff !important;
+  --primary-btn-bg: #007bff !important;
+  --primary-btn-color: #fff !important;
+
+  background-color: #ffffff !important;
+  color: #000000 !important;
+}
+
+.index-page input,
+.index-page select,
+.index-page textarea {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  border: 1px solid #ccc !important;
+}
+
+.index-page button {
+  background-color: #007bff !important;
+  color: #ffffff !important;
+  border: none !important;
+}
+
+.index-page ion-toolbar,
+.index-page ion-header,
+.index-page ion-content,
+.index-page ion-col,
+.index-page ion-row {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+}
