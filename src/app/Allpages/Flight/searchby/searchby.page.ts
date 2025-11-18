@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PostService } from '../../../Services/Crud_Services/post.service';
 import * as XLSX from 'xlsx';
-// import { Subject } from 'rxjs';
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -265,6 +264,11 @@ export class SearchbyPage implements OnInit {
   traceid
   indexHidden = false
   cancel_charge_req_function() {
+     this.isCheckedArr.forEach((ele)=>{
+      if(ele){
+        this.main_partial_check=true
+      }
+    })
     let res = {}
     // console.log(this.remarksCommit.value)
     this.showtable = false
@@ -281,7 +285,7 @@ export class SearchbyPage implements OnInit {
       }
     })
     let CANCEL_CHARGE_obj
-    if (this.isCheckedArr) {
+    if (this.main_partial_check) {
       CANCEL_CHARGE_obj = {
         "P_TYPE": "API",
         "R_TYPE": "FLIGHT",
@@ -327,52 +331,52 @@ export class SearchbyPage implements OnInit {
     }
 
     console.log(CANCEL_CHARGE_obj)
-    this.pstService.POST('/FCancel', CANCEL_CHARGE_obj).subscribe((res) => {
-      console.log(res)
-      if(res?.Charges){
-        this.loader = false
-        alert("Reason Submitted ")
-        this.showcharges = true
-        this.hideconfirmbutton=true
-        this.showtable = false
-        this.charge=res
-        this.Airlinecharge = res.Charges.AirlineCancellationFee;
-        this.KafilaCharge = res.Charges.ServiceFee;
-        this.CustomerAmount = res.Charges.RefundableAmt;
-        this.airlinerefund = res.Charges.AirlineRefund;
-        this.airlineToken = res.Charges.AirlineToken;
-        this.totalFare = res.Charges.Fare
-        this.flightcode = res.Charges.FlightCode;
-        this.pnrOf = res.Charges.Pnr;
-        this.refundableammo = res.Charges.RefundableAmt;
-        this.serviceCharge = res.Charges.ServiceFee;
-      }
-      else if(res.Status=="Failed"){
-        this
-        alert(res.ErrorMessage)
-        location.reload();
-      }
-      else if(res.Status=="PENDING"){
-        this.loader = false
-        this.showcharges = true
-        this.showtable = false
-        this.charge=res
-      }
-      else if(res.Result=="unable to cancel."){
-        alert(res.Result)
-        this.loader = false
-        location.reload();
-      }
-      else{
-        this.loader = false
-        alert("Reason Not Submitted")
-        location.reload();
-      }
-    },
-      (err) => {
-        console.log(err)
-        this.wait = true
-      })
+    // this.pstService.POST('/FCancel', CANCEL_CHARGE_obj).subscribe((res) => {
+    //   console.log(res)
+    //   if (res?.Charges) {
+    //     this.loader = false
+    //     alert("Reason Submitted ")
+    //     this.showcharges = true
+    //     this.hideconfirmbutton = true
+    //     this.showtable = false
+    //     this.charge = res
+    //     this.Airlinecharge = res.Charges.AirlineCancellationFee;
+    //     this.KafilaCharge = res.Charges.ServiceFee;
+    //     this.CustomerAmount = res.Charges.RefundableAmt;
+    //     this.airlinerefund = res.Charges.AirlineRefund;
+    //     this.airlineToken = res.Charges.AirlineToken;
+    //     this.totalFare = res.Charges.Fare
+    //     this.flightcode = res.Charges.FlightCode;
+    //     this.pnrOf = res.Charges.Pnr;
+    //     this.refundableammo = res.Charges.RefundableAmt;
+    //     this.serviceCharge = res.Charges.ServiceFee;
+    //   }
+    //   else if (res.Status == "Failed") {
+    //     this
+    //     alert(res.ErrorMessage)
+    //     location.reload();
+    //   }
+    //   else if (res.Status == "PENDING") {
+    //     this.loader = false
+    //     this.showcharges = true
+    //     this.showtable = false
+    //     this.charge = res
+    //   }
+    //   else if (res.Result == "unable to cancel.") {
+    //     alert(res.Result)
+    //     this.loader = false
+    //     location.reload();
+    //   }
+    //   else {
+    //     this.loader = false
+    //     alert("Reason Not Submitted")
+    //     location.reload();
+    //   }
+    // },
+    //   (err) => {
+    //     console.log(err)
+    //     this.wait = true
+    //   })
 
   }
   button = false
@@ -590,60 +594,121 @@ export class SearchbyPage implements OnInit {
   onCheckboxChange(index: number, isChecked: boolean): void {
     console.log(`Checkbox at index ${index} is now ${isChecked ? 'checked' : 'unchecked'}`);
     console.log(this.isCheckedArr)
+   
     this.selected_pax()
   }
 
 
+  main_partial_check:boolean=false
 
 
+  index:number
+  // selected_pax() {
 
-  index
+
+  //   let ddate_oi = this.resultArr[this.index].OI
+
+  //   let temp_ddate_arr = ddate_oi.split("|");
+
+  //   let final_ddate = temp_ddate_arr[1].split(",")[0]
+
+  //   let src_des_arr = this.resultArr[this.index].Sector.split(",")
+
+  //   let paxdeatails = []
+
+  //   this.isCheckedArr.forEach((ele, ind) => {
+  //     if (ele == true) {
+  //       paxdeatails.push({
+  //         "TTL": "MR",
+  //         "PAX_TYPE": this.resultArr[this.index].PaxName[ind].PaxType||"",
+  //         "FNAME": this.resultArr[this.index].PaxName[ind].FName||"",
+  //         "LNAME": this.resultArr[this.index].PaxName[ind].LName||""
+  //       })
+  //     }
+  //   })
+  //   this.sec = {
+  //     "Src": src_des_arr[0]||"",
+  //     "Des": src_des_arr[1]||"",
+  //     "DDate": final_ddate||"",
+  //     "PAX": paxdeatails||[]
+  //   }
+
+  //   if(src_des_arr[0]==null||src_des_arr[1]==null){
+  //     alert("unable to cancel partially. pls contact call center to cancel this booking")
+  //   }
+
+  //   console.log(this.sec)
+  // }
+
   selected_pax() {
-
-
-    let ddate_oi = this.resultArr[this.index].OI
-
-    let temp_ddate_arr = ddate_oi.split("|");
-    
-    let final_ddate = temp_ddate_arr[1].split(",")[0]
-
-    let src_des_arr = this.resultArr[this.index].Sector.split(",")
-
-    let paxdeatails = []
-    
-    this.isCheckedArr.forEach((ele, ind) => {
-      if (ele == true) {
-        paxdeatails.push({
-          "TTL": "MR",
-          "PAX_TYPE": this.resultArr[this.index].PaxName[ind].PaxType||"",
-          "FNAME": this.resultArr[this.index].PaxName[ind].FName||"",
-          "LNAME": this.resultArr[this.index].PaxName[ind].LName||""
-        })
-      }
-    })
-    this.sec = {
-      "Src": src_des_arr[0]||"",
-      "Des": src_des_arr[1]||"",
-      "DDate": final_ddate||"",
-      "PAX": paxdeatails||[]
+    const row = this.resultArr[this.index];
+    if (!row) {
+      alert("Invalid Selection.");
+      return;
     }
-
-    console.log(this.sec)
+    // --- Safe Sector Parsing ---
+    const sector = row.Sector || "";
+    var src_des_arr ;
+    if(sector.includes(",")){
+      src_des_arr=sector.split(',')
+    }
+    else{
+      alert("Unable to get the sector . Please contact call center")
+      return 
+    }
+    const Src = src_des_arr[0] || "";
+    const Des = src_des_arr[1] || "";
+    // --- Safe DDate Parsing ---
+    const OI = row.OI || "";
+    let final_ddate = "";
+    if (OI.includes("|")) {
+      let temp = OI.split("|");
+      if (temp[1]) {
+        final_ddate = temp[1].split(",")[0] || "";
+      }
+    }
+    else{
+      alert("Unable to get Departure date .pls contact Call center")
+      return
+    }
+    // --- Passengers ---
+    let paxdeatails = [];
+    this.isCheckedArr.forEach((ele, ind) => {
+      if (ele && row.PaxName[ind]) {
+        paxdeatails.push({
+          TTL: "MR",
+          PAX_TYPE: row.PaxName[ind].PaxType || "",
+          FNAME: row.PaxName[ind].FName || "",
+          LNAME: row.PaxName[ind].LName || ""
+        });
+      }
+    });
+    this.sec = {
+      Src,
+      Des,
+      DDate: final_ddate,
+      PAX: paxdeatails
+    };
+    if (Src==null || Des==null||!final_ddate==null) {
+      alert("Unable to cancel partially. Please contact call center.");
+      return
+    }
+   
   }
 
-  sec:sec_data
+  sec: sec_data
 
 }
 
 interface passengers_data {
-  TTL:string,
-  PAX_TYPE:string,
-  FNAME:string,
-  LNAME:string
+  TTL: string,
+  PAX_TYPE: string,
+  FNAME: string,
+  LNAME: string
 }
-interface sec_data{
-  Src:string,
-  Des:string,
-  DDate:string,
-  PAX:passengers_data[]
+interface sec_data {
+  Src: string,
+  Des: string,
+  DDate: string,
+  PAX: passengers_data[]
 }
