@@ -49,7 +49,7 @@
 
   <ion-row>
 
-    <ion-col size-sm="12" size-xs="12" size-md="4" size-lg="4" size-xl="4" >
+    <ion-col size-sm="12" size-xs="12" size-md="2" size-lg="2" size-xl="2" >
       <!-- <button class="submit-btn" type="submit"  (click)="addvalue()" >
         <span class="material-icons" style="justify-content: center;">search</span>
         Search By <ion-icon name="add-circle-outline"></ion-icon>
@@ -89,7 +89,7 @@
     
 
 
-    <ion-col size-sm="12" size-xs="12" size-md="4" size-lg="4" size-xl="4">
+    <ion-col size-sm="12" size-xs="12" size-md="2" size-lg="2" size-xl="2">
 
       <!-- <ion-row> -->
       <!-- <input type="date" [(ngModel)]="fromDate" placeholder="Enter from Date "> -->
@@ -102,7 +102,7 @@
       </fieldset>
     </ion-col>
 
-    <ion-col size-sm="12" size-xs="12" size-md="4" size-lg="4" size-xl="4">
+    <ion-col size-sm="12" size-xs="12" size-md="2" size-lg="2" size-xl="2">
 
       <fieldset>
         <legend>
@@ -121,10 +121,16 @@
         <input type="text" [(ngModel)]="BookingId"  placeholder="enter BookingId "> -->
 
     </ion-col>
-    <ion-col size-sm="12" size-xs="12" size-md="4" size-lg="4" size-xl="4">
+    <ion-col size-sm="12" size-xs="12" size-md="2" size-lg="2" size-xl="2">
       <button class="submit-btn" type="submit" (click)="filter()">Search By </button>
     </ion-col>
-
+     <ion-col size-sm="12" size-xs="12" size-md="2" size-lg="2" size-xl="2">
+        <ion-badge color="tertiary" class="ionp" style="cursor: pointer;margin: 10px 20px 0px 0px;"
+        (click)="exportexcel()">
+        <img src="https://img.icons8.com/material-outlined/12/ffffff/download--v1.png" /> Download Excel
+      </ion-badge>
+     </ion-col>
+    
 
   </ion-row>
 
@@ -140,10 +146,7 @@
       </ion-badge> -->
       <!-- <span>From = {{maxDate}} To = {{maxDate}}</span> -->
 
-      <ion-badge color="tertiary" class="ionp" style="cursor: pointer;float: right;margin: 5px 20px 0px 0px;"
-        (click)="exportexcel()">
-        <img src="https://img.icons8.com/material-outlined/12/ffffff/download--v1.png" /> Download Excel
-      </ion-badge>
+    
       <!-- <ion-badge color="danger" class="ionp" style="cursor: pointer;float: right;margin: 5px 20px 0px 0px;"
         (click)="openPDF()">
         <img src="https://img.icons8.com/material-outlined/12/ffffff/download--v1.png" /> Download Pdf

@@ -1,4 +1,4 @@
-<ion-content >
+<ion-content>
   <ng-container *ngIf="showbooking">
     <ng-container *ngIf="ShowModelDATA">
 
@@ -220,39 +220,31 @@
                 style="font-size: 20px; text-align: end;"></ion-icon>
             </ion-col>
           </ion-row>
-          <!-- <ion-toolbar> -->
-
-          <!-- <span>Go Back</span> -->
-          <!-- <ion-button   (click)="goBackcancel()">Go Back</ion-button> -->
-          <!-- <ion-button slot="end" [style]="showButtonCancel : Error == 'null'? true: false" (click)="confirmCancellation()">Confirm</ion-button> -->
-          <!-- <ion-button slot="end" (click)="confirmCancellation()" *ngIf="hideconfirmbutton">Confirm</ion-button> -->
-
-          <!-- </ion-toolbar> -->
-          <!-- <ng-container *ngFor="let a of resultArr[index].PaxName,index as i">
+          <ion-row>
             <ion-col size-sm="12" size-xs="12" size-md="6" size-lg="6" size-xl="6" style="display: flex; justify-content: left; align-items: end;">
-              <span style="margin-left: 7px;"><input type="checkbox"  [(ngModel)]="isChecked1"> </span> 
-
-                <span style="margin-left: 5px; font-size: 20px;" class="cfont">{{a.FName}} </span>
-                <button (click)="clickkr(i)">click me</button>
-             
+            <span style="margin-left: 7px;"><input type="checkbox" [(ngModel)]="partial_check" (change)="onPartialCheckboxChange()"/></span>
+            <span style="margin-left: 5px; font-size: 18px;" class="cfont">Partial Cancellation  (Select pax for partial cancellation)</span>
             </ion-col>
-          </ng-container> -->
-
-          <p style="margin-left: 7px; color: rgba(0, 0, 0, 0.716); font-weight: bold; font-size: 20px;">Passengers Names</p>
-          <ng-container *ngFor="let a of resultArr[index].PaxName; index as i">
-            <ion-col size-sm="12" size-xs="12" size-md="6" size-lg="6" size-xl="6" style="display: flex; justify-content: left; align-items: end;">
-              <span style="margin-left: 7px;">
-                <input type="checkbox" [(ngModel)]="isCheckedArr[i]" (change)="onCheckboxChange(i, isCheckedArr[i])">
-              </span>
-              <span style="margin-left: 5px; font-size: 18px;" class="cfont">{{ a.FName }}  {{a.LName}}</span>
-              <!-- <button (click)="clickkr(i)">click me</button> -->
-            </ion-col>
-          </ng-container>
+          </ion-row>
           
+          <ng-container *ngIf="partial_check" >
+            <p style="margin-left: 7px; color: rgba(0, 0, 0, 0.716); font-weight: bold; font-size: 20px;">Passengers
+              Names</p>
+            <ng-container *ngFor="let a of resultArr[index].PaxName; index as i">
+              <ion-col size-sm="12" size-xs="12" size-md="6" size-lg="6" size-xl="6"
+                style="display: flex; justify-content: left; align-items: end;">
+                <span style="margin-left: 7px;">
+                  <input type="checkbox" [(ngModel)]="isCheckedArr[i]" (change)="onCheckboxChange(i, isCheckedArr[i])">
+                </span>
+                <span style="margin-left: 5px; font-size: 18px;" class="cfont">{{ a.FName }} {{a.LName}}</span>
+                <!-- <button (click)="clickkr(i)">click me</button> -->
+              </ion-col>
+            </ng-container>
+          </ng-container>
 
           <form [formGroup]="remarksCommit">
 
-            
+
             <ion-row style="display: flex; justify-content: center; align-items: center;">
               <ion-col size-sm="12" size-xs="12" size-md="4" size-lg="4" size-xl="4" class="c-Font selbox">
                 <select formControlName="rescode">
@@ -260,9 +252,11 @@
                     <option value="" disabled="disabled" selected="selected">Select Reason</option>
                     <option value="CTP">CTP (Change In Travels Plans)(Cancellation as per fare rules)</option>
                     <option value="MMF">MMF (Missed My Flight)(No-Show Refund Request)</option>
-                    <option value="FCA">FCA (Flight Cancelled by Airline)(Full refund processed by airline, DGCA Cancellation Requests, Full refund to claim in case of schedule change by airline)</option>
+                    <option value="FCA">FCA (Flight Cancelled by Airline)(Full refund processed by airline, DGCA
+                      Cancellation Requests, Full refund to claim in case of schedule change by airline)</option>
                     <option value="WFB">WFB (Wrong Flight Booked)(Cancellation as per fare rules)</option>
-                    <option value="ORS">ORS (Other Reasons)(Special request if mentioned in remarks or Cancellation as per fare rules)</option>
+                    <option value="ORS">ORS (Other Reasons)(Special request if mentioned in remarks or Cancellation as
+                      per fare rules)</option>
                   </optgroup>
                 </select>
 
@@ -273,7 +267,8 @@
               </ion-col>
 
               <ion-col size-sm="12" size-xs="12" size-md="4" size-lg="4" size-xl="4" class="c-Font selbox">
-                <button class="submit-btn" style="width: 75%; " type="submit" (click)="cancel_charge_req_function()">Submit</button>
+                <button class="submit-btn" style="width: 75%; " type="submit"
+                  (click)="cancel_charge_req_function()">Submit</button>
               </ion-col>
             </ion-row>
           </form>
@@ -293,7 +288,8 @@
 
           <ion-row style="background-color: #F4F6F8;padding: 0px;">
             <ion-col size-md="11" size-lg="11" size-xl="11">
-              <span class="c-Font" style="display: flex; justify-content: center; align-items: center; font-size: 20px;">Cancellation
+              <span class="c-Font"
+                style="display: flex; justify-content: center; align-items: center; font-size: 20px;">Cancellation
                 Charges</span>
             </ion-col>
 
@@ -308,8 +304,9 @@
 
 
 
-          <ion-row >
-            <ion-col size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12" style="padding: 15px;" class="c-Font selbox">
+          <ion-row>
+            <ion-col size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12" style="padding: 15px;"
+              class="c-Font selbox">
 
               <ion-row *ngIf="hideconfirmbutton">
                 <ion-col size-md="4" size-lg="4" size-xl="4" style="margin-bottom: 10px;">
@@ -323,35 +320,37 @@
                 </ion-col>
 
                 <ion-col size-md="4" size-lg="4" size-xl="4" style="margin-bottom: 10px;">
-                  <span class="Book-NUM" *ngIf="hideconfirmbutton">Kafila  Fee :</span>
+                  <span class="Book-NUM" *ngIf="hideconfirmbutton">Kafila Fee :</span>
                   <span class="search-BY" style="font-size: 13px;"> {{KafilaCharge}}</span>
                 </ion-col>
-              
-                <ion-col size-md="12" size-lg="12" size-xl="12" style=" margin-top: 5px; border-top: 1px solid rgba(150, 146, 146, 0.818);"></ion-col>
-              
-               
 
-  
+                <ion-col size-md="12" size-lg="12" size-xl="12"
+                  style=" margin-top: 5px; border-top: 1px solid rgba(150, 146, 146, 0.818);"></ion-col>
 
-                <ion-col  size-md="4" size-lg="4" size-xl="4" style="margin-bottom: 10px;">
+
+
+
+
+                <ion-col size-md="4" size-lg="4" size-xl="4" style="margin-bottom: 10px;">
                   <span class="Book-NUM" style="color: orangered;" *ngIf="hideconfirmbutton">Airline Fee :</span>
                   <span class="search-BY" style="font-size: 13px; color: orangered;"> {{Airlinecharge}}</span>
                 </ion-col>
 
-                <ion-col  size-md="4" size-lg="4" size-xl="4" style="margin-bottom: 10px;">
+                <ion-col size-md="4" size-lg="4" size-xl="4" style="margin-bottom: 10px;">
                   <span class="Book-NUM" style="color: blue;" *ngIf="hideconfirmbutton">Fare :</span>
                   <span class="search-BY" style="font-size: 13px; color: blue;"> {{charge.Charges.Fare}}</span>
                 </ion-col>
 
-                <ion-col  size-md="4" size-lg="4" size-xl="4" style="margin-bottom: 10px;">
-                  <span class="Book-NUM" style="color: red;" *ngIf="hideconfirmbutton">Refund Amt  :</span>
+                <ion-col size-md="4" size-lg="4" size-xl="4" style="margin-bottom: 10px;">
+                  <span class="Book-NUM" style="color: red;" *ngIf="hideconfirmbutton">Refund Amt :</span>
                   <span class="search-BY" style="font-size: 13px; color: red;"> {{charge.Charges.RefundableAmt}}</span>
                 </ion-col>
 
                 <ion-col size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12" style="padding: 10px;">
-                  <button class="submit-btn" style="display: block; margin: auto; width: 50%; margin-top: 10px;" (click)="confirmCancellation()" *ngIf="hideconfirmbutton">Confirm</button> 
+                  <button class="submit-btn" style="display: block; margin: auto; width: 50%; margin-top: 10px;"
+                    (click)="confirmCancellation()" *ngIf="hideconfirmbutton">Confirm</button>
                 </ion-col>
-              
+
               </ion-row>
 
               <!-- <strong>
@@ -361,7 +360,7 @@
 
               <span *ngIf="!hideconfirmbutton" style="font-size: 25px;">WE ARE PROCESSING YOUR REQUEST</span><br><br>
 
-             
+
 
 
             </ion-col>
@@ -373,95 +372,94 @@
   <ng-container *ngIf="showstatus">
     <ion-row style="background-color: #F4F6F8;padding: 0px;">
       <ion-col size-md="11" size-lg="11" size-xl="11">
-        <span class="c-Font" style="display: flex; justify-content: center; align-items: center; font-size: 20px;">Cancellation
+        <span class="c-Font"
+          style="display: flex; justify-content: center; align-items: center; font-size: 20px;">Cancellation
           Status</span>
       </ion-col>
 
-      <ion-col size-md="1" size-lg="1" size-xl="1"
-        style="display: flex; justify-content: center; align-items: center;">
+      <ion-col size-md="1" size-lg="1" size-xl="1" style="display: flex; justify-content: center; align-items: center;">
         <!-- <ion-button   (click)="goBackcancel()">Go Back</ion-button> -->
-        <ion-icon name="close-outline" (click)="goBackcancel()"
-          style="font-size: 20px; text-align: end;"></ion-icon>
+        <ion-icon name="close-outline" (click)="goBackcancel()" style="font-size: 20px; text-align: end;"></ion-icon>
       </ion-col>
     </ion-row>
 
-     
-        <ion-row *ngIf="showstatus">
-          
+
+    <ion-row *ngIf="showstatus">
 
 
-            
-              <ion-col size-md="1" size-lg="1" size-xl="1">
-                <span style="color: black ;font-size: 20px; ">YOUR TICKET REQUEST STATUS {{statusresponse.CancelRemark}}</span>
-              </ion-col>
-           
-          
 
-      </ion-row>
 
-      <div style="border: 2px;" *ngIf="showstatuscharges">
-        <ion-row>
-          <ion-card style="width: 900px ">
-            <!-- <h2 style="color:red; padding: 15px; justify-content: center; display: flex;">Booking Id Number :- {{cancelBookingId}}</h2> -->
-            <h1 style="color:red; padding: 15px; justify-content: center; display: flex;">Booking Id Number :-
-              {{cancelBookingId}}</h1>
-            <table class="table">
-              <thead class="thead">
-                <tr>
-                  <th class="padding th">
-                    Fare
-                  </th>
-                  <th class="padding th">
-                    RefundableAmt
-                  </th>
-                  <th class="padding th">
-                    AirlineCancellationFee
-                  </th>
-                  <th class="padding th">
-                    AirlineRefund
-                  </th>
-                  <th class="padding th">
-                    ServiceFee
-                  </th>
-                  <th class="padding th">
-                    Remark
-                  </th>
+      <ion-col size-md="1" size-lg="1" size-xl="1">
+        <span style="color: black ;font-size: 20px; ">YOUR TICKET REQUEST STATUS {{statusresponse.CancelRemark}}</span>
+      </ion-col>
 
-                </tr>
-              </thead>
-              <tr class="hvr">
-                <!-- <tr *ngFor="let d of reasonarr, index as i" class="hvr" > -->
-                <td class="td">{{statusresponse.Fare}}</td>
-                <td class="td">{{statusresponse.RefundableAmt}}</td>
-                <td class="td">{{statusresponse.AirlineCancellationFee}}</td>
-                <td class="td">{{statusresponse.AirlineRefund}}</td>
-                <td class="td">{{statusresponse.ServiceFee}}</td>
-                <td class="td">{{statusresponse.Status.CCStaffRemarkOnCancelCharge}}</td>
+
+
+    </ion-row>
+
+    <div style="border: 2px;" *ngIf="showstatuscharges">
+      <ion-row>
+        <ion-card style="width: 900px ">
+          <!-- <h2 style="color:red; padding: 15px; justify-content: center; display: flex;">Booking Id Number :- {{cancelBookingId}}</h2> -->
+          <h1 style="color:red; padding: 15px; justify-content: center; display: flex;">Booking Id Number :-
+            {{cancelBookingId}}</h1>
+          <table class="table">
+            <thead class="thead">
+              <tr>
+                <th class="padding th">
+                  Fare
+                </th>
+                <th class="padding th">
+                  RefundableAmt
+                </th>
+                <th class="padding th">
+                  AirlineCancellationFee
+                </th>
+                <th class="padding th">
+                  AirlineRefund
+                </th>
+                <th class="padding th">
+                  ServiceFee
+                </th>
+                <th class="padding th">
+                  Remark
+                </th>
+
               </tr>
+            </thead>
+            <tr class="hvr">
+              <!-- <tr *ngFor="let d of reasonarr, index as i" class="hvr" > -->
+              <td class="td">{{statusresponse.Fare}}</td>
+              <td class="td">{{statusresponse.RefundableAmt}}</td>
+              <td class="td">{{statusresponse.AirlineCancellationFee}}</td>
+              <td class="td">{{statusresponse.AirlineRefund}}</td>
+              <td class="td">{{statusresponse.ServiceFee}}</td>
+              <td class="td">{{statusresponse.Status.CCStaffRemarkOnCancelCharge}}</td>
+            </tr>
 
-            </table>
+          </table>
 
 
-            <form [formGroup]="remarksCommit">
-              <div>
-                <fieldset>
-                  <ion-input *ngIf="indexHidden" type="text" formControlName="ClientRemarkCharge"
-                    placeholder="Remark On CancelCharge"></ion-input>
-                </fieldset>
-                <fieldset>
-                  <ion-input *ngIf="indexHidden" type="text" formControlName="ClientRemarkCommit"
-                    placeholder="Remark On CancelCommit"></ion-input>
-                </fieldset>
+          <form [formGroup]="remarksCommit">
+            <div>
+              <fieldset>
+                <ion-input *ngIf="indexHidden" type="text" formControlName="ClientRemarkCharge"
+                  placeholder="Remark On CancelCharge"></ion-input>
+              </fieldset>
+              <fieldset>
+                <ion-input *ngIf="indexHidden" type="text" formControlName="ClientRemarkCommit"
+                  placeholder="Remark On CancelCommit"></ion-input>
+              </fieldset>
 
-                <ion-button [disabled]="!remarksCommit.valid " (click)="cancelcommit()">Confirm</ion-button>
+              <ion-button [disabled]="!remarksCommit.valid " (click)="cancelcommit()">Confirm</ion-button>
 
-              </div>
+            </div>
 
-            </form>
+          </form>
 
-          </ion-card>
-        </ion-row>
-      </div>
+        </ion-card>
+      </ion-row>
+    </div>
 
   </ng-container>
   <ng-container *ngIf="loader">
@@ -491,7 +489,7 @@
                     <!-- <p>PLEASE WAIT WE ARE PROCESSING YOUR REQUEST....</p> -->
                   </header>
                 </div>
-                
+
               </ion-col>
 
             </ion-row>
@@ -648,7 +646,7 @@
                   <td>SeatCode </td>
                   <td>SeatRow</td>
                   <td>Price</td>
-  
+
                 </tr>
                 <tr class='MailTr'
                   style='font-size: 11px; text-align: center; line-height: 19px; font-size: 13px; background: #fff'>
@@ -660,72 +658,72 @@
                   <td style='padding: 2px 0; border-right: 1px solid  #ff8a8a;'>{{a.SeatCode}}</td>
                   <td style='padding: 2px 0; border-right: 1px solid  #ff8a8a;'>{{a.SeatRow}}</td>
                   <td style='padding: 2px 0; border-right: 1px solid  #ff8a8a;'>{{a.Price}}</td>
-  
+
                 </tr>
-  
+
               </table>
             </ng-container>
-  
-  
-  
-              <table cellspacing='0' cellpadding='0' style='width: 97%; margin: auto; border-bottom: 1px solid #ccc'
-                *ngFor="let a of meal.Meal">
-                <tr class='ClassTitle'>
-                  <td colspan='5' width='97%'>Meal Summary</td>
-                </tr>
-                <tr class='ClassHead'>
-                  <td>SsrCode</td>
-                  <td class='txt-lt pad-lt-5'>SsrDesc</td>
-                  <td>Complmnt</td>
-                  <td>SsrFor </td>
-                  <td>OI</td>
-                  <td>Price</td>
-  
-                </tr>
-                <tr class='MailTr'
-                  style='font-size: 11px; text-align: center; line-height: 19px; font-size: 13px; background: #fff'>
-                  <td style='padding: 2px 0; border-right: 1px solid  #ff8a8a;'>{{a.SsrCode}}</td>
-                  <td
-                    style='font-weight: bold; padding: 2px 0; border-right: 1px solid  #ff8a8a; text-align: left; padding: 2px 0px 2px 5px;'>
-                    {{a.SsrDesc}} </td>
-                  <td style='padding: 2px 0; border-right: 1px solid  #ff8a8a;'>{{a.Complmnt}}</td>
-                  <td style='padding: 2px 0; border-right: 1px solid  #ff8a8a;'>{{a.SsrFor}}</td>
-                  <td style='padding: 2px 0; border-right: 1px solid  #ff8a8a;'>{{a.OI}}</td>
-                  <td style='padding: 2px 0; border-right: 1px solid  #ff8a8a;'>{{a.Price}}</td>
-  
-                </tr>
-  
-              </table>
 
-              <table style='border: 0; padding: 5px;' height='12' cellspacing='0' cellpadding='0' bgcolor='#fff'>
-                <tr>
-                  <td></td>
-                </tr>
-              </table>
-              <table cellspacing='0' cellpadding='0' *ngIf="test.PaxInfo.GstData?.IsGst"
-              style='width: 97%; margin: auto; border-bottom: 1px solid #ccc'>
+
+
+            <table cellspacing='0' cellpadding='0' style='width: 97%; margin: auto; border-bottom: 1px solid #ccc'
+              *ngFor="let a of meal.Meal">
               <tr class='ClassTitle'>
-                  <td colspan='5' width='97%'>GST DETAILS</td>
+                <td colspan='5' width='97%'>Meal Summary</td>
               </tr>
               <tr class='ClassHead'>
-                  <td width='100'>NAME</td>
-                  <td width='200' class='txt-lt pad-lt-5'>Mobile</td>
-                  <td width='200'>Address</td>
-                  <td width='200'>Email</td>
-                  <td width='200'>Gstn</td>
-                  <td width='200'>Pin</td>
+                <td>SsrCode</td>
+                <td class='txt-lt pad-lt-5'>SsrDesc</td>
+                <td>Complmnt</td>
+                <td>SsrFor </td>
+                <td>OI</td>
+                <td>Price</td>
+
+              </tr>
+              <tr class='MailTr'
+                style='font-size: 11px; text-align: center; line-height: 19px; font-size: 13px; background: #fff'>
+                <td style='padding: 2px 0; border-right: 1px solid  #ff8a8a;'>{{a.SsrCode}}</td>
+                <td
+                  style='font-weight: bold; padding: 2px 0; border-right: 1px solid  #ff8a8a; text-align: left; padding: 2px 0px 2px 5px;'>
+                  {{a.SsrDesc}} </td>
+                <td style='padding: 2px 0; border-right: 1px solid  #ff8a8a;'>{{a.Complmnt}}</td>
+                <td style='padding: 2px 0; border-right: 1px solid  #ff8a8a;'>{{a.SsrFor}}</td>
+                <td style='padding: 2px 0; border-right: 1px solid  #ff8a8a;'>{{a.OI}}</td>
+                <td style='padding: 2px 0; border-right: 1px solid  #ff8a8a;'>{{a.Price}}</td>
+
+              </tr>
+
+            </table>
+
+            <table style='border: 0; padding: 5px;' height='12' cellspacing='0' cellpadding='0' bgcolor='#fff'>
+              <tr>
+                <td></td>
+              </tr>
+            </table>
+            <table cellspacing='0' cellpadding='0' *ngIf="test.PaxInfo.GstData?.IsGst"
+              style='width: 97%; margin: auto; border-bottom: 1px solid #ccc'>
+              <tr class='ClassTitle'>
+                <td colspan='5' width='97%'>GST DETAILS</td>
+              </tr>
+              <tr class='ClassHead'>
+                <td width='100'>NAME</td>
+                <td width='200' class='txt-lt pad-lt-5'>Mobile</td>
+                <td width='200'>Address</td>
+                <td width='200'>Email</td>
+                <td width='200'>Gstn</td>
+                <td width='200'>Pin</td>
               </tr>
               <tr class='ClassHeadContent'>
-                  <td width='100'>{{test.PaxInfo.GstData.GstDetails.Name}}</td>
-                  <td width='200' class='txt-lt pad-lt-5'>{{test.PaxInfo.GstData.GstDetails.Mobile}}</td>
-                  <td width='200'>{{test.PaxInfo.GstData.GstDetails.Address}}</td>
-                  <td width='200'>{{test.PaxInfo.GstData.GstDetails.Email}}</td>
-                  <td width='200'>{{test.PaxInfo.GstData.GstDetails.Gstn}}</td>
-                  <td width='200'>{{test.PaxInfo.GstData.GstDetails.Pin}}</td>
+                <td width='100'>{{test.PaxInfo.GstData.GstDetails.Name}}</td>
+                <td width='200' class='txt-lt pad-lt-5'>{{test.PaxInfo.GstData.GstDetails.Mobile}}</td>
+                <td width='200'>{{test.PaxInfo.GstData.GstDetails.Address}}</td>
+                <td width='200'>{{test.PaxInfo.GstData.GstDetails.Email}}</td>
+                <td width='200'>{{test.PaxInfo.GstData.GstDetails.Gstn}}</td>
+                <td width='200'>{{test.PaxInfo.GstData.GstDetails.Pin}}</td>
               </tr>
-  
-          </table>
-  
+
+            </table>
+
 
 
             <table cellspacing='0' cellpadding='0' style='width: 97%; margin: auto; border-bottom: 1px solid #ccc'>

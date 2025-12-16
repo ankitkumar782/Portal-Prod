@@ -1,117 +1,146 @@
-ion-item{
+ion-item {
     border-bottom: 1px solid rgb(189, 189, 189);
+    background-color: #fff !important;
 }
-ion-col{
+
+ion-col {
     padding: 0px;
 }
-.centre{
+
+.centre {
     text-align: center;
 }
-input{
-    border: none;
-    outline: 0;
-    width: 100%;
-    background-color: white;
-    padding: 0px;
-    font-size: 13px;
+
+.pass-wrapper {
+    display: flex;
+    align-items: center;
+    position: relative;
 }
-input::placeholder{
+
+input {
+    // border: none;
+    outline: 0;
+    width: 80%;
+    background-color: white;
+    padding: 10px;
+    font-size: 13px;
+    margin-top: 5px;
+    color: #000000;
+    flex: 1;
+
+
+}
+
+input::placeholder {
     font-size: 13px;
 }
 
-ion-icon{
+ion-icon {
     font-size: 19px;
 }
-.bgw{
+
+.bgw {
     background-color: white;
 }
-.or-text{
+
+.or-text {
     text-align: center;
 }
-ion-label{
+
+ion-label {
     font-size: 15px;
     font-weight: 500;
     font-family: sans-serif;
     color: #0d2c4f;
 }
-.passwordIcon{
+
+.passwordIcon {
+    color: black;
     font-size: 12px;
-    position: relative !important;
-    top: 7px !important;
+    position: absolute;
+    right: 10px;
+    top: 20px;
     margin: 0 auto !important;
     cursor: pointer;
- }
+}
 
 @media only screen and (min-width: 769px) {
-  
-    input{
+
+    input {
         border: none;
         outline: 0;
         width: 100%;
     }
-    ion-icon{
+
+    ion-icon {
         font-size: 19px;
     }
-    ion-button{
+
+    ion-button {
         width: 100%;
     }
 }
+
 @media only screen and (max-width: 768px) {
-   
-    input{
+
+    input {
         border: none;
         outline: 0;
         width: 100%;
     }
-    ion-icon{
+
+    ion-icon {
         font-size: 19px;
     }
-    ion-button{
+
+    ion-button {
         width: 100%;
     }
 
 }
 
-@media only screen and (max-width: 425px ) {
+@media only screen and (max-width: 425px) {
 
-    input{
+    input {
         border: none;
         outline: 0;
         width: 100%;
     }
-    ion-icon{
+
+    ion-icon {
         font-size: 19px;
     }
-    ion-button{
+
+    ion-button {
         width: 100%;
     }
 }
 
 
 .index-page {
-  --bg-color: #ffffff !important;
-  --text-color: #000000 !important;
-  --card-bg: #f0f0f0 !important;
-  --input-bg: #ffffff !important;
-  --primary-btn-bg: #007bff !important;
-  --primary-btn-color: #fff !important;
+    --bg-color: #ffffff !important;
+    --text-color: #000000 !important;
+    --card-bg: #f0f0f0 !important;
+    --input-bg: #ffffff !important;
+    --primary-btn-bg: #007bff !important;
+    --primary-btn-color: #fff !important;
 
-  background-color: #ffffff !important;
-  color: #000000 !important;
+    background-color: #ffffff !important;
+    color: #000000 !important;
 }
 
 .index-page input,
 .index-page select,
 .index-page textarea {
-  background-color: #ffffff !important;
-  color: #000000 !important;
-  border: 1px solid #ccc !important;
+    background-color: #ffffff !important;
+    color: #000000 !important;
+    border: 1px solid #ccc !important;
 }
 
 .index-page button {
-  background-color: #007bff !important;
-  color: #ffffff !important;
-  border: none !important;
+    background-color: #007bff !important;
+    color: #ffffff !important;
+    border: none !important;
 }
 
 .index-page ion-toolbar,
@@ -119,6 +148,6 @@ ion-label{
 .index-page ion-content,
 .index-page ion-col,
 .index-page ion-row {
-  background-color: #ffffff !important;
-  color: #000000 !important;
+    background-color: #ffffff !important;
+    color: #000000 !important;
 }

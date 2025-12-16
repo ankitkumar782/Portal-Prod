@@ -3,7 +3,7 @@
     <ng-container *ngIf="showbooking">
       <ng-container *ngIf="ShowModelDATA">
 
-        <ion-row class="ion-padding-top s-bar">
+        <ion-row class="ion-padding-top s-bar" style="background-color: white;">
           <ion-col size-sm="12" size-xs="12" size-md="2" size-lg="2" size-xl="2">
           </ion-col>
           <ion-col size-sm="12" size-xs="12" size-md="10" size-lg="10" size-xl="10">
@@ -106,7 +106,7 @@
             <span>Please Wait We are Fetching Booking History </span>
           </ion-col>
         </ion-row> -->
-        <ion-row style="padding: 0px;">
+        <ion-row style="padding: 0px;background-color: white;">
           <ion-col size-xs="12" size-sm="12" size-md="12" size-lg="12" size-xl="12">
             <!-- <ion-badge color="primary" style="margin: 5px 0px 0px 15px;padding: 5px;">Total Result =
               {{resultArr.length}}
@@ -188,7 +188,7 @@
 
                 </tr>
               </thead>
-              <tbody>
+              <tbody style="background-color: white;">
                 <tr *ngFor="let d of resultArr, index as i" class="hvr">
                   <td class="td">{{i+1}}</td>
                   <td class="td" style="color: rgb(255, 0, 0); cursor: pointer">
@@ -241,7 +241,7 @@
 
 
       <ng-container *ngIf="showtable">
-        <ion-row style="display: flex; justify-content: center; align-items: center; margin-top: 150px;">
+        <ion-row style="display: flex; justify-content: center; align-items: center; margin-top: 150px; background-color: white;color: #111;">
           <ion-col size-sm="12" size-xs="12" size-md="8" size-lg="8" size-xl="8">
             <ion-card class="cardSize" class="c-Font">
               <ion-row style="background-color: #F4F6F8;padding: 0px;">
