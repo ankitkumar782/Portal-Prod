@@ -1,68 +1,88 @@
 <ion-content>
   <ng-container *ngIf="!showticket">
-    <ion-row>
+    <ion-row
+      style="display: flex; justify-content: center; align-items: center; margin-top: 10px; margin-bottom: 10px;  padding: 5px;">
 
-      <ion-col size-sm="12" size-xs="12" size-md="4" size-lg="4" size-xl="4">
+      <ion-col size-sm="12" size-xs="12" size-md="1" size-lg="1" size-xl="1"></ion-col>
+      <ion-col size-sm="12" size-xs="12" size-md="2" size-lg="2" size-xl="2" class="c-Font selbox"
+        style="padding: 10px;">
+
 
         <fieldset>
-          <legend>
-            <ion-icon name="at"></ion-icon> Search by
-          </legend>
-          <select class="selbox" [(ngModel)]="FromData">
-            <option value="" disabled="disabled" selected="selected">Select option</option>
-            <option value="PNR">PNR</option>
-            <option value="FName">First Name</option>
-            <option value="LName">Last Name</option>
-            <option value="BookingId">Booking Id</option>
+
+
+          <select [(ngModel)]="FromData">
+            <optgroup style="padding: 5px; font-size: 17px;">
+              <option value="" disabled="disabled" selected="selected">Select option</option>
+              <option value="PNR">PNR</option>
+              <option value="FName">First Name</option>
+              <option value="LName">Last Name</option>
+              <option value="BookingId">Booking Id</option>
+            </optgroup>
           </select>
+
         </fieldset>
 
 
       </ion-col>
 
-      <ion-col size-sm="12" size-xs="12" size-md="4" size-lg="4" size-xl="4">
+      <ion-col size-sm="12" size-xs="12" size-md="2" size-lg="2" size-xl="2" class="c-Font" style="padding: 20px;">
         <fieldset>
-          <legend>
-            <ion-icon name="at"></ion-icon> Value
-          </legend>
-          <input style="border-top: #111;" type="text" [(ngModel)]="data" placeholder="enter value ">
+          <!-- <label style="font-family: poppins; font-size: 19px; font-weight: 500;">
+        
+           Value
+        </label> -->
+          <input style="border-top: #111;" type="text" [(ngModel)]="data" placeholder="Enter Value ">
         </fieldset>
+
+
+        <!-- <button class="submit-btn" type="submit" (click)="searchBy()">search </button> -->
       </ion-col>
 
-      <ion-col size-sm="12" size-xs="12" size-md="4" size-lg="4" size-xl="4">
+      <ion-col size-sm="12" size-xs="12" size-md="3" size-lg="3" size-xl="2" class="c-Font" style="padding: 20px;">
         <button class="submit-btn" type="submit" (click)="searchBy()">Search By </button>
       </ion-col>
 
+      
 
-      <ion-col size-sm="12" size-xs="12" size-md="4" size-lg="4" size-xl="4">
-        <fieldset>
-          <legend>
-            <ion-icon name="calendar-outline"></ion-icon> From
-          </legend>
-          <input type="date" [(ngModel)]="fromDate" placeholder="Enter from Date ">
-        </fieldset>
-      </ion-col>
 
       <ion-col size-sm="12" size-xs="12" size-md="4" size-lg="4" size-xl="4">
 
-        <fieldset>
-          <legend>
-            <ion-icon name="calendar-outline"></ion-icon> To
-          </legend>
-          <input type="date" [(ngModel)]="toDate" placeholder="Enter To Date ">
-        </fieldset>
+
+        <!-- <fieldset>
+        <legend>
+          <ion-icon name="calendar-outline"></ion-icon> From
+        </legend>
+        <input type="date" [(ngModel)]="fromDate" placeholder="Enter from Date ">
+      </fieldset>
+    </ion-col>
+
+    <ion-col size-sm="12" size-xs="12" size-md="4" size-lg="4" size-xl="4">
+
+      <fieldset>
+        <legend>
+          <ion-icon name="calendar-outline"></ion-icon> To
+        </legend>
+        <input type="date" [(ngModel)]="toDate" placeholder="Enter To Date ">
+      </fieldset> -->
+
+
+        <!-- </ion-row> -->
+
+        <!-- <input type="text" [(ngModel)]="Env"  placeholder="enter Env ">
+        <input type="text" [(ngModel)]="Pnr"  placeholder="enter Pnr ">
+        <input type="text" [(ngModel)]="FName"  placeholder="enter FName ">
+        <input type="text" [(ngModel)]="LName"  placeholder="enter LName ">
+        <input type="text" [(ngModel)]="BookingId"  placeholder="enter BookingId "> -->
 
       </ion-col>
+
 
     </ion-row>
 
     <ion-row style="padding: 0px;">
       <ion-col size-xs="12" size-sm="12" size-md="12" size-lg="12" size-xl="12">
 
-        <ion-badge color="tertiary" class="ionp" style="cursor: pointer;float: right;margin: 5px 20px 0px 0px;"
-          (click)="exportexcel()">
-          <img src="https://img.icons8.com/material-outlined/12/ffffff/download--v1.png" /> Download Excel
-        </ion-badge>
 
         <table id="tab4" class="table">
           <thead class="thead">
@@ -134,7 +154,7 @@
 
 
       </ion-col>
-
+      <!-- 
       <ion-grid>
         <ion-row class="ion-margin-top ion-padding ion-text-center " *ngIf="actiondiv"
           style="z-index: 999999;background-color: white; position: absolute;box-shadow: 1px 2px 10px 2px  lightgray; top: 100px;left: 35%;height: auto;width: 800px;">
@@ -147,60 +167,43 @@
               </ion-col>
               <h1 class="alert close ion-text-center">
 
-                <h2>Select the option</h2>
-                <fieldset>
-                  <legend>
-                    <ion-icon name="at"></ion-icon> Search by
-                  </legend>
-
-                  <select class="selbox" [(ngModel)]="FromData2">
-                    <option value="" disabled="disabled" selected="selected">Select option</option>
-                    <option value={{d.ActionType}} *ngFor="let d of actiontype">{{d.ActionType}}</option>
-
-                  </select>
-
-                </fieldset>
-                <ion-button (click)="manualactionretrive()">Save</ion-button>
+                <h2>RESCHEDULE CHARGE</h2>
 
                 <ion-col size-md="11" size-lg="11" size-xl="11">
 
-                  <form [formGroup]="CustmrDetails" (ngSubmit)="onSubmit()">
+                  <form [formGroup]="RESCHEDULE_CHARGE" (ngSubmit)="onSubmit()">
                     <ion-row>
-                      <ion-col size-md="6" size-lg="6" size-xl="6">
+                      <ion-col size-md="4" size-lg="4" size-xl="4">
                         <fieldset>
-                          <legend>
-                            <ion-icon name="calendar-outline"></ion-icon> Request By
-                          </legend>
-                          <input type="text" placeholder=" Name " formControlName="Name">
+                          <input type="text" placeholder=" Booking ID " formControlName="BOOKING_ID">
                         </fieldset>
+
+
                       </ion-col>
 
-                      <ion-col size-md="6" size-lg="6" size-xl="6">
+                      <ion-col size-md="4" size-lg="4" size-xl="4">
                         <fieldset>
-                          <legend>
-                            <ion-icon name="calendar-outline"></ion-icon> Pnr
-                          </legend>
-                          <input type="text" placeholder=" Pnr " formControlName="Email">
+                          <input type="text" placeholder=" Dep date : 2025-09-23T03:55:00 " formControlName="DEP_DATE">
                         </fieldset>
+
+
                       </ion-col>
-                    </ion-row>
 
-                    <ion-row>
 
-                      <ion-col size-md="6" size-lg="6" size-xl="6">
+                      <ion-col size-md="4" size-lg="4" size-xl="4">
                         <fieldset>
-                          <legend>
-                            <ion-icon name="calendar-outline"></ion-icon> Remark
-                          </legend>
-                          <input type="text" placeholder=" Remark " formControlName="Remark">
+                          <input type="text" placeholder=" Flight no:6E-2766 " formControlName="FLIGHT_NO">
                         </fieldset>
+
+
                       </ion-col>
-                    </ion-row>
+                      <ion-col size-md="4" size-lg="4" size-xl="4">
+                        
+                      </ion-col>
 
-                    <ion-row>
 
-                      <ion-col size-md="3" size-lg="3" size-xl="3">
-                        <ion-button type="submit" [disabled]="!CustmrDetails.valid">submit</ion-button>
+                      <ion-col size-md="4" size-lg="4" size-xl="4">
+                        <button class="submit-btn" type="submit" [disabled]="!RESCHEDULE_CHARGE.valid">submit</button>
                       </ion-col>
                     </ion-row>
 
@@ -211,6 +214,108 @@
                 <ion-col size-md="11" size-lg="11" size-xl="11" *ngIf="showssr">
                   <input type="text" placeholder="Remark">
                 </ion-col>
+
+              </h1>
+            </ion-row>
+          </ion-col>
+        </ion-row>
+      </ion-grid> -->
+      <ion-grid *ngIf="actiondiv" class="modal-overlay">
+        <ion-row class="modal-container">
+
+          <!-- Close Button -->
+          <ion-icon name="close-outline" class="modal-close" (click)="close()">
+          </ion-icon>
+
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h2>Reschedule Charge</h2>
+          </div>
+
+          <!-- Modal Body -->
+          <div class="modal-body">
+
+            <form [formGroup]="RESCHEDULE_CHARGE" (ngSubmit)="onSubmit()">
+              <ion-row>
+
+                <ion-col size-md="4">
+                  <fieldset>
+                    <input type="text" placeholder="Booking ID" formControlName="BOOKING_ID">
+                  </fieldset>
+                </ion-col>
+
+                <ion-col size-md="4">
+                  <fieldset>
+                    <input type="text" placeholder="Departure Date" formControlName="DEP_DATE">
+                  </fieldset>
+                  <div class="input-hint">
+                    * Format: 2025-09-23T03:55:00
+                  </div>
+                </ion-col>
+
+                <ion-col size-md="4">
+                  <fieldset>
+                    <input type="text" placeholder="Flight No" formControlName="FLIGHT_NO">
+                  </fieldset>
+                  <div class="input-hint">
+                    * Format: 6E-2766
+                  </div>
+                </ion-col>
+
+              </ion-row>
+
+              <ion-row class="modal-footer">
+                <ion-col size-md="4" offset-md="4">
+                  <button class="submit-btn" type="submit" [disabled]="!RESCHEDULE_CHARGE.valid">
+                    Submit
+                  </button>
+                </ion-col>
+              </ion-row>
+            </form>
+
+            <ion-row *ngIf="showssr">
+              <ion-col size-md="12">
+                <input type="text" placeholder="Remark">
+              </ion-col>
+            </ion-row>
+
+          </div>
+
+        </ion-row>
+      </ion-grid>
+
+      <ion-grid>
+        <ion-row class="ion-margin-top ion-padding ion-text-center " *ngIf="chargesdiv"
+          style="z-index: 999999;background-color: white; position: absolute;box-shadow: 1px 2px 10px 2px  lightgray; top: 100px;left: 35%;height: auto;width: 800px;">
+          <ion-col size-md="12" size-lg="12" size-xl="12" class="ion-padding">
+            <ion-row>
+              <ion-col size-md="11" size-lg="11" size-xl="11"></ion-col>
+
+              <ion-col size-md="1" size-lg="1" size-xl="1">
+                <ion-icon name="close-circle-outline" class="close" (click)="close()">Close</ion-icon>
+              </ion-col>
+              <h1 class="alert close ion-text-center">
+
+
+
+                <ion-col size-md="11" size-lg="11" size-xl="11">
+
+                  <!-- <span>{{charges.FNo}}</span>
+                  <span>{{charges.RDate}}</span>
+                  <span>{{charges.Pnr}}</span>
+                  <span>{{charges.Fare}}</span>
+                  <span>{{charges.FareChange}}</span>
+                  <span>{{charges.FareDiff}}</span>
+                  <span>{{charges.AirlineRescheduleFee}}</span>
+                  <span>{{charges.ServiceFee}}</span>
+                  <span>{{charges.RefundableAmt}}</span>
+                  <span>{{charges.PayableAmt}}</span> -->
+
+                  <ion-button (click)="rcommit()">commit</ion-button>
+
+                </ion-col>
+
+
 
               </h1>
             </ion-row>
@@ -410,7 +515,8 @@
               <td></td>
             </tr>
           </table>
-          <table cellspacing='0' cellpadding='0' style='width: 97%; margin: auto; border-bottom: 1px solid #ccc'  *ngFor=" let d of test.SelectFlights">
+          <table cellspacing='0' cellpadding='0' style='width: 97%; margin: auto; border-bottom: 1px solid #ccc'
+            *ngFor=" let d of test.SelectFlights">
             <tr class='ClassTitle'>
               <td colspan='5' width='97%'>Flight Inclusion</td>
             </tr>
@@ -435,13 +541,15 @@
             <tr class='ClassHeadContent'>
               <td width='100'>3</td>
               <td width='200' class='txt-lt pad-lt-5'>Cancelation Fee</td>
-              <td width='200'>{{d.FareRule.CBH}} - {{d.FareRule.CBHA}} <br>  {{d.FareRule.CWBH}} - {{d.FareRule.CWBHA}}</td>
+              <td width='200'>{{d.FareRule.CBH}} - {{d.FareRule.CBHA}} <br> {{d.FareRule.CWBH}} - {{d.FareRule.CWBHA}}
+              </td>
               <td width='200'></td>
             </tr>
             <tr class='ClassHeadContent'>
               <td width='100'>4</td>
               <td width='200' class='txt-lt pad-lt-5'>Date Change Fee</td>
-              <td width='200'>{{d.FareRule.RBH}} - {{d.FareRule.RBHA}} <br>  {{d.FareRule.RWBH}} - {{d.FareRule.RWBHA}}</td>
+              <td width='200'>{{d.FareRule.RBH}} - {{d.FareRule.RBHA}} <br> {{d.FareRule.RWBH}} - {{d.FareRule.RWBHA}}
+              </td>
               <td width='200'></td>
             </tr>
           </table>

@@ -393,6 +393,10 @@
 
                         <span class="F_NAME"><b>{{y.Itinerary[0].FName}}</b></span><br>
                         <span class="F-CODE">{{y.Itinerary[0].FCode}}-{{y.Itinerary[0].FNo}}</span><br>
+                        <label>
+                          <input type="checkbox" (change)="copyOnCheck($event,y.Itinerary[0].FCode,y.Itinerary[0].FNo,y.Itinerary[0].DDate)" />
+                          
+                        </label>
                         <span class="F-ALIAS">{{y.Offer.Msg}}</span>
 
                       </div>

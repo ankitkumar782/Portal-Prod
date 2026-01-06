@@ -264,9 +264,9 @@ export class SearchbyPage implements OnInit {
   traceid
   indexHidden = false
   cancel_charge_req_function() {
-     this.isCheckedArr.forEach((ele)=>{
-      if(ele){
-        this.main_partial_check=true
+    this.isCheckedArr.forEach((ele) => {
+      if (ele) {
+        this.main_partial_check = true
       }
     })
     let res = {}
@@ -335,6 +335,7 @@ export class SearchbyPage implements OnInit {
     this.pstService.POST('/FCancel', CANCEL_CHARGE_obj).subscribe((res) => {
       console.log(res)
       if (res?.Charges) {
+        this.partial_sector_commit = res
         this.loader = false
         alert("Reason Submitted ")
         this.showcharges = true
@@ -380,8 +381,8 @@ export class SearchbyPage implements OnInit {
       })
 
   }
-
-  partial_check:boolean=false
+  partial_sector_commit
+  partial_check: boolean = false
   button = false
   showcharges = false
   showtable = false
@@ -397,47 +398,75 @@ export class SearchbyPage implements OnInit {
   showstatus = false
   statusresponse
   confirmCancellation() {
-
-    let cancelTicket =
-    {
-      "P_TYPE": "API",
-      "R_TYPE": "FLIGHT",
-      "R_NAME": "CANCEL",
-      "R_DATA": {
-        "ACTION": "CANCEL_COMMIT",
-        "BOOKING_ID": this.cancelBookingId,
-        "CANCEL_TYPE": "FULL_CANCELLATION",
-        "TRACE_ID": "",
-        "REASON": {
-          "ReasonCode": "CTP",
-          "Reason": "Change In Travels Plans",
-          "Scenarios": "Cancellation as per fare rules",
-          "IsVoluntary": true,
-          "Remarks": ""
+    let cancelTicket
+    if (!this.main_partial_check) {
+      cancelTicket =
+      {
+        "P_TYPE": "API",
+        "R_TYPE": "FLIGHT",
+        "R_NAME": "CANCEL",
+        "R_DATA": {
+          "ACTION": "CANCEL_COMMIT",
+          "BOOKING_ID": this.cancelBookingId,
+          "CANCEL_TYPE": "FULL_CANCELLATION",
+          "TRACE_ID": "",
+          "REASON": {
+            "ReasonCode": "CTP",
+            "Reason": "Change In Travels Plans",
+            "Scenarios": "Cancellation as per fare rules",
+            "IsVoluntary": true,
+            "Remarks": ""
+          },
+          // "Charges": this.charge.Charges
+          "Charges": {
+            "FlightCode": this.flightcode,
+            "Pnr": this.pnrOf,
+            "SplitedPnr": null,
+            "Fare": this.totalFare,
+            "AirlineCancellationFee": this.Airlinecharge,
+            "AirlineRefund": this.airlinerefund,
+            "ServiceFee": this.serviceCharge,
+            "RefundableAmt": this.refundableammo,
+            "IsCanceled": this.ticketConfirmation,
+            "IsError": false,
+            "Description": null,
+            "AirlineToken": this.airlineToken
+          }
         },
-        // "Charges": this.charge.Charges
-        "Charges": {
-          "FlightCode": this.flightcode,
-          "Pnr": this.pnrOf,
-          "SplitedPnr": null,
-          "Fare": this.totalFare,
-          "AirlineCancellationFee": this.Airlinecharge,
-          "AirlineRefund": this.airlinerefund,
-          "ServiceFee": this.serviceCharge,
-          "RefundableAmt": this.refundableammo,
-          "IsCanceled": this.ticketConfirmation,
-          "IsError": false,
-          "Description": null,
-          "AirlineToken": this.airlineToken
-        }
-      },
-      "AID": this.Agentid,
-      "MODULE": "B2B",
-      "IP": "182.73.146.154",
-      "TOKEN": this.Token,
-      "ENV": this.env,
-      "Version": "1.0.0.0.0.0"
+        "AID": this.Agentid,
+        "MODULE": "B2B",
+        "IP": "182.73.146.154",
+        "TOKEN": this.Token,
+        "ENV": this.env,
+        "Version": "1.0.0.0.0.0"
+      }
     }
+    else {
+      console.log(this.partial_sector_commit.Req.R_DATA)
+      cancelTicket = {
+        "P_TYPE": "API",
+        "R_TYPE": "FLIGHT",
+        "R_NAME": "CANCEL",
+        "R_DATA": {
+          "ACTION": "CANCEL_COMMIT",
+          "BOOKING_ID": this.partial_sector_commit.Req.R_DATA.BOOKING_ID,
+          "CANCEL_TYPE": "PARTIAL_CANCELLATION",
+          "REASON": this.partial_sector_commit.Req.R_DATA.REASON,
+          "SECTORS": this.partial_sector_commit.Req.R_DATA.SECTORS,
+          "TRACE_ID": this.partial_sector_commit.Req.R_DATA.TRACE_ID,
+          "Charges": this.partial_sector_commit.Charges,
+          "Error": null,
+          "Status": null
+        },
+        "AID": this.Agentid,
+        "MODULE": "B2B",
+        "IP": "182.73.146.154",
+        "TOKEN": this.Token,
+        "ENV": this.env,
+        "Version": "1.0.0.0.0.0"
+      }
+    }
+
     console.log(cancelTicket)
     this.pstService.POST('/FCancel', cancelTicket).subscribe((res) => {
       console.log(res)
@@ -597,50 +626,50 @@ export class SearchbyPage implements OnInit {
   onCheckboxChange(index: number, isChecked: boolean): void {
     console.log(`Checkbox at index ${index} is now ${isChecked ? 'checked' : 'unchecked'}`);
     console.log(this.isCheckedArr)
-   
+
     this.selected_pax()
   }
 
-  onPartialCheckboxChange(){
+  onPartialCheckboxChange() {
     console.log(this.partial_check)
   }
 
-  main_partial_check:boolean=false
+  main_partial_check: boolean = false
 
 
-  index:number
+  index: number
 
 
   selected_pax() {
     const row = this.resultArr[this.index];
     if (!row) {
       alert("Invalid Selection.");
-     window.location.reload();
+      window.location.reload();
 
     }
     // --- Safe Sector Parsing ---
     const sector = row.Sector || "";
-    var src_des_arr ;
-    if(sector.includes(",")){
-      src_des_arr=sector.split(',')
+    var src_des_arr;
+    if (sector.includes(",")) {
+      src_des_arr = sector.split(',')
     }
-    else{
+    else {
       alert("Unable to get the sector . Please contact call center")
       window.location.reload();
 
     }
-    const Src = src_des_arr[0] || "";
-    const Des = src_des_arr[1] || "";
+    const Src = src_des_arr[0];
+    const Des = src_des_arr[1];
     // --- Safe DDate Parsing ---
     const OI = row.OI || "";
     let final_ddate = "";
     if (OI.includes("|")) {
       let temp = OI.split("|");
       if (temp[1]) {
-        final_ddate = temp[1].split(",")[0] || "";
+        final_ddate = temp[1].split(",")[0];
       }
     }
-    else{
+    else {
       alert("Unable to get Departure date .pls contact Call center")
       window.location.reload();
 
@@ -663,12 +692,26 @@ export class SearchbyPage implements OnInit {
       DDate: final_ddate,
       PAX: paxdeatails
     };
-    if (Src==null || Des==null||!final_ddate==null) {
+    // if (!Src || !Des || !final_ddate) {
+    //   alert("Unable to cancel partially. Please contact call center.");
+    //   console.log(this.sec)
+    //   window.location.reload();
+
+    // }
+
+    if (this.isEmpty(Src) || this.isEmpty(Des) || this.isEmpty(final_ddate)) {
       alert("Unable to cancel partially. Please contact call center.");
       window.location.reload();
-
     }
-   
+    // if (!Src || !Des || !final_ddate) {
+    //   alert("Unable to cancel partially. Please contact call center.");
+    //   window.location.reload();
+    // }
+
+  }
+
+  isEmpty(v: any) {
+    return v === null || v === undefined || String(v).trim() === "";
   }
 
   sec: sec_data

@@ -1,210 +1,16 @@
-.showAmount {
-  justify-content: center;
-  display: flex;
-  padding: 25px;
-}
-.cardSize {
-  height: 500px;
-  width: 700px;
-  margin: auto;
-  margin-top: 100px;
+/* =========================================================
+   GLOBAL RESET & BASE STYLES
+   ========================================================= */
+* {
+  font-family: "Poppins", Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.spin {
-  justify-content: center;
-  display: flex;
-}
-
-span {
-  padding: 15px;
-  color: black;
-}
-ion-title {
-  text-align: center;
-  color: orange;
-  padding: 15px;
-}
-.inp {
-  background-color: white;
-  margin: 4px;
-}
-
-ion-icon {
-  font-size: 19px;
-}
-.table {
-  width: 100%;
-}
-ion-icon {
-  margin-top: -1px;
-}
-.thead {
-  background-color: #45587c;
-  color: rgb(247, 247, 247);
-  text-align: left;
-}
-.th {
-  font-size: 10px;
-  font-weight: 200;
-  text-align: center;
-}
-.td {
-  border-top: 1px solid rgba(124, 123, 123, 0.557);
-  padding: 5px 5px;
-  font-size: 10px;
-  color: #000;
-  font-weight: 200;
-  text-align: center;
-}
-
-.padding {
-  padding: 5px 5px;
-}
-.s-bar {
-  padding: 0px 0px 20px 0px;
-}
-
-ion-col {
-  padding-top: 10px;
-}
-.padding-none {
-  padding: 0px;
-}
-.rotate-90 {
-  display: inline-block;
-  transform: rotate(45deg);
-}
-.rotate-0 {
-  display: inline-block;
-  transform: rotate(-45deg);
-}
-.bg-color {
-  --ion-background-color: rgb(245, 245, 245);
-}
-ion-item {
-  --ion-background-color: #fff;
-}
-input {
-  outline: 0;
-  border: none;
-  width: 100%;
-  padding: 10px;
-  background-color: white;
-  color: black;
-}
-input:disabled {
-  cursor: not-allowed;
-}
-
-ion-icon {
-  color: #e9182d;
-}
-.label {
-  font-size: 20px;
-  font-weight: 500;
-}
-ion-text {
-  color: #e9182d;
-  font-weight: 500;
-  cursor: pointer;
-}
-
-.submit-btn {
-  width: 100%;
-  padding: 20px 20px;
-  background: #e9182d;
-  color: white;
-  font-size: 15px;
-  font-family: serif;
-  border: none;
-  font-weight: 500;
-  opacity: 0.8;
-  box-shadow: 1px 1px 1px 1px lightgrey;
-  border-radius: 5px;
-  margin: 11px 0px 0px 0px;
-  letter-spacing: 2px;
-}
-
-.submit-btn:hover {
-  opacity: 1;
-}
-.tp_mgn {
-  padding: 20px 0px 0px 0px;
-}
-
-fieldset {
-  border-radius: 5px;
-  border-radius: 5px;
-  border: 1px solid rgb(207, 207, 207);
-  padding: 0px 15px;
-}
-legend {
-  color: #000;
-  font-weight: 400;
-}
-.border {
-  height: 30px;
-  width: 30px;
-  text-align: center;
-  border-radius: 50%;
-  padding: 7px 0px 0px 0px;
-  margin: 18px 0px 0px 40px;
-  cursor: pointer;
-  border: 1px solid #e9182d;
-}
-
-@media only screen and (max-width: 767px) {
-  .none {
-    display: none;
-  }
-  .border {
-    text-align: center;
-    border-radius: 50%;
-    padding: 5px 0px 0px 0px;
-    margin: 18px 0px 0px 0px;
-    cursor: pointer;
-    border: 1px solid #0d2c4f;
-  }
-  .p-margin {
-    margin: 0px 0px 0px 150px;
-  }
-  .R-label {
-    font-weight: 500;
-    font-size: 16px;
-  }
-  .label {
-    font-size: 17px;
-    font-weight: 500;
-  }
-  input::placeholder {
-    font-size: 14px;
-  }
-  .FTH {
-    font-size: 14px;
-  }
-  .for-app {
-    padding: 60px 10px 80px 10px;
-  }
-}
-
-@media only screen and (max-width: 425px) {
-  .R-label {
-    font-weight: 500;
-    font-size: 13px;
-  }
-  .label {
-    font-size: 17px;
-    font-weight: 500;
-  }
-  input::placeholder {
-    font-size: 14px;
-  }
-  .FTH {
-    font-size: 16px;
-  }
-  .for-app {
-    padding: 60px 10px 80px 10px;
-  }
+ion-app,
+ion-card {
+  background-color: #ffffff;
 }
 
 body,
@@ -212,120 +18,212 @@ td,
 input,
 textarea,
 select {
-  margin: 0;
-  font-family: Cambria !important;
   color: #222;
 }
 
-.txt-lt {
-  text-align: left;
+/* =========================================================
+   FORM CONTAINER & LAYOUT
+   ========================================================= */
+.s-bar {
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
-.pad-lt-5 {
-  padding-left: 5px !important;
-}
-
-.circle-bullet {
-  width: 10px;
-  height: 10px;
-  background: #adadad;
-  border-radius: 100%;
-  float: left;
-  top: 5px;
-  position: relative;
-}
-
-.ClassStrip {
-  border-top: 1px solid #ccc;
+fieldset {
+  border: none;
   border-bottom: 1px solid #ccc;
+  padding-bottom: 6px;
+  margin: 0;
+  flex: 1; /* Make fieldset stretch full height */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end; /* Bottom-align input */
 }
 
-.imp-note {
+legend {
   font-size: 13px;
-  width: 97%;
-  font-style: normal;
-  font-variant: normal;
-  line-height: 20px;
-  margin-bottom: 10px;
-}
-
-.imp-note tr th {
-  padding: 3px 5px;
-  font-size: 15px;
-  background: transparent;
   color: #555;
-  font-weight: bold;
+  font-weight: 500;
 }
 
-.imp-note tr td {
-  padding: 2px 5px;
-  color: #444;
+input[type="text"],
+input[type="date"],
+select {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  border: none;
+  outline: none;
+  background: #fff;
+  color: #000;
+  height: 40px; /* Equal height for inputs */
 }
 
-.gst-info {
-  font-family: cambria;
-  font-size: 13px;
-  width: 97%;
-  font-style: normal;
-  font-variant: normal;
-  line-height: 20px;
-  margin-bottom: 10px;
+input::placeholder {
+  color: #999;
 }
 
-.gst-info tr th {
-  padding: 3px 5px;
-  font-size: 15px;
-  background: transparent;
-  color: #555;
-  font-weight: bold;
+input:disabled {
+  cursor: not-allowed;
 }
 
-.gst-info tr td {
-  font-size: 13px;
-}
-
-.ClassTitle td {
-  padding: 3px 5px;
-  font-size: 15px;
-  background: transparent;
-  color: #555;
-  font-weight: bold;
-}
-
-.ClassHead {
-  border-top: 1px solid #fc4d16;
-  border-bottom: 1px solid #fc4d16;
-  background: #b3b3b3;
-  font-size: 13px;
-  font-weight: 600;
-  text-align: center;
-}
-
-.ClassHead td {
-  font-size: 13px;
-  padding: 2px 0;
-  border-right: 1px solid #ddd;
+/* =========================================================
+   BUTTON STYLING
+   ========================================================= */
+.submit-btn {
+  height: 40px; /* Match input height */
+  width: 100%;
+  background: #e9182d;
   color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  transition: all 0.2s ease;
+  align-self: flex-start; /* Align with inputs */
 }
 
-.ClassHead td:last-child {
-  border-right: 0px solid #ddd;
+.submit-btn:hover {
+  transform: translateY(-1px);
+  opacity: 1;
 }
 
-.ClassHeadContent {
-  text-align: center;
-  line-height: 19px;
+/* =========================================================
+   FORM ROW ALIGNMENT
+   ========================================================= */
+ion-row.ion-padding-top.s-bar ion-row {
+  display: flex;
+  flex-wrap: wrap; /* Wrap on smaller screens */
+  gap: 10px;
+  align-items: stretch; /* Equal height children */
 }
 
-.ClassHeadContent td {
+ion-row.ion-padding-top.s-bar ion-row ion-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end; /* Align bottom */
+}
+
+/* =========================================================
+   BADGES
+   ========================================================= */
+ion-badge {
+  cursor: pointer;
+  border-radius: 5px;
+  padding: 5px 10px;
   font-size: 13px;
-  padding: 2px 0;
-  border-right: 1px solid #ddd;
-  background: #fafafa;
-  color: #222;
-  border-bottom: 1px dotted #999;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
 }
 
-.ClassHeadContent td:last-child {
-  border-right: 0px solid #ddd;
+/* =========================================================
+   MODERN TABLE
+   ========================================================= */
+.table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: #ffffff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+
+.table thead {
+  background: #f4f6f8;
+}
+
+.table th {
+  padding: 12px 10px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #021a46;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+
+.table td {
+  padding: 10px;
+  font-size: 13px;
+  color: #333;
+  border-bottom: 1px solid #f0f0f0;
+  vertical-align: middle;
+}
+
+.table tbody tr:nth-child(even) {
+  background-color: #f9fbff;
+}
+
+.table tbody tr:hover {
+  background-color: #eef4ff;
+  transform: scale(1.002);
+  transition: 0.2s;
+}
+
+.table td:first-child {
+  font-weight: 600;
+  color: #021a46;
+}
+
+/* Flex wrapper for the filter row */
+.filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center; /* aligns inputs and button vertically */
+}
+
+/* Make each column in the filter row flex-grow equally */
+.filter-row ion-col {
+  display: flex;
+  flex: 1; /* makes all columns equal width */
+}
+
+/* Make fieldset take full width inside ion-col */
+.filter-row fieldset {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Button full height to match inputs */
+.filter-row .submit-btn {
+  height: 42px; /* match typical input height */
+  margin-top: 0; /* remove extra spacing */
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+@media (max-width: 768px) {
+  ion-row.ion-padding-top.s-bar ion-row {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .submit-btn {
+    width: 100%;
+  }
+
+  .table th,
+  .table td {
+    padding: 8px;
+    font-size: 12px;
+  }
+
+  ion-badge {
+    font-size: 12px;
+    padding: 4px 8px;
+  }
+}
+
+@media (min-width: 769px) {
+  .for-app {
+    margin: 70px 0px 0px 0px;
+  }
 }

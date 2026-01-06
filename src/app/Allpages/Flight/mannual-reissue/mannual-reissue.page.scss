@@ -1,394 +1,539 @@
+
+
+/* =========================================================
+   GLOBAL RESET & BASE STYLES
+   ========================================================= */
+
+ion-app,
+ion-card {
+  background-color: #ffffff;
+}
+
+body,
+td,
+input,
+textarea,
+select {
+  margin: 0;
+  font-family: "Poppins", Cambria, serif !important;
+  color: #222;
+}
+
+/* =========================================================
+   LAYOUT & CONTAINERS
+   ========================================================= */
+
 .showAmount {
-    justify-content: center;
-    display: flex;
-    padding: 25px;
-  }
-  .cardSize{
-    height: 500px;
-    width: 700px;
-    margin: auto;
-    margin-top: 100px;  
-  }
-  select{
-    outline: 0;
-    border: none;
-    width: 100%;
-    padding: 10px;
-    background-color: white;
-    color: black;
-  }
-  span {
-    padding: 15px;
-    color: black;
-  }
-  ion-title{
-    text-align: center;
-    color: orange;
-    padding: 15px;
-  }
-  .inp{
-    background-color: white;
-    margin: 4px;
-  }
-  
-  ion-icon{
-    font-size: 19px;
-  }
-  .table{
-    width: 100%;
-  }
-  ion-icon{
-    margin-top: -1px;
-  }
-  .thead{
-    background-color: #45587c;
-    color: rgb(247, 247, 247);
-    text-align: left;
-  }
-  .th{
-    font-size: 12px;
-    font-weight: 500;
-    text-align: center;
-  
-  }
-  .td{
-    border-top: 1px solid rgba(124, 123, 123, 0.557);
-    padding: 5px 5px;
-    font-size:13px;
-    color:#000;
-    font-weight: 500;
-    text-align: center;
-  }
-  
-  .padding{
-    padding: 5px 5px;
-  
-  }
-  .s-bar{
-    padding: 0px 0px 20px 0px;
-    
-  }
-  
-  ion-col{
-      padding-top: 10px;
-  }
-  .padding-none {
-    padding: 0px;
-  }
-  .rotate-90 {
-    display: inline-block; 
-    transform: rotate(45deg);
-  }
-  .rotate-0{
-    display: inline-block; 
-    transform: rotate(-45deg);
-  }
-  .bg-color{
-    --ion-background-color: rgb(245, 245, 245);
-  }
-  ion-item{
-    --ion-background-color: #fff;
-  }
-  input{
-    outline: 0;
-    border: none;
-    width: 100%;
-    padding: 10px;
-    background-color: white;
-    color: black;
-  }
-  input:disabled {
+  display: flex;
+  justify-content: center;
+  padding: 25px;
+}
+
+.cardSize {
+  width: 60%;
+}
+
+ion-col {
+  padding-top: 10px;
+}
+
+.padding-none {
+  padding: 0;
+}
+
+.tp_mgn {
+  padding-top: 20px;
+}
+
+.page {
+  padding: 40px;
+}
+
+/* =========================================================
+   HEADINGS & TEXT
+   ========================================================= */
+
+ion-title {
+  text-align: center;
+  color: #e9182d;
+  padding: 15px;
+  font-weight: 600;
+}
+
+span {
+  color: #000;
+}
+
+.label {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+ion-text {
+  color: #e9182d;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.txt-lt {
+  text-align: left;
+}
+
+.pad-lt-5 {
+  padding-left: 5px !important;
+}
+
+/* =========================================================
+   FORM INPUTS & SELECTS
+   ========================================================= */
+
+fieldset {
+  border: none;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 6px;
+}
+
+legend {
+  font-size: 13px;
+  color: #555;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  border: none;
+  outline: none;
+  background: #fff;
+  color: #000;
+}
+
+input::placeholder {
+  color: #999;
+}
+
+input:disabled {
   cursor: not-allowed;
-  }
-  
-  ion-icon {
-    color: #e9182d;
-  }
-  .label{
-    font-size: 20px;
-    font-weight: 500;
-  }
-  ion-text {
-    color: #e9182d;
-    font-weight: 500;
-    cursor: pointer;
-  }
-  
-  
-  .submit-btn {
-    width: 100%;
-    padding:20px 20px;
-    background: #e9182d;
-    color: white;
-    font-size: 15px;
-    font-family: serif;
-    border: none;
-    font-weight: 500;
-    opacity: .8;
-    box-shadow: 1px 1px 1px 1px lightgrey;
-    border-radius: 5px;
-    margin: 11px 0px 0px 0px;
-    letter-spacing: 2px;
-  }
-  
-  .submit-btn:hover{
-    opacity: 1;
-  }
-  .tp_mgn{
-    padding: 20px 0px 0px 0px;
-  }
-  
-  fieldset {
-   border-radius: 5px;
-  border-radius: 5px;
-  border: 1px solid rgb(207, 207, 207);
-  padding: 0px 15px;
-   }
-  legend{
-    color: #000;
-    font-weight: 400;
-  }
-  .border{
-    height: 30px;
-    width: 30px;
-    text-align: center;
-    border-radius: 50%;
-    padding: 7px 0px 0px 0px;
-    margin: 18px 0px 0px 40px;
-    cursor: pointer;
-    border: 1px solid #e9182d;
-  }
-  
-    @media only screen and (max-width: 767px ) {
-      .none{
-        display: none;
-      }
-      .border{
-  
-        text-align: center;
-    border-radius: 50%;
-    padding: 5px 0px 0px 0px;
-    margin: 18px 0px 0px 0px;
-    cursor: pointer;
-    border: 1px solid #0d2c4f;
-      }
-      .p-margin{
-        margin: 0px 0px 0px 150px;
-      }
-      .R-label{
-        font-weight: 500;
-        font-size: 16px;
-      }
-      .label{
-        font-size: 17px;
-        font-weight: 500;
-      }
-      input::placeholder{
-        font-size: 14px;
-      }
-      .FTH {
-    
-        font-size: 14px;
-    
-      }
-      .for-app {
-        padding: 60px 10px 80px 10px;
-      }
-    
-    }
-  
-  @media only screen and (max-width: 425px ) {
-    .R-label{
-      font-weight: 500;
-      font-size: 13px;
-    }
-    .label{
-      font-size: 17px;
-      font-weight: 500;
-    }
-    input::placeholder{
-      font-size: 14px;
-    }
-    .FTH {
-  
-      font-size: 16px;
-  
-    }
-    .for-app {
-      padding: 60px 10px 80px 10px;
-    }
-  
-  }
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  body,
-  td,
-  input,
-  textarea,
-  select {
-      margin: 0;
-      font-family: Cambria !important;
-      color: #222;
-  }
-  
-  .txt-lt {
-      text-align: left;
-  }
-  
-  .pad-lt-5 {
-      padding-left: 5px !important;
-  }
-  
-  .circle-bullet {
-      width: 10px;
-      height: 10px;
-      background: #adadad;
-      border-radius: 100%;
-      float: left;
-      top: 5px;
-      position: relative;
-  }
-  
-  .ClassStrip {
-      border-top: 1px solid #CCC;
-      border-bottom: 1px solid #CCC;
-  }
-  
-  .imp-note {
-      font-size: 13px;
-      width: 97%;
-      font-style: normal;
-      font-variant: normal;
-      line-height: 20px;
-      margin-bottom: 10px;
-  }
-  
-  .imp-note tr th {
-      padding: 3px 5px;
-      font-size: 15px;
-      background: transparent;
-      color: #555;
-      font-weight: bold;
-  }
-  
-  .imp-note tr td {
-      padding: 2px 5px;
-      color: #444;
-  }
-  
-  .gst-info {
-      font-family: cambria;
-      font-size: 13px;
-      width: 97%;
-      font-style: normal;
-      font-variant: normal;
-      line-height: 20px;
-      margin-bottom: 10px;
-  }
-  
-  .gst-info tr th {
-      padding: 3px 5px;
-      font-size: 15px;
-      background: transparent;
-      color: #555;
-      font-weight: bold;
-  }
-  
-  .gst-info tr td {
-      font-size: 13px;
-  }
-  
-  .ClassTitle td {
-      padding: 3px 5px;
-      font-size: 15px;
-      background: transparent;
-      color: #555;
-      font-weight: bold;
-  }
-  
-  .ClassHead {
-      border-top: 1px solid #fc4d16;
-      border-bottom: 1px solid #fc4d16;
-      background: #b3b3b3;
-      font-size: 13px;
-      font-weight: 600;
-      text-align: center;
-  }
-  
-  .ClassHead td {
-      font-size: 13px;
-      padding: 2px 0;
-      border-right: 1px solid #DDD;
-      color: #fff;
-  }
-  
-  .ClassHead td:last-child {
-      border-right: 0px solid #DDD;
-  }
-  
-  .ClassHeadContent {
-      text-align: center;
-      line-height: 19px;
-  }
-  
-  .ClassHeadContent td {
-      font-size: 13px;
-      padding: 2px 0;
-      border-right: 1px solid #DDD;
-      background: #fafafa;
-      color: #222;
-      border-bottom: 1px dotted #999;
-  }
-  
-  .ClassHeadContent td:last-child {
-      border-right: 0px solid #DDD;
-  }
-  h1 {
-    color: green;
-}
- 
-a + div {
-    display: none;
-}
- 
-a:hover + div {
-    display: block;
-    color: green;
-    font-size: 25px;
-    cursor: pointer;
-}
-.popover__content {
-  opacity: 0;
-  visibility: hidden;
-  position: absolute;
-  padding:3px;
-  right: 20px;
-   top: 80px;
-  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
-  width: 350px;
-  background-color: rgb(255, 254, 254);
 }
 
-.popover__wrapper:hover .popover__content {
-  z-index: 10;
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+
+.submit-btn {
+  width: 100%;
+  padding: 14px;
+  background: #e9182d;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  transition: all 0.2s ease;
+  margin-top: 10px;
+}
+
+.submit-btn:hover {
+  transform: translateY(-1px);
   opacity: 1;
-  visibility: visible;
-  transform: translate(0, -20px);
-  transition: all 0.5s cubic-bezier(0.75, -0.02, 0.2, 0.97);
 }
 
-.after_hoverbtn1{width: 45%;margin-left: 10px;}
+/* =========================================================
+   TABLE STYLES
+   ========================================================= */
+
+/* =========================================================
+   MODERN TABLE UI
+   ========================================================= */
+
+.table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: #ffffff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* Table Header */
+.table thead,
+.thead {
+ background: #f4f6f8; 
+}
+
+.table th {
+  padding: 14px 12px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #021a46; 
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+
+/* Table Body */
+.table td {
+  padding: 12px;
+  font-size: 13px;
+  color: #333;
+  border-bottom: 1px solid #f0f0f0;
+  vertical-align: middle;
+}
+
+/* Zebra Striping */
+.table tbody tr:nth-child(even) {
+  background-color: #f9fbff;
+}
+
+/* Hover Effect */
+.table tbody tr {
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+
+.table tbody tr:hover {
+  background-color: #eef4ff;
+  transform: scale(1.005);
+}
+
+/* First Column Highlight */
+.table td:first-child {
+  font-weight: 600;
+  color: #021a46;
+}
+
+/* Status / Amount Highlight (optional utility classes) */
+.table .success {
+  color: #1abc9c;
+  font-weight: 600;
+}
+
+.table .danger {
+  color: #e9182d;
+  font-weight: 600;
+}
+
+.table .warning {
+  color: #f39c12;
+  font-weight: 600;
+}
+
+/* Icons inside table */
+.table ion-icon {
+  font-size: 18px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.table ion-icon:hover {
+  transform: scale(1.2);
+}
+
+/* =========================================================
+   MOBILE FRIENDLY TABLE
+   ========================================================= */
+
+@media (max-width: 768px) {
+  .table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .table th,
+  .table td {
+    padding: 10px;
+    font-size: 12px;
+  }
+}
+
+
+/* =========================================================
+   ICONS & SMALL UI ELEMENTS
+   ========================================================= */
+
+ion-icon {
+  color: #e9182d;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.rotate-90 {
+  transform: rotate(45deg);
+}
+
+.rotate-0 {
+  transform: rotate(-45deg);
+}
+
+/* =========================================================
+   CIRCLES / BADGES
+   ========================================================= */
+
+.border {
+  height: 32px;
+  width: 32px;
+  border-radius: 50%;
+  border: 1px solid #e9182d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+
+/* =========================================================
+   INFORMATION TABLES (GST / NOTES / CLASSES)
+   ========================================================= */
+
+.imp-note,
+.gst-info {
+  font-size: 13px;
+  width: 97%;
+  line-height: 20px;
+  margin-bottom: 10px;
+}
+
+.imp-note tr th,
+.gst-info tr th {
+  padding: 4px 6px;
+  font-size: 14px;
+  color: #555;
+  font-weight: 600;
+}
+
+.imp-note tr td,
+.gst-info tr td {
+  padding: 3px 6px;
+  font-size: 13px;
+  color: #444;
+}
+
+.ClassStrip {
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}
+
+.ClassHead {
+  background: #b3b3b3;
+  font-size: 13px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.ClassHead td {
+  color: #fff;
+  padding: 3px 0;
+  border-right: 1px solid #ddd;
+}
+
+.ClassHeadContent td {
+  background: #fafafa;
+  color: #222;
+  border-bottom: 1px dotted #999;
+  text-align: center;
+}
+
+/* =========================================================
+   FONT HELPERS
+   ========================================================= */
+
+.c-Font {
+  font-family: "Poppins";
+}
+
+.Book-NUM {
+  font-size: 15px;
+  font-weight: 900;
+  color: #021a46;
+}
+
+.search-BY {
+  font-weight: 700;
+  color: #534e4e;
+}
+
+/* =========================================================
+   LOADER / SPLASH SCREEN
+   ========================================================= */
+
+#splash {
+  background: #cc1f2f;
+  position: fixed;
+  inset: 0;
+  animation: splash 3s ease-in forwards;
+}
+
+#loader {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+@keyframes splash {
+  100% {
+    transform: translateY(-100%);
+  }
+}
+
+/* =========================================================
+   RESPONSIVE (MOBILE)
+   ========================================================= */
+
+@media (max-width: 767px) {
+  .none {
+    display: none;
+  }
+
+  .cardSize {
+    width: 95%;
+  }
+
+  .label {
+    font-size: 16px;
+  }
+}
+
+/* =========================================================
+   MODAL OVERLAY & CONTAINER
+   ========================================================= */
+
+/* Background overlay */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(3px);
+  z-index: 9999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Modal box */
+.modal-container {
+  position: relative;
+  width: 800px;
+  max-width: 95%;
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 30px;
+
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+  animation: modalFadeIn 0.25s ease;
+}
+
+/* =========================================================
+   MODAL HEADER
+   ========================================================= */
+
+.modal-header {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.modal-header h2 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 600;
+  color: #021a46;
+}
+
+/* =========================================================
+   MODAL BODY
+   ========================================================= */
+
+.modal-body {
+  width: 100%;
+}
+
+/* =========================================================
+   MODAL FOOTER
+   ========================================================= */
+
+.modal-footer {
+  margin-top: 30px;
+}
+
+/* =========================================================
+   MODAL CLOSE BUTTON
+   ========================================================= */
+
+.modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+
+  background: #f4f6f8;
+  color: #555;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 20px;
+  cursor: pointer;
+
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: all 0.2s ease;
+}
+
+.modal-close:hover {
+  background: #e9182d;
+  color: #fff;
+  transform: scale(1.1);
+}
+
+.modal-close:active {
+  transform: scale(0.95);
+}
+
+/* =========================================================
+   INPUT FORMAT HINT
+   ========================================================= */
+
+.input-hint {
+  margin-top: 6px;
+  font-size: 12px;
+  font-style: italic;
+  color: #8a8a8a;
+  text-align: left;
+}
+
+
+/* =========================================================
+   MODAL ANIMATION
+   ========================================================= */
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* =========================================================
+   MODAL RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 768px) {
+  .modal-container {
+    padding: 20px;
+  }
+}
+
+
+
+

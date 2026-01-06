@@ -520,7 +520,7 @@ export class FSearchPage implements OnInit {
   childrens = ["SELECT","0", "1", "2", "3", "4", "5", "6"]
   infants = ["SELECT","0", "1", "2", "3", "4", "5", "6"]
   F_class = ["First", "Bussiness", "Premium First", "Premium Ecomomy", "Ecomomy (Coach)"]
-  F_flights = ["All", "G8", "6E", "SG", "I5", "AI", "9W", "UK", "2T"]
+  F_flights = ["All","FF", "QP", "6E", "SG", "I5", "AI", "UK"]
   d_DepCity: any
   d_ArrCity: any
   d_Adult = "1";

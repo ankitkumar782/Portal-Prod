@@ -18,6 +18,7 @@ import { FlightTicketModule } from './components/flight-ticket/fight-ticket.modu
 // import { FooterPage } from '../Allpages/common/footer/footer.page';
 // import { FPaymentPage } from '../Allpages/Flight/f-payment/f-payment.page'
 import { NgxPaginationModule } from 'ngx-pagination';
+import { ClipboardModule } from '@angular/cdk/clipboard';
 @NgModule({
     declarations: [AppComponent, ],
     imports: [
@@ -32,7 +33,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
         FlightSearchPopoverModule,
         FlightTicketModule,
         JwPaginationModule,
-        NgxPaginationModule
+        NgxPaginationModule,
+        ClipboardModule
        
     ],
     providers: [

@@ -5,6 +5,8 @@ import { Subject } from 'rxjs';
 import { PopoverController, LoadingController } from '@ionic/angular';
 import { PostService } from '../../../Services/Crud_Services/post.service';
 import { DatePipe } from '@angular/common';
+import { Clipboard } from '@angular/cdk/clipboard';
+import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-f-one-way',
   templateUrl: './f-one-way.page.html',
@@ -31,27 +33,45 @@ export class FOneWayPage implements OnInit {
   indexHidden: any
   hide: any
   env: string;
-  stops_=false;
-  airline=false
-  dep_time=false
-  arr_time=false
-  price =false;
-  arr(){
-    this.arr_time=!this.arr_time
+  stops_ = false;
+  airline = false
+  dep_time = false
+  arr_time = false
+  price = false;
+
+  copyOnCheck(event: Event, fcode, fno, depdate) {
+    const checked = (event.target as HTMLInputElement).checked;
+
+    if (checked) {
+      this.clipboard.copy(fcode + -+fno + '(' + depdate + ')');
+      this.snackBar.open(
+        'Copied to clipboard ✔',
+        'Close',
+        {
+          duration: 2000,
+          horizontalPosition: 'right',
+          verticalPosition: 'top'
+        }
+      );
+      console.log('Copied to clipboard');
+    }
   }
-  dep(){
-    this.dep_time=!this.dep_time
+  arr() {
+    this.arr_time = !this.arr_time
   }
-checkstop(){
-  this.stops_=!this.stops_;
-}
-  checkprice(){
-    this.price=!this.price ;
+  dep() {
+    this.dep_time = !this.dep_time
+  }
+  checkstop() {
+    this.stops_ = !this.stops_;
+  }
+  checkprice() {
+    this.price = !this.price;
   }
 
-checkair(){
-  this.airline=!this.airline;
-}
+  checkair() {
+    this.airline = !this.airline;
+  }
   arp_s_h() {
     this.arp_show = true
   }
@@ -98,7 +118,9 @@ checkair(){
     public popoverController: PopoverController,
     public loadingController: LoadingController,
     private post_service: PostService,
-    public datepipe: DatePipe
+    public datepipe: DatePipe,
+    private clipboard: Clipboard,
+    private snackBar: MatSnackBar
   ) {
 
   }
@@ -112,7 +134,7 @@ checkair(){
   today = new Date(new Date().getTime()).toISOString().split('T')[0];
 
   ngOnInit() {
-    this.env=sessionStorage.getItem("ENV")
+    this.env = sessionStorage.getItem("ENV")
     let data: any = JSON.parse(localStorage.getItem("flt_srh_sector") || '{}')
     this.Token = sessionStorage.getItem("Token")
     this.agentid = sessionStorage.getItem("Agentid")
@@ -122,9 +144,9 @@ checkair(){
     let dateFormatTotime = new Date(this.sr_str.Sector[0].DDate);
     let increasedDate = new Date(dateFormatTotime.getTime() + (1 * 86400000));
     let decreasedDate = new Date(dateFormatTotime.getTime() - (1 * 86400000));
-    this.nextdate=this.datepipe.transform(increasedDate, 'yyyy-MM-dd');
-    this.prevdate=this.datepipe.transform(decreasedDate, 'yyyy-MM-dd');
-   
+    this.nextdate = this.datepipe.transform(increasedDate, 'yyyy-MM-dd');
+    this.prevdate = this.datepipe.transform(decreasedDate, 'yyyy-MM-dd');
+
     this.apicall(data)
 
   }
@@ -147,8 +169,8 @@ checkair(){
       this.Skelton = true
       this.f_all_data = Flight
       // this.arr_data = this.f_all_data.Schedules[0].filter((d: { Fare: { GrandTotal: number; }; }) => d.Fare.GrandTotal)
-       let data=this.f_all_data.Schedules[0].sort((p1, p2) => (p1.Fare.GrandTotal > p2.Fare.GrandTotal) ? 1 : (p1.Fare.GrandTotal < p2.Fare.GrandTotal) ? -1 : 0)
-       this.arr_data = data
+      let data = this.f_all_data.Schedules[0].sort((p1, p2) => (p1.Fare.GrandTotal > p2.Fare.GrandTotal) ? 1 : (p1.Fare.GrandTotal < p2.Fare.GrandTotal) ? -1 : 0)
+      this.arr_data = data
       // this.arr_data = this.f_all_data.Schedules[0].filter((d: { Fare: { GrandTotal: number; }; }) => d.Fare.GrandTotal >= this.f_all_data.MinimumFare)
       let uniqueChars: any[] = [];
 
@@ -250,13 +272,13 @@ checkair(){
     console.log(this.airlineId)
     this.reset_stop_key = true
     this.stpId = value.val
-    if(!this.reset_airline_key){
-    this.arr_data = this.f_all_data.Schedules[0].filter((d: { Stop: any; }) => d.Stop == value.val)
-  
-  }
-  else{
-    this.arr_data = this.f_all_data.Schedules[0].filter((d:any) => d.Stop == value.val&&d.FName==this.airlineId)
-  }
+    if (!this.reset_airline_key) {
+      this.arr_data = this.f_all_data.Schedules[0].filter((d: { Stop: any; }) => d.Stop == value.val)
+
+    }
+    else {
+      this.arr_data = this.f_all_data.Schedules[0].filter((d: any) => d.Stop == value.val && d.FName == this.airlineId)
+    }
   }
   reset_stop_filter() {
     this.reset_stop_key = false
@@ -270,10 +292,11 @@ checkair(){
   flt_name_filter(event: any) {
     this.airlineId = event.val
     this.reset_airline_key = true
-    if(!this.reset_stop_key){
-    this.arr_data = this.f_all_data.Schedules[0].filter((d: { FName: any; }) => d.FName == event.val)}
-    else{
-      this.arr_data = this.f_all_data.Schedules[0].filter((d:any) => d.FName == event.val&&d.Stop==this.stpId)
+    if (!this.reset_stop_key) {
+      this.arr_data = this.f_all_data.Schedules[0].filter((d: { FName: any; }) => d.FName == event.val)
+    }
+    else {
+      this.arr_data = this.f_all_data.Schedules[0].filter((d: any) => d.FName == event.val && d.Stop == this.stpId)
     }
 
   }
@@ -398,21 +421,21 @@ checkair(){
   incrementDate(dateInput: any) {
     let dateFormatTotime = new Date(dateInput);
     let increasedDate = new Date(dateFormatTotime.getTime() + (1 * 86400000));
-    this.nextdate=this.datepipe.transform(increasedDate, 'yyyy-MM-dd');
+    this.nextdate = this.datepipe.transform(increasedDate, 'yyyy-MM-dd');
     return this.datepipe.transform(increasedDate, 'yyyy-MM-dd');
   }
 
   decrementDate(dateInput: any) {
     let dateFormatTotime = new Date(dateInput);
     let increasedDate = new Date(dateFormatTotime.getTime() - (1 * 86400000));
-     this.prevdate=this.datepipe.transform(increasedDate, 'yyyy-MM-dd');
+    this.prevdate = this.datepipe.transform(increasedDate, 'yyyy-MM-dd');
     return this.datepipe.transform(increasedDate, 'yyyy-MM-dd');
   }
 
   nextdate
   prevdate
-   
-  
+
+
 
 
   prvDate() {
@@ -428,7 +451,7 @@ checkair(){
           "DDate": this.decrementDate(this.sr_str.Sector[0].DDate)
         }
       ],
-      "PF": this.sr_str.PF ,
+      "PF": this.sr_str.PF,
       "PC": this.sr_str.PC,
       "Routing": "Direct",
       "Ver": "1.0.0.0",
@@ -447,9 +470,9 @@ checkair(){
         "TPnr": false
       }
 
-    
 
-     
+
+
 
 
     }
@@ -472,7 +495,7 @@ checkair(){
           "DDate": this.incrementDate(this.sr_str.Sector[0].DDate)
         }
       ],
-      "PF": this.sr_str.PF ,
+      "PF": this.sr_str.PF,
       "PC": this.sr_str.PC,
       "Routing": "Direct",
       "Ver": "1.0.0.0",

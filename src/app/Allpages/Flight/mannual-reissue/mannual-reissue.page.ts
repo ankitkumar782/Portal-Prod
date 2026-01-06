@@ -26,7 +26,7 @@ export class MannualReissuePage implements OnInit {
   FromData2 = ''
   toDate
   fromDate
-  
+
   Token
   Agentid
   resultArr
@@ -34,33 +34,38 @@ export class MannualReissuePage implements OnInit {
   env: string;
 
   constructor(private pstService: PostService) { }
-  
+
   ngOnInit() {
-    this.env=sessionStorage.getItem("ENV")
+    this.env = sessionStorage.getItem("ENV")
 
     this.Token = sessionStorage.getItem("Token")
     this.Agentid = sessionStorage.getItem("Agentid")
   }
 
 
-  CustmrDetails = new FormGroup({
-    Name: new FormControl('', Validators.required),
-    Email: new FormControl('', Validators.required),
-    Remark: new FormControl('', Validators.required)
+  RESCHEDULE_CHARGE = new FormGroup({
+    BOOKING_ID: new FormControl('', Validators.required),
+    DEP_DATE: new FormControl('', Validators.required),
+    FLIGHT_NO: new FormControl('', Validators.required)
   });
-
-
+  chargesdiv: boolean = false
   onSubmit() {
     let obj = {
       "P_TYPE": "API",
       "R_TYPE": "FLIGHT",
-      "R_NAME": "FManualAction",
+      "R_NAME": "RESCHEDULE",
       "R_DATA": {
-        "ActionType": this.FromData2,
-        "BookingId": this.bookId,
-        "Pnr": this.CustmrDetails.value.Email,
-        "Requested_By": this.CustmrDetails.value.Name,
-        "Remark": this.CustmrDetails.value.Remark
+        "ACTION": "RESCHEDULE_CHARGE",
+        "BOOKING_ID": this.RESCHEDULE_CHARGE.value.BOOKING_ID,
+        "DEP_DATE": this.RESCHEDULE_CHARGE.value.DEP_DATE,
+        "FLIGHT_NO": this.RESCHEDULE_CHARGE.value.FLIGHT_NO,
+        "REASON": {
+          "ReasonCode": "CTP",
+          "Reason": "Change in Travel Plan",
+          "Scenarios": "CHANGED IN TRAVEL PLAN",
+          "IsVoluntary": false,
+          "Remarks": ""
+        }
       },
       "AID": this.Agentid,
       "MODULE": "B2B",
@@ -70,19 +75,86 @@ export class MannualReissuePage implements OnInit {
       "Version": "1.0.0.0.0.0"
     }
     console.log(obj)
-    this.pstService.POST('/FReport', obj).subscribe((res) => {
+    this.pstService.POST('/FReschedule', obj).subscribe((res) => {
       console.log(res)
-      this.result = res
-      if (this.result.Status == "success") {
-        this.response = true
-        this.actiondiv = false
-      }
+      this.charges = res
 
     },
       (err) => {
         console.log(err)
       })
   }
+  rcommit() {
+    let obj = {
+      "P_TYPE": "API",
+      "R_TYPE": "FLIGHT",
+      "R_NAME": "RESCHEDULE",
+      "R_DATA": {
+        "ACTION": "RESCHEDULE_COMMIT",
+        "BOOKING_ID": this.charges,
+        "RESCHEDULE_ID": this.charges,
+        "Charges": this.charges,
+        "RTime": this.charges,
+        "Status": {
+          "IsApproved": true,
+          "ClientRemark": null,
+          "ReschedulRemark": null,
+          "RescheduleBy": null,
+          "IsRescheduled": false
+        },
+        "RescheduleItn": null
+      },
+      "AID": this.Agentid,
+      "MODULE": "B2B",
+      "IP": "182.73.146.154",
+      "TOKEN": this.Token,
+      "ENV": this.env,
+      "Version": "1.0.0.0.0.0"
+    }
+    console.log(obj)
+     this.pstService.POST('/FReschedule', obj).subscribe((res) => {
+      console.log(res)
+     
+
+    },
+      (err) => {
+        console.log(err)
+      })
+  }
+  charges = {}
+  // onSubmit() {
+  //   let obj = {
+  //     "P_TYPE": "API",
+  //     "R_TYPE": "FLIGHT",
+  //     "R_NAME": "FManualAction",
+  //     "R_DATA": {
+  //       "ActionType": this.FromData2,
+  //       "BookingId": this.bookId,
+  //       "Pnr": this.CustmrDetails.value.Email,
+  //       "Requested_By": this.CustmrDetails.value.Name,
+  //       "Remark": this.CustmrDetails.value.Remark
+  //     },
+  //     "AID": this.Agentid,
+  //     "MODULE": "B2B",
+  //     "IP": "182.73.146.154",
+  //     "TOKEN": this.Token,
+  //     "ENV": this.env,
+  //     "Version": "1.0.0.0.0.0"
+  //   }
+  //   console.log(obj)
+  //   this.pstService.POST('/FReport', obj).subscribe((res) => {
+  //     console.log(res)
+  //     this.result = res
+  //     if (this.result.Status == "success") {
+  //       this.response = true
+  //       this.actiondiv = false
+  //     }
+
+  //   },
+  //     (err) => {
+  //       console.log(err)
+  //     })
+  // }
 
   searchBy() {
     if (this.FromData == "BookingId") {
@@ -128,7 +200,7 @@ export class MannualReissuePage implements OnInit {
       "AID": this.Agentid,
       "MODULE": "B2B",
       "IP": "182.73.146.154",
-      "TOKEN":  this.Token,
+      "TOKEN": this.Token,
       "ENV": this.env,
       "Version": "1.0.0.0.0.0"
     }
@@ -152,7 +224,7 @@ export class MannualReissuePage implements OnInit {
       "R_DATA": {
         "TYPE": "PNRRES",
         "BOOKING_ID": d.BookingId,
-        "TRACE_ID":"",
+        "TRACE_ID": "",
       },
       "AID": this.Agentid,
       "MODULE": "B2B",

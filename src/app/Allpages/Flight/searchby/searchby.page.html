@@ -12,9 +12,7 @@
 
 
             <fieldset>
-              <!-- <label style="font-family: poppins; font-size: 19px; font-weight: 500;">
-           Search By 
-        </label> -->
+             
 
               <select formControlName="Datatype">
                 <optgroup style="padding: 5px; font-size: 17px;">
@@ -48,13 +46,7 @@
             <button class="submit-btn" type="submit" (click)="searchBy()">Search By </button>
           </ion-col>
 
-          <ion-col size-sm="12" size-xs="12" size-md="3" size-lg="3" size-xl="2">
-            <ion-badge color="tertiary" class="ionp" style="cursor: pointer;float: right;margin: 5px 20px 0px 0px;"
-              (click)="exportexcel()">
-              <img src="https://img.icons8.com/material-outlined/12/ffffff/download--v1.png" /> Download Excel
-              <!-- <ion-icon name="arrow-down-circle"></ion-icon>Download Excel -->
-            </ion-badge>
-          </ion-col>
+          
 
 
           <ion-col size-sm="12" size-xs="12" size-md="4" size-lg="4" size-xl="4">
@@ -95,21 +87,7 @@
 
       <ion-row>
         <ion-col size-xs="12" size-sm="12" size-md="12" size-lg="12" size-xl="12">
-          <!-- <ion-badge color="primary" style="margin: 5px 0px 0px 15px;padding: 5px;">Total Result =
-        {{resultArr.length}}
-      </ion-badge> -->
-
-          <!-- <ion-badge color="success" style="margin-left: 20px;;padding: 5px; " class="ionp">Total Booking Amount =
-      {{this.amt |
-      currency:'INR'}}
-    </ion-badge> -->
-          <!-- <span>From = {{maxDate}} To = {{maxDate}}</span> -->
-
-
-          <!-- <ion-badge color="danger" class="ionp" style="cursor: pointer;float: right;margin: 5px 20px 0px 0px;"
-        (click)="openPDF()">
-        <img src="https://img.icons8.com/material-outlined/12/ffffff/download--v1.png" /> Download Pdf
-      </ion-badge> -->
+        
 
           <table id="tab6" class="table">
             <thead class="thead">
@@ -886,4 +864,8 @@
     </div>
   </ion-col>
   <ion-col size-md="1" size-lg="1" size-xl="1"> </ion-col>
+
+
+
+
 </ion-content>

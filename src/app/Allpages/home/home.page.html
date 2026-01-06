@@ -6,7 +6,7 @@
 
 
     <ion-title style="background-color: white;">
-      <ion-grid >
+      <ion-grid>
         <ion-row class="h-Box">
           <ion-col size-xs="2" size-sm="1" size-md="1" size-lg="1" size-xl="1">
             <ion-menu-button auto-hide="false" (click)="Menu1()" style="color: gray;"></ion-menu-button>
@@ -16,7 +16,8 @@
             <img alt="logo" class="header_logo2" src="../assets/logo.png" [routerLink]="['/','home','fsearch']">
           </ion-col>
 
-          <ion-col size-xs="4" size-sm="4" size-md="4" size-lg="4" size-xl="4" class="" style="display: flex; justify-content: start; align-items: center;">
+          <ion-col size-xs="4" size-sm="4" size-md="4" size-lg="4" size-xl="4" class=""
+            style="display: flex; justify-content: start; align-items: center;">
             <ul>
               <!-- <li>
                 <ion-icon name="person-circle"></ion-icon> <span>PSLV</span>
@@ -46,7 +47,8 @@
             </ul>
           </ion-col>
 
-          <ion-col size-xs="4" size-sm="4" size-md="4" size-lg="4" size-xl="4" class="" style="display: flex; justify-content: end; align-items: center;">
+          <ion-col size-xs="4" size-sm="4" size-md="4" size-lg="4" size-xl="4" class=""
+            style="display: flex; justify-content: end; align-items: center;">
             <ul>
               <li style="float: right; margin-bottom: 8px;">
                 <div style="display: flex;" (click)="logout()">
@@ -80,7 +82,7 @@
 
           <ion-list *ngIf="!d.showDetails" lines="none">
             <ion-item *ngFor="let s_Menu of d.subMenu" [routerLink]="['/','home',s_Menu.url]" lines="none"
-              class="sb-menu side-Menu-Main">
+              class="sb-menu side-Menu-Main" routerDirection="root" routerLinkActive="active-menu">
               <!-- <ion-icon class="Side-Icon" size="small" name={{s_Menu.icon}}></ion-icon> -->
               <ion-label> {{s_Menu.title}}</ion-label>
               <!-- <ion-icon size="small" name={{s_Menu.Eicon}}></ion-icon> -->
