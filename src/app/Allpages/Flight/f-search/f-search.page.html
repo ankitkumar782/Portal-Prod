@@ -4,18 +4,7 @@
       <!-- <ion-col size-md="1" size-lg="1" size-xl="1" class="ion-padding-top"></ion-col> -->
       <ion-col size-sm="10" size-xs="12" size-md="10" size-lg="10" size-xl="10" class="padding-none search-Box">
         <ion-row>
-          <!-- <ion-col size-sm="9" size-xs="9 " size-md="9" size-lg="9" size-xl="2"></ion-col>
-          <ion-col size-sm="3" size-xs="3" size-md="3" size-lg="3" size-xl="2" class="FTH "
-            [ngClass]="[i.isAfterActive?'FTHActive':'!FTHActive']" *ngFor="let i of trip_selection_arr"
-            (click)="trip_selection_function(i)">
-            {{i.Name}}
-          </ion-col> -->
-          <!-- <ul>
-            <li class="FTH " style="border-radius: 10px 10px 0px 10px;" [ngClass]="[i.isAfterActive?'FTHActive':'!FTHActive']" *ngFor="let i of trip_selection_arr"
-              (click)="trip_selection_function(i)">
-              {{i.Name}}
-            </li>
-          </ul> -->
+
 
 
 
@@ -23,16 +12,16 @@
 
           <!-- ************************2nd form************************************** -->
 
+
           <ion-col size-sm="12" size-xs="12 " size-md="12" size-lg="12" size-xl="12"
             style="border: 1px solid red; border-radius: 10px; display: none;">
 
-            <ul>
-              <li class="FTH" [ngClass]="[i.isAfterActive?'FTHActive':'!FTHActive']"
-                *ngFor="let i of trip_selection_arr" (click)="trip_selection_function(i)">
-                {{i.Name}}
-              </li>
-            </ul>
+
           </ion-col>
+
+
+
+
         </ion-row>
 
         <ion-card class="card-Box SB2" style="border-radius: 20px;">
@@ -72,8 +61,7 @@
 
               <ion-col class="f-form-box" size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12">
                 <ion-row>
-                  <ion-col size-sm="12" size-xs="12" size-md="2" size-lg="2" size-xl="2" class="inputBox"
-                    >
+                  <ion-col size-sm="12" size-xs="12" size-md="2" size-lg="2" size-xl="2" class="inputBox">
                     <fieldset>
                       <legend>
                         <!-- <ion-icon class="rotate-0" name="airplane-outline"></ion-icon>  -->
@@ -155,12 +143,11 @@
 
 
 
-                  <ion-col size-sm="12" size-xs="12" size-md="2" size-lg="2" size-xl="2" class="inputBox"
-                    >
+                  <ion-col size-sm="12" size-xs="12" size-md="2" size-lg="2" size-xl="2" class="inputBox">
                     <!-- DEPARTURE DATE-->
                     <fieldset>
                       <legend>
-                       
+
                         {{fieldsName.dep_date}}
                       </legend>
                       <span style="font-size: 24px; font-weight: normal; color: black;">
@@ -179,12 +166,11 @@
                     </ion-text>
                   </ion-col>
 
-                  <ion-col class="inputBox" size-sm="12" size-xs="12" size-md="2" size-lg="2" size-xl="2"
-                    >
+                  <ion-col class="inputBox" size-sm="12" size-xs="12" size-md="2" size-lg="2" size-xl="2">
                     <!-- ARRIVAL DATE -->
                     <fieldset>
                       <legend>
-                       
+
                         {{fieldsName.ret_date}}
                       </legend>
 
@@ -204,13 +190,11 @@
                     </fieldset>
                   </ion-col>
 
-                  <ion-col class="inputBox" size-sm="12" size-xs="12" size-md="2" size-lg="2" size-xl="2"
-                    >
+                  <ion-col class="inputBox" size-sm="12" size-xs="12" size-md="2" size-lg="2" size-xl="2">
                     <fieldset style="position: relative;">
                       <legend>
-                        <ion-icon name="calendar-outline"
-                          style="color: black; font-size: 18px; margin-right: 3px;">
-                        </ion-icon> 
+                        <ion-icon name="calendar-outline" style="color: black; font-size: 18px; margin-right: 3px;">
+                        </ion-icon>
                         <span style="font-size: 15px;"> Travellers </span>
                       </legend>
 
@@ -220,9 +204,10 @@
                         {{totalpax}} Adults
                       </span>
 
-                      <div *ngIf="pax_div" 
+                      <div *ngIf="pax_div"
                         style="position: absolute;top: 28px;z-index: 999;width: 200px;height: auto; border-radius: 20px; background-color: #213d77;  box-shadow: 1px 1px 10px -2px #8f8a8a;border: 1px solid rgb(209, 209, 209); padding: 3px;">
-                        <span (click)="paxDivHide()" style="float: right; cursor: pointer; font-size: 25px; font-weight: bold; margin-right: 5px;">
+                        <span (click)="paxDivHide()"
+                          style="float: right; cursor: pointer; font-size: 25px; font-weight: bold; margin-right: 5px;">
                           <!-- close -->
                           <ion-icon name="close-outline" style="color: white;"></ion-icon>
                         </span>
@@ -232,19 +217,19 @@
                               <!-- <ion-icon name="calendar-outline"></ion-icon>  -->
                               Adults
                             </legend>
-                            <select class="TravelBox"formControlName="Adults">
+                            <select class="TravelBox" formControlName="Adults">
                               <option *ngFor="let i of adult">
                                 {{i}}
                               </option>
                             </select>
-                           
+
                           </fieldset>
                         </div>
                         <div>
                           <fieldset style="padding: 7px 0px;width: 80%;margin-left: 20px;margin-top: 5px;">
                             <legend style="color: white;">
                               <!-- <ion-icon name="calendar-outline"></ion-icon> -->
-                               Childs
+                              Childs
                             </legend>
                             <select class="TravelBox" formControlName="Childs">
                               <option *ngFor="let i of childrens">
@@ -257,7 +242,7 @@
                           <fieldset style="padding: 7px 0px;width: 80%;margin-left: 20px; margin-top: 5px;">
                             <legend style="color: white;">
                               <!-- <ion-icon name="calendar-outline"></ion-icon> -->
-                               Infants
+                              Infants
                             </legend>
                             <select class="TravelBox" formControlName="Infants">
                               <option *ngFor="let i of infants">
@@ -272,7 +257,8 @@
                   </ion-col>
 
 
-                  <ion-col class="P-classesBox" size-sm="12" size-xs="12" size-md="6" size-lg="6" size-xl="6" style="margin-top: 10px;">
+                  <ion-col class="P-classesBox" size-sm="12" size-xs="12" size-md="6" size-lg="6" size-xl="6"
+                    style="margin-top: 10px;">
                     <ul class="checkbox-list2">
                       <li class="FTH2">
                         First
@@ -280,9 +266,7 @@
                       <li class="FTH2">
                         Bussiness
                       </li>
-                      <li class="FTH2">
-                        Premium First
-                      </li>
+                     
                       <li class="FTH2">
                         Premium Economy
                       </li>
@@ -313,8 +297,7 @@
                         <ion-row>
 
 
-                          <ion-col size-sm="12" size-xs="12" size-md="6" size-lg="6" size-xl="6" *ngIf="moreFields"
-                            >
+                          <ion-col size-sm="12" size-xs="12" size-md="6" size-lg="6" size-xl="6" *ngIf="moreFields">
                             <!-- PREFERRED CLASS -->
                             <fieldset>
                               <legend style="font-size: 15px;">{{fieldsName.pref_cls}}</legend>
@@ -326,8 +309,7 @@
                             </datalist>
                           </ion-col>
 
-                          <ion-col size-sm="12" size-xs="12" size-md="6" size-lg="6" size-xl="6" *ngIf="moreFields"
-                            >
+                          <ion-col size-sm="12" size-xs="12" size-md="6" size-lg="6" size-xl="6" *ngIf="moreFields">
                             <!-- PREFERRED FLIGHT -->
                             <fieldset>
                               <legend style="font-size: 15px;">{{fieldsName.pref_flt}}</legend>

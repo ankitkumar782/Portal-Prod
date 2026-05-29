@@ -17,7 +17,7 @@ export class LoginPopoverComponent implements OnInit {
   constructor(public popoverController: PopoverController, private post_service: PostService, public rout: Router, public tost_srvice: ToasterService) { }
 
   ngOnInit() { }
-  a
+  a1:any
   set_cre = new FormGroup({
     cre1: new FormControl('', [Validators.required]),
     cre2: new FormControl('', [Validators.required]),
@@ -48,7 +48,13 @@ export class LoginPopoverComponent implements OnInit {
     }
 
     sessionStorage.setItem("ENV", "P")
+
+
+    sessionStorage.setItem("url2", "https://search.ksofttechnology.com/api")
+
     sessionStorage.setItem("url", "https://fhapip.ksofttechnology.com/api")
+
+
 
     if (data.cred1 !== "" && data.cred2 !== "" && data.cred3 !== "") {
       let lgn = {

@@ -1,68 +1,51 @@
-<form [formGroup]="set_cre" (ngSubmit)="closeModel()" class="cred-box ">
 
-  <ion-grid style="background-color:white;">
 
-    <ion-row style="border-bottom: 1px solid black; padding: 10px;">
-      <ion-col size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12" class="centre">
-        <ion-label>Agent Login</ion-label>
-      </ion-col>
-    </ion-row>
+<form [formGroup]="set_cre" (ngSubmit)="closeModel()" class="login-wrapper">
 
-    <ion-row style="padding: 10px;" >
-      <ion-col class="bgw" size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12" >
-        <!-- <ion-item class="bgw" lines="none" style="background-color:white;"> -->
-          <input placeholder="Enter Agent ID" formControlName="cre1" minlength="8" >
-        <!-- </ion-item> -->
-      </ion-col>
+  <div class="login-card">
 
-      <ion-col class="bgw" size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12">
-        <!-- <ion-item class="bgw" lines="none"> -->
-          <input placeholder="Enter User ID" formControlName="cre2">
-        <!-- </ion-item> -->
-      </ion-col>
+    <div class="login-header">
+      <h2>Agent Login</h2>
+      <p>Welcome back, please login to your account</p>
+    </div>
 
-      <ion-col class="bgw wrapper" size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12">
-        <!-- <ion-item class="bgw" lines="none"> -->
-          <input formControlName="cre3" placeholder="Enter Your Password" [type]="passwordType" clearOnEdit="false">
-          <ion-icon item-end [name]="passwordIcon" class="passwordIcon" (click)='hideShowPassword()'></ion-icon>
-        <!-- </ion-item> -->
+    <div class="input-group">
+      <input type="text" placeholder="Agent ID" formControlName="cre1">
+      <ion-icon name="briefcase-outline"></ion-icon>
+    </div>
 
-      </ion-col>
-      <!-- n
-      <ion-col class="bgw" size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12">
-        <ion-col style=" left: 20px;" size-xs="12" size-sm="12" size-md="3" size-lg="3" size-xl="3" class="ion-text-end">
-          <ion-label style="position: relative; top: -8px;" class="ion-label">Prod</ion-label>
-          <ion-toggle style="margin-inline: 18px; margin-top: 7px; height: 28px;" (click)="toggle()"
-            class="ion-toggle"></ion-toggle>
-          <ion-label style="position: relative; top: -8px;">Dev</ion-label>
-        </ion-col>
+    <div class="input-group">
+      <input type="text" placeholder="User ID" formControlName="cre2">
+      <ion-icon name="person-outline"></ion-icon>
+    </div>
 
-      </ion-col> -->
+    <div class="input-group password">
+      <input [type]="passwordType" placeholder="Password" formControlName="cre3">
+      <ion-icon [name]="passwordIcon" (click)="hideShowPassword()"></ion-icon>
+    </div>
 
-      <ion-col size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12" style="padding: 10px;">
-        <ion-button size="medium" width="100%" type="submit" (click)="closeModel()" style="display: flex; align-items: center; justify-content: center;">
-          <span *ngIf="loader">
-            Login
-            <ion-icon name="log-in-outline"></ion-icon>
-          </span>
+    <button type="submit" class="login-btn">
 
-          <span *ngIf="!loader">
-            please Wait...
-          </span>
-        </ion-button>
-      </ion-col>
+      <span *ngIf="loader">
+        Login
+      
+      </span>
 
-      <ion-col class="bgw" class="or-text" size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12" style="padding: 3px;">
-        <ion-text>OR</ion-text>
-      </ion-col>
+      <span *ngIf="!loader">
+        Please Wait...
+      </span>
 
-      <ion-col class="bgw" class="or-text" size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12" style="padding: 3px;">
-        <ion-text>not a member ? </ion-text>
-        <ion-text color="primary">SignUp</ion-text>
-      </ion-col>
+    </button>
 
-    </ion-row>
-  </ion-grid>
+    <div class="divider">
+      <span>OR</span>
+    </div>
 
+    <div class="signup-text">
+      Not a member?
+      <span class="signup">Sign Up</span>
+    </div>
+
+  </div>
 
 </form>

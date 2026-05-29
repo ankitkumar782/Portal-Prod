@@ -42,6 +42,53 @@ ion-title{
   padding: 15px;
   font-size: 13px;
 }
+
+/* =========================
+   MOBILE TABLE SCROLL
+========================= */
+
+.table-responsive{
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: 10px;
+}
+
+/* Prevent table collapsing */
+#tab6{
+  min-width: 1200px;
+  border-collapse: collapse;
+}
+
+/* Optional scrollbar styling */
+.table-responsive::-webkit-scrollbar{
+  height: 6px;
+}
+
+.table-responsive::-webkit-scrollbar-thumb{
+  background: #cfd8dc;
+  border-radius: 20px;
+}
+
+/* Mobile optimization */
+@media (max-width: 768px){
+
+  #tab6 th,
+  #tab6 td{
+    white-space: nowrap;
+    font-size: 12px;
+    padding: 8px;
+  }
+
+  ion-button{
+    font-size: 10px;
+    height: 28px;
+  }
+
+}
+
+
+
 ion-icon{
   margin-top: -1px;
 }

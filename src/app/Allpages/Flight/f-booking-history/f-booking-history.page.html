@@ -2,246 +2,155 @@
   <ion-content>
     <ng-container *ngIf="showbooking">
       <ng-container *ngIf="ShowModelDATA">
+        <ion-card class="filter-wrapper">
 
-        <ion-row class="ion-padding-top s-bar" style="background-color: white;">
-          <ion-col size-sm="12" size-xs="12" size-md="2" size-lg="2" size-xl="2">
-          </ion-col>
-          <ion-col size-sm="12" size-xs="12" size-md="10" size-lg="10" size-xl="10">
-            <ion-row style=" padding-top: 10px;">
+          <ion-row class="filter-row">
 
-              <ion-col size-sm="12" size-xs="12" size-md="2" size-lg="2" size-xl="2">
-                <fieldset>
+            <!-- From Date -->
+            <ion-col size="12" size-md="2">
+              <ion-item class="filter-item" lines="none">
+                <ion-label position="stacked">From</ion-label>
+                <ion-input type="date" [(ngModel)]="from" [max]="maxDate"></ion-input>
+              </ion-item>
+            </ion-col>
 
-                  <input type="date" [max]="maxDate" [(ngModel)]="from">
-                </fieldset>
-              </ion-col>
+            <!-- To Date -->
+            <ion-col size="12" size-md="2">
+              <ion-item class="filter-item" lines="none">
+                <ion-label position="stacked">To</ion-label>
+                <ion-input type="date" [(ngModel)]="to" [max]="maxDate"></ion-input>
+              </ion-item>
+            </ion-col>
 
-              <ion-col size-sm="12" size-xs="12" size-md="2" size-lg="2" size-xl="2">
-                <fieldset>
+            <!-- Status -->
+            <ion-col size="12" size-md="2">
+              <div class="custom-select">
+                <ion-item class="filter-item" lines="none">
 
-                  <input type="date" [max]="maxDate" [(ngModel)]="to">
-                </fieldset>
-              </ion-col>
-
-              <ion-col size-sm="12" size-xs="12" size-md="2" size-lg="2" size-xl="2">
-
-                <fieldset>
-
-
-                  <select class="selbox" [(ngModel)]="FromData2">
-                    <option value="" disabled="disabled" selected="selected">Select option</option>
-                    <option value="CONFIRMED">CONFIRMED</option>
-                    <option value="PENDING">PENDING</option>
-                    <option value="FAILED">FAILED</option>
-                    <option value="">ALL</option>
+                  <select [(ngModel)]="FromData2">
+                    <option value="">All</option>
+                    <option value="CONFIRMED">Confirmed</option>
+                    <option value="PENDING">Pending</option>
+                    <option value="FAILED">Failed</option>
                   </select>
-                </fieldset>
-              </ion-col>
+                </ion-item>
+              </div>
+            </ion-col>
 
+            <!-- Search Button -->
+            <ion-col size="12" size-md="3" class="btn-col">
+              <ion-item class="filter-item" lines="none" style="width: 100%;">
+                <ion-label position="stacked"> </ion-label>
+                <ion-button expand="block" class="search-btn" (click)="apiHit()" style="width: 100%;">
+                  🔍 Search Bookings
+                </ion-button>
+              </ion-item>
+            </ion-col>
 
-              <ion-col size-sm="12" size-xs="12" size-md="2" size-lg="2" size-xl="2">
-                <button class="submit-btn" type="submit" (click)="apiHit()">
-                  <!-- <span class="material-icons" style="justify-content: center;">search</span> -->
-                  Booking History </button>
-              </ion-col>
+            <!-- Export -->
+            <ion-col size="12" size-md="3" class="btn-col">
+              <ion-button expand="block" fill="outline" color="success" (click)="exportexcel()" style="width: 100%;">
+                ⬇ Download Excel
+              </ion-button>
+            </ion-col>
 
+          </ion-row>
 
-              <ion-col size-sm="12" size-xs="12" size-md="2" size-lg="2" size-xl="2">
-                <ion-badge color="tertiary" class="ionp" style="cursor: pointer;" (click)="exportexcel()">
-                  <img src="https://img.icons8.com/material-outlined/12/ffffff/download--v1.png" /> Download Excel
-                </ion-badge>
+        </ion-card>
 
-              </ion-col>
-            </ion-row>
+        <div class="table-card">
 
-            <!-- <br><hr> -->
-            <hr style="width:50%; text-align:left; margin: left 1px;">
+          <!-- Table Header -->
+          <div class="table-header">
+            <h3>Bookings</h3>
+            <span>{{resultArr?.length}} Results</span>
+          </div>
 
+          <table id="tabl" class="modern-table">
 
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Booking</th>
+                <th>Agent</th>
+                <th>Booked By</th>
+                <th>Flight</th>
+                <th>Sector</th>
+                <th>PNR</th>
+                <th>Status</th>
+                <th>Fare</th>
+                <th>Departure</th>
+                <th>Action</th>
+              </tr>
+            </thead>
 
+            <tbody>
+              <tr *ngFor="let d of resultArr; index as i" class="row-hover">
 
+                <td class="sno">{{i+1}}</td>
 
-          </ion-col>
-        </ion-row>
-        <!-- <ion-row>
-          <ion-col size-xs="12" size-sm="12" size-md="12" size-lg="12" size-xl="12" style="text-align:center ; padding: 20px 0px ;">
-            <span class="h1">
-              <ion-icon name="airplane"></ion-icon> Flight Booking History
-            </span>
-          </ion-col>
-          <ion-col size-xs="12" size-sm="12" size-md="12" size-lg="12" size-xl="12" class="ion-padding">
-            <form #contactForm="ngForm" (ngSubmit)="submit(contactForm.value)">
-              <ion-row class="bdr ion-padding">
-               
-                <ion-col size-xs="12" size-sm="12" size-md="3" size-lg="3" size-xl="3" >
-                  <fieldset>
-                    <input  type="date" placeholder="From"
-                    onchange="this.className=(this.value!=''?'has-value':'')" [max]="maxDate"  ngModel name="from" required>
-                  </fieldset>
-                </ion-col>
-                <ion-col size-xs="12" size-sm="12"size-md="3" size-lg="3" size-xl="3">
-                  <fieldset>
-                    <input  type="date" placeholder="To"
-                    onchange="this.className=(this.value!=''?'has-value':'')" [max]="maxDate"  ngModel name="to" required>
-                  </fieldset>
-                </ion-col>
-                <ion-col size-xs="12" size-sm="12" size-md="3" size-lg="3" size-xl="3">
-                  <fieldset>
-                    <input  placeholder="Flight Code"  ngModel name="fcode" required>
-                  </fieldset>
-                </ion-col>
-                <ion-col size-xs="12" size-sm="12" size-md="3" size-lg="3" size-xl="3">
-                  <button class="ccL-btn" type="submit" [disabled]="!contactForm.valid" >
-                    <ion-icon slot="start" name="search" ></ion-icon> Search
-                  </button>
-                </ion-col>
-                
-              </ion-row>
-            </form>
-          </ion-col>
-        </ion-row> -->
+                <td class="booking">
+                  <b (click)="PNR(d)">{{d.BookingId}}</b>
+                </td>
 
-        <!-- <ion-row *ngIf="wait">
-          <ion-col>
-            <span>Please Wait We are Fetching Booking History </span>
-          </ion-col>
-        </ion-row> -->
-        <ion-row style="padding: 0px;background-color: white;">
-          <ion-col size-xs="12" size-sm="12" size-md="12" size-lg="12" size-xl="12">
-            <!-- <ion-badge color="primary" style="margin: 5px 0px 0px 15px;padding: 5px;">Total Result =
-              {{resultArr.length}}
-            </ion-badge> -->
+                <td>{{d.AgentId}}</td>
+                <td>{{d.BookedBy}}</td>
 
-            <!-- <ion-badge color="success" style="margin-left: 20px;;padding: 5px; " class="ionp">Total Booking Amount =
-            {{this.amt |
-            currency:'INR'}}
-          </ion-badge> -->
-            <!-- <span>From = {{maxDate}} To = {{maxDate}}</span> -->
+                <td class="flight">{{d.FCode}}</td>
+                <td class="route">{{d.Sector}}</td>
 
+                <!-- PNR -->
+                <td>
+                  <span *ngIf="d.Pnr" class="pnr">{{d.Pnr}}</span>
+                  <span *ngIf="!d.Pnr" class="not-confirmed">Not Confirmed</span>
+                </td>
 
-            <!-- <ion-badge color="danger" class="ionp" style="cursor: pointer;float: right;margin: 5px 20px 0px 0px;"
-              (click)="openPDF()">
-              <img src="https://img.icons8.com/material-outlined/12/ffffff/download--v1.png" /> Download Pdf
-            </ion-badge> -->
+                <!-- Status -->
+                <td>
+                  <span class="badge" [ngClass]="{
+              'success': d.Status=='CONFIRMED',
+              'pending': d.Status=='PENDING',
+              'failed': d.Status=='FAILED'
+            }">
+                    {{d.Status}}
+                  </span>
+                </td>
 
-            <table id="tabl" class="table" border="1px solid red" style="text-align: center;">
-              <thead class="thead">
-                <tr>
-                  <th class="padding th">
-                    S.NO
-                  </th>
-                  <th class="padding th">
-                    Booking Id
-                  </th>
-                  <th class="padding th">
-                    Agent Id
+                <td class="price">₹ {{d.TotalFare}}</td>
 
-                  </th>
-                  <th class="padding th">
-                    Booked
-                  </th>
-                  <!-- <th class="padding th">
-                    PCC Alias
-                  </th> -->
-                  <th class="padding th">
-                    FCode
-                  </th>
-                  <!-- <th class="padding th">
-                    Email Id
+                <td class="date">
+                  {{d.DepDate}} <br>
 
-                  </th> -->
+                </td>
 
-                  <!-- <th class="padding th">
-                  Trans Id
+                <!-- Actions -->
+                <td class="actions">
 
-                </th> -->
-                  <th class="padding th">
-                    Sector
-                  </th>
-                  <th class="padding th">
-                    Pnr
-                  </th>
-                  <th class="padding th">
-                    Status
-                  </th>
-                  <th class="padding th">
-                    Total
-                  </th>
-                  <th class="padding th">
-                    Dep Date
-                  </th>
-                  <!-- <th class="padding th">
-                    Request Time
-                  </th>
-                  <th class="padding th">
-                    Response Time
-                  </th> -->
-                  <th class="padding th">
+                  <ion-button *ngIf="d.Status=='CONFIRMED'" size="small" fill="outline" class="cancel-btn"
+                    (click)="CancelTicket2(d)">
                     Cancel
-                  </th>
-                  <th class="padding th">
+                  </ion-button>
+
+                  <ion-button *ngIf="d.Status!='CONFIRMED'" size="small" fill="clear" class="status-btn"
+                    (click)="statusof2(d)">
                     Status
-                  </th>
-                  <!-- <th class="padding th">
-                    Cancellation
-                  </th> -->
+                  </ion-button>
 
-                </tr>
-              </thead>
-              <tbody style="background-color: white;">
-                <tr *ngFor="let d of resultArr, index as i" class="hvr">
-                  <td class="td">{{i+1}}</td>
-                  <td class="td" style="color: rgb(255, 0, 0); cursor: pointer">
-                    <b (click)="PNR(d)">{{d.BookingId}}</b>
-                  </td>
-                  <td class="td">{{d.AgentId}}</td>
-                  <td class="td">{{d.BookedBy}}</td>
-                  <!-- <td class="td">{{d.PccAlias}}</td> -->
-                  <td class="td">{{d.FCode}}</td>
-                  <!-- <td class="td">{{d.EmailId}}</td> -->
-                  <!-- <td class="td">{{d.TransId}}</td> -->
-                  <td class="td">{{d.Sector}}</td>
+                </td>
 
-                  <!-- <td style="color: rgb(8, 144, 255);" class="td"><b>{{d.Pnr}}</b></td> -->
-                  <td style="color: rgb(8, 144, 255);" class="td"><b *ngIf="d.Pnr">{{d.Pnr}}</b><b
-                      style="color: darkred;" *ngIf="!d.Pnr">NOT CONFIRMED</b></td>
-                  <td style="color: rgb(8, 144, 255);" class="td">{{d.Status}}
-                  </td>
-                  <!-- <td style="color: rgb(8, 144, 255);" class="td"><b>SUCCESS</b><b>FAILED</b></td> -->
-                  <td style="color: rgb(26, 114, 30);" class="td"><b>{{d.TotalFare }}</b></td>
+              </tr>
+            </tbody>
 
-                  <td class="td">{{d.DepDate | date: 'dd/MM/yyyy'}} / {{d.DepDate | date:"HH:mm"}}</td>
-
-                  <!-- <td class="td">{{d.ReqTime }}</td>
-                  <td class="td">{{d.ResTime }}</td> -->
-
-                  <td class="td">
-                    <ion-button *ngIf="d.Status=='CONFIRMED'" color="danger"
-                      (click)="CancelTicket2(d)">Cancel</ion-button>
-                    <!-- <ion-button color="danger" (click)="CancelTicket(d)">Cancel</ion-button> -->
-                  </td>
-                  <!-- <td class="td">
-                    <ion-button color="danger" *ngIf="d.Status=='CONFIRMED'"  (click)="statusof(d)">Getstatus</ion-button>
-                  </td> -->
-
-                  <td class="td">
-                    <ion-button color="danger" (click)="statusof2(d)">CANCELLED STATUS</ion-button>
-                  </td>
-
-                  <!-- <td><ion-button   color="danger" (click)="showcanclBut(d)" >Cancel</ion-button></td> -->
-
-                </tr>
-              </tbody>
-            </table>
+          </table>
+        </div>
 
 
-          </ion-col>
-        </ion-row>
       </ng-container>
 
 
       <ng-container *ngIf="showtable">
-        <ion-row style="display: flex; justify-content: center; align-items: center; margin-top: 150px; background-color: white;color: #111;">
+        <ion-row
+          style="display: flex; justify-content: center; align-items: center; margin-top: 150px; background-color: white;color: #111;">
           <ion-col size-sm="12" size-xs="12" size-md="8" size-lg="8" size-xl="8">
             <ion-card class="cardSize" class="c-Font">
               <ion-row style="background-color: #F4F6F8;padding: 0px;">
@@ -266,11 +175,14 @@
                     <select formControlName="rescode">
                       <optgroup style=" font-size: 17px;">
                         <option value="" disabled="disabled" selected="selected">Select Reason</option>
-                        <option value="CTP">CTP (Change In Travels Plans)</option>
-                        <option value="MMF">MMF (Missed My Flight)</option>
-                        <option value="FCA">FCA (Flight Cancelled by Airline)</option>
-                        <option value="WFB">WFB (Wrong Flight Booked)</option>
-                        <option value="ORS">ORS (Other Reasons)</option>
+                        <option value="CTP">CTP (Change In Travels Plans)(Cancellation as per fare rules)</option>
+                        <option value="MMF">MMF (Missed My Flight)(No-Show Refund Request)</option>
+                        <option value="FCA">FCA (Flight Cancelled by Airline)(Full refund processed by airline, DGCA
+                          Cancellation Requests, Full refund to claim in case of schedule change by airline)</option>
+                        <option value="WFB">WFB (Wrong Flight Booked)(Cancellation as per fare rules)</option>
+                        <option value="ORS">ORS (Other Reasons)(Special request if mentioned in remarks or Cancellation
+                          as
+                          per fare rules)</option>
                       </optgroup>
                     </select>
 
@@ -507,7 +419,7 @@
                         <!-- <p>PLEASE WAIT WE ARE PROCESSING YOUR REQUEST....</p> -->
                       </header>
                     </div>
-                    
+
                   </ion-col>
 
                 </ion-row>

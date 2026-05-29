@@ -1,51 +1,64 @@
 <ion-content [scrollEvents]="true" (ionScroll)="onScroll($event)">
   <ion-grid>
-    <!-- <ion-row class="srh-stick ion-text-center">
-      <ion-col size-sm="4" size-xs="4" size-md="1" size-lg="1" size-xl="1" class="date_ipt none">
+    <ion-row class="srh-stick ion-align-items-center" *ngIf="!m_show">
 
+      <!-- Route -->
+      <ion-col ion-col size="12" size-md="4" size-lg="2" class="info-block">
+        <ion-icon name="airplane-outline"></ion-icon>
+        <div>
+          <div class="label">Trip</div>
+          <div class="value">
+            {{sr_str.Sector[0].Src}} → {{sr_str.Sector[0].Des}}
+          </div>
+        </div>
       </ion-col>
-      <ion-col size-sm="3" size-xs="3" size-md="1" size-lg="1" size-xl="1" class="date_ipt pup-clr">
-        <span>One Way</span>
 
+      <!-- Date -->
+      <ion-col ion-col size="12" size-md="4" size-lg="2" class="info-block">
+        <ion-icon name="calendar-outline"></ion-icon>
+        <div>
+          <div class="label">Departure</div>
+          <div class="value">
+            {{sr_str.Sector[0].DDate | date:'mediumDate'}}
+          </div>
+        </div>
       </ion-col>
-      <ion-col size-sm="4" size-xs="4" size-md="1" size-lg="1" size-xl="1" class="date_ipt pup-clr">
-        {{this.sr_str.Sector[0].Src}} <ion-icon name="arrow-forward"></ion-icon> {{this.sr_str.Sector[0].Des}}
-      </ion-col>
-      <ion-col size-sm="5" size-xs="5" size-md="1" size-lg="1" size-xl="1" class="date_ipt pup-clr">
-        {{this.sr_str.Sector[0].DDate|date:'longDate'}}
-      </ion-col>
-      <ion-col size-sm="3" size-xs="3" size-md="1" size-lg="1" size-xl="1" class="date_ipt pup-clr">
-        <span *ngIf="!this.sr_str.PC">Economy</span>
-        <span *ngIf="this.sr_str.PC">{{this.sr_str.PC}}</span> Class
-      </ion-col>
-      <ion-col size-sm="3" size-xs="3" size-md="1" size-lg="1" size-xl="1" class="date_ipt pup-clr">
-        <span *ngIf="!this.sr_str.PF">All Type</span>
-        <span *ngIf="this.sr_str.PF">{{this.sr_str.PF}} Flight</span>
-      </ion-col>
-      <ion-col size-sm="2" size-xs="2" size-md="1" size-lg="1" size-xl="1" class="date_ipt pup-clr">
-        <span *ngIf="this.sr_str.Adt>'0'">{{this.sr_str.Adt}} Adult</span>
-      </ion-col>
-      <ion-col size-sm="2" size-xs="2" size-md="1" size-lg="1" size-xl="1" class="date_ipt pup-clr">
-        <span *ngIf="this.sr_str.Chd>'0'"> {{this.sr_str.Chd}} Child</span>
-        <span *ngIf="this.sr_str.Chd=='0'">0 Child</span>
-      </ion-col>
-      <ion-col size-sm="2" size-xs="2" size-md="1" size-lg="1" size-xl="1" class="date_ipt pup-clr">
-        <span *ngIf="this.sr_str.Inf>'0'"> {{this.sr_str.Inf}} Infant</span>
-        <span *ngIf="this.sr_str.Inf=='0'"> 0 Infant</span>
-      </ion-col>
-      <ion-col size-sm="12" size-xs="12" size-md="2" size-lg="2" size-xl="2" class="date_ipt ">
-        <button class="mdfy-srh pup-bg-clr" (click)="m_show=!m_show">Modify Search</button>
-      </ion-col>
-      <ion-col size-sm="12" size-xs="12" size-md="1" size-lg="1" size-xl="1" class="date_ipt none">
 
+      <!-- Class -->
+      <ion-col ion-col size="12" size-md="4" size-lg="2" class="info-block">
+        <ion-icon name="briefcase-outline"></ion-icon>
+        <div>
+          <div class="label">Class</div>
+          <div class="value">
+            {{sr_str.PC || 'Economy'}}
+          </div>
+        </div>
       </ion-col>
-    </ion-row> -->
+
+      <!-- Passengers -->
+      <ion-col ion-col size="12" size-md="4" size-lg="2" class="info-block">
+        <ion-icon name="people-outline"></ion-icon>
+        <div>
+          <div class="label">Passengers</div>
+          <div class="value">
+            {{sr_str.Adt}}A • {{sr_str.Chd}}C • {{sr_str.Inf}}I
+          </div>
+        </div>
+      </ion-col>
+
+      <!-- Modify Button -->
+      <ion-col ion-col size="12" size-md="4" size-lg="2" class="btn-block">
+        <button class="modify-btn" (click)="m_show=!m_show">
+          Modify
+        </button>
+      </ion-col>
+
+    </ion-row>
 
     <!-- <ion-row *ngIf="!m_show" style="background-color: white;border-bottom: 1px solid #445f99; padding: 10px 0px; "> -->
 
 
-    <app-flight-search-popover *ngIf="!m_show" (newItemEvent)="addItem($event)" [arp_show]="arp_show"
-      (callFn)="test($event)">
+    <app-flight-search-popover *ngIf="m_show" (newItemEvent)="addItem($event)" [arp_show]="arp_show">
     </app-flight-search-popover>
 
 
@@ -60,19 +73,11 @@
       <ion-col size-sm="12" size-xs="12" size-md="10" size-lg="10" size-xl="10" class="p-0">
         <ion-row>
           <!-- FILTER DIV START HERE -->
-          <ion-col class="none" size-md="3" size-lg="3" size-xl="3" class="p-0 filter_Main">
+          <ion-col class="none" size="12" size-md="12" size-lg="3" class="p-0 filter_Main">
 
 
             <ion-row>
-              <!-- <ion-col size-md="12" size-lg="12" size-xl="12" class="ion-text-center pup-bg-clr" style="
-                  color: white;
-                  font-size: 18px;
-                  font-weight: 500;
-                  font-family: arial;
-                  padding: 25px 0px;
-                  ">
-                  <span *ngIf="!isSkelton">Flight Found = {{arr_data.length}}</span>
-                </ion-col> -->
+
 
 
 
@@ -297,7 +302,7 @@
             </ion-card>
           </ion-col>
 
-          <ion-col size-sm="12" size-xs="12" size-md="9" size-lg="9" size-xl="9" *ngIf="Skelton">
+          <ion-col size="12" size-md="12" size-lg="9" *ngIf="Skelton">
             <ion-row>
               <!-- <ion-col size-sm="5" size-xs="5" size-md="9" size-lg="9" size-xl="9" class="none-big ion-text-center ">
                 <ion-card class="p-10">
@@ -306,155 +311,89 @@
               </ion-col> -->
 
               <ion-col size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12" class="p-0">
-                <ion-card
-                  style="margin-bottom: 5px;border-radius: 0px; border: 1px solid rgb(209, 209, 209); background-color: white;">
-                  <ion-row class="p-0" style="background-color: white;">
+                <ion-card class="date-nav-card">
+                  <ion-row class="date-nav-row">
 
-                    <ion-col size-sm="4" size-xs="4" size-md="2" size-lg="2" size-xl="2"
-                      class="ion-text-start p-10 pup-clr">
-
-                      <span (click)="prvDate()" class="t-filter ">
-                        <ion-icon name="caret-up-outline"
-                          style="cursor: pointer; color: #152D5A;  transform: rotate(-90deg);"></ion-icon> <b>Previous
-                          Date</b>
-                      </span>
-
+                    <!-- Previous -->
+                    <ion-col size="6" size-md="3" class="nav-left">
+                      <div class="nav-btn" (click)="prvDate()">
+                        <ion-icon name="chevron-back-outline"></ion-icon>
+                        <span>Previous</span>
+                      </div>
                     </ion-col>
 
-                    <ion-col size-sm="4" size-xs="4" size-md="2" size-lg="2" size-xl="2"
-                      class="ion-text-start p-10 pup-clr">
-                      <!-- <span class="t-filter"><b>Departure Time</b>
-                        <ion-icon name="caret-down-outline" style="cursor: pointer; color: red;"></ion-icon>
-                      </span> -->
-
+                    <!-- Center Info (Optional / Future filters) -->
+                    <ion-col size="0" size-md="6" class="nav-center">
+                      <div class="nav-center-text">
+                        Flight Results
+                      </div>
                     </ion-col>
 
-                    <ion-col size-sm="4" size-xs="4" size-md="2" size-lg="2" size-xl="2"
-                      class="ion-text-center p-10 pup-clr">
-                      <!-- <span class="t-filter"><b>Stop</b>
-                        <ion-icon name="caret-down-outline" style="cursor: pointer; color: red;"></ion-icon>
-                      </span> -->
-
+                    <!-- Next -->
+                    <ion-col size="6" size-md="3" class="nav-right">
+                      <div class="nav-btn" (click)="nxtDate()">
+                        <span>Next</span>
+                        <ion-icon name="chevron-forward-outline"></ion-icon>
+                      </div>
                     </ion-col>
 
-                    <ion-col size-sm="4" size-xs="4" size-md="2" size-lg="2" size-xl="2"
-                      class="ion-text-center p-10 pup-clr">
-                      <!-- <span class="t-filter"><b>Arrival Time</b>
-                        <ion-icon name="caret-down-outline" style="cursor: pointer; color: red;"></ion-icon>
-                      </span> -->
-
-                    </ion-col>
-
-
-
-                    <ion-col size-sm="4" size-xs="4" size-md="2" size-lg="2" size-xl="2"
-                      class="ion-text-start p-10 pup-clr">
-                      <!-- <span class="t-filter"><b>Price : High To Low</b>
-                        <ion-icon name="caret-down-outline" style="cursor: pointer; color: red;"></ion-icon>
-                      </span> -->
-
-                    </ion-col>
-
-
-
-
-
-                    <ion-col size-sm="4" size-xs="4" size-md="2" size-lg="2" size-xl="2"
-                      class="ion-text-end p-10 pup-clr">
-                      <span (click)="nxtDate()" class="t-filter"> <b>Next Date </b>
-                        <ion-icon name="caret-down-outline"
-                          style="cursor: pointer; color: #152D5A; transform: rotate(-90deg); "></ion-icon>
-                      </span>
-                    </ion-col>
                   </ion-row>
                 </ion-card>
 
                 <ion-card *ngFor="let y of arr_data; let i = index" class="p-0 F-Detail-Box"
                   style="margin: 10px;border-radius: 10px; padding: 5px;">
 
-                  <ion-row style="padding: 10px 0px 0px 0px">
 
 
 
+                  <ion-row class="flight-row">
 
-                    <ion-col size-sm="4" size-xs="4" size-md="2" size-lg="2" size-xl="2" class=""
-                      style="display: flex; align-items: center;">
+                    <!-- Airline + Name -->
+                    <ion-col size="12" size-md="3" size-lg="2" class="airline-col">
+                      <div class="airline-box">
 
-                      <!-- <div [style.background-position]="y.Itinerary[0].FLogo" class="fltLogo"> -->
-                      <img src="../../../../assets/akasa-air-logo.png" width="20px" *ngIf="y.Itinerary[0].FCode=='QP'">
-                      <img src="../../../../assets/indigo-logo.png" width="20px" *ngIf="y.Itinerary[0].FCode=='6E'">
-                      <img src="../../../../assets/air-india-logo.png" width="20px" *ngIf="y.Itinerary[0].FCode=='AI'">
-                      <img src="../../../../assets/vistara-logo.png" width="20px" *ngIf="y.Itinerary[0].FCode=='UK'">
-                      <img src="../../../../assets/spicejet-logo-tail.png" width="20px"
-                        *ngIf="y.Itinerary[0].FCode=='SG'">
-                      <!-- image -->
-                      <!-- </div> -->
-                      <div class="" style="margin-right: 5px; margin-left: 10px;">
+                        <img src="../../../../assets/akasa-air-logo.png" *ngIf="y.Itinerary[0].FCode=='QP'">
+                        <img src="../../../../assets/indigo-logo.png" *ngIf="y.Itinerary[0].FCode=='6E'">
+                        <img src="../../../../assets/air-india-logo.png" *ngIf="y.Itinerary[0].FCode=='AI'">
+                        <img src="../../../../assets/vistara-logo.png" *ngIf="y.Itinerary[0].FCode=='UK'">
+                        <img src="../../../../assets/spicejet-logo-tail.png" *ngIf="y.Itinerary[0].FCode=='SG'">
 
-                        <span class="F_NAME"><b>{{y.Itinerary[0].FName}}</b></span><br>
-                        <span class="F-CODE">{{y.Itinerary[0].FCode}}-{{y.Itinerary[0].FNo}}</span><br>
-                        <label>
-                          <input type="checkbox" (change)="copyOnCheck($event,y.Itinerary[0].FCode,y.Itinerary[0].FNo,y.Itinerary[0].DDate)" />
-                          
-                        </label>
-                        <span class="F-ALIAS">{{y.Offer.Msg}}</span>
+                        <div class="airline-info">
+                          <div class="flight-name">{{y.Itinerary[0].FName}}</div>
+                          <div class="flight-code">{{y.Itinerary[0].FCode}}-{{y.Itinerary[0].FNo}}</div>
+                        </div>
 
                       </div>
                     </ion-col>
 
-                    <ion-col size-sm="8" size-xs="8" size-md="2" size-lg="2" size-xl="2"
-                      class="ion-text-center none-big"><span class="AMT">Rs
-                        {{y.Fare.GrandTotal}}</span><br>
-                      <span (click)="indexHidden=i;hide=i" *ngIf="i!==hide" class="DETAILS"> View Details </span>
-                      <span (click)="indexHidden=i;hide=i-arr_data.length" *ngIf="i==hide" class="DETAILS">Hide Details
-                      </span>
+                    <!-- Departure -->
+                    <ion-col size="4" size-md="2" class="text-left">
+                      <div class="time">{{y.Itinerary[0].DDate | date:'HH:mm'}}</div>
+                      <div class="city">{{y.Itinerary[0].Src}}</div>
                     </ion-col>
 
-                    <ion-col size-sm="4" size-xs="4" size-md="2" size-lg="2" size-xl="2" class="ion-text-start"><span
-                        class="D_TIME pup-clr">{{y.Itinerary[0].DDate| date:'HH:mm'}}</span><br><span
-                        class="D_NAME">{{y.Itinerary[0].Src}}, {{y.Itinerary[0].SrcName |uppercase}}</span>
-
+                    <!-- Duration -->
+                    <ion-col size="4" size-md="2" class="text-center">
+                      <div class="duration">{{y.Itinerary[0].Dur}}</div>
+                      <div class="stop">{{y.Stop == '0' ? 'Non Stop' : (y.Stop=='1' ? '1 Stop' : '2 Stop')}}</div>
                     </ion-col>
 
-
-                    <ion-col size-sm="4" size-xs="4" size-md="2" size-lg="2" size-xl="2" class="ion-text-center"><span
-                        class="DUR">{{y.Itinerary[0].Dur}}</span><br>
-                      <span class="STOP">
-                        <div class="" style="display: flex; justify-content: center; align-items: center;">
-
-                          <div>----------------------------- </div>
-                          &nbsp; <ion-icon name="airplane" style="color: #5E5E5E;"></ion-icon> <br>
-                        </div>
-
-                        <!-- <span class="circle"></span> -->
-
-                        <span *ngIf="y.Stop=='0'">Non Stop</span>
-                        <span *ngIf="y.Stop=='1'">One Stop</span>
-                        <span *ngIf="y.Stop=='2'">Two Stop</span>
-                      </span>
-
-
+                    <!-- Arrival -->
+                    <ion-col size="4" size-md="2" class="text-right">
+                      <div class="time">{{y.Itinerary[y.Itinerary.length-1].ADate | date:'HH:mm'}}</div>
+                      <div class="city">{{y.Itinerary[y.Itinerary.length-1].Des}}</div>
                     </ion-col>
 
-
-                    <ion-col size-sm="4" size-xs="4" size-md="2" size-lg="2" size-xl="2" class="ion-text-end"><span
-                        class="D_TIME pup-clr">{{y.Itinerary[y.Itinerary.length-1].ADate|
-                        date:'HH:mm'}}</span><br><span class="D_NAME">{{y.Itinerary[y.Itinerary.length-1].Des}},
-                        {{y.Itinerary[y.Itinerary.length-1].DesName |uppercase}}</span></ion-col>
-
-
-
-                    <ion-col size-sm="4" size-xs="4" size-md="2" size-lg="2" size-xl="2" class="ion-text-center none">
-
-                      <span class="AMT">₹ {{y.Fare.GrandTotal}}</span><br>
-
+                    <!-- Price -->
+                    <ion-col size="6" size-md="1" class="price-col">
+                      <div class="price">{{y.Fare.GrandTotal}}</div>
                       <span style="color: #5E5E5E; font-size: 11px; cursor: pointer; font-weight: 700;"
                         (click)="farechk(y)">Net Fare </span>
 
-
+                      <br>
                       <span style="color: green; font-size: 11px;" *ngIf="b_chk_id==y.Id">
                         <span *ngIf="!fare_diff_show">
-                          = Checking...
+                          Checking...
                         </span>
                       </span>
 
@@ -465,32 +404,20 @@
                         </span>
 
                       </span>
-
-
-
-
                     </ion-col>
-                    <ion-col size-sm="12" size-xs="12" size-md="2" size-lg="2" size-xl="2" class="ion-text-center">
-                      <button class="BOOKNOW pup-bg-clr" (click)="selectFlight(y)">
-                        Book Now
-                      </button><br>
-                      <span (click)="indexHidden=i;hide=i" *ngIf="i!==hide" class="DETAILS"> + Flight Details </span>
-                      <span (click)="indexHidden=i;hide=i-arr_data.length" *ngIf="i==hide" class="DETAILS"> - Hide
-                        Details
+
+                    <!-- Button -->
+                    <ion-col size="6" size-md="2" class="btn-col">
+                      <button class="BOOKNOW" (click)="selectFlight(y)">Book Now</button>
+                      <span (click)="indexHidden=i;hide=i" *ngIf="i!==hide" class="DETAILS">
+                        + Flight Details
+                      </span>
+
+                      <span (click)="indexHidden=i;hide=i-arr_data.length" *ngIf="i==hide" class="DETAILS">
+                        - Hide Details
                       </span>
                     </ion-col>
-                    <!-- <ion-col size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12" *ngIf="y.Offer.Msg"
-                      style="border-top: 1px solid rgb(189, 189, 189);background-color: rgba(221, 221, 221, 0.315);padding: 15px 0px 15px 10px;">
-                      <span style="font-size: 13px; font-weight: 500;color: rgb(0, 0, 0); ">
-                        Itinerary: DELBOM|G8-KF|08:05|10:15|0 Stop|0d:2h:10m|3,899
-                      </span>
-                    </ion-col> -->
-                    <!-- <ion-col size-sm="12" size-xs="12" size-md="12" size-lg="12" size-xl="12" *ngIf="!y.Offer.Msg"
-                      style="border-top: 1px solid rgb(189, 189, 189); height: 25px; margin-top: 5px;">
-                      <span style="font-size: 11px; font-weight: 600;color: green;">
-                        <ion-icon name="pricetag"></ion-icon> {{y.Offer.Msg}}
-                      </span>
-                    </ion-col> -->
+
                   </ion-row>
                   <ng-container *ngIf="i==indexHidden;">
                     <mat-tab-group animationDuration="0s" *ngIf="i==hide">

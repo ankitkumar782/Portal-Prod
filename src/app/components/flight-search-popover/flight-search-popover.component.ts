@@ -237,158 +237,13 @@ export class FlightSearchPopoverComponent implements OnInit {
         this.newItemEvent.emit(data);
         localStorage.setItem("flt_srh_sector", JSON.stringify(data))
       }
-      // if (this.trip_val == 1) {
-      //   this.present(Event, 1, depApt, arrApt)
-      //   let data = {
-      //     "Trip": "D2",
-      //     "Adt": this.d_Adult,
-      //     "Chd": this.d_Child,
-      //     "Inf": this.d_Infants,
-      //     "Sector": [
-      //       {
-      //         "Src": depApt,
-      //         "Des": arrApt,
-      //         "DDate": latest_date
-      //       },
-      //       {
-      //         "Src": arrApt,
-      //         "Des": depApt,
-      //         "DDate": ret_latest_date
-      //       }
-      //     ],
-      //     "PF": "G8",
-      //     "PC": "",
-      //     "Routing": "Direct",
-      //     "Ver": "1.0.0.0",
-      //     "Auth": {
-      //       "AgentId": "18785869",
-      //       "Token": "XXXXXXX"
-      //     },
-      //     "Env": "P",
-      //     "Module": "B2B",
-      //     "OtherInfo": {
-      //       "PromoCode": "KAF2022",
-      //       "TraceId": "3f904b8e-533c-496d-9d7a-e4ba7fada38e",
-      //       "IsUnitTesting": false
-      //     }
-      //   }
-      //   this.post_service.POST("http://stage1.ksofttechnology.com/api/FSearch", data).subscribe((Flight) => {
-      //     if (Flight.Status === "Success") {
-      //       this.DismissClick()
-      //       localStorage.setItem("All_Flight", JSON.stringify(Flight))
-      //       this.route.navigate(['home/froundtrip'], { queryParams: { trip: 'roundtrip' } }).then(() => {
-      //         window.location.reload();
-      //       })
-      //     }
-      //     else {
-      //       this.present(Event, 10, "no", "no")
-
-      //     }
-      //   })
-      // }
+    
     }
     else {
       alert("SAME SECTOR CAN'T BE SEARCH")
     }
 
   }
-
-
-
-
-
-
-  // MULTI TRIP
-  // ind: any = 2
-  // add_pass_show = true
-  // pax_all_obj = this.fb.group({
-  //   pax_arr: this.fb.array([this.createItem()]),
-  // })
-
-  // createItem() {
-  //   return this.fb.group({
-  //     D_airport: new FormControl('', [Validators.required]),
-  //     A_airport: new FormControl('', [Validators.required]),
-  //     D_date: new FormControl(this.todayt, [Validators.required]),
-  //   });
-  // }
-  // addItem(): void {
-  //   this.pax_arr = this.pax_all_obj.get('pax_arr') as FormArray;
-  //   if (this.pax_arr.length < 5) {
-  //     this.pax_arr.push(this.createItem());
-  //   }
-  //   if (this.pax_arr.length > 4) {
-  //     this.add_pass_show = false
-  //   }
-
-  //   this.ind = this.pax_arr.length
-
-  // }
-
-
-
-  // removeRow(index) {
-  //   (<FormArray>this.pax_all_obj.get("pax_arr")).removeAt(index);
-  //   this.add_pass_show = true
-  //   this.ind = this.pax_arr.length
-  // }
-
-
-  // onSubmit() {
-  //   let data = {
-  //     "Trip": "D1",
-  //     "Adt": this.d_Adult,
-  //     "Chd": this.d_Child,
-  //     "Inf": this.d_Infants,
-  //     "Sector": this.pax_all_obj.value.pax_arr,
-  //     "PF": this.flightData.value.PFlight || "G8",
-  //     "PC": this.flightData.value.PClass || "",
-  //     "Routing": "Direct",
-  //     "Ver": "1.0.0.0",
-  //     "Auth": {
-  //       "AgentId": "18785869",
-  //       "Token": "XXXXXXX"
-  //     },
-  //     "Env": "P",
-  //     "Module": "B2B",
-  //     "OtherInfo": {
-  //       "PromoCode": "KAF2022",
-  //       "TraceId": "",
-  //       "IsUnitTesting": false
-  //     }
-
-  //   }
-  //   console.log(data)
-
-  // }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
   get Error() {
@@ -424,6 +279,55 @@ export class FlightSearchPopoverComponent implements OnInit {
     this.unsubscribe$.next(true);
     this.unsubscribe$.complete();
   }
+
+  togglePax() {
+  if (!this.mdfy_strt) {
+    this.pax_div = !this.pax_div;
+  }
+}
+
+
+
+filteredAirports: any[] = [];
+showFrom = false;
+
+filterAirports(event: any, type: string) {
+  const value = event.target.value.toLowerCase();
+
+  const filtered = this.arp.filter((a: any) =>
+    a.city.toLowerCase().includes(value) ||
+    a.code.toLowerCase().includes(value)
+  );
+
+  if (type === 'from') {
+    this.filteredAirports = filtered;
+  } else if (type === 'to') {
+    this.filteredToAirports = filtered;
+  }
+}
+selectAirport(arpt: any, type: string) {
+
+  if (type === 'from') {
+    this.flightData.patchValue({
+      D_airport: arpt.code
+    });
+
+    this.depARP = `${arpt.code} - ${arpt.city}`;
+    this.showFrom = false;
+
+  } else if (type === 'to') {
+    this.flightData.patchValue({
+      A_airport: arpt.code
+    });
+
+    this.arrARP = `${arpt.code} - ${arpt.city}`;
+    this.showTo = false;
+  }
+}
+
+showTo = false;
+filteredToAirports: any[] = [];
+
 
 
 }

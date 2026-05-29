@@ -112,9 +112,9 @@ export class SearchbyPage implements OnInit {
       "ENV": this.env,
       "Version": "1.0.0.0.0.0"
     }
-    console.log(obj)
+   
     this.pstService.POST('/FReport', obj).subscribe((res) => {
-      console.log(res)
+     
 
       this.resultArr = res
       this.isCheckedArr = new Array(this.resultArr[0].PaxName.length).fill(false);
@@ -152,9 +152,9 @@ export class SearchbyPage implements OnInit {
       "ENV": this.env,
       "Version": "1.0.0.0.0.0"
     }
-    console.log(obj);
+    
     this.pstService.POST('/FReport', obj).subscribe(result => {
-      console.log(result)
+     
       for (let i = 0; i < Math.floor(result.length / 2); i++) {
         [result[i], result[result.length - 1 - i]] = [result[result.length - 1 - i], result[i]];
       }
@@ -165,9 +165,9 @@ export class SearchbyPage implements OnInit {
       this.test.FareBreakup.Journeys.forEach((ele) => {
         ele.Segments.forEach((seg) => {
           this.tax = seg.TaxBreakup
-          console.log(this.tax)
+         
           seg.TaxBreakup.forEach((TaxBreakup) => {
-            console.log(TaxBreakup)
+            
           })
         })
       })
@@ -249,7 +249,7 @@ export class SearchbyPage implements OnInit {
     this.pstService.GET(b).subscribe((res) => {
       this.reasonarr = res
       this.showtable = true
-      console.log(res)
+      
 
     },
       (err) => {
@@ -331,9 +331,9 @@ export class SearchbyPage implements OnInit {
       }
     }
 
-    console.log(CANCEL_CHARGE_obj)
+   
     this.pstService.POST('/FCancel', CANCEL_CHARGE_obj).subscribe((res) => {
-      console.log(res)
+     
       if (res?.Charges) {
         this.partial_sector_commit = res
         this.loader = false
@@ -467,9 +467,9 @@ export class SearchbyPage implements OnInit {
       }
     }
 
-    console.log(cancelTicket)
+   
     this.pstService.POST('/FCancel', cancelTicket).subscribe((res) => {
-      console.log(res)
+    
       if (res.Status == 'Failed') {
         alert("Failed to cancel the pnr" + res?.ErrorMessage)
       }

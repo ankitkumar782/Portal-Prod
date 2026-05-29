@@ -38,6 +38,162 @@ ion-toolbar {
   color: #213d77;
 }
 
+
+.pro-header{
+  --background:linear-gradient(90deg,#ffffff,#f8fafc);
+  box-shadow:0 6px 25px rgba(0,0,0,0.08);
+  padding:6px 10px;
+}
+
+/* alignment */
+
+.header-row{
+  align-items:center;
+}
+
+/* logo */
+
+.logo-col img{
+  height:40px;
+  cursor:pointer;
+}
+
+/* menu */
+
+.menu-col{
+  display:flex;
+  align-items:center;
+}
+
+.yt-menu-btn {
+  width: 40px;
+  height: 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%; /* circular like YouTube */
+
+  background: transparent;
+
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+/* Icon */
+.yt-menu-btn ion-icon {
+  font-size: 22px;
+  color: #0f0f0f;
+}
+
+/* Hover Effect (very subtle like YouTube) */
+.yt-menu-btn:hover {
+  background: #f2f2f2;
+}
+
+/* Click Effect */
+.yt-menu-btn:active {
+  background: #e5e5e5;
+}
+
+
+
+/* wallet */
+
+.wallet-col{
+  display:flex;
+  justify-content:flex-end;
+}
+
+.wallet-pill{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding:8px 16px;
+  border-radius:30px;
+
+  background:linear-gradient(135deg,#2563eb,#60a5fa);
+  color:white;
+
+  font-weight:600;
+  font-size:14px;
+
+  box-shadow:0 10px 25px rgba(37,99,235,.3);
+
+  transition:0.3s;
+}
+
+.wallet-pill:hover{
+  transform:translateY(-2px);
+}
+
+.wallet-pill ion-icon{
+  font-size:18px;
+}
+
+/* profile */
+
+.profile-col{
+  display:flex;
+  justify-content:flex-end;
+}
+
+.profile-box{
+  display:flex;
+  align-items:center;
+  gap:10px;
+
+  padding:6px 12px;
+  border-radius:12px;
+
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.profile-box:hover{
+  background:#f1f5f9;
+}
+
+/* avatar */
+
+.avatar{
+  width:36px;
+  height:36px;
+
+  border-radius:50%;
+
+  background:linear-gradient(135deg,#6366f1,#3b82f6);
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  color:white;
+}
+
+.avatar ion-icon{
+  font-size:18px;
+}
+
+/* profile text */
+
+.profile-text{
+  display:flex;
+  flex-direction:column;
+  line-height:1.1;
+}
+
+.profile-text small{
+  font-size:11px;
+  color:#64748b;
+}
+
+.profile-text span{
+  font-weight:600;
+  font-size:13px;
+}
+
 /* =========================================================
    APP LAYOUT SPACING
    ========================================================= */
@@ -274,3 +430,8 @@ ion-menu ion-content::-webkit-scrollbar-thumb {
   background: rgba(180, 190, 210, 0.6);
   border-radius: 4px;
 }
+
+
+
+
+

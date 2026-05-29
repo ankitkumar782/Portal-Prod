@@ -1,7 +1,7 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs'
-import { Platform } from '@ionic/angular';
+import { MenuController, Platform } from '@ionic/angular';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { GetService } from '../../Services/Crud_Services/get.service';
 import { CommonService } from '../../Services/Other_Services/common.service';
@@ -13,20 +13,22 @@ import { PostService } from '../../Services/Crud_Services/post.service';
 })
 export class HomePage implements OnInit {
 
-
+  ionViewWillEnter() {
+    this.menu.close('mainMenu'); // ✅ always closed at start
+  }
   count: any
   Menu: any;
   clickEventSubs: Subscription
   bigMenu = false;
   credTrue = false
   moreOption = true
-  constructor(private route: Router, public platform: Platform, private get_service: GetService, private common_service: CommonService, private pstService: PostService) {
+  constructor(private menu: MenuController, private route: Router, public platform: Platform, private get_service: GetService, private common_service: CommonService, private pstService: PostService) {
     this.clickEventSubs = this.common_service.getClickEvent().subscribe(() => {
       this.toggleMenu();
     })
 
     let Token
-    let env=sessionStorage.getItem("ENV")
+    let env = sessionStorage.getItem("ENV")
     Token = sessionStorage.getItem("Token")
     let aid = sessionStorage.getItem("Agentid")
     let obj =
@@ -157,8 +159,9 @@ export class HomePage implements OnInit {
 
 
   Menu1() {
-    this.common_service.sendClickEvent();
-  }
+    this.menu.toggle('mainMenu');
 
+  }
+  showmenu = true;
 
 }

@@ -4,16 +4,15 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { IndexPageRoutingModule } from './index-routing.module';
 import { IndexPage } from './index.page';
-// import { ComponentShareModule } from '../../form-share/component-share.module';
+import { CdkOverlayOrigin } from "@angular/cdk/overlay";
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
     IndexPageRoutingModule,
-    // ComponentShareModule
-    
-  ],
+    CdkOverlayOrigin
+],
   declarations: [IndexPage]
 })
 export class IndexPageModule {

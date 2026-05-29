@@ -102,7 +102,7 @@ export class FBookingHistoryPage implements OnInit {
     this.showtable = false
     this.loader = true
     let res = {}
-    console.log(this.remarksCommit.value)
+   
 
     this.reasonarr.forEach((ele) => {
       if (ele.ReasonCode == this.remarksCommit.value.rescode) {
@@ -135,10 +135,10 @@ export class FBookingHistoryPage implements OnInit {
       "ENV": this.env,
       "Version": "1.0.0.0.0.0"
     }
-    console.log(cance);
+   
 
     this.pstService.POST('/FCancel', cance).subscribe((res) => {
-      console.log(res?.Charges)
+    
       
       if(res?.Charges){
         this.loader = false
@@ -246,9 +246,9 @@ export class FBookingHistoryPage implements OnInit {
       "ENV": this.env,
       "Version": "1.0.0.0.0.0"
     }
-    console.log(cancelTicket)
+   
     this.pstService.POST('/FCancel', cancelTicket).subscribe((res) => {
-      console.log(res)
+     
       if (res.Status == 'Failed') {
         alert("Failed to cancel the pnr" + res?.ErrorMessage)
       }
@@ -283,9 +283,9 @@ export class FBookingHistoryPage implements OnInit {
     this.cancelBookingId = d.BookingId
 
     var a = `${this.get_url}?P_TYPE=API&R_TYPE=FLIGHT&R_NAME=GetCancelCommitStatus&AID=${this.Agentid}&TOKEN=${this.Token}&DATA=${d.BookingId}`
-    console.log(a)
+   
     this.pstService.GET(a).subscribe((res) => {
-      console.log(res)
+     
       this.statusresponse = res
       if(this.statusresponse?.Status=='PENDING'){
         alert(this.statusresponse.WarningMessage)
@@ -386,7 +386,7 @@ export class FBookingHistoryPage implements OnInit {
       "Version": "1.0.0.0.0.0"
     }
     this.pstService.POST('/FCancel', data).subscribe((res) => {
-      console.log(res)
+    
       this.ShowCancelModel = false;
       this.ShowModelDATA = true;
     })
@@ -432,13 +432,13 @@ export class FBookingHistoryPage implements OnInit {
     //   "Version": "1.0.0.0.0.0"
     // }
 
-    console.log(obj)
+   
 
     this.pstService.POST('/FReport', obj).subscribe((res) => {
       for (let i = 0; i < Math.floor(res.length / 2); i++) {
         [res[i], res[res.length - 1 - i]] = [res[res.length - 1 - i], res[i]];
       }
-      console.log(res)
+     
       this.amt = 0
       this.pdfData = res.map(Object.values);
       for (let x of res) {
@@ -496,9 +496,9 @@ export class FBookingHistoryPage implements OnInit {
       "Version": "1.0.0.0.0.0"
     }
 
-    console.log(obj);
+  
     this.pstService.POST('/FReport', obj).subscribe(result => {
-      console.log(result)
+    
       for (let i = 0; i < Math.floor(result.length / 2); i++) {
         [result[i], result[result.length - 1 - i]] = [result[result.length - 1 - i], result[i]];
       }
@@ -608,7 +608,7 @@ export class FBookingHistoryPage implements OnInit {
     else {
       this.lname = ''
     }
-    console.log(this.FromData, this.data)
+ 
 
 
     let obj = {
@@ -632,9 +632,9 @@ export class FBookingHistoryPage implements OnInit {
       "ENV": this.env,
       "Version": "1.0.0.0.0.0"
     }
-    console.log(obj)
+   
     this.pstService.POST('/FReport', obj).subscribe((res) => {
-      console.log(res)
+    
       
       this.resultArr = res
       this.resultArr.forEach(ele => {

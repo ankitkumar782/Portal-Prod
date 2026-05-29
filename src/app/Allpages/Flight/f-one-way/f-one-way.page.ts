@@ -162,16 +162,14 @@ export class FOneWayPage implements OnInit {
     }
     this.isSkelton = true
     this.dnf = false
-    this.post_service.POST("/FSearch", data).subscribe((Flight) => {
+    this.post_service.POST2("/FSearch", data).subscribe((Flight) => {
       console.log(Flight)
       localStorage.setItem("flt_srh_sector", JSON.stringify(Flight.Param))
       this.isSkelton = false
       this.Skelton = true
       this.f_all_data = Flight
-      // this.arr_data = this.f_all_data.Schedules[0].filter((d: { Fare: { GrandTotal: number; }; }) => d.Fare.GrandTotal)
       let data = this.f_all_data.Schedules[0].sort((p1, p2) => (p1.Fare.GrandTotal > p2.Fare.GrandTotal) ? 1 : (p1.Fare.GrandTotal < p2.Fare.GrandTotal) ? -1 : 0)
       this.arr_data = data
-      // this.arr_data = this.f_all_data.Schedules[0].filter((d: { Fare: { GrandTotal: number; }; }) => d.Fare.GrandTotal >= this.f_all_data.MinimumFare)
       let uniqueChars: any[] = [];
 
 
@@ -186,19 +184,10 @@ export class FOneWayPage implements OnInit {
       });
 
 
-      // let ak=[...new Set(uniqueChars)];
-      // let uniqueObjArray = [...new Map(this.arr_data.map((item) => [item["id"], item])).values()];
-
       ak.forEach((d) => {
         this.Come_FLIGHTS.push({ val: d, isChecked: false, count: 0 })
 
       })
-
-
-      // console.log(this.Come_FLIGHTS)
-
-
-
       for (let i = 0; i < this.STOPS.length; i++) {
         for (let j = 0; j < this.arr_data.length; j++) {
           if (this.STOPS[i].val == this.arr_data[j].Stop) {

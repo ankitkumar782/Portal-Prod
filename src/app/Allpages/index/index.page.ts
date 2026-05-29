@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { LoadingController ,PopoverController} from '@ionic/angular';
+import { LoadingController ,ModalController,PopoverController} from '@ionic/angular';
 import { LoginPopoverComponent } from '../../components/login-popover/login-popover.component';
 @Component({
   selector: 'app-index',
@@ -12,7 +12,7 @@ export class IndexPage implements OnInit {
     public rout: Router,
     public loadingController: LoadingController,
     public popoverController: PopoverController,
-    
+    public modalController:ModalController
 
   ) { }
   slideOpts = {
@@ -51,55 +51,17 @@ export class IndexPage implements OnInit {
     });
   }
 
+  
 
-  async presentPopover(ev: any) {
-    const popover = await this.popoverController.create({
-      component: LoginPopoverComponent,
-      event: ev,
-      cssClass: 'popover_setting',
-      translucent: false,
-      mode: 'ios',
-    });
-    popover.onDidDismiss().then((modelData) => {
-      // if (modelData.data.cred1 !== "" && modelData.data.cred2 !== "" && modelData.data.cred3 !== "") {
-      //   this.present()
-      //   this.lgn = {
-      //     "TYPE": "AUTH",
-      //     "NAME": "GET_AUTH_TOKEN",
-      //     "STR": [
-      //       {
-      //         "A_ID": modelData.data.cred1,
-      //         "U_ID": modelData.data.cred2,
-      //         "PWD": modelData.data.cred3,
-      //         "MODULE": "B2B",
-      //         "HS": "D"
-      //       }
-      //     ]
-      //   }
-        // this.post_service.POST("http://nauth.ksofttechnology.com/API/AUTH", this.lgn).pipe(takeUntil(this.unsubscribe$)).subscribe(result => {
-        //   if (result.STATUS == "SUCCESS") {
-        //     this.rout.navigate(['home/fsearch'])
-        //     sessionStorage.setItem("Token", result.RESULT)
-        //     this.dismiss()
-        //   }
-        //   else {
-        //     this.dismiss()
-        //     this.tost_srvice.presentToast("Wrong Credentials")
-        //   }
+async presentPopover() {
+  const modal = await this.modalController.create({
+    component: LoginPopoverComponent,
+    cssClass: 'login-modal',
+    backdropDismiss: true
+  });
 
-        // }, error => {
-        //   this.dismiss()
-        //   console.log(error)
-        //   alert("Internal Server Error")
-        // });
-      // }
-      // else {
-      //   this.dismiss()
-      //   this.tost_srvice.presentToast("Fields can,t be blank")
-      // }
-    });
-    return await popover.present();
-  }
+  await modal.present();
+}
 
   async dismiss() {
     this.isLoading = false;

@@ -1,7 +1,60 @@
 <ion-header>
 
+  <ion-toolbar class="pro-header">
 
-  <ion-toolbar>
+    <ion-grid>
+      <ion-row class="header-row">
+
+        <!-- Menu -->
+        <ion-col size="1" class="menu-col">
+
+          <div class="yt-menu-btn" (click)="Menu1()">
+            <ion-icon name="menu-outline"></ion-icon>
+          </div>
+
+        </ion-col>
+
+        <!-- Logo -->
+        <ion-col size-lg="2" class="logo-col">
+          <img src="../assets/logo.png" routerLink="/home/fsearch">
+        </ion-col>
+
+        <!-- Spacer -->
+        <ion-col size="5"></ion-col>
+
+        <!-- Wallet -->
+        <ion-col size-lg="2"  size="0"  class="wallet-col">
+          <div class="wallet-pill">
+            <ion-icon style="color: white;" name="wallet-outline"></ion-icon>
+            <span>{{count | currency:'INR'}}</span>
+          </div>
+        </ion-col>
+
+        <!-- Profile / Logout -->
+        <ion-col size="2" class="profile-col">
+
+          <div class="profile-box" (click)="logout()">
+
+            <div class="avatar">
+              <ion-icon style="color: white;" name="person"></ion-icon>
+            </div>
+
+            <div class="profile-text">
+              <small>Account</small>
+              <span>Logout</span>
+            </div>
+
+            <ion-icon name="log-out-outline"></ion-icon>
+
+          </div>
+
+        </ion-col>
+
+      </ion-row>
+    </ion-grid>
+
+  </ion-toolbar>
+  <!-- <ion-toolbar>
 
 
 
@@ -19,9 +72,7 @@
           <ion-col size-xs="4" size-sm="4" size-md="4" size-lg="4" size-xl="4" class=""
             style="display: flex; justify-content: start; align-items: center;">
             <ul>
-              <!-- <li>
-                <ion-icon name="person-circle"></ion-icon> <span>PSLV</span>
-              </li> -->
+            
               <li style="float: right; margin-bottom: 12px;">
                 <div>
 
@@ -32,18 +83,7 @@
                   <span class="cfont h-text"><b>{{count| currency:'INR'}}</b></span>
                 </div>
               </li>
-              <!-- <li>
-                <ion-icon name="train"></ion-icon> <span>10000</span>
-              </li> -->
-
-              <!-- <li style="float: right;">
-                <div style="display: flex; " (click)="logout()">
-                  <span lines="none" class="line-up">
-                    <ion-icon slot="start" name="log-out-outline" style="color: #213D77; font-size: 20px;"></ion-icon>
-                  </span>
-                  <span style=" font-size: 15px; font-weight: 500;">LogOut </span>
-                </div>
-              </li> -->
+             
             </ul>
           </ion-col>
 
@@ -64,11 +104,12 @@
         </ion-row>
       </ion-grid>
     </ion-title>
-  </ion-toolbar>
+  </ion-toolbar> -->
 </ion-header>
 <ion-app class="for-app cfont" style="background-color: white;">
-  <ion-split-pane contentId="main-content">
-    <ion-menu contentId="main-content" type="overlay" class="ion-text-center" *ngIf="bigMenu" swipeGesture="false">
+  <ion-split-pane contentId="main-content" when="false">
+    <ion-menu menuId="mainMenu" contentId="main-content" type="overlay" swipeGesture="false" side="start"
+      class="custom-menu">
       <ion-content class="side-Menu">
 
         <ion-list id="inbox-list" *ngFor="let d of Menu,let i = index" lines="none">
@@ -83,9 +124,9 @@
           <ion-list *ngIf="!d.showDetails" lines="none">
             <ion-item *ngFor="let s_Menu of d.subMenu" [routerLink]="['/','home',s_Menu.url]" lines="none"
               class="sb-menu side-Menu-Main" routerDirection="root" routerLinkActive="active-menu">
-              <!-- <ion-icon class="Side-Icon" size="small" name={{s_Menu.icon}}></ion-icon> -->
+
               <ion-label> {{s_Menu.title}}</ion-label>
-              <!-- <ion-icon size="small" name={{s_Menu.Eicon}}></ion-icon> -->
+
             </ion-item>
           </ion-list>
 
@@ -96,10 +137,7 @@
           </ion-item>
         </ion-list>
 
-        <ion-col size-xs="4" size-sm="4" size-md="1" size-lg="1" size-xl="1">
-          <img alt="logo" class="header_logo" src="../assets/logo.png" style="margin-top: 90px;">
-        </ion-col>
-
+        
 
       </ion-content>
 

@@ -40,7 +40,7 @@ export class PostService {
     this.checkSpeed().then((speed) => {
       this.speed = speed;
       if (speed > 1) {
-        this.POST(url,data);
+        this.POST(url, data);
       } else {
         console.error('Internet speed is too slow to proceed.');
       }
@@ -48,13 +48,13 @@ export class PostService {
   }
   // url=localStorage.getItem("url");
   // url1 ="http://stage1.ksofttechnology.com/api"
-  // url2 = "http://fhapip.ksofttechnology.com/api"
+  // url2 ="http://fhapip.ksofttechnology.com/api"
 
   constructor(private http: HttpClient) {
     this.data = new BehaviorSubject(this.blank);
     // this.url = localStorage.getItem("url");
   }
-  
+
   updateData(f: any) {
     console.log(f)
     this.data.next(this.blank = f);
@@ -62,7 +62,28 @@ export class PostService {
   }
 
   POST(url: any, data: any): Observable<any> {
+    let a_id = JSON.parse(sessionStorage.getItem("Agentid"));
+
     this.url = sessionStorage.getItem("url");
+
+
+    let d = JSON.stringify(data)
+    console.log(this.url)
+    return this.http.post<any>(this.url + url, d).pipe(
+      retry(2),
+      catchError(this.handleError)
+    )
+  }
+
+  POST2(url: any, data: any): Observable<any> {
+    let a_id = JSON.parse(sessionStorage.getItem("Agentid"));
+    if (331724 == a_id || 3431724 == a_id || 549424 == a_id || 4327225 == a_id || 6524725 == a_id || 2615424 == a_id) {
+      this.url = sessionStorage.getItem("url2");
+    }
+    else {
+      this.url = sessionStorage.getItem("url");
+    }
+
     let d = JSON.stringify(data)
     console.log(this.url)
     return this.http.post<any>(this.url + url, d).pipe(

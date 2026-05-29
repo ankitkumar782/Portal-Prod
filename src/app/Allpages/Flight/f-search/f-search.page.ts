@@ -972,5 +972,107 @@ export class FSearchPage implements OnInit {
   }
 
 
+
+
+
+
+  // flight-search.component.ts
+
+trip_selection_arr2 = [
+  { Name: 'One Way', isAfterActive: true },
+  { Name: 'Round Trip', isAfterActive: false },
+  { Name: 'Multi City', isAfterActive: false }
+];
+
+selectedFrom: any = null;
+selectedTo: any = null;
+
+fromSearch = '';
+toSearch = '';
+
+airportList = [
+  { city: 'Delhi', code: 'DEL' },
+  { city: 'Mumbai', code: 'BOM' },
+  { city: 'Bangalore', code: 'BLR' },
+  { city: 'Hyderabad', code: 'HYD' },
+  { city: 'Chennai', code: 'MAA' }
+];
+
+filteredFromAirports = [];
+filteredToAirports = [];
+
+departureDate: string = '';
+returnDate2: string = '';
+
+travellers = {
+  adult: 1,
+  child: 0,
+  infant: 0,
+  class: 'Economy'
+};
+
+showTravellerModal = false;
+
+// TRIP SELECT
+trip_selection_function2(selected) {
+  this.trip_selection_arr.forEach(i => i.isAfterActive = false);
+  selected.isAfterActive = true;
+}
+
+// AUTO SUGGEST
+filterFrom() {
+  this.filteredFromAirports = this.airportList.filter(a =>
+    a.city.toLowerCase().includes(this.fromSearch.toLowerCase()) ||
+    a.code.toLowerCase().includes(this.fromSearch.toLowerCase())
+  );
+}
+
+filterTo() {
+  this.filteredToAirports = this.airportList.filter(a =>
+    a.city.toLowerCase().includes(this.toSearch.toLowerCase()) ||
+    a.code.toLowerCase().includes(this.toSearch.toLowerCase())
+  );
+}
+
+selectFrom(a) {
+  this.selectedFrom = a;
+  this.fromSearch = `${a.city} (${a.code})`;
+  this.filteredFromAirports = [];
+}
+
+selectTo(a) {
+  this.selectedTo = a;
+  this.toSearch = `${a.city} (${a.code})`;
+  this.filteredToAirports = [];
+}
+
+// SWAP
+swapLocations() {
+  const temp = this.selectedFrom;
+  this.selectedFrom = this.selectedTo;
+  this.selectedTo = temp;
+
+  this.fromSearch = this.selectedFrom ? `${this.selectedFrom.city} (${this.selectedFrom.code})` : '';
+  this.toSearch = this.selectedTo ? `${this.selectedTo.city} (${this.selectedTo.code})` : '';
+}
+
+// TRAVELLERS
+updateTraveller(type, action) {
+  if (action === 'add') this.travellers[type]++;
+  if (action === 'remove' && this.travellers[type] > 0) this.travellers[type]--;
+}
+
+// SEARCH
+searchFlights() {
+  const payload = {
+    from: this.selectedFrom,
+    to: this.selectedTo,
+    departureDate: this.departureDate,
+    returnDate: this.returnDate,
+    travellers: this.travellers
+  };
+
+  console.log('SEARCH PAYLOAD', payload);
+}
 }
 

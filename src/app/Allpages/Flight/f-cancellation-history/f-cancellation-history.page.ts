@@ -83,7 +83,6 @@ export class FCancellationHistoryPage implements OnInit {
         "TYPE": "PNRRES",
         "BOOKING_ID": d.BookingId,
         "TRACE_ID": "",
-        "AGENT_ID": d.AgentId
       },
       "AID": this.Agentid,
       "MODULE": "B2B",
