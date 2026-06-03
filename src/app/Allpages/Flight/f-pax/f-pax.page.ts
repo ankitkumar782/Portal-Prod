@@ -178,7 +178,7 @@ export class FPaxPage implements OnInit {
     // }, 5000)
 
   }
-  NewSeat;
+  NewSeat:any;
   seat: any = FormArray;
 
   onchangeseat(event) {
@@ -200,12 +200,12 @@ export class FPaxPage implements OnInit {
 
 
   meal = [[], [], [], [], [], [], [], []]
-  mealSelct(i, d, k) {
+  mealSelct(i:any, d:any, k:any) {
     // console.log(i)
     // console.log(d)
     // console.log(this.fare_chk_res)
     this.meal[k].push(d)
-    // console.log(this.meal)
+    // console.log(this.meal)s
   }
   bag = [[], [], [], [], [], [], [], []]
   baggageSelct(i, d, k) {
