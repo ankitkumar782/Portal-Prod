@@ -812,7 +812,7 @@ export class FSearchPage implements OnInit {
 
         }
 
-        console.log(data)
+      
 
         localStorage.setItem("flt_srh_sector", JSON.stringify(data))
         this.route.navigate(['home/foneway'], { queryParams: { trip: 'oneway' } })
@@ -933,7 +933,7 @@ export class FSearchPage implements OnInit {
       }
 
     }
-    console.log(data)
+   
 
   }
 
@@ -1072,7 +1072,7 @@ searchFlights() {
     travellers: this.travellers
   };
 
-  console.log('SEARCH PAYLOAD', payload);
+
 }
 }
 

@@ -65,9 +65,9 @@ export class SalereportPage implements OnInit {
       "ENV": this.env,
       "Version": "1.0.0.0.0.0"
     }
-    console.log(obbjj)
+    // console.log(obbjj)
     this.pstService.POST('/FReport', obbjj).subscribe((res) => {
-      console.log(res)
+      // console.log(res)
       // this.wait = false
     },
       (err) => {
@@ -92,11 +92,11 @@ export class SalereportPage implements OnInit {
       "ENV": this.env,
       "Version": "1.0.0.0.0.0"
     }
-    console.log(obj)
+    // console.log(obj)
     this.spinner = true;
 
     this.pstService.POSTDATA('/FReport', obj).subscribe((res) => {
-      console.log(res)
+      // console.log(res)
 
       // this.amt = 0
       // this.pdfData = res.map(Object.values);
@@ -124,7 +124,7 @@ export class SalereportPage implements OnInit {
   fileName = 'SaleReport.xlsx';
 exportexcel(): void {
   if (!this.resultArr || this.resultArr.length === 0) {
-    console.warn("No data to export");
+    // console.warn("No data to export");
     return;
   }
 
@@ -333,7 +333,7 @@ exportexcel(): void {
     else {
       this.lname = ''
     }
-    console.log(this.FromData, this.data)
+    // console.log(this.FromData, this.data)
 
     // let obj = {
 
@@ -379,9 +379,9 @@ exportexcel(): void {
       "ENV": this.env,
       "Version": "1.0.0.0.0.0"
     }
-    console.log(obj)
+    // console.log(obj)
     this.pstService.POST('/FReport', obj).subscribe((res) => {
-      console.log(res)
+      // console.log(res)
       // console.log(res.)
       this.resultArr = res
       this.resultArr.forEach(ele => {

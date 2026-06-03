@@ -6,6 +6,7 @@ import { PostService } from '../../../Services/Crud_Services/post.service';
 import { ModalController } from '@ionic/angular';
 import { SeatSelectionComponent } from '../seat-selection/seat-selection.component';
 export const MAX_SELECTION = 9;
+
 @Component({
   selector: 'app-f-pax',
   templateUrl: './f-pax.page.html',
@@ -46,45 +47,45 @@ export class FPaxPage implements OnInit {
   Seatsdata1 = { maxReached: false, attr: [] };
   Seatsdata2 = { maxReached: false, attr: [] };
   ghj;
-  totst:number=0;
-  TOTSEAT:any
+  totst: number = 0;
+  TOTSEAT: any
   isModal: boolean = false;
   ngOnInit() {
 
 
     this.f_chk_res = JSON.parse(localStorage.getItem('selectedFlight') || '{}')
-    
-      this.post_service.POST("/FFareCheck", this.f_chk_res).subscribe((f) => {
-        // console.log(f.FareBreakup.OldFare)
-        // console.log(f.FareBreakup.NewFare)
-        // console.log(f.FareBreakup.FareDifference)
-        this.fare_chk_res = f
-        console.log(this.fare_chk_res)
-        this.totpass = this.fare_chk_res.Param.Adt + this.fare_chk_res.Param.Chd
-        console.log(this.totpass)
-        let SelectedFlight = []
-        this.fare_chk_res.SelectedFlight.forEach(element => {
-          SelectedFlight.push(element)
-        });
 
-        let ancl = {
-          "Error": this.fare_chk_res.Error,
-          "IsFareUpdate": this.fare_chk_res.IsFareUpdate,
-          "IsAncl": true,
-          "Param": this.fare_chk_res.Param,
-          "SelectedFlight": SelectedFlight,
-          "FareBreakup": this.fare_chk_res.FareBreakup,
-          "GstData": this.fare_chk_res.GstData,
-          "Ancl": null
-        }
+    this.post_service.POST("/FFareCheck", this.f_chk_res).subscribe((f) => {
+      // console.log(f.FareBreakup.OldFare)
+      // console.log(f.FareBreakup.NewFare)
+      // console.log(f.FareBreakup.FareDifference)
+      this.fare_chk_res = f
+      // console.log(this.fare_chk_res)
+      this.totpass = this.fare_chk_res.Param.Adt + this.fare_chk_res.Param.Chd
+      // console.log(this.totpass)
+      let SelectedFlight = []
+      this.fare_chk_res.SelectedFlight.forEach(element => {
+        SelectedFlight.push(element)
+      });
+
+      let ancl = {
+        "Error": this.fare_chk_res.Error,
+        "IsFareUpdate": this.fare_chk_res.IsFareUpdate,
+        "IsAncl": true,
+        "Param": this.fare_chk_res.Param,
+        "SelectedFlight": SelectedFlight,
+        "FareBreakup": this.fare_chk_res.FareBreakup,
+        "GstData": this.fare_chk_res.GstData,
+        "Ancl": null
+      }
 
 
 
-        this.post_service.POST("/FAncl", ancl).subscribe((f) => {
-          console.log(f)
-          this.totst += parseInt(f.SelectedFlight[0].Stop)  + 1;
-          console.log(this.totst)
-          if (this.totst == 1) {
+      this.post_service.POST("/FAncl", ancl).subscribe((f) => {
+        // console.log(f)
+        this.totst += parseInt(f.SelectedFlight[0].Stop) + 1;
+        // console.log(this.totst)
+        if (this.totst == 1) {
           this.seats = f.Ancl.Seat[0]
 
           for (let i = 0; i < this.seats.length; i++) {
@@ -95,53 +96,53 @@ export class FPaxPage implements OnInit {
             }
           }
 
-          }
-          // this.seats=element
+        }
+        // this.seats=element
 
 
 
-          if (this.totst > 1) {
-           
-            this.seats2 = f.Ancl.Seat[1]
-            for (let i = 0; i < this.seats2.length; i++) {
-              this.Seatsdata2.attr[i] = [];
-              this.rangei1.push(i)
-              for (let j = 0; j < 6; j++) {
-                this.Seatsdata2.attr[i].push({ x: (i), y: (j + 65), selected: false });
-              }
+        if (this.totst > 1) {
+
+          this.seats2 = f.Ancl.Seat[1]
+          for (let i = 0; i < this.seats2.length; i++) {
+            this.Seatsdata2.attr[i] = [];
+            this.rangei1.push(i)
+            for (let j = 0; j < 6; j++) {
+              this.Seatsdata2.attr[i].push({ x: (i), y: (j + 65), selected: false });
             }
           }
-
-          // this.seats=element
-
-
-
-
-
-
-          this.Baggage = f.Ancl.Baggage
-          this.Meals = f.Ancl.Meals
-        })
-        // console.log(this.fare_chk_res)
-        this.show_fare = true
-        this.btnActive = true
-        if (f.IsFareUpdate == true) {
-          alert("Fare Updation Detected")
         }
-      }, err => {
-        alert(err)
+
+        // this.seats=element
+
+
+
+
+
+
+        this.Baggage = f.Ancl.Baggage
+        this.Meals = f.Ancl.Meals
       })
+      // console.log(this.fare_chk_res)
+      this.show_fare = true
+      this.btnActive = true
+      if (f.IsFareUpdate == true) {
+        alert("Fare Updation Detected")
+      }
+    }, err => {
+      alert(err)
+    })
 
 
     this.slt_flt = this.f_chk_res.SelectedFlights[0];
     this.slt_flt1 = this.f_chk_res.SelectedFlights[1];
-      this.TOTSEAT=this.f_chk_res.Param.Adt+this.f_chk_res.Param.Chd
+    this.TOTSEAT = this.f_chk_res.Param.Adt + this.f_chk_res.Param.Chd
     if (this.f_chk_res.Param.Adt > 0) {
       for (let i = 0; i < this.f_chk_res.Param.Adt; i++) {
         this.adt_sub_arr = this.pax_all_obj.get('adt_sub_arr') as FormArray;
         if (this.adt_sub_arr.length < 10) {
           this.adt_sub_arr.push(this.createItem());
-          console.log(this.f_chk_res.Param.Adt)
+          // console.log(this.f_chk_res.Param.Adt)
         }
       }
     }
@@ -183,8 +184,8 @@ export class FPaxPage implements OnInit {
   onchangeseat(event) {
     const id = event.target.value;
     const isChecked = event.target.checked;
-    console.log(id, isChecked)
-    console.log(event)
+    // console.log(id, isChecked)
+    // console.log(event)
     // console.log(document.getElementById)
 
     // this.NewSeat = this.seat.map((d) => {
@@ -194,25 +195,25 @@ export class FPaxPage implements OnInit {
     //   }
     //   return d
     // });
-    console.log(this.NewSeat)
+    // console.log(this.NewSeat)
   }
 
 
   meal = [[], [], [], [], [], [], [], []]
   mealSelct(i, d, k) {
-    console.log(i)
-    console.log(d)
-    console.log(this.fare_chk_res)
+    // console.log(i)
+    // console.log(d)
+    // console.log(this.fare_chk_res)
     this.meal[k].push(d)
-    console.log(this.meal)
+    // console.log(this.meal)
   }
   bag = [[], [], [], [], [], [], [], []]
   baggageSelct(i, d, k) {
-    console.log(i)
-    console.log(d)
-    console.log(this.fare_chk_res)
+    // console.log(i)
+    // console.log(d)
+    // console.log(this.fare_chk_res)
     this.bag[k].push(d)
-    console.log(this.bag)
+    // console.log(this.bag)
   }
 
   getControlsadt() {
@@ -310,16 +311,16 @@ export class FPaxPage implements OnInit {
   });
 
   reviewObj: any
-  totseat=0;
+  totseat = 0;
   onSubmit() {
     let d_arr: any[] = []
     let x: any = this.pax_all_obj.value.adt_sub_arr.concat(this.pax_all_obj.value.chd_sub_arr)
     let y: any = x.concat(this.pax_all_obj.value.inf_sub_arr)
     let seat = [];
     let seat2 = [];
-    console.log(y)
-    console.log(this.seats)
-    
+    // console.log(y)
+    // console.log(this.seats)
+
     for (let i = 0; i < this.Seatsdata1.attr.length; i++) {
 
       for (let j = 0; j < this.Seatsdata1.attr[i].length; j++) {
@@ -327,7 +328,7 @@ export class FPaxPage implements OnInit {
           let num = this.Seatsdata1.attr[i][j].x + 1;
           let alp = String.fromCharCode(this.Seatsdata1.attr[i][j].y);
           num += alp;
-          console.log(num)
+          // console.log(num)
           if (this.seats[i][j]) {
             seat.push(this.seats[i][j])
           }
@@ -337,8 +338,8 @@ export class FPaxPage implements OnInit {
 
       }
 
-    
-  }
+
+    }
     if (this.totst > 1) {
       for (let i = 0; i < this.Seatsdata2.attr.length; i++) {
 
@@ -347,7 +348,7 @@ export class FPaxPage implements OnInit {
             let num = this.Seatsdata2.attr[i][j].x + 1;
             let alp = String.fromCharCode(this.Seatsdata2.attr[i][j].y);
             num += alp;
-            console.log(num)
+            // console.log(num)
 
             seat2.push(this.seats[i][j])
 
@@ -358,7 +359,7 @@ export class FPaxPage implements OnInit {
 
       }
     }
-    console.log(seat2)
+    // console.log(seat2)
     let fiseat = []
     for (let i = 0; i < this.seat.length; i++) {
       let aj = []
@@ -372,7 +373,7 @@ export class FPaxPage implements OnInit {
     // if(seat.length==0){
     //   seat=null
     // }
-   
+
     // if(this.meal.length==0){
     //   this.meal=null;
     // }
@@ -423,7 +424,7 @@ export class FPaxPage implements OnInit {
     });
 
 
-     
+
 
     let fobj = {
       "FareChkRes": {
@@ -445,7 +446,7 @@ export class FPaxPage implements OnInit {
 
 
 
-    console.log(fobj)
+    // console.log(fobj)
     // this.showReview = true
     // this.reviewObj = fobj
     localStorage.setItem("f_obj", JSON.stringify(fobj))
@@ -515,31 +516,31 @@ export class FPaxPage implements OnInit {
   i = 0;
   counter(a) {
 
-    console.log(a)
+    // console.log(a)
     const selected = (
       [].concat.apply([], (
         this.Seatsdata1.attr.map(
           row => row.map(
             seat => seat.selected
-           
+
           )
         )
       ))
     ).filter(status => status).length;
-    console.log(this.Seatsdata1)
+    // console.log(this.Seatsdata1)
 
     if (selected === this.TOTSEAT) {
       this.Seatsdata1.maxReached = true;
-      
+
     } else {
       this.Seatsdata1.maxReached = false;
     }
 
-   
+
   }
   counter2(a) {
 
-    console.log(a)
+    // console.log(a)
     const selected = (
       [].concat.apply([], (
         this.Seatsdata2.attr.map(
@@ -550,18 +551,18 @@ export class FPaxPage implements OnInit {
         )
       ))
     ).filter(status => status).length;
-    console.log(this.Seatsdata1)
+    // console.log(this.Seatsdata1)
 
     if (selected === this.TOTSEAT) {
       this.Seatsdata2.maxReached = true;
-      
+
     } else {
       this.Seatsdata2.maxReached = false;
     }
   }
 
 
-  showadult=false
+  showadult = false
 
   async openSeatSelection() {
     const modal = await this.modalCtrl.create({
@@ -596,7 +597,7 @@ export class FPaxPage implements OnInit {
     if (!this.seats || !this.rangei || !this.Seatsdata1?.attr) {
       return [];
     }
-    
+
     let selectedSeats = [];
     for (let i = 0; i < this.rangei.length; i++) {
       for (let j = 0; j < this.rangej.length; j++) {

@@ -84,7 +84,7 @@ export class FBookingHistoryPage implements OnInit {
     this.pstService.GET(b).subscribe((res) => {
       this.reasonarr = res
       this.showtable = true
-      console.log(res)
+      // console.log(res)
 
     },
       (err) => {
@@ -290,7 +290,7 @@ export class FBookingHistoryPage implements OnInit {
       if(this.statusresponse?.Status=='PENDING'){
         alert(this.statusresponse.WarningMessage)
       }
-      console.log(this.statusresponse?.IsCancelled)
+      // console.log(this.statusresponse?.IsCancelled)
       if (this.statusresponse?.IsCancelled) {
         alert("your ticket is cancelled")
         this.ShowCancelModel = false
@@ -476,7 +476,7 @@ export class FBookingHistoryPage implements OnInit {
     doc.save('BookingReport' + this.maxDate + '.pdf');
   }
   PNR(d: any) {
-    console.log(d)
+    // console.log(d)
     let obj = {
 
       "P_TYPE": "API",

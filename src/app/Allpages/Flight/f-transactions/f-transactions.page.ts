@@ -5,6 +5,7 @@ import * as XLSX from 'xlsx';
 import { Subject } from 'rxjs';
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
+import { error } from 'console';
 @Component({
   selector: 'app-f-transactions',
   templateUrl: './f-transactions.page.html',
@@ -21,6 +22,7 @@ export class FTransactionsPage implements OnInit {
   from = this.maxDate
   to = this.maxDate
   apiHit(){
+    this.isLoading = true;
     let data={
       "P_TYPE": "API",
       "R_TYPE": "FLIGHT",
@@ -39,18 +41,22 @@ export class FTransactionsPage implements OnInit {
      }
      let d = JSON.stringify(data)
      sessionStorage.setItem('req',d)
-     console.log(data);
-    this.pstService.POST('/FReport',data).subscribe(result => {
+    //  console.log(data);
+    this.pstService.POST('/FReport',data).subscribe({ 
+      next: (result: any) => {
      
-      console.log(result)
+      // console.log(result)
       this.test=result
-
-     
-    }, (error) => {
-      console.log(error)
-    })
+      this.exportexcel2()
+     this.isLoading = false;
+    } , error: (error) => {
+      console.log(error);
+      this.isLoading = false;
+    }
+  })
   }
-  test
+  test  
+  isLoading = false;
   fileName = 'TransactionReport.xlsx';
   exportexcel(): void {
     let element = document.getElementById('tab5');
@@ -58,6 +64,37 @@ export class FTransactionsPage implements OnInit {
     const wb: XLSX.WorkBook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
     XLSX.writeFile(wb, this.fileName);
+  }
+
+
+  exportexcel2(): void {
+    if (!this.test || this.test.length === 0) {
+      // console.warn("No data to export");
+      return;
+    }
+  
+    const exportData = this.test.map(d => ({
+      'AliasId': d.AliasId,
+      'BookingAmt': d.BookingAmt,
+      'CurrentBalance': d.CurrentBalance,
+      'PreviousBalance': d.PreviousBalance ,
+      'Product': d.Product ,
+      'DealAmt': d.DealAmt ,
+      'NetAmt': d.NetAmt ,
+      'GstAmt': d.GstAmt ,
+      'SFAmt': d.SFAmt ,
+      'TdsAmt': d.TdsAmt ,
+      'CBAmt': d.CBAmt ,
+      'PromoAmt': d.PromoAmt ,
+      'ETime': d.ETime ,
+      'Remark': d.Remark ,
+      'Narration': d.Narration ,
+    }));
+  
+    const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(exportData);
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'TransactionReport');
+    XLSX.writeFile(wb, 'TransactionReport.xlsx');
   }
   
   ngOnInit() {
@@ -90,7 +127,7 @@ export class FTransactionsPage implements OnInit {
 
 
 PNR(d: any) {
-  console.log(d)
+  // console.log(d)
   let obj = {
     "P_TYPE": "CC",
     "R_TYPE": "FLIGHT",
@@ -109,9 +146,9 @@ PNR(d: any) {
     "Version": "1.0.0.0.0.0"
   }
 
-  console.log(obj);
+  // console.log(obj);
   this.pstService.POST('/FReport', obj).subscribe(result => {
-    console.log(result)
+    // console.log(result)
     for (let i = 0; i < Math.floor(result.length / 2); i++) {
       [result[i], result[result.length - 1 - i]] = [result[result.length - 1 - i], result[i]];
     }
@@ -122,9 +159,9 @@ PNR(d: any) {
     this.test.FareBreakup.Journeys.forEach((ele) => {
       ele.Segments.forEach((seg) => {
         this.tax = seg.TaxBreakup
-        console.log(this.tax)
+        // console.log(this.tax)
         seg.TaxBreakup.forEach((TaxBreakup) => {
-          console.log(TaxBreakup)
+          // console.log(TaxBreakup)
         })
       })
     })

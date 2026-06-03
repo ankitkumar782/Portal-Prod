@@ -15,7 +15,7 @@ export class FRefundHistoryPage implements OnInit {
     let a=`https://fhapip.ksofttechnology.com/api/FReport/ADMIN?P_TYPE=API&R_TYPE=FLIGHT&R_NAME=GetCancelCommitStatus&AID=${this.Agentid}&TOKEN=${this.Token}&DATA=${this.Bookingid}`
 
     this.pstService.GET(a).subscribe((res) => {
-      console.log(res)
+      // console.log(res)
       this.response=res
       
       this.show=true
@@ -30,7 +30,7 @@ export class FRefundHistoryPage implements OnInit {
       })
   }
   ngOnInit() {
-    console.log("f-refund")
+    // console.log("f-refund")
     this.env = sessionStorage.getItem("ENV")
     this.Token = sessionStorage.getItem("Token")
     this.Agentid = sessionStorage.getItem("Agentid")

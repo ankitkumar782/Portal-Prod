@@ -54,9 +54,9 @@ export class FCancellationHistoryPage implements OnInit {
       "ENV": this.env,
       "Version": "1.0.0.0.0.0"
     }
-    console.log(obj)
+    // console.log(obj)
     this.pstService.POST('/FReport', obj).subscribe((res) => {
-      console.log(res)
+      // console.log(res)
       this.amt = 0
       this.pdfData = res.map(Object.values);
       for (let x of res) {
@@ -92,9 +92,9 @@ export class FCancellationHistoryPage implements OnInit {
       "Version": "1.0.0.0.0.0"
     }
 
-    console.log(obj);
+    // console.log(obj);
     this.pstService.POST('/FReport', obj).subscribe(result => {
-      console.log(result)
+      // console.log(result)
       for (let i = 0; i < Math.floor(result.length / 2); i++) {
         [result[i], result[result.length - 1 - i]] = [result[result.length - 1 - i], result[i]];
       }
@@ -105,9 +105,9 @@ export class FCancellationHistoryPage implements OnInit {
       this.test.FareBreakup.Journeys.forEach((ele) => {
         ele.Segments.forEach((seg) => {
           this.tax = seg.TaxBreakup
-          console.log(this.tax)
+          // console.log(this.tax)
           seg.TaxBreakup.forEach((TaxBreakup) => {
-            console.log(TaxBreakup)
+            // console.log(TaxBreakup)
           })
         })
       })
@@ -182,9 +182,9 @@ export class FCancellationHistoryPage implements OnInit {
       "ENV": this.env,
       "Version": "1.0.0.0.0.0"
     }
-    console.log(obj)
+    // console.log(obj)
     this.pstService.POST('/FReport', obj).subscribe((res) => {
-      console.log(res)
+      // console.log(res)
       this.amt = 0
       this.pdfData = res.map(Object.values);
       for (let x of res) {

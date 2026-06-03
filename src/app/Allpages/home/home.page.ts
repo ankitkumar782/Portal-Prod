@@ -45,7 +45,7 @@ export class HomePage implements OnInit {
     }
 
     this.pstService.POST("/FReport", obj).subscribe(res => {
-      console.log(res)
+     
       this.count = res[0].Balance;
     })
   }

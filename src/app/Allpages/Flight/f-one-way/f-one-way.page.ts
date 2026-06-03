@@ -53,7 +53,7 @@ export class FOneWayPage implements OnInit {
           verticalPosition: 'top'
         }
       );
-      console.log('Copied to clipboard');
+      // console.log('Copied to clipboard');
     }
   }
   arr() {
@@ -163,7 +163,7 @@ export class FOneWayPage implements OnInit {
     this.isSkelton = true
     this.dnf = false
     this.post_service.POST2("/FSearch", data).subscribe((Flight) => {
-      console.log(Flight)
+      // console.log(Flight)
       localStorage.setItem("flt_srh_sector", JSON.stringify(Flight.Param))
       this.isSkelton = false
       this.Skelton = true
@@ -178,7 +178,7 @@ export class FOneWayPage implements OnInit {
           uniqueChars.push(c.FName);
         }
       })
-      console.log(uniqueChars[1])
+      // console.log(uniqueChars[1])
       let ak = uniqueChars.filter((c, index) => {
         return uniqueChars.indexOf(c) === index;
       });
@@ -258,7 +258,7 @@ export class FOneWayPage implements OnInit {
   stpId: any
   reset_stop_key: Boolean = false
   getStop(value: any) {
-    console.log(this.airlineId)
+    // console.log(this.airlineId)
     this.reset_stop_key = true
     this.stpId = value.val
     if (!this.reset_airline_key) {
@@ -307,7 +307,7 @@ export class FOneWayPage implements OnInit {
       d.isChecked = false
     })
     event.isChecked = true
-    console.log(event)
+    // console.log(event)
     this.reset_depDate_key = true
 
     this.depDateId = event.val1
@@ -328,7 +328,7 @@ export class FOneWayPage implements OnInit {
   arrDateId: any
   reset_arrDate_key = false
   arr_time_filter(event: { isChecked: boolean; val1: string; val2: string; }) {
-    console.log(event)
+    // console.log(event)
     this.ARR_TIME.filter(d => {
       d.isChecked = false
     })
@@ -396,10 +396,11 @@ export class FOneWayPage implements OnInit {
 
     this.fare_diff_show = false
     this.arr_data.forEach((data: any) => {
+      // console.log(data)
       if (data.Id == d.Id) {
         this.fchk_id = data.Id
         this.fare_chk_res = data.Deal
-        console.log(data.Deal)
+        // console.log(data.Deal)
         this.fare_diff_show = true
       }
 

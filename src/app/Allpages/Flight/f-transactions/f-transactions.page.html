@@ -27,13 +27,12 @@
           <ion-col size-sm="12" size-xs="12" size-md="3" size-lg="3" size-xl="3">
             <button class="submit-btn" type="submit" (click)="apiHit()">
               <!-- <span class="material-icons">search</span> -->
-               Search History
+              Search History
             </button>
           </ion-col>
 
           <ion-col size-sm="12" size-xs="12" size-md="3" size-lg="3" size-xl="3">
-            <ion-badge color="tertiary" class="ionp"  style="cursor: pointer;"
-              (click)="exportexcel()">
+            <ion-badge color="tertiary" class="ionp" style="cursor: pointer;" (click)="exportexcel()">
               <img src="https://img.icons8.com/material-outlined/12/ffffff/download--v1.png" /> Download Excel
             </ion-badge>
           </ion-col>
@@ -44,7 +43,7 @@
 
     <ion-row style="padding: 0px;">
       <ion-col size-xs="12" size-sm="12" size-md="12" size-lg="12" size-xl="12">
-        <table id="tab5" class="table" border="1px" >
+        <table id="tab5" class="table" border="1px">
           <thead class="thead">
             <tr>
               <th class="padding th">
@@ -140,6 +139,12 @@
           </tbody>
         </table>
 
+        <div *ngIf="isLoading" class="loader-overlay">
+          <div class="loader-box">
+            <div>Loading...</div>
+            <div class="spinner"></div>
+          </div>
+        </div>
 
       </ion-col>
     </ion-row>

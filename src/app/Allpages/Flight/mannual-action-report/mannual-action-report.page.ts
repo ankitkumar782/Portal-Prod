@@ -101,7 +101,7 @@ statusof2(d: any): void {
   this.cancelBookingId = d.BookingId;
 
   const url = `https://fhapip.ksofttechnology.com/api/FReport/ADMIN?P_TYPE=API&R_TYPE=FLIGHT&R_NAME=GetCancelCommitStatus&AID=${this.Agentid}&TOKEN=${this.Token}&DATA=${d.BookingId}`;
-  console.log(url);
+  // console.log(url);
 
   this.pstService.GET(url).subscribe(
     (res) => {
@@ -311,7 +311,7 @@ confirmCancellation(): void {
   };
 
   this.pstService.POST('/FCancel', cancelTicket).subscribe((res: any) => {
-    console.log(res);
+    // console.log(res);
     if (res.Status == 'Failed') {
       alert("Failed to cancel the pnr: " + res?.ErrorMessage);
     } else if (res.Status == 'Pending') {
@@ -473,7 +473,7 @@ confirmCancellation(): void {
   }
 
   onPartialCheckboxChange() {
-    console.log(this.partial_check);
+    // console.log(this.partial_check);
   }
 
   selected_pax() {

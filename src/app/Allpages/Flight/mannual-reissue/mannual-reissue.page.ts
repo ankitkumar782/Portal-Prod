@@ -74,9 +74,9 @@ export class MannualReissuePage implements OnInit {
       "ENV": this.env,
       "Version": "1.0.0.0.0.0"
     }
-    console.log(obj)
+    // console.log(obj)
     this.pstService.POST('/FReschedule', obj).subscribe((res) => {
-      console.log(res)
+      // console.log(res)
       this.charges = res
 
     },
@@ -111,9 +111,9 @@ export class MannualReissuePage implements OnInit {
       "ENV": this.env,
       "Version": "1.0.0.0.0.0"
     }
-    console.log(obj)
+    // console.log(obj)
      this.pstService.POST('/FReschedule', obj).subscribe((res) => {
-      console.log(res)
+      // console.log(res)
      
 
     },
@@ -181,7 +181,7 @@ export class MannualReissuePage implements OnInit {
     else {
       this.lname = ''
     }
-    console.log(this.FromData, this.data)
+    // console.log(this.FromData, this.data)
 
     let obj = {
       "P_TYPE": "API",
@@ -204,9 +204,9 @@ export class MannualReissuePage implements OnInit {
       "ENV": this.env,
       "Version": "1.0.0.0.0.0"
     }
-    console.log(obj)
+    // console.log(obj)
     this.pstService.POST('/FReport', obj).subscribe((res) => {
-      console.log(res)
+      // console.log(res)
       this.resultArr = res
 
     },
@@ -216,7 +216,7 @@ export class MannualReissuePage implements OnInit {
   }
 
   PNR(d: any) {
-    console.log(d)
+    // console.log(d)
     let obj = {
       "P_TYPE": "API",
       "R_TYPE": "FLIGHT",
@@ -234,9 +234,9 @@ export class MannualReissuePage implements OnInit {
       "Version": "1.0.0.0.0.0"
     }
 
-    console.log(obj);
+    // console.log(obj);
     this.pstService.POST('/FReport', obj).subscribe(result => {
-      console.log(result)
+      // console.log(result)
       for (let i = 0; i < Math.floor(result.length / 2); i++) {
         [result[i], result[result.length - 1 - i]] = [result[result.length - 1 - i], result[i]];
       }
@@ -247,9 +247,9 @@ export class MannualReissuePage implements OnInit {
       this.test.FareBreakup.Journeys.forEach((ele) => {
         ele.Segments.forEach((seg) => {
           this.tax = seg.TaxBreakup
-          console.log(this.tax)
+          // console.log(this.tax)
           seg.TaxBreakup.forEach((TaxBreakup) => {
-            console.log(TaxBreakup)
+            // console.log(TaxBreakup)
           })
         })
       })
@@ -296,8 +296,8 @@ export class MannualReissuePage implements OnInit {
   bookId
 
   action(d, i) {
-    console.log(i)
-    console.log(d)
+    // console.log(i)
+    // console.log(d)
     this.bookId = d.BookingId
     this.actiondiv = true
 
@@ -315,9 +315,9 @@ export class MannualReissuePage implements OnInit {
       "ENV": this.env,
       "Version": "1.0.0.0.0.0"
     }
-    console.log(obj)
+    // console.log(obj)
     this.pstService.POST('/FReport', obj).subscribe((res) => {
-      console.log(res)
+      // console.log(res)
       this.actiontype = res
 
     },
@@ -368,9 +368,9 @@ export class MannualReissuePage implements OnInit {
       "ENV": this.env,
       "Version": "1.0.0.0.0.0"
     }
-    console.log(obj)
+    // console.log(obj)
     this.pstService.POST('/FReport', obj).subscribe((res) => {
-      console.log(res)
+      // console.log(res)
 
 
     },

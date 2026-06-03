@@ -73,7 +73,7 @@ export class SearchbyPage implements OnInit {
     }
     if (this.FromData == "PNR") {
       this.pnr = this.searchbydata.value.Datavalue
-      console.log(this.pnr)
+      // console.log(this.pnr)
     }
     else {
       this.pnr = ''
@@ -90,7 +90,7 @@ export class SearchbyPage implements OnInit {
     else {
       this.lname = ''
     }
-    console.log(this.FromData, this.pnr)
+    // console.log(this.FromData, this.pnr)
     let obj = {
       "P_TYPE": "API",
       "R_TYPE": "FLIGHT",
@@ -134,7 +134,7 @@ export class SearchbyPage implements OnInit {
     this.Agentid = sessionStorage.getItem("Agentid")
   }
   PNR(d: any) {
-    console.log(d)
+    // console.log(d)
     let obj = {
       "P_TYPE": "API",
       "R_TYPE": "FLIGHT",
@@ -442,7 +442,7 @@ export class SearchbyPage implements OnInit {
       }
     }
     else {
-      console.log(this.partial_sector_commit.Req.R_DATA)
+      // console.log(this.partial_sector_commit.Req.R_DATA)
       cancelTicket = {
         "P_TYPE": "API",
         "R_TYPE": "FLIGHT",
@@ -509,9 +509,9 @@ export class SearchbyPage implements OnInit {
     this.cancelBookingId = d.BookingId
 
     var a = `https://fhapip.ksofttechnology.com/api/FReport/ADMIN?P_TYPE=API&R_TYPE=FLIGHT&R_NAME=GetCancelChargeStatus&AID=${this.Agentid}&TOKEN=${this.Token}&DATA=${d.BookingId}`
-    console.log(a)
+    // console.log(a)
     this.pstService.GET(a).subscribe((res) => {
-      console.log(res)
+      // console.log(res)
       this.statusresponse = res
       if (res.Charges) {
         this.showstatus = false
@@ -547,14 +547,14 @@ export class SearchbyPage implements OnInit {
     this.cancelBookingId = d.BookingId
 
     var a = `https://fhapip.ksofttechnology.com/api/FReport/ADMIN?P_TYPE=API&R_TYPE=FLIGHT&R_NAME=GetCancelCommitStatus&AID=${this.Agentid}&TOKEN=${this.Token}&DATA=${d.BookingId}`
-    console.log(a)
+    // console.log(a)
     this.pstService.GET(a).subscribe((res) => {
-      console.log(res)
+      // console.log(res)
       this.statusresponse = res
       if (this.statusresponse.Status == 'PENDING') {
         alert(this.statusresponse.WarningMessage)
       }
-      console.log(this.statusresponse.IsCancelled)
+      // console.log(this.statusresponse.IsCancelled)
       if (this.statusresponse.IsCancelled) {
         alert("your ticket is cancelled")
         this.ShowCancelModel = false
@@ -615,7 +615,7 @@ export class SearchbyPage implements OnInit {
       "Version": "1.0.0.0.0.0"
     }
     this.pstService.POST('/FCancel', data).subscribe((res) => {
-      console.log(res)
+      // console.log(res)
       this.ShowCancelModel = false;
       this.ShowModelDATA = true;
     })
@@ -624,14 +624,14 @@ export class SearchbyPage implements OnInit {
   isCheckedArr: boolean[] = [];
 
   onCheckboxChange(index: number, isChecked: boolean): void {
-    console.log(`Checkbox at index ${index} is now ${isChecked ? 'checked' : 'unchecked'}`);
-    console.log(this.isCheckedArr)
+    // console.log(`Checkbox at index ${index} is now ${isChecked ? 'checked' : 'unchecked'}`);
+    // console.log(this.isCheckedArr)
 
     this.selected_pax()
   }
 
   onPartialCheckboxChange() {
-    console.log(this.partial_check)
+    // console.log(this.partial_check)
   }
 
   main_partial_check: boolean = false
