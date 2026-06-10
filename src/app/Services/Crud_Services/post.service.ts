@@ -77,7 +77,7 @@ export class PostService {
 
   POST2(url: any, data: any): Observable<any> {
     let a_id = JSON.parse(sessionStorage.getItem("Agentid"));
-    if (331724 == a_id || 3431724 == a_id || 549424 == a_id || 4327225 == a_id || 6524725 == a_id || 2615424 == a_id) {
+    if (331724 == a_id || 3431724 == a_id || 549424 == a_id || 4327225 == a_id || 6524725 == a_id || 2615424 == a_id ||606824==a_id) {
       this.url = sessionStorage.getItem("url2");
     }
     else {

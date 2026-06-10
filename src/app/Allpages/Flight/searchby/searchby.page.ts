@@ -54,10 +54,10 @@ export class SearchbyPage implements OnInit {
   tax: any
   env: any
 
-  toDate
-  fromDate
-  meal;
-  mealamount;
+  toDate:any
+  fromDate:any
+  meal:any;
+  mealamount:any;
   seat = [];
   loader: boolean = false;
   // env: string;

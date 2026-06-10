@@ -11,11 +11,11 @@ export const MAX_SELECTION = 9;
   selector: 'app-f-pax',
   templateUrl: './f-pax.page.html',
   styleUrls: ['./f-pax.page.scss'],
-})
+})  
 
 
 export class FPaxPage implements OnInit {
-  Baggage: any
+  Baggage:any;
   isMeal = false
   Meals: any
   istax: any
@@ -397,7 +397,7 @@ export class FPaxPage implements OnInit {
     //     "OI": null,
     //     "Leg": 0
     // }
-    y.forEach((d, index) => {
+    y.forEach((d:any, index:number) => {
       let z = this.datepipe.transform(d.age, 'yyyy-MM-dd')
       let f = {
         "PaxType": d.PaxType,
@@ -455,7 +455,7 @@ export class FPaxPage implements OnInit {
   }
 
 
-  nullfunc(a) {
+  nullfunc(a:any) {
     if (a.length == 0) {
       return null
     }
@@ -464,7 +464,7 @@ export class FPaxPage implements OnInit {
       return a
     }
   }
-  nullfunc2(a, b) {
+  nullfunc2(a:any, b:any) {
     if (a.length == 0) {
       return null
     }
@@ -514,7 +514,7 @@ export class FPaxPage implements OnInit {
 
   isBaggageselect = false
   i = 0;
-  counter(a) {
+  counter(a:any) {
 
     // console.log(a)
     const selected = (
@@ -538,7 +538,7 @@ export class FPaxPage implements OnInit {
 
 
   }
-  counter2(a) {
+  counter2(a:any) {
 
     // console.log(a)
     const selected = (
